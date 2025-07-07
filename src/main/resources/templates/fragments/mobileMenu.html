@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<body>
+<div class="menu-wrapper" th:fragment="mobileMenu">
+    <div class="menu-container">
+        <div class="menu-header">
+            <div class="menu-logo logo">
+                <a href="/" target="_self">MOIDA</a>
+            </div>
+            <div class="menu-closeButton" onclick="hideMenu()">
+                <i class="ti ti-x"></i>
+            </div>
+        </div>
+        <div class="menu-content">
+            <div class="menu-categoryBox">
+                <div class="menu-title subTitle">
+                    카테고리
+                </div>
+                <div class="menu-list">
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-plane"></i>
+                        <span>여행</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-kayak"></i>
+                        <span>레져</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-palette"></i>
+                        <span>문화예술</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-confetti"></i>
+                        <span>파티</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-tools-kitchen-2"></i>
+                        <span>식사</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-book"></i>
+                        <span>자기계발</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-briefcase"></i>
+                        <span>N잡</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-language"></i>
+                        <span>외국어</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-heart"></i>
+                        <span>취미</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-device-gamepad-2"></i>
+                        <span>소셜게임</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-users"></i>
+                        <span>동네또래</span>
+                    </a>
+                    <a href="[category]/categoryList.html" class="menu-item">
+                        <i class="ti ti-hearts"></i>
+                        <span>연애사랑</span>
+                    </a>
+                </div>
+            </div>
+            <div class="menu-categoryBox">
+                <div class="menu-title subTitle">
+                    마이페이지
+                </div>
+                <div class="menu-list">
+                    <a href="/sign/in" class="menu-item">
+                        로그인
+                    </a>
+                    <a href="/sign/up" class="menu-item">
+                        회원가입
+                    </a>
+                </div>
+            </div>
+            <div class="menu-categoryBox">
+                <div class="menu-title subTitle">
+                    관리자전용
+                </div>
+                <div class="menu-list">
+                    <a href="admin/member/list/memberList.html" class="menu-item">
+                        회원
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- src/main/resources/templates/layout/base.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="" lang="ko">
+<head>
+    <title>MOIDA</title>
+    <div th:include="~{fragments/header :: head}"></div>
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<main class="container" layout:fragment="content">
+    <!-- 페이지별 컨텐츠가 여기에 삽입됩니다 -->
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/backdrop :: backdrop}"></div>
+<div th:replace="~{fragments/mobileMenu :: mobileMenu}"></div>
+</body>
+</html>

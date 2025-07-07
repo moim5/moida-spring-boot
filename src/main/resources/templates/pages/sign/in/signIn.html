@@ -1,0 +1,38 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<head>
+    <link rel="stylesheet" th:href="@{/css/sign.css}"/>
+    <title>로그인</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="main-wrapper main-wrapper-center">
+        <form class="main-sign-container">
+            <div class="logo">MOIDA</div>
+            <div class="main-sign-description">
+                취향이 닿는 곳, 우리가 모이는 이유<br/>
+                모일수록 즐거운 세상, 모이다에서 시작돼요
+            </div>
+            <div class="main-sign-inputBox">
+                <label>사용자명
+                    <input type="text"/>
+                </label>
+                <label>비밀번호
+                    <input type="password"/>
+                </label>
+            </div>
+            <button type="submit">로그인</button>
+            <div class="main-sign-linkBox">
+                <a href="/sign/up" target="_self">회원가입하기</a>
+                <a href="../forgotPassword/forgotPassword.html" target="_self">비밀번호를 잊으셨나요?</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

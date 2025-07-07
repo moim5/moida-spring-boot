@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="12.083" y="13.1667" width="23.8333" height="17.6545" rx="1.72908" fill="#8DA8FF"/>
+<rect x="14.5518" y="13.9695" width="18.0805" height="16.0496" rx="1.72908" fill="white"/>
+<path d="M23.5928 13.9695H31.7258C32.6807 13.9695 33.4548 14.7436 33.4548 15.6986V28.29C33.4548 29.2449 32.6807 30.019 31.7258 30.019H23.5928V13.9695Z" fill="#F5F5F5"/>
+<rect x="15.373" y="19.5864" width="7.39655" height="1.60496" rx="0.802478" fill="#C6C6C6"/>
+<rect x="25.2275" y="19.5869" width="6.57471" height="8.82726" rx="1.72908" fill="#C6C6C6"/>
+<rect width="6.57471" height="1.60496" rx="0.802478" transform="matrix(1 0 0 -1 25.2275 17.9819)" fill="#C6C6C6"/>
+<rect x="15.373" y="22.7964" width="7.39655" height="1.60496" rx="0.802478" fill="#C6C6C6"/>
+<rect x="15.373" y="16.3765" width="3.28736" height="1.60496" rx="0.802478" fill="#C6C6C6"/>
+<rect x="15.373" y="26.0063" width="7.39655" height="1.60496" rx="0.802478" fill="#C6C6C6"/>
+<path d="M24.2891 30.0186H28.3983V34.8334L26.3437 33.389L24.2891 34.8334V30.0186Z" fill="#929AEE"/>
+<rect x="23.5928" y="13.9695" width="4.93104" height="16.0496" fill="black" fill-opacity="0.07"/>
+</svg>

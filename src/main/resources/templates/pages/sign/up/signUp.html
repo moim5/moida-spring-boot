@@ -1,0 +1,65 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<head>
+    <link rel="stylesheet" th:href="@{/css/sign.css}"/>
+    <title>로그인</title>
+</head>
+<body>
+<div layout:fragment="content" class="main-wrapper main-wrapper-center">
+    <form class="main-sign-container">
+        <div class="logo">MOIDA</div>
+        <div class="main-sign-description">
+            취향이 닿는 곳, 우리가 모이는 이유<br/>
+            모일수록 즐거운 세상, 모이다에서 시작돼요
+        </div>
+        <div class="main-sign-inputBox">
+            <label>사용자명 *
+                <input type="text" name="username" placeholder="아이디를 입력해주세요"/>
+            </label>
+            <label>비밀번호 *
+                <input type="password" name="password" placeholder="비밀번호를 입력해주세요"/>
+            </label>
+            <label>비밀번호 확인 *
+                <input type="password" name="confirm" placeholder="비밀번호를 다시 입력해주세요"/>
+            </label>
+            <label>이름 *
+                <input type="text" name="name" placeholder="이름을 입력해주세요"/>
+            </label>
+            <label>생일 *
+                <input type="date" name="birthday"/>
+            </label>
+            <label>성별 *
+                <select name="gender">
+                    <option value="M">남자</option>
+                    <option value="F">여자</option>
+                </select>
+            </label>
+            <label>이메일 *
+                <input type="email" name="email" placeholder="이메일을 입력해주세요"/>
+            </label>
+            <label>전화번호 *
+                <input type="tel" name="phone" placeholder="전화번호를 입력해주세요"/>
+            </label>
+            <label class="main-sign-postBox">주소 *
+                <div class="main-sign-postDiv">
+                    <button onclick="execDaumPostcode()">주소찾기</button>
+                    <input type="text" id="zipCode" name="zipCode" disabled="disabled"/>
+                </div>
+                <input type="text" id="address1" name="address1" disabled="disabled"/>
+                <input type="text" id="address2" name="address2"/>
+                <div id="daumPostcodeContainer" style="display:none; position:relative; z-index:999;"></div>
+            </label>
+        </div>
+        <button type="submit">회원가입</button>
+        <div class="main-sign-linkBox">
+            <a href="/sign/in" target="_self">이미 회원이십니까?</a>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

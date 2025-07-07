@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} ?: '기본 제목'">기본 제목</title>
+    <link
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"
+    />
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <script src="//cdn.jsdelivr.net/npm/@tabler/icons@latest/icons-react/dist/index.umd.min.js"></script>
+    <script type="application/javascript" th:src="@{/js/script.js}" defer></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+<body>
+<header class="header" th:fragment="navigation">
+    <div class="header-container">
+        <a href="/" target="_self" class="logo">MOIDA</a>
+        <nav class="header-buttonBox">
+            <a class="header-button" href="/sign/in">
+                <i class="ti ti-users"></i>
+                <span>마이</span>
+            </a>
+            <div class="header-button">
+                <i class="ti ti-circle-letter-a"></i>
+                <span>관리자</span>
+            </div>
+            <div class="header-button" onclick="showMenu()">
+                <i class="ti ti-menu-2 mobile-menuButton"></i>
+                <span>메뉴</span>
+            </div>
+        </nav>
+    </div>
+</header>
+</body>
+</html>

@@ -7,7 +7,7 @@ build/
 
 ### 환경 설정 파일 ###
 application*.yml
-application*.properties
+application-secret.properties
 .env
 
 ### STS ###

@@ -1,0 +1,441 @@
+@font-face {
+    font-family: 'RiaSans-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/RiaSans-ExtraBold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo {
+    font-family: 'RiaSans-ExtraBold', serif;
+    font-weight: bold;
+}
+
+.header {
+    position: sticky;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to right, #FFA600, #FFCD62);
+}
+
+.header > .header-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.header .logo {
+    font-size: 2rem;
+    color: #fff;
+    user-select: none;
+    cursor: pointer;
+    margin-right: 50px;
+}
+
+.header .header-menu {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+}
+
+.header .header-buttonBox {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header .header-buttonBox .header-button {
+    min-width: 40px;
+    padding: 8px 16px;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header .header-buttonBox .mobile-menuButton {
+    font-size: 2.5rem;
+}
+
+.header .header-buttonBox .header-button i {
+    font-size: 1.5rem;
+}
+
+.header .header-buttonBox .header-button span {
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.banner-container {
+    width: 100%;
+    height: 370px;
+    position: relative;
+    border-bottom: 1px solid lightgray;
+}
+
+.banner-container img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-wrapper.main-wrapper-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-container {
+    width: 100%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 36px;
+}
+
+.category-container .category-item {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+.category-container .category-item .category-item-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeeee;
+    border-radius: 100%;
+}
+
+.category-container .category-item img {
+    width: 50px;
+    height: 50px;
+}
+
+.subTitle-container {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.subTitle {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.subTitle::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #ffa600, #ffcd62);
+    height: 3px;
+    width: 100%;
+}
+
+.moim-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.moim-container .moim-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.moim-container .moim-item .moim-image {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 16px;
+    object-fit: cover;
+}
+
+.moim-container .moim-item .moim-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.moim-container .moim-item .moim-categoryText {
+    font-size: 0.9rem;
+    color: #999999;
+}
+
+.moim-container .moim-item .moim-titleText {
+    font-size: 1.1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+.moim-container .moim-item .moim-dateText {
+    font-size: 0.8rem;
+    color: #999999;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+}
+
+.moim-container .moim-item .moim-dateText > div {
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+}
+
+footer {
+    margin-top: 50px;
+    width: 100%;
+    background-color: #cccccc;
+}
+
+footer .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333333;
+}
+
+footer .footer-container .footer-logo {
+    width: 200px;
+    font-size: 2rem;
+}
+
+footer .footer-container .footer-copyright {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: right;
+}
+
+footer .footer-container .footer-copyrightText {
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
+
+.menu-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.menu-container {
+    width: 320px;
+    max-width: 80vw;
+    height: 100%;
+    background-color: rgb(247, 248, 251);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    pointer-events: all;
+}
+
+.backdrop.active ~ .menu-wrapper .menu-container {
+    transform: translateX(0);
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.menu-header .menu-logo {
+    font-size: 1.2rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+.menu-header .menu-closeButton {
+    font-size: 1.8rem;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.menu-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.menu-content .menu-categoryBox .menu-title {
+    margin-bottom: 20px;
+}
+
+.menu-content .menu-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.menu-content .menu-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.menu-content .menu-list > a {
+    width: calc(50% - 10px);
+    padding: 10px 15px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-sizing: border-box;
+}
+
+.menu-content .menu-list > a > i {
+    margin-bottom: 3px;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.backdrop.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+@media (max-width: 48rem) {
+    .moim-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 32rem) {
+    html {
+        font-size: 0.8rem;
+        box-sizing: border-box;
+    }
+
+    .header .header-buttonBox {
+        gap: 8px;
+    }
+
+    .header .header-buttonBox .header-button {
+        min-height: 32px;
+        padding: 4px;
+        border-radius: 0.5rem;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .header .header-buttonBox .mobile-none {
+        display: none;
+    }
+
+    .main-wrapper {
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .category-container {
+        gap: 16px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .category-container .category-item {
+        width: 90px;
+        height: 90px;
+    }
+
+    .subTitle-container {
+        margin-top: 80px;
+    }
+
+    .moim-container {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    footer .footer-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 0;
+    }
+
+    footer .footer-container .footer-logo {
+        text-align: center;
+    }
+
+    footer .footer-container .footer-copyright {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+}

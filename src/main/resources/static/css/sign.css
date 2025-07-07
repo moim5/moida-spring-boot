@@ -1,0 +1,109 @@
+.main-sign-container {
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    min-height: calc(100dvh - 335px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-sign-container > .logo {
+    font-size: 2rem;
+    background: linear-gradient(to right, #FFA600, #FFCD62);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 표준화된 속성 (일부 브라우저만 지원) */
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-sign-container > .main-sign-description {
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 50px;
+}
+
+.main-sign-container > .main-sign-inputBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.main-sign-container > .main-sign-inputBox > label {
+    font-size: 0.9rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.main-sign-container > .main-sign-inputBox > label > .main-sign-postDiv {
+    display: flex;
+    gap: 5px;
+}
+
+.main-sign-container > .main-sign-inputBox > label > .main-sign-postDiv > button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #FFA600;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.main-sign-container > .main-sign-inputBox > label input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.main-sign-container > .main-sign-inputBox > label > select {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.main-sign-container > button {
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #FFA600;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.main-sign-container > button:hover {
+    background-color: #FFCD62;
+}
+
+.main-sign-linkBox {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.main-sign-linkBox > a:hover {
+    color: #FFA600;
+}
