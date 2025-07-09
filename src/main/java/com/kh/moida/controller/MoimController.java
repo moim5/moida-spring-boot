@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MoimController {
     @GetMapping("/createMoim")
     public String CreateMoim() {
-    	return "pages/CreateMoim";
+    	return "pages/moim/CreateMoim";
     }
     
     @GetMapping("/")
     public String JoinMoim() {
-    	return "pages/JoinMoim";
+    	return "pages/moim/JoinMoim";
     }
     
     @GetMapping("/")
     public String modifyMoim() {
-    	return "pages/modifyMoim";
+    	return "pages/moim/modifyMoim";
     }
     
     @GetMapping("/")
