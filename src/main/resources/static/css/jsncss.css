@@ -1,0 +1,268 @@
+@font-face {
+    font-family: 'RiaSans-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/RiaSans-ExtraBold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.create-moim p {
+    font-family: 'RiaSans-ExtraBold';
+    font-size: 38px;
+    font-weight: lighter;
+    color: #ffa600;
+}
+
+.box{
+    border: 10px solid #f3760f;
+    margin:0 auto;
+    margin-bottom: 60px;
+    width: 300px;
+    height: 420px;
+    padding: 50px;
+    background: white; /*#ffa600 진한거 #ffcd62 연한거*/
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: -38px;
+}
+
+.custom-upload-button{
+    background-color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border: 1px solid #ffa600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    background-color: white;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border: 1px solid #ffa600;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn{
+    background-color: white;
+    font-size: 14px;
+    color: #f3760f;
+    border: 1px solid #f3760f;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+
+.box3-container{
+    margin: 0 auto;
+    border: 2px solid #f3760f;
+    width: 550px;
+    height: 730px;
+    align-items: center;
+    border-radius: 40px;
+}
+.create-moim {
+    font-size: 20px;
+    color: #f3760f;
+    margin-top: 20px;
+}
+.create-moim p{
+    text-align: center;
+    font-size: 35px;
+    font-family: 'RiaSans-ExtraBold';
+    font-weight: lighter;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+#moim-type{
+    width: 73%;
+    text-align: center;
+}
+#moim-category{
+    width: 73%;
+    text-align: center;
+}
+#moim-date{
+    text-align: center;
+}
+
+.create-moim-info-container{
+    float: left;
+    padding-left: 20px;
+    padding-right: 10px;
+    width: 100%;
+    height: 500px;
+}
+.create-moim-info-container input{
+    box-sizing: border-box;
+    width: 73%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #f3760f;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.create-moim-info-container label{
+    font-weight: bold;
+    color: #f3760f;
+}
+.create-moim-info-container textarea{
+    box-sizing: border-box;
+    width: 73%;
+    height: 200px;
+    padding: 10px;
+    scrollbar-width: auto;
+    margin-top: 10px;
+    border: 1px solid #f3760f;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.create-moim-info-container select{
+    box-sizing: border-box;
+    width: 66%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #f3760f;
+    border-radius: 5px;
+    font-size: 16px;
+    color: grey;
+}
+
+.moim-description{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.moim-description label{
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: bolder;
+}
+
+.moim-description textarea{
+    resize: none;
+    overflow: auto;
+    height: 200px;
+    margin-left: 5px;
+}
+
+
+
+.create-moim-info-container input,
+.create-moim-info-container textarea,
+.create-moim-info-container select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-moim-info-container input:focus,
+.create-moim-info-container textarea:focus,
+.create-moim-info-container select:focus {
+    outline: none;
+    border-color: #ffa600;
+    box-shadow: 0 0 0 6px rgba(255, 166, 0, 0.2);
+}
+
+.btn:hover,
+.custom-upload-button:hover,
+button:hover {
+    background-color: #f3760f;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/*************************************************************************/
+.moim-join {
+  border: 1px solid #f3760f;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.moim-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.moim-info,
+.moim-price {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.moim-price strong {
+  color: #f3760f;
+}
+
+.button-box{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.btn-join {
+  width: 70%;
+  padding: 14px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  background-color: #f3760f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-join:hover {
+  background-color: #d8660d;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+  margin: 16px auto;
+  border-radius: 1px;
+}
+
+
+.btn-like i {
+  font-size: 40px;
+  margin-bottom: 2px; 
+  color: red;
+}
+
+.btn-like p {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.ti:hover{
+    cursor: pointer;
+}

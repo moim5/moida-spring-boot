@@ -1,0 +1,66 @@
+
+
+.container{
+    display: flex;
+}
+
+.personal-box{
+    margin: 0 auto;
+    text-align: center;
+    width: 300px;
+    height: 420px;
+    border: 1px solid #f3760f;
+    border-radius: 50px;
+}
+
+
+.personal-info h3{
+    color: #f3760f;
+}
+
+.personal-info p{
+    color:#585654
+}
+
+.line {
+  width: 90%;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+  margin: 16px auto;
+  border-radius: 1px;
+}
+
+
+.agree-box{
+    margin-top: 60px;
+}
+
+label:hover,
+input:hover{
+    cursor: pointer;
+}
+
+.btn-join {
+  width: 70%;
+  padding: 14px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  margin-left: auto;
+  background-color: #f3760f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-join:hover {
+  background-color: #d8660d;
+}
+
+.btn-join:disabled {
+    background-color: #ccc;
+    cursor: unset;
+}
+/***************************************/
