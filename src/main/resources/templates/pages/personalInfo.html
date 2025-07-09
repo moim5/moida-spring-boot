@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/jsncss2.css}">
+</head>
+<body>
+    <form action="">
+        <div class="container">
+            <div class="personal-box">
+                <div class="personal-info">
+                    <h3> 모임 참가에 대한 </h3>
+                    <h3> 개인정보 수집·이용 동의</h3>
+                    <div class="line"></div>
+                    <p>
+                        회사(모이다)는 서비스 이용을 위해 <br/>
+                        다음과 같이 개인정보를 수집 및 이용합니다.<br/>
+                        수집 항목 : 아이디, 비밀번호, 이메일<br/>
+                        수집 목적 : 이용자 식별 및 회원 관리<br/>
+                        보유 기간 : 회원 탈퇴 시 즉시 파기
+                    </p>
+                </div>
+                <div class="agree-box">
+                    <label for="agree" >동의합니다</label>
+                    <input type="checkbox" id="agree"/>
+                </div>
+                <button class="btn-join" id="apply-btn" disabled>신청</button>
+            </div>
+        </div>
+    </form>
+    
+    <script>
+        const checkbox = document.getElementById('agree');
+        const applyBtn = document.getElementById('apply-btn');
+
+        checkbox.addEventListener('change', function() {
+        applyBtn.disabled = !checkbox.checked;
+  });
+        
+    </script>
+</body>
+</html>

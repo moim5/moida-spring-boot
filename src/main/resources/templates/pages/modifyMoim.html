@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html 	xmlns:th="http://www.thymeleaf.org"
+		lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" th:href="@{/css/=jsncss.css}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+<body>
+<!-- input, select에 생성시 받았던 정보 표기  -->
+    <br/><br/><br/><br/><br/><br/>
+    <div class="box3-container">
+        <div class="create-moim">
+            <p>모임 정보 수정</p>
+                <div class="create-moim-info-container">
+                    <div class="moim-time">
+                        <label for="moim-type">모임유형 :</label>
+                            <select id="moim-type" name="moim-type">
+                                <option value="">-- 모임유형을 선택하세요 --</option>
+                                <option value="online">온라인</option>
+                                <option value="offline">오프라인</option>
+                            </select>
+                    </div>
+                    <div class="moim-category-box">
+                        <label for="moim-category">
+                            카테고리 :</label>
+                        <select id="moim-category" name="moim-category">
+                            <option value="">-- 카테고리를 선택하세요 --</option>
+                            <option value="travel">여행</option>
+                            <option value="njob">N잡</option>
+                            <option value="study">스터디</option>
+                            <option value="sports">스포츠</option>
+                            <option value="food">맛집</option>
+                            <option value="culture">문화/예술</option>
+                            <option value="tech">IT/기술</option>
+                            <option value="volunteer">봉사활동</option>
+                            <option value="etc">기타</option>
+                        </select>
+                    </div>
+                    <div class="moim-title">
+                        <label for="moim-title">모임제목 :</label>
+                        <input type="text" id="moim-title" name="moim-title" placeholder="모임 제목을 입력하세요" />
+                    </div>
+
+                    <div class="moim-date">
+                        <label for="moim-date">모일날짜 : </i></label>
+                        <input type="datetime-local" id="moim-date" name="moim-date" />
+                    </div>
+
+
+                    <div class="moim-location">
+                        <label for="moim-location">모일장소 :</label>
+                        <input type="text" id="moim-location" name="moim-location" placeholder="모임 장소를 입력하세요" />
+                    </div>
+
+                    <div class="moim-fee">
+                        <label for="moim-fee">참가비용 :</label>
+                        <input type="text" id="moim-fee" name="moim-fee"/>    
+                    </div>
+
+                    <div class="moim-description">
+                        <label for="moim-description">모임설명 :</label>
+                        <textarea id="moim-description" name="moim-description" placeholder="모임 설명을 입력하세요"></textarea>
+                    </div>
+                    <br/><br/>
+                    <div class="buttons">
+                        <label for="upload-photo" class="btn">사진 업로드<i class="ti ti-photo-plus"></i></label>
+                        <button type="submit" class="btn">수정 완료<i class="ti ti-users-group"></i></button>
+                        <input type="file" id="upload-photo" style="display: none;" />
+                    </div>
+                </div>
+
+    </div>
+</body>
+</html>
