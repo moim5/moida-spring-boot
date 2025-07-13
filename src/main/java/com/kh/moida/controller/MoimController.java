@@ -1,9 +1,13 @@
 package com.kh.moida.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class MoimController {
     @GetMapping("/createMoim")
     public String CreateMoim() {
@@ -26,20 +30,20 @@ public class MoimController {
     }
 
     @GetMapping("/moimDetail")
-    public String moimDetail(){
+    public String moimDetail() {
         return "pages/moim/moimDetail";
     }
-    
+
     @GetMapping("/moimReview/write")
-    public String wrtieReview(){
+    public String wrtieReview() {
         return "pages/moim/review/write";
     }
 
     @PostMapping("/moimReview/write")
-    public String wrtieReview(){
+    public String wrtieReview(@RequestParam String content) {
         //리뷰저장 로직 수행
         return "pages/moim/review/read";
     }
-   
-  
+
+
 }

@@ -11,7 +11,7 @@
 <body>
 <div layout:fragment="content">
     <div class="main-wrapper main-wrapper-center">
-        <form class="main-sign-container">
+        <form class="main-sign-container" method="POST" th:action="@{/sign/in}">
             <div class="logo">MOIDA</div>
             <div class="main-sign-description">
                 취향이 닿는 곳, 우리가 모이는 이유<br/>
@@ -19,12 +19,13 @@
             </div>
             <div class="main-sign-inputBox">
                 <label>사용자명
-                    <input type="text"/>
+                    <input type="text" name="username" th:value="${username}" required/>
                 </label>
                 <label>비밀번호
-                    <input type="password"/>
+                    <input type="password" name="password" required/>
                 </label>
             </div>
+            <div th:if="${error}" th:text="${error}"></div>
             <button type="submit">로그인</button>
             <div class="main-sign-linkBox">
                 <a href="/sign/up" target="_self">회원가입하기</a>

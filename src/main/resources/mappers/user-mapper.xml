@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.moida.mapper.UserMapper">
+    <insert id="insertUser" parameterType="com.kh.moida.model.User">
+        INSERT INTO "USER"
+            (PASSWORD, USERNAME, BIRTHDAY, PHONE, EMAIL, ZIPCODE, ADDRESS1, ADDRESS2, GENDER, IS_ACTIVE, IS_ADMIN)
+        VALUES
+            (#{password}, #{username}, #{birthday}, #{phone}, #{email}, #{zipCode}, #{address1}, #{address2}, #{gender}, #{isActive}, #{isAdmin})
+    </insert>
+    <select id="findByEmail" parameterType="string" resultType="com.kh.moida.model.User">
+        SELECT
+            *
+        FROM
+            "USER"
+        WHERE
+            EMAIL = #{email}
+    </select>
+    <select id="findByUsername" parameterType="string" resultType="com.kh.moida.model.User">
+        SELECT
+            *
+        FROM
+            "USER"
+        WHERE
+            USERNAME = #{username}
+    </select>
+</mapper>
