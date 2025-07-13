@@ -25,4 +25,25 @@ public class MoimController {
         return "pages/personalInfo";
     }
 
+    @GetMapping("/moimDetail")
+    public String moimDetail(){
+        return "pages/moim/moimDetail";
+    }
+    
+    @GetMapping("/moimReview/write")
+    public String wrtieReview(){
+        return "pages/moim/review/write";
+    }
+
+    @PostMapping("/moimReview/write")
+    public String wrtieReview(){
+        //리뷰저장 로직 수행
+        return "pages/moim/review/read";
+    }
+    @GetMapping("/moimReview/read")
+    public String readReview(){
+        return "pages/moim/review/read";
+    }
+
+  
 }
