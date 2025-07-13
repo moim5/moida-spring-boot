@@ -40,10 +40,6 @@ public class MoimController {
         //리뷰저장 로직 수행
         return "pages/moim/review/read";
     }
-    @GetMapping("/moimReview/read")
-    public String readReview(){
-        return "pages/moim/review/read";
-    }
-
+   
   
 }
