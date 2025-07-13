@@ -4,10 +4,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/base}"
       lang="ko">
-<head>
-    <link rel="stylesheet" th:href="@{/css/sign.css}"/>
-    <title>로그인</title>
-</head>
 <body>
 <div layout:fragment="content" class="main-wrapper main-wrapper-center">
     <form class="main-sign-container" method="POST" th:action="@{/sign/up}">
@@ -46,7 +42,7 @@
             </label>
             <label class="main-sign-postBox">주소 *
                 <div class="main-sign-postDiv">
-                    <button onclick="execDaumPostcode()">주소찾기</button>
+                    <button type="button" onclick="execDaumPostcode()">주소찾기</button>
                     <input type="text" id="zipCode" name="zipCode" readonly />
                 </div>
                 <input type="text" id="address1" name="address1" readonly/>

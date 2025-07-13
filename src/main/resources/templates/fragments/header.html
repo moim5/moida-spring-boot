@@ -3,13 +3,15 @@
 <head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${title} ?: '기본 제목'">기본 제목</title>
+    <title>MOIDA</title>
     <link
             rel="stylesheet"
             href="//cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"
     />
     <link rel="stylesheet" th:href="@{/css/global.css}">
-    <script src="//cdn.jsdelivr.net/npm/@tabler/icons@latest/icons-react/dist/index.umd.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/sign.css}"/>
+    <script src="//cdn.jsdelivr.net/npm/@tabler/icons@latest/icons-react/dist/index.umd.min.js" defer></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
     <script type="application/javascript" th:src="@{/js/script.js}" defer></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 </head>

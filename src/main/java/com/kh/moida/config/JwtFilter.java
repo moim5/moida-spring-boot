@@ -57,5 +57,7 @@ public class JwtFilter extends GenericFilter {
                 System.out.println("JWT 인증 실패 : " + e.getMessage());
             }
         }
+
+        chain.doFilter(request, response);
     }
 }
