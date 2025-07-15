@@ -11,8 +11,9 @@ import java.util.Date;
 @ToString
 public class User {
     private Long userId;
-    private String password;
     private String username;
+    private String password;
+    private String name;
     private Date birthday;
     private String phone;
     private String email;

@@ -72,15 +72,22 @@
                     마이페이지
                 </div>
                 <div class="menu-list">
-                    <a href="/sign/in" class="menu-item">
-                        로그인
-                    </a>
-                    <a href="/sign/up" class="menu-item">
-                        회원가입
-                    </a>
+                    <th:block th:if="${loginUser == null}">
+                        <a href="/sign/in" class="menu-item">
+                            로그인
+                        </a>
+                        <a href="/sign/up" class="menu-item">
+                            회원가입
+                        </a>
+                    </th:block>
+                    <th:block th:if="${loginUser != null}">
+                        <a href="/sign/out" class="menu-item">
+                            로그아웃
+                        </a>
+                    </th:block>
                 </div>
             </div>
-            <div class="menu-categoryBox">
+            <div class="menu-categoryBox" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
                 <div class="menu-title subTitle">
                     관리자전용
                 </div>

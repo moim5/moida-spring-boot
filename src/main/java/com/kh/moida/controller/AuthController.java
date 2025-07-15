@@ -46,11 +46,15 @@ public class AuthController {
             @RequestParam String gender,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam String zipcode,
+            @RequestParam String zipCode,
             @RequestParam String address1,
             @RequestParam String address2,
             Model model
     ) {
+        if (username.length() < 4 || username.length() > 20) {
+            model.addAttribute("error", "아이디는 4~20자여야 합니다.");
+            return "pages/sign/up/signUp";
+        }
         if (!password.equals(confirm)) {
             model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
             return "pages/sign/up/signUp";
@@ -59,9 +63,10 @@ public class AuthController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
+        user.setName(name);
         user.setEmail(email);
         user.setPhone(phone);
-        user.setZipCode(zipcode);
+        user.setZipCode(zipCode);
         user.setAddress1(address1);
         user.setAddress2(address2);
         user.setGender(gender.charAt(0));
@@ -69,7 +74,7 @@ public class AuthController {
         user.setIsActive('Y');
         user.setIsAdmin('N');
         userService.save(user);
-        return "redirect:/auth/login";
+        return "redirect:/sign/in";
     }
 
     @GetMapping("/in")

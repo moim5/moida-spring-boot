@@ -20,11 +20,11 @@
     <div class="header-container">
         <a href="/" target="_self" class="logo">MOIDA</a>
         <nav class="header-buttonBox">
-            <a class="header-button" href="/sign/in">
+            <a class="header-button" th:href="${loginUser != null ? '/my/info' : '/sign/in'}">
                 <i class="ti ti-users"></i>
                 <span>마이</span>
             </a>
-            <div class="header-button">
+            <div class="header-button" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
                 <i class="ti ti-circle-letter-a"></i>
                 <span>관리자</span>
             </div>
