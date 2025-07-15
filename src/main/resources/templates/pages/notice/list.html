@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <style>
+        body{
+          font-family: sans-serif;
+          max-width: 800px;
+          margin: 40px auto;
+        }
+
+        h2{
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 20px;
+          border-bottom: 2px solid #000;
+          padding-bottom: 10px;
+        }
+
+        table{
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        tbody tr td{
+          padding: 12px 8px;
+          border-bottom: 1px solid #ddd;
+        }
+
+        td.title{
+          font-weight: 600;
+          text-align: left;
+        }
+
+        td.date{
+          text-align: right;
+          color: #888;
+          white-space: nowrap;
+        }
+
+        /* 작성 버튼 영역 */
+        .write-button-wrapper {
+          margin-top: 30px;
+          text-align: right;
+        }
+
+        .write-button {
+          background-color: #000;
+          color: #fff;
+          font-weight: bold;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .write-button:hover {
+          background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h2>공지사항</h2>
+
+<table>
+    <tbody>
+    <tr><td class="title">[공지] 서비스 점검 안내 1</td><td class="date">2024-11-21</td></tr>
+    <tr><td class="title">[공지] 시스템 업데이트 예정 2</td><td class="date">2024-11-20</td></tr>
+    <tr><td class="title">[공지] 보안 패치 완료 3</td><td class="date">2024-11-19</td></tr>
+    <tr><td class="title">[공지] 긴급 점검 안내 4</td><td class="date">2024-11-18</td></tr>
+    <tr><td class="title">[공지] 이벤트 당첨자 발표 5</td><td class="date">2024-11-17</td></tr>
+    <tr><td class="title">[공지] 정기 점검 일정 공지 6</td><td class="date">2024-11-16</td></tr>
+    <tr><td class="title">[공지] 이용약관 변경 안내 7</td><td class="date">2024-11-15</td></tr>
+    <tr><td class="title">[공지] 고객센터 운영시간 변경 8</td><td class="date">2024-11-14</td></tr>
+    <tr><td class="title">[공지] 휴면계정 정책 안내 9</td><td class="date">2024-11-13</td></tr>
+    <tr><td class="title">[공지] 신규 기능 추가 안내 10</td><td class="date">2024-11-12</td></tr>
+    <tr><td class="title">${ }</td><td class="date">${ }</td></tr>
+    </tbody>
+</table>
+
+<!-- 작성 버튼 -->
+<div class="write-button-wrapper">
+    <button class="write-button" onclick="location.href='write.html'">공지사항 작성</button>
+</div>
+
+</body>
+</html>
