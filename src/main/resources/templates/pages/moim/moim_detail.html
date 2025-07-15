@@ -1,38 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모임 상세 페이지</title>
-    <link rel="stylesheet" href="moim_detail.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-    <script type="application/javascript" src="./moim_detail.js" defer></script>
-  
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
 <body>
-<header class="header">
-    <div class="header-container">
-        <div class="logo">MOIDA</div>
-        <div class="header-buttonBox">
-            <div class="header-button">
-                <i class="ti ti-users"></i>
-                <span>마이</span>
-            </div>
-            <div class="header-button">
-                <i class="ti ti-circle-letter-a"></i>
-                <span>관리자</span>
-            </div>
-            <div class="header-button" onclick="showBackdrop()">
-                <i class="ti ti-menu-2 mobile-menuButton"></i>
-                <span>메뉴</span>
-            </div>
-        </div>
-    </div>
-</header>
 
-<div class="main-wrapper">
+<div class="main-wrapper" layout:fragment="content">
     <div class="main-container"> <!--모임메인사진-->
         <img src="moim_main_pic1.JPG" alt="모임메인사진" class="moim-main-image">
         <!--모바일 버전 모임 제목, 설명, 신청버튼-->

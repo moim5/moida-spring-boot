@@ -31,7 +31,7 @@ public class MoimController {
 
     @GetMapping("/moimDetail")
     public String moimDetail() {
-        return "pages/moim/moimDetail";
+        return "pages/moim/moim_detail";
     }
 
     @GetMapping("/moimReview/write")
@@ -44,6 +44,4 @@ public class MoimController {
         //리뷰저장 로직 수행
         return "pages/moim/review/read";
     }
-
-
 }

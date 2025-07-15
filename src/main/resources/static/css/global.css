@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+:root {
+    --main-color: #FFA600;
+}
+
 body {
     width: 100%;
     box-sizing: border-box;
@@ -24,7 +28,7 @@ a {
     position: sticky;
     width: 100%;
     height: 100px;
-    background-image: linear-gradient(to right, #FFA600, #FFCD62);
+    background-image: linear-gradient(to right, var(--main-color), #FFCD62);
 }
 
 .header > .header-container {
@@ -175,7 +179,7 @@ a {
     position: absolute;
     left: 0;
     bottom: 0;
-    background: linear-gradient(to right, #ffa600, #ffcd62);
+    background: linear-gradient(to right, var(--main-color), #ffcd62);
     height: 3px;
     width: 100%;
 }

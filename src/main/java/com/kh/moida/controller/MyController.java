@@ -16,7 +16,7 @@ public class MyController {
 
     @GetMapping("/info")
     public String MyInfo(
-            @AuthenticationPrincipal(expression = "user") User user
+            @AuthenticationPrincipal(expression = "user") User loginUser
     ) {
         return "pages/my/info";
     }

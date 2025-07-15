@@ -65,7 +65,6 @@ document.addEventListener("click", function (event) {
 function execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function (data) {
-            console.log(data);
             document.getElementById("zipCode").value = data.zonecode;
             document.getElementById("address1").value = data.roadAddress;
         },
