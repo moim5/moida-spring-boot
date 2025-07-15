@@ -25,7 +25,7 @@
                     <input type="password" name="password" required/>
                 </label>
             </div>
-            <div class="" th:if="${error}" th:text="${error}"></div>
+            <div class="error-text" th:if="${error}" th:text="${error}"></div>
             <button type="submit">로그인</button>
             <div class="main-sign-linkBox">
                 <a href="/sign/up" target="_self">회원가입하기</a>

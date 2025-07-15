@@ -80,7 +80,7 @@
     box-sizing: border-box;
 }
 
-.main-sign-container > .error-text {
+.error-text {
     margin-bottom: 50px;
     text-align: center;
     color: red;
