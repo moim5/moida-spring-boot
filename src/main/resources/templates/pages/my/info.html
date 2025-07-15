@@ -1,0 +1,68 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="my-container">
+        <div class="my-left-container">
+            <div class="my-menuBox">
+                <a href="/my/info">
+                    회원정보수정
+                </a>
+                <a href="/sign/out">
+                    로그아웃
+                </a>
+            </div>
+        </div>
+        <form class="my-right-container" method="POST" th:action="@{/my/info}">
+            <div class="subTitle" style="margin-bottom: 30px;">회원정보 수정</div>
+            <div class="my-info-inputBox">
+                <label>사용자명
+                    <input type="text" name="username" placeholder="아이디를 입력해주세요" readOnly required
+                           th:value="${loginUser.username}"
+                    />
+                </label>
+                <label>이름 *
+                    <input type="text" name="name" placeholder="이름을 입력해주세요" readonly required
+                           th:value="${loginUser.name}"
+                    />
+                </label>
+                <label>생일 *
+                    <input type="date" name="birthday" readonly required
+                           th:value="${#dates.format(loginUser.birthday, 'yyyy-MM-dd')}"
+                    />
+                </label>
+                <label>성별 *
+                    <input type="text" name="gender" readonly required
+                           th:value="${loginUser.gender == 'M' ? '남자' : '여자'}"
+                    />
+                </label>
+                <label>이메일 *
+                    <input type="email" name="email" placeholder="이메일을 입력해주세요" required
+                           th:value="${loginUser.email}"
+                    />
+                </label>
+                <label>전화번호 *
+                    <input type="tel" name="phone" placeholder="전화번호를 입력해주세요" required
+                           th:value="${loginUser.phone}"
+                    />
+                </label>
+                <label class="main-sign-postBox">주소 *
+                    <div class="main-sign-postDiv">
+                        <button type="button" onclick="execDaumPostcode()">주소찾기</button>
+                        <input type="text" id="zipCode" name="zipCode" readonly th:value="${loginUser.zipCode}"/>
+                    </div>
+                    <input type="text" id="address1" name="address1" readonly th:value="${loginUser.address1}"/>
+                    <input type="text" id="address2" name="address2" th:value="${loginUser.address2}"/>
+                    <div id="daumPostcodeContainer" style="display:none; position:relative; z-index:999;"></div>
+                </label>
+            </div>
+            <button type="submit">회원 정보 변경</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+.my-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.my-container > .my-left-container {
+    width: 200px;
+}
+
+.my-container > .my-left-container > .my-menuBox {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-container > .my-left-container > .my-menuBox > a {
+    padding: 15px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.my-container > .my-left-container > .my-menuBox > a:last-child {
+    border-bottom: none;
+}
+
+.my-container > .my-right-container {
+    flex-grow: 1;
+}
+
+.my-right-container > .my-info-inputBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.my-right-container > .my-info-inputBox > label {
+    font-size: 0.9rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.my-right-container > .my-info-inputBox > label > .main-sign-postDiv {
+    display: flex;
+    gap: 5px;
+}
+
+.my-right-container > .my-info-inputBox > label > .main-sign-postDiv > button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #FFA600;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.my-right-container > .my-info-inputBox > label input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.my-right-container > .my-info-inputBox > label > select {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.my-right-container > button {
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #FFA600;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}

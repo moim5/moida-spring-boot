@@ -81,6 +81,9 @@
                         </a>
                     </th:block>
                     <th:block th:if="${loginUser != null}">
+                        <a href="/my/info" class="menu-item">
+                            회원정보수정
+                        </a>
                         <a href="/sign/out" class="menu-item">
                             로그아웃
                         </a>
@@ -92,8 +95,14 @@
                     관리자전용
                 </div>
                 <div class="menu-list">
-                    <a href="admin/member/list/memberList.html" class="menu-item">
+                    <a href="admin/member/list" class="menu-item">
                         회원
+                    </a>
+                    <a href="/admin/moim/list" class="menu-item">
+                        모임
+                    </a>
+                    <a href="/admin/review/list" class="menu-item">
+                        리뷰
                     </a>
                 </div>
             </div>

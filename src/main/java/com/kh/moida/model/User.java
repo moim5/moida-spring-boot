@@ -1,6 +1,7 @@
 package com.kh.moida.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,13 +15,14 @@ public class User {
     private String username;
     private String password;
     private String name;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private String phone;
     private String email;
     private String zipCode;
     private String address1;
     private String address2;
-    private char gender;
-    private char isActive;
-    private char isAdmin;
+    private String gender;
+    private String isActive;
+    private String isAdmin;
 }

@@ -69,10 +69,10 @@ public class AuthController {
         user.setZipCode(zipCode);
         user.setAddress1(address1);
         user.setAddress2(address2);
-        user.setGender(gender.charAt(0));
+        user.setGender(gender);
         user.setBirthday(Date.valueOf(birthday));
-        user.setIsActive('Y');
-        user.setIsAdmin('N');
+        user.setIsActive("Y");
+        user.setIsAdmin("N");
         userService.save(user);
         return "redirect:/sign/in";
     }
