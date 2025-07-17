@@ -1,9 +1,14 @@
 package com.kh.moida.model;
 
-import lombok.*;
+import java.util.Date;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +24,7 @@ public class Moim {
     private String moimZipCode;
     private String moimAddress1;
     private String moimAddress2;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")  //위치 변경 
     private Date moimDate;
     private int moimMoney;
     private int moimAvgRate;
@@ -26,7 +32,5 @@ public class Moim {
     private char isVisible;
     private char isActive;
     private int fileId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    
     
 }

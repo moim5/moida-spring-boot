@@ -1,0 +1,81 @@
+.create-moim-container {
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.create-moim-row {
+	width: 100%;
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.create-moim-label {
+	width: 110px;
+	display: flex;
+	font-weight: bold;
+}
+
+.create-moim-input {
+	width: 100%;
+	flex-grow: 1;
+	align-items: center;
+/* 	border: 1px solid #ffa600; */
+}
+
+.create-moim-input :focus{
+    outline: none;
+    border-color: #ffa600;
+    box-shadow: 0 0 0 3px rgba(255, 166, 0, 0.2);
+}
+
+.create-moim-label > label {
+	font-size: 20px;
+	padding-top: 4px;
+}
+
+.create-moim-input > select {
+	width: 100%;
+	padding: 10px 20px;
+	border-radius: 5px;
+	text-align: center;
+	border: 1px solid #ffa600;
+	color: grey;
+}
+
+.create-moim-input input,
+.create-moim-input > textarea {
+	width: 100%;
+	padding: 10px 20px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	border: 1px solid #ffa600;
+	color: grey;
+}
+
+
+.create-moim-input > textarea {
+	min-height: 200px;
+	resize: none;
+	border-color:#ffa600;
+}
+
+.address-inline{
+	display:flex;
+	margin-bottom:10px;
+}
+
+#address1 {
+	margin-bottom: 10px;	
+}
+
+.address-input{
+	flex-grow: 1;
+}
+
+.address-search-btn{
+	margin-right: 10px;
+}
+
+
+
