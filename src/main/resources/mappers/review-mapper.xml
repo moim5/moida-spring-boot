@@ -6,10 +6,16 @@
  <mapper namespace = "com.kh.moida.mapper.reviewMapper">
  
  <!-- 1.리뷰리스트 불러오기 : moimDetail에서 쓸것. -->
- <select id="getReviewList">
+ <select id="getReviewList" parameterType="com.kh.moida.model.Review">
  	select * from review
- 	where reviewId = #{moimId}
+ 	where moimId = #{moimId}
+ 	order by review_date desc
  </select>
+ 
+ 
+ 
+ 
+ 
  
  
  
