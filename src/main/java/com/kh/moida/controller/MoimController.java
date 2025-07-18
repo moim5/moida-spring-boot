@@ -23,6 +23,11 @@ public class MoimController {
     public String modifyMoim() {
         return "pages/moim/modifyMoim";
     }
+    
+    @GetMapping("/moimAdminPage")
+    public String moimAdminPage() {
+    	return "pages/moim/moimAdminPage";
+    }
 
     @GetMapping("/personalInfo")
     public String personalInfo() {
