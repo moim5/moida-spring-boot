@@ -12,9 +12,10 @@
     <link rel="stylesheet" th:href="@{/css/sign.css}"/>
     <link rel="stylesheet" th:href="@{/css/my.css}"/>
     <link rel="stylesheet" th:href="@{/css/moim_detail.css}"/>
-	<link rel="stylesheet" th:href="@{/css/jsncss.css}">
-	<link rel="stylesheet" th:href="@{/css/jsncss3.css}"/>
-	<link rel="stylesheet" th:href="@{/css/jsncss2.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jsncss.css}">
+    <link rel="stylesheet" th:href="@{/css/jsncss3.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jsncss2.css}"/>
+    <link rel="stylesheet" th:href="@{/css/category.css}"/>
     <script src="//cdn.jsdelivr.net/npm/@tabler/icons@latest/icons-react/dist/index.umd.min.js" defer></script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
     <script type="application/javascript" th:src="@{/js/script.js}" defer></script>
@@ -30,10 +31,11 @@
                 <i class="ti ti-users"></i>
                 <span>마이</span>
             </a>
-            <div class="header-button" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
+            <a class="header-button" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}"
+               th:href="${loginUser != null ? '/admin/moim' : '/sign/in'}">
                 <i class="ti ti-circle-letter-a"></i>
                 <span>관리자</span>
-            </div>
+            </a>
             <div class="header-button" onclick="showMenu()">
                 <i class="ti ti-menu-2 mobile-menuButton"></i>
                 <span>메뉴</span>

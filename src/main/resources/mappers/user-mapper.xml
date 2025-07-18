@@ -4,14 +4,14 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.UserMapper">
     <insert id="insertUser" parameterType="com.kh.moida.model.User">
-        INSERT INTO "USER"
+        INSERT INTO USERS
             (USERNAME, PASSWORD, NAME, BIRTHDAY, PHONE, EMAIL, ZIPCODE, ADDRESS1, ADDRESS2, GENDER, IS_ACTIVE, IS_ADMIN)
         VALUES
             (#{username}, #{password}, #{name}, #{birthday}, #{phone}, #{email}, #{zipCode}, #{address1}, #{address2}, #{gender}, #{isActive}, #{isAdmin})
     </insert>
     <update id="updateUserInfo" parameterType="com.kh.moida.model.User">
         UPDATE
-            "USER"
+            USERS
         SET
             EMAIL = #{email},
             PHONE = #{phone},
@@ -23,7 +23,7 @@
     </update>
     <update id="updatePassword">
         UPDATE
-            "USER"
+            USERS
         SET
             PASSWORD = #{password}
         WHERE
@@ -41,15 +41,15 @@
         SELECT
             *
         FROM
-            "USER"
+            USERS
         WHERE
             USERNAME = #{username}
     </select>
     <select id="findPasswordById" resultType="java.lang.String">
         SELECT
-        PASSWORD
+            PASSWORD
         FROM
-        "USER"
+            USERS
         WHERE USER_ID = #{userId}
     </select>
 </mapper>

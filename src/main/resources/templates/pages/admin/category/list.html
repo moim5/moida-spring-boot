@@ -1,0 +1,36 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="subTitle" style="margin-bottom: 30px;">카테고리 관리</div>
+    <a href="/admin/category/write">
+        <button>추가하기</button>
+    </a>
+    <table class="category-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>카테고리명</th>
+            <th>이미지</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${list}">
+            <td class="cell-center" th:text="${c.categoryId}"></td>
+            <td class="cell-center" th:text="${c.categoryName}"></td>
+            <td class="icon-cell">
+                <div class="category-item-icon">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}"
+                         alt="카테고리 이미지"/>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
