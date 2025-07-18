@@ -20,9 +20,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class ReviewController {
-	private final ReviewService rService;
-	
-	 //후기 쓰기 view이동
+    private final ReviewService rService;
+
+    //후기 쓰기 view이동
     @GetMapping("/review/write")
     public String writeReview() {
         return "pages/my/review/write";
@@ -30,46 +30,32 @@ public class ReviewController {
 
     //후기 등록
     @PostMapping("/review/enroll")
-    public ModelAndView insertReview(@ModelAttribute Review review,
-    								 @RequestParam("imageUpload") MultipartFile image) {
-    	//파일을 .. 서버에 저장하고싶은데요. 
-    	String fileName = image.getOriginalFilename();
-    	rService.enrollReview(review, fileName);
-    	
-    	
-        return "mv";
+    public void insertReview(
+            @ModelAttribute Review review,
+            @RequestParam("imageUpload") MultipartFile image
+    ) {
+        //파일을 .. 서버에 저장하고싶은데요.
+//    	String fileName = image.getOriginalFilename();
+//    	rService.enrollReview(review, fileName);
+//        return "mv";
     }
-    
+
     //후기 상세보기 view이동
     @GetMapping("/review/detail")
     public String readReview() {
-    	return "pages/my/review/read";
+        return "pages/my/review/read";
     }
-    
+
     //reviewList (moimDetail에서 보여줄 거..)
     @GetMapping("/pages/moim/moim_detail/{moimId}")
     public String reviewList(@PathVariable int moimId, Model model) {
-    	//review list가져오는 로직
-    	ArrayList<Review> reviewList = rService.getReviewList();
-    	model.addAttribute("reviewList", reviewList);
-    	
-    	return "pages/moim/moim_detail";
-    	
+        //review list가져오는 로직
+        ArrayList<Review> reviewList = rService.getReviewList();
+        model.addAttribute("reviewList", reviewList);
+
+        return "pages/moim/moim_detail";
+
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
+
 
 }

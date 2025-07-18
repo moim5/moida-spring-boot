@@ -6,11 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.moida.model.Moim;
-import com.kh.moida.model.Review;
 import com.kh.moida.service.MoimService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,8 +15,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MoimController {
-	
-	private final MoimService moimService;
+//	private final MoimService moimService;
 	
     @GetMapping("/createMoim")
     public String CreateMoim() {
@@ -56,13 +52,13 @@ public class MoimController {
     //모임 신청하기 (moimId만 url에 정보 담고 서버에서 DB조회해서 데이터 뽑아오기
     @PostMapping("/moimEnroll")
     public String enrollMoim(@ModelAttribute Moim moim) {
-    	moimService.enrollMoim(moim);
+//    	moimService.enrollMoim(moim);
     	return "redirect:/pages/moim/moim_datil?moimId=" + moim.getMoimId();
     }
     @GetMapping("/moimDetail")
     public String moimDetail(@RequestParam("moimId")int moimId, Model model ) {
-    	Moim moim = moimService.findById(moimId);
-    	model.addAttribute("moim", moim);
+//    	Moim moim = moimService.findById(moimId);
+//    	model.addAttribute("moim", moim);
     	return "pages/moim/moim_detail";
     }
 
