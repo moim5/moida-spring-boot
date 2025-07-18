@@ -31,6 +31,6 @@ public class Moim {
     private int moimCount;
     private char isVisible;
     private char isActive;
-    private int fileId;
+    private String hostIntro; //DB : clob
     
 }

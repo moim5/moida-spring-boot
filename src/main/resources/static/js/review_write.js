@@ -49,7 +49,6 @@ window.onload = () => {
   }
 
 //***남은 일 : 등록하기 버튼 클릭 시 후기, 별점 필수 확인 => 등록하시겠습니까 컨펌 ->true->후기상세페이지 이동
-//***고민 : 별점이+후기작성form이랑  등록하기 버튼이 있는영역이 다른데 ..한꺼번에 묶어서 전송하는 방법?? */
 
 
     //후기작성 : 10자이상 작성 필수 및 별점 선택 필수
@@ -65,10 +64,26 @@ window.onload = () => {
             return false;
         }
 
-        if(confirm("후기를 등록하시겠습니까?")){
-            document.getElementById('reviewForm').submit();
+        if(reviewText.length >= 10 && rating){ //1차 모달 열기
+            document.getElementById('confirmModal').style.display="flex";
         }
     }
+	
+	//등록버튼, 취소버튼 클릭 시 리뷰 등록 여부 질의 모달창
+	function closeModal(id){
+		document.getElementById(id).style.display = "none";
+	}
+	//2차 모달 띄우기
+	function showSuccessModal(){
+		closeModal('confirmModal'); //1차 모달 닫기
+		document.getElementById('successModal').style.display="flex";
+	}
+	function enrollReview(){ //리뷰 다쓰면 review/read로 이동
+		document.getElementById('reviewForm').submit();
+	}
+	
+	
+	
 
     // 별점채우기 : 별 클릭 시 아이콘 자체변경
     const stars = document.querySelectorAll('.star');

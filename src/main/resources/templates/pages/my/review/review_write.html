@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +15,21 @@
     <div class="main-wrapper">
         <div class="review-container"> <!--리뷰작성칸 전체-->
             <div class="review-header"> <!--리뷰작성 상단바-->
-                <div class="review-title">내 모임 리뷰 : 연희동 와인 클래스</div>
+                <div class="review-title">내 모임 리뷰 : [[${moimTitle}]]</div>
             </div>
                 
             <!--리뷰 작성란-->
             <div class="review-content"> 
-                <form id="reviewForm" method="post" action="/review/write"enctype="multipart/form-data">
+                <form id="reviewForm" method="post" action="/review/enroll"enctype="multipart/form-data">
                     <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)" required  maxlength="1000"></textarea>
                     <div class="review-image-upload">
                         <i class="ti ti-library-photo"></i>
                         <span class="image-text">이미지 업로드</span>
-                        <input type="file" id="imageUpload" name="imageUpload" accept="image/*"  multiple style="display: none;"/>
+                        <input type="file" id="imageUpload" name="imageUpload" accept="image/*" th:enctype="'multiPart/form-data'"/>
                     </div>
                     <!--이미지 삭제-->
                     <div class="review-image-delete" id="imageDelete">
-                        <div class="review-image-list" id="imageFileList"> <!--이미지 list + 삭제아이콘이랑 세트-->
+                        <div class="review-image-list" id="imageFileList"> <!--이미지-->
                             <span id="imageName"></span>
                             <span class="image-delete-icon" id="imageDeleteIcon" style="display:none">
                                 <i class="ti ti-trash"></i>
@@ -46,8 +49,21 @@
                     </div>
                     <input type="hidden" name="rating" id="ratingInput">
                     <div class="review-button-box">
-                        <button class="review-cancel-Button">취소하기</button>
-                        <button class="review-enroll-Button">등록하기</button>
+                        <button class="review-cancel-Button" onclick="location.href=document.referrer">취소하기</button> <!-- 사용자가 이전에 방문한 url로 이동 -->
+                        <button class="review-enroll-Button" onclick="openModal()">등록하기</button>
+                    </div>
+                    <div id="confirmModal" class="modal" style="display : none">
+                    	<div class="modal-content">
+                    		<p>후기를 등록하시겠습니까?</p>
+                    		<button  onclick="showSuccessModal()">네</button>
+                    		<button id="closeModal" onclick="closeModal('confirmModal')">아니오</button>
+                    	</div>
+                    </div>
+                    <div id="successModal" class="modal" style="display:none;">
+                    	<div class="modal-content">
+                    		<p>등록되었습니다.</p>
+                    		<button id="enrollReview" onclick="enrollReview()">확인</button>
+                    	</div>
                     </div>
                 </form>
             </div>

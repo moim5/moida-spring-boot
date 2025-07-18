@@ -11,24 +11,24 @@
         <!--모바일 버전 모임 제목, 설명, 신청버튼-->
         <div class="moim-title-mobile">[[${moimTitle}]]</div>
         <div class="moim-description-mobile">
-            <i class="ti ti-calendar-week"></i>국채보상로 25.07.15(일) 오후 6시:30
+            <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimDate}]]
         </div>
         <div class="moim-fee-mobile">참가비
-            <div class="moim-fee-2-mobile">35,000원</div>
+            <div class="moim-fee-2-mobile">[[${moimMoney}]] 원</div>
         </div>
         <hr class="moim-enroll-divider-mobile"/>
         <div class="main-enroll-mobile"> 
-            <button type="submit">신청하기</button>
+            <button onclick="location.href='pages/moim/JoinMoim'">신청하기</button>
         </div>
 
         <div class="review-content">
             <div class="review-title">참여자 후기</div>
         </div>
         <div class="reviews-container"> <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
-            <div class="review-item">    
+            <div class="review-item" th:each="r : ${reviewList}">    
                 <img src="https://media.bunjang.co.kr/product/283006372_1_1722771500_w360.jpg" alt="후기1" class="profile-img">
                 <div class="review-text">
-                    <div class="review-writer">user01</div>
+                    <div class="review-writer">[[${r.reviewId}]]</div>
                     <div class="user-star">
                         <i class="ti ti-carambola"></i>
                         <i class="ti ti-carambola"></i>
@@ -39,92 +39,24 @@
                     <div class="review">
                         <p class="reviewText">
                             <span>
-                                모임이 정말 유익했습니다! 다음에도 기회가 되면 꼭 참여하고 싶어요!! 다양한 와인
-                                이름도 알게 됐고 사람들이랑 소셜링도 하고 너무 재밌었습니다. 다음엔 친구들이랑도 올게요.
+                                [[${r.reviewContent}]]
                             </span>
                             <button class="more-btn" onclick="openModal(this)">더보기</button>
-                                
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="review-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRwOe7PTOPzr33zjKxgWp3j1V-4qGFbOnbtfYJWfbJ1zacFgP2XL9xX9smFnOsimdN9C0&usqp=CAU" alt="2" class="profile-img">
-                <div class="review-text">
-                    <div class="review-writer">user02</div>
-                    <div class="user-star">
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                    </div>
-                    <div class="review">
-                        <p class="reviewText">
-                            <span>
-                                다음에도 꼭 참여하고 싶어요.
-                            </span>
-
-                            <button class="more-btn"onclick="openModal(this)">더보기</button> 
-                            
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="review-item">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzHMxeHrhlbxCWdHBi2O5hNBJGTB9A7GvTjN_cbf6GWyRQigbes8RaRQ-CJfNT4JhNi6k&usqp=CAU" alt="3" class="profile-img">
-                <div class="review-text">
-                    <div class="review-writer">user03</div>
-                    <div class="user-star">
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                        <i class="ti ti-carambola"></i>
-                    </div>
-                    
-                    <div class="review">
-                        <p class="reviewText"> 
-                           <span>
-                            다음에도 꼭 참여하고 싶어요.
-                            </span>
-                           <button class="more-btn" onclick="openModal(this)">더보기</button> 
-                           
                         </p>
                     </div>
                 </div>
             </div>  
         </div> <!--review container-->
+        
         <div class="moim-detail-title">상세정보
             <hr class="moimInfo-divider">
         </div>
-        <div class="main-moimInfo"> <!--overflow처리 js로 펼치기 구현하기 -->
+        <div class="main-moimInfo"> 
             <div class="moimInfo-container" >
                 <div class="moimInfo-title">
                     <div class="moimInfo">
                         <p id="content">
-                            맛있는 와인 시음하러 오세요 ! <br/>
-                            평소 좋아하는 음식이랑 페어링하기 좋은 와인 종류별 추천해드려요 XD <br/>
-                            <br/>
-                            장소 : 종각역 4번 출구 <br/>
-                            정원 : 10명 (와인을 좋아하는 마음만 있다면 직장인, 대학생 모두 환영이에요.) <br/>
-                            유의사항 : 와인 시음은 자세도 중요해요. 슬리퍼, 모자 등 너무 캐주얼한 복장은 피해주세요!
-                            여기 800자 정도 되는 긴 텍스트 샘플입니다:
-
-                            ---
-
-                            봄이 되면 따뜻한 햇살과 함께 꽃들이 피어나고, 사람들의 마음에도 생기가 넘쳐납니다. 산책길을 걷다 보면 벚꽃이 흐드러지게 피어나는 모습을 볼 수 있는데, 그 풍경은 마치 한 폭의 그림처럼 아름답습니다. 또한, 새들이 지저귀는 소리가 들려오고, 상쾌한 바람이 불어와 몸과 마음을 깨끗이 씻어주는 듯한 느낌을 줍니다. 이러한 자연의 아름다움 속에서 사람들은 스트레스를 잊고 일상의 소소한 행복을 느낄 수 있습니다.
-
-                            이와 함께 봄은 새로운 시작을 알리는 계절이기도 합니다. 학생들은 새로운 학기를 맞이하며 희망찬 마음으로 공부에 임하고, 직장인들은 새로운 프로젝트와 목표를 세우며 열정을 불태웁니다. 봄은 이처럼 변화와 성장을 상징하는 계절로서, 많은 이들에게 동기부여와 활력을 제공합니다. 그래서인지 봄날에는 계획을 세우고 목표를 향해 한 걸음씩 나아가는 사람들이 많습니다.
-
-                            또한, 봄은 다양한 축제와 행사가 열리는 시기이기도 합니다. 꽃 축제, 음악회, 야외 마켓 등이 전국 각지에서 개최되어 많은 사람들이 모여 즐거운 시간을 보냅니다. 이런 행사는 지역 사회의 활력을 불어넣고 사람들 간의 교류를 증진시키는 역할을 합니다. 더불어 가족, 친구들과 함께 자연 속에서 시간을 보내며 소중한 추억을 쌓을 수 있는 좋은 기회가 됩니다.
-
-                            마지막으로, 봄철 건강 관리도 중요합니다. 갑작스러운 기온 변화에 대비하여 적절한 옷차림을 하고, 균형 잡힌 식사와 꾸준한 운동으로 면역력을 높이는 것이 좋습니다. 특히 꽃가루 알레르기가 있는 사람들은 외출 시 마스크 착용과 실내 환기에 신경 써야 합니다. 이렇게 건강에 유의하면서 봄의 기운을 만끽하면 더욱 활기찬 일상을 보낼 수 있을 것입니다.
-
-                            ---
-
-
+                           [[${moimContent}]]
                         </p>
                     </div>
                  </div>
@@ -138,8 +70,8 @@
                     <img src="./hostPrifile01.jpg" alt="호스트 프로필 사진">
                 </div>
             <div class="host-info-container">
-                <div class="host-name">차은우</div>
-                <div class="host-introduction">같이 배우고 혼자서도 즐길 수 있는 감도 높은 취향을 만들어드립니다.</div>
+                <div class="host-name">[[${name}]]</div>
+                <div class="host-introduction">[[${hostIntro}]]</div>
             </div>
             <div class="host-moimImg"> <!--모임관련 대문사진 제외한 나머지 사진이 들어갑니다.-->
                 <img src="./host-moimImg1.JPG" alt="모임이미지1">
@@ -150,25 +82,21 @@
 
 
 
-
-
-
-
     </div>
     <div class="main-container2"> <!--모임 신청칸 pc-->
         <div class="main-enroll-pc"> 
-            <button class="moim-category" type="button">와인</button> <!--카테고리-->
-            <div class="moim-title">와인 소셜 클럽</div>
+            <button class="moim-category" type="button">[[${moimType}]]</button> <!--카테고리-->
+            <div class="moim-title">[[${moimTitle}]]</div>
             <div class="moim-description">
                 <div class="moim-arrange">
-                    <i class="ti ti-calendar-week"></i>국채보상로 25.07.15(일) 오후 6시:30
+                    <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimAddress2}]]&nbsp;[[${moimDate}]]
                 </div>
                 <div class="moim-fee">참가비
-                    <div class="moim-fee-2">35,000원</div>
+                    <div class="moim-fee-2">[[${moimMoney}]]</div>
                 </div>
                 <hr class="moim-enroll-divider"/>
             </div>
-            <button type="submit" class="enroll-button-pc">신청하기</button>
+            <button type="button" class="enroll-button-pc" onclick="location.href='pages/moim/JoinMoim'">신청하기</button>
         </div>
     </div>
     <!--리뷰 상세 : 모달창 띄우기-->
