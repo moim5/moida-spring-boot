@@ -17,53 +17,11 @@
                     카테고리
                 </div>
                 <div class="menu-list">
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-plane"></i>
-                        <span>여행</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-kayak"></i>
-                        <span>레져</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-palette"></i>
-                        <span>문화예술</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-confetti"></i>
-                        <span>파티</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-tools-kitchen-2"></i>
-                        <span>식사</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-book"></i>
-                        <span>자기계발</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-briefcase"></i>
-                        <span>N잡</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-language"></i>
-                        <span>외국어</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-heart"></i>
-                        <span>취미</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-device-gamepad-2"></i>
-                        <span>소셜게임</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-users"></i>
-                        <span>동네또래</span>
-                    </a>
-                    <a href="[category]/categoryList.html" class="menu-item">
-                        <i class="ti ti-hearts"></i>
-                        <span>연애사랑</span>
+                    <a th:each="c : ${categoryList}"
+                       th:href="@{/category/{id}(id=${c.categoryId})}" class="menu-item">
+                        <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}"
+                             alt="카테고리 이미지"/>
+                        <span th:text="${c.categoryName}"></span>
                     </a>
                 </div>
             </div>
@@ -98,14 +56,17 @@
                     관리자전용
                 </div>
                 <div class="menu-list">
-                    <a href="admin/member/list" class="menu-item">
-                        회원
+                    <a href="/admin/category/list" class="menu-item">
+                        카테고리 관리
+                    </a>
+                    <a href="/admin/member/list" class="menu-item">
+                        회원 관리
                     </a>
                     <a href="/admin/moim/list" class="menu-item">
-                        모임
+                        모임 관리
                     </a>
                     <a href="/admin/review/list" class="menu-item">
-                        리뷰
+                        리뷰 관리
                     </a>
                 </div>
             </div>

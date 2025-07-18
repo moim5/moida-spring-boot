@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.moida.mapper.CategoryMapper">
+    <insert id="insertCategory">
+        INSERT INTO CATEGORY (
+            CATEGORY_ID, CATEGORY_NAME, FILE_ID
+        ) VALUES (
+            SEQ_CATEGORY_ID.NEXTVAL, #{categoryName}, #{fileId}
+        )
+    </insert>
+    <select id="findAllCategoriesWithFile" resultType="com.kh.moida.model.Category">
+        SELECT
+            c.CATEGORY_ID,
+            c.CATEGORY_NAME,
+            f.FILE_ID,
+            f.FILE_ORIGIN,
+            f.FILE_CONVERT
+        FROM
+            CATEGORY c
+            INNER JOIN FILES f ON c.FILE_ID = f.FILE_ID
+        ORDER BY c.CATEGORY_ID ASC
+    </select>
+</mapper>

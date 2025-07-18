@@ -6,6 +6,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +25,7 @@ public class JwtFilter extends GenericFilter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         String jwt = null;
 
         String authHeader = httpRequest.getHeader("Authorization");
@@ -51,10 +53,18 @@ public class JwtFilter extends GenericFilter {
                         SecurityContextHolder.getContext().setAuthentication(authentication);
                     }
                 }
-            } catch (ExpiredJwtException e) {
-                System.out.println("JWT 만료됨 : " + e.getMessage());
-            } catch (Exception e) {
-                System.out.println("JWT 인증 실패 : " + e.getMessage());
+            } catch (ExpiredJwtException | IllegalArgumentException e) {
+                SecurityContextHolder.clearContext();
+                httpRequest.getSession().invalidate();
+
+                Cookie expiredCookie = new Cookie("JWT_TOKEN", null);
+                expiredCookie.setPath("/");
+                expiredCookie.setMaxAge(0);
+                expiredCookie.setHttpOnly(true);
+                httpResponse.addCookie(expiredCookie);
+
+                httpResponse.sendRedirect("/sign/in");
+                return;
             }
         }
 
