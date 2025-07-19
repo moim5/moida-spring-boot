@@ -44,10 +44,10 @@ public class MoimController {
 
     
     //모임 상세보기 view이동
-    @GetMapping("/moimDetail")
-    public String moimDetail() {
-        return "pages/moim/moim_detail";
-    }
+//    @GetMapping("/moimDetail")
+//    public String moimDetail() {
+//        return "pages/moim/moim_detail";
+//    }
     
     //모임 신청하기 (moimId만 url에 정보 담고 서버에서 DB조회해서 데이터 뽑아오기
     @PostMapping("/moimEnroll")

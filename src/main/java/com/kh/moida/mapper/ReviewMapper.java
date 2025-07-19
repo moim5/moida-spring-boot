@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.kh.moida.model.Review;
 
 @Mapper
-public class reviewMapper {
+public interface ReviewMapper {
 
-	public ArrayList<Review> getReviewList;
+	public ArrayList<Review> getReviewList();
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.kh.moida.notice.NoticeMapper">
+
+    <select id="getListCount" resultType="_int">
+        select count(*) from NOTICE
+<!--        order by NOTICE_ID desc-->
+    </select>
+
+    <select id="selectBoardList" parameterType="com.kh.moida.notice.Notice" resultType="com.kh.moida.notice.Notice">
+        select * from NOTICE
+        order by NOTICE_ID desc
+    </select>
+
+</mapper>
