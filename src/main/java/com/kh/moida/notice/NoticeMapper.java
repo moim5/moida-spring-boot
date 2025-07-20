@@ -9,4 +9,6 @@ public interface NoticeMapper {
     int getListCount();
 
     ArrayList<Notice> selectBoardList(PageInfo pi);
+
+    int write(Notice notice);
 }

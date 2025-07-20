@@ -177,3 +177,38 @@
 .notice-form-submit-button:hover {
   background-color: #333;
 }
+
+
+
+
+.pagination {
+    list-style: none;   /* 기본 점 제거 */
+    padding: 0;
+    margin: 0;
+    display: flex;      /* 가로 배치 */
+    gap: 8px;           /* 아이템 간격 (필요하면 조절) */
+}
+
+.pagination li {
+    display: inline-block; /* 가로로 정렬 */
+}
+
+.pagination li a {
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.pagination li a:hover {
+    background-color: #eee;
+}
+.pagination .page-item.disabled .page-link {
+        color: #6c757d;
+        pointer-events: none;
+        background-color: #fff;
+        border-color: #dee2e6;
+        cursor: not-allowed;
+}

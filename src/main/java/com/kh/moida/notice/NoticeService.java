@@ -18,4 +18,8 @@ public class NoticeService {
     public ArrayList<Notice> selectBoardList(PageInfo pi) {
         return mapper.selectBoardList(pi);
     }
+
+    public int write(Notice notice) {
+        return mapper.write(notice);
+    }
 }

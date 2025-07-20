@@ -10,9 +10,29 @@
 <!--        order by NOTICE_ID desc-->
     </select>
 
-    <select id="selectBoardList" parameterType="com.kh.moida.notice.Notice" resultType="com.kh.moida.notice.Notice">
-        select * from NOTICE
-        order by NOTICE_ID desc
+    <select id="selectBoardList" parameterType="com.kh.moida.notice.PageInfo" resultType="com.kh.moida.notice.Notice">
+        /*<![CDATA[*/
+        SELECT * FROM (
+        SELECT ROWNUM AS RNUM, N.*
+        FROM (
+        SELECT * FROM NOTICE ORDER BY NOTICE_ID DESC
+        ) N
+        WHERE ROWNUM <= #{endRow}
+        )
+        WHERE RNUM >= #{startRow}
+        /*]]>*/
     </select>
+
+    <insert id="write" parameterType="com.kh.moida.notice.Notice" >
+        INSERT INTO Notice
+        VALUES (
+        SEQ_NOTICE_ID.nextval,
+        #{noticeTitle},
+        #{noticeContent},
+        SYSDATE,
+        0,
+        null
+        )
+    </insert>
 
 </mapper>
