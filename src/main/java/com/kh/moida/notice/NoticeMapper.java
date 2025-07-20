@@ -11,4 +11,6 @@ public interface NoticeMapper {
     ArrayList<Notice> selectBoardList(PageInfo pi);
 
     int write(Notice notice);
+
+    Notice selectBoard(int id);
 }

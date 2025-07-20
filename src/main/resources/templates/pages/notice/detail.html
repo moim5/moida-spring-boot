@@ -13,35 +13,56 @@
 
     <div class="notice-detail-row">
         <span class="notice-label">제목:</span>
-        <span class="notice-content">${ }</span>
+        <span class="notice-content" th:text="${n.noticeTitle}">제목</span>
     </div>
 
     <div class="notice-detail-row">
         <span class="notice-label">작성자:</span>
-        <span class="notice-content">${ }</span>
+        <span class="notice-content">관리자</span>
     </div>
 
     <div class="notice-detail-row">
         <span class="notice-label">작성일:</span>
-        <span class="notice-content">${ }</span>
+        <span class="notice-content" th:text="${n.noticeDate}">날짜</span>
     </div>
 
     <div class="notice-detail-row">
         <span class="notice-label">내용:</span>
     </div>
 
-    <div class="notice-detail-content">
-        ${ }
+    <div class="notice-detail-content" th:utext="${n.noticeContent}">
+        내용
     </div>
 
-    <div class="notice-edit-button-wrapper">
-        <button class="notice-edit-button" onclick="location.href='edit.html'">수정하기</button>
-    </div>
+    <form id="detailForm" method="POST">
+        <button class="w-100 btn btn-success btn-lg" type="button" id="updateForm">UPDATE</button>
+        <button class="w-100 btn btn-secondary btn-lg" type="button" id="deleteForm">DELETE</button>
+    </form>
+
+    <button class="w-100 btn btn-dark btn-lg" type="button" onclick="history.back();">BACK</button>
 
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <div th:replace="~{fragments/backdrop :: backdrop}"></div>
 <div th:replace="~{fragments/mobileMenu :: mobileMenu}"></div>
+
+<!-- 자바스크립트 -->
+<script>
+    window.onload = () => {
+        const form = document.getElementById('detailForm');
+
+        document.getElementById('updateForm')?.addEventListener('click', () => {
+            form.action = '/notice/updForm';
+            form.submit();
+        });
+
+        document.getElementById('deleteForm')?.addEventListener('click', () => {
+            form.action = '/notice/delete';
+            form.submit();
+        });
+    }
+</script>
+
 </body>
 </html>

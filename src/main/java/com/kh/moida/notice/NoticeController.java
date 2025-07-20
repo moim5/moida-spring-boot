@@ -2,6 +2,7 @@ package com.kh.moida.notice;
 
 import com.kh.moida.model.User;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -47,11 +48,15 @@ public class NoticeController {
         return "redirect:/notice/list";
     }
 
-    @GetMapping("detail")
-    public String detail() {
+    @GetMapping("/{id}/{page}")
+    public String noticeBoard(@PathVariable("id") int id, @PathVariable("page") int page, HttpSession session, Model model) {
+
+
+        Notice n = noticeService.selectBoard(id);
+
+        model.addAttribute("n", n).addAttribute("page", page);
         return "pages/notice/detail";
+
+
     }
-
-
-
 }

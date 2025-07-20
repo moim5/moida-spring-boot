@@ -22,4 +22,8 @@ public class NoticeService {
     public int write(Notice notice) {
         return mapper.write(notice);
     }
+
+    public Notice selectBoard(int id) {
+        return mapper.selectBoard(id);
+    }
 }

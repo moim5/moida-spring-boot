@@ -35,4 +35,10 @@
         )
     </insert>
 
+    <select id="selectBoard" resultType="com.kh.moida.notice.Notice">
+        select *
+        FROM NOTICE
+        WHERE NOTICE_ID = #{id}
+    </select>
+
 </mapper>
