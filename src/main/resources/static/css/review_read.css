@@ -1,0 +1,16 @@
+.wrapper{ 
+    /* 화면 가운데 정렬 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;      
+    margin: 50px auto; 
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.review-photo-container{
+    margin: 5px;
+    padding: 3px;
+}

@@ -5,10 +5,49 @@
       lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Review Read Page</title>
+<title>리뷰 상세페이지</title>
 </head>
 <body>
+<main class="container" layout:fragment="content">
+   <div class="review-wrapper">
+      <div class="review-photo-container">
+            <div class="review-photo" th:each="r : ${reviewImgList}">
+                  <img src="./review01.webp" width="150px" height="150px"/>
+            </div>
+      </div>
+      <div class="review-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
+            <div class="review-writer">
+                  <div class="writer-profile">
+                        <img src="./review02.webp" width="150px" height="150px"/>
+                        <div class="writer-name">[[${r.name}]]</div>
+                  </div>
+                  <div class="review-form"> 
+                        <div class="review-rate-box">
+                              <div class="review-star">
+                                    <span th:each = "r : ${#numbers.sequece(1, r.reviewRate)}"class="star" data-value="1">
+                                          <i class="ti ti-carambola"></i>
+                                    </span>
+                              </div>
+                              <div class="review-rate">[[${r.reviewRate}]]</div>
+                              <div class="review-date">[[${r.reviewDate}]]</div>
+                        </div>
+
+                        <div class="review-title">[[${r.reviewTitle}]]</div>
+                        <div class="review-content">[[${r.reviewContent}]]</div>
+                        <div class="review-img">
+                              <img src="./review03.webp" width="15%"/>
+                        </div>
 
 
+                  </div>
+
+                  
+            </div>
+
+      </div>
+
+
+   </div>
+</main>
 </body>
 </html>

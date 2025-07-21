@@ -12,7 +12,23 @@
  	order by review_date desc
  </select>
  
- 
+ <!-- 2. 리뷰 상세페이지용 리뷰 리스트 불러오기 -->
+ <select id="">
+ 	SELECT 
+    r.REVIEW_ID, r.REVIEW_DATE, r.REVIEW_TITLE, r.REVIEW_CONTENT, r.REVIEW_RATE,u.USERNAME, u.NAME,
+    f.FILE_CONVERT AS REVIEW_IMAGE  --만약 이미지가 있다면
+FROM 
+    REVIEW r
+JOIN 
+    USERS u ON r.USER_ID = u.USER_ID
+LEFT JOIN 
+    FILES f ON r.FILE_ID = f.FILE_ID
+WHERE 
+    r.MOIM_ID = #{moimId}
+ORDER BY 
+    r.REVIEW_DATE DESC;
+ 	
+ </select>
  
  
  
