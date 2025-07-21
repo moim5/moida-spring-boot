@@ -4,88 +4,68 @@
       layout:decorate="~{layouts/base}"
       lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모임후기 등록페이지</title>
-    <link rel="stylesheet" href="./review_write.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
-    <script src="./review_write.js" defer></script>
 </head>
 <body>
-    <div class="main-wrapper">
-        <div class="review-container"> <!--리뷰작성칸 전체-->
-            <div class="review-header"> <!--리뷰작성 상단바-->
-                <div class="review-title">내 모임 리뷰 : [[${moimTitle}]]</div>
-            </div>
-                
-            <!--리뷰 작성란-->
-            <div class="review-content"> 
-                <form id="reviewForm" method="post" action="/review/enroll"enctype="multipart/form-data">
-                    <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)" required  maxlength="1000"></textarea>
-                    <div class="review-image-upload">
-                        <i class="ti ti-library-photo"></i>
-                        <span class="image-text">이미지 업로드</span>
-                        <input type="file" id="imageUpload" name="imageUpload" accept="image/*" th:enctype="'multiPart/form-data'"/>
-                    </div>
-                    <!--이미지 삭제-->
-                    <div class="review-image-delete" id="imageDelete">
-                        <div class="review-image-list" id="imageFileList"> <!--이미지-->
-                            <span id="imageName"></span>
-                            <span class="image-delete-icon" id="imageDeleteIcon" style="display:none">
+<main class="main-wrapper" layout:fragment="content">
+    <div class="review-container"> <!--리뷰작성칸 전체-->
+        <div class="review-header"> <!--리뷰작성 상단바-->
+            <div class="review-title">내 모임 리뷰 : [[${moimTitle}]]</div>
+        </div>
+
+        <!--리뷰 작성란-->
+        <div class="review-content">
+            <form id="reviewForm" method="post" action="/review/enroll" enctype="multipart/form-data">
+                <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
+                          required maxlength="1000"></textarea>
+                <div class="review-image-upload">
+                    <i class="ti ti-library-photo"></i>
+                    <span class="image-text">이미지 업로드</span>
+                    <input type="file" id="imageUpload" name="imageUpload" accept="image/*"
+                           th:enctype="'multiPart/form-data'"/>
+                </div>
+                <!--이미지 삭제-->
+                <div class="review-image-delete" id="imageDelete">
+                    <div class="review-image-list" id="imageFileList"> <!--이미지-->
+                        <span id="imageName"></span>
+                        <span class="image-delete-icon" id="imageDeleteIcon" style="display:none">
                                 <i class="ti ti-trash"></i>
                             </span>
-                        </div>
                     </div>
+                </div>
 
-                    <!--별점 영역-->
-                    <div class="review-rating-stars" id="reviewRating">
-                        <div class="review-star">
-                            <span class="star" data-value="1"><i class="ti ti-carambola"></i></span>
-                            <span class="star" data-value="2"><i class="ti ti-carambola"></i></span>
-                            <span class="star" data-value="3"><i class="ti ti-carambola"></i></span>
-                            <span class="star" data-value="4"><i class="ti ti-carambola"></i></span>
-                            <span class="star" data-value="5"><i class="ti ti-carambola"></i></span>
-                        </div>
+                <!--별점 영역-->
+                <div class="review-rating-stars" id="reviewRating">
+                    <div class="review-star">
+                        <span class="star" data-value="1"><i class="ti ti-carambola"></i></span>
+                        <span class="star" data-value="2"><i class="ti ti-carambola"></i></span>
+                        <span class="star" data-value="3"><i class="ti ti-carambola"></i></span>
+                        <span class="star" data-value="4"><i class="ti ti-carambola"></i></span>
+                        <span class="star" data-value="5"><i class="ti ti-carambola"></i></span>
                     </div>
-                    <input type="hidden" name="rating" id="ratingInput">
-                    <div class="review-button-box">
-                        <button class="review-cancel-Button" onclick="location.href=document.referrer">취소하기</button> <!-- 사용자가 이전에 방문한 url로 이동 -->
-                        <button class="review-enroll-Button" onclick="openModal()">등록하기</button>
+                </div>
+                <input type="hidden" name="rating" id="ratingInput">
+                <div class="review-button-box">
+                    <button class="review-cancel-Button" onclick="location.href=document.referrer">취소하기</button>
+                    <!-- 사용자가 이전에 방문한 url로 이동 -->
+                    <button class="review-enroll-Button" onclick="openModal()">등록하기</button>
+                </div>
+                <div id="confirmModal" class="modal" style="display : none;">
+                    <div class="modal-content">
+                        <p>후기를 등록하시겠습니까?</p>
+                        <button onclick="showSuccessModal()">네</button>
+                        <button id="closeModal" onclick="closeModal('confirmModal')">아니오</button>
                     </div>
-                    <div id="confirmModal" class="modal" style="display : none">
-                    	<div class="modal-content">
-                    		<p>후기를 등록하시겠습니까?</p>
-                    		<button  onclick="showSuccessModal()">네</button>
-                    		<button id="closeModal" onclick="closeModal('confirmModal')">아니오</button>
-                    	</div>
+                </div>
+                <div id="successModal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <p>등록되었습니다.</p>
+                        <button id="enrollReview" onclick="enrollReview()">확인</button>
                     </div>
-                    <div id="successModal" class="modal" style="display:none;">
-                    	<div class="modal-content">
-                    		<p>등록되었습니다.</p>
-                    		<button id="enrollReview" onclick="enrollReview()">확인</button>
-                    	</div>
-                    </div>
-                </form>
-            </div>
-
-
-
-        </div> <!--리뷰작성칸 전체--> 
-    </div> <!--메인래퍼-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
+            </form>
+        </div>
+    </div> <!--리뷰작성칸 전체-->
+</main> <!--메인래퍼-->
 </body>
 </html>

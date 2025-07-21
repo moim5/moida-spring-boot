@@ -25,7 +25,7 @@ public class ReviewController {
     //후기 쓰기 view이동
     @GetMapping("/review/write")
     public String writeReview() {
-        return "pages/my/review/write";
+        return "pages/my/review/review_write";
     }
 
     //후기 등록
