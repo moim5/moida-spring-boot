@@ -1,120 +1,111 @@
-
-.main-wrapper{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;      
-    margin: 50px auto;      
-}
-
 /* 리뷰 헤더 */
-.review-header{
+.review-header {
     display: flex;
     width: 100%;
-    height:64px;
-    padding:5px; 
-    margin:2px;
-    margin-bottom: 5px;
+    height: 64px;
+    padding: 5px;
+    margin: 2px 2px 5px;
     background-color: #f0efecb3;
     border-radius: 20px;
     box-shadow: 0 2px 4px rgba(255, 254, 254, 0.856);
-    align-items: center; 
-    justify-content: space-between; 
-    box-sizing: border-box; 
-    flex-wrap: nowrap; 
-
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
 }
 
-.review-title{
-    text-align: left; 
+.review-title {
+    text-align: left;
     flex-grow: 1; /* 제목이 남은 공간을 차지하도록 */
     font-size: 30px;
     font-weight: bold;
     color: #f29101;
-    margin:10px;
+    margin: 10px;
 }
 
 /* 이미지 삭제영역*/
-.review-image-delete{
+.review-image-delete {
     display: inline-flex;
     justify-content: left;
     align-items: center;
     border-style: none;
-    margin:10px;
+    margin: 10px;
     padding: 10px 10px;
 }
 
 /* 파일삭제 (배열, file-tag 클래스 만들어서 관리) */
-.file-tag{
+.file-tag {
     font-size: 20px;
     margin-left: 5px;
     margin-top: 2px;
-    color:rgba(115, 114, 114, 0.894);
-    font-family:Arial, Helvetica, sans-serif;
+    color: rgba(115, 114, 114, 0.894);
+    font-family: Arial, Helvetica, sans-serif;
 }
-.delete-btn:hover{
+
+.delete-btn:hover {
     cursor: pointer;
 }
 
 
 /* 후기작성칸 */
- #reviewText{
+#reviewText {
     resize: none;
     width: 100%;
     height: 300px;
     border-radius: 20px;
     border: 4px solid rgba(247, 145, 1, 0.63);
-    padding:10px;
+    padding: 10px;
     box-sizing: border-box;
     font-size: 18px;
     overflow-y: auto;
 
 
 }
+
 /* 후기작성칸 클릭시 테두리없앰 */
-#reviewText:focus{
+#reviewText:focus {
     outline: none;
 }
 
 /* 이미지업로드(아이콘, 글자) */
-.review-image-upload{
+.review-image-upload {
     display: inline-flex;
     justify-content: left;
     align-items: center;
-    font-size:40px;
+    font-size: 40px;
 }
-.review-image-upload:hover{
+
+.review-image-upload:hover {
     cursor: pointer;
 }
 
 /* 이미지업로드 글자 */
-.image-text{
-   font-size: 22px;
+.image-text {
+    font-size: 22px;
 
 }
+
 /* 별점wrapper */
 .review-rating-stars {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:190px;
+    margin-top: 190px;
     width: 100%;
-    font-size:60px;
-    
+    font-size: 60px;
+
 }
 
 /* 리뷰 등록,취소버튼 */
-.review-button-box{
-    display:flex;
+.review-button-box {
+    display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-    
+
 }
 
-.review-enroll-Button, 
+.review-enroll-Button,
 .review-cancel-Button {
     display: flex;
     justify-content: center;
@@ -124,112 +115,98 @@
     background-color: #f29201e2;
     color: white;
     font-size: 20px;
-    margin:10px;
+    margin: 10px;
     padding: 10px 20px;
     font-family: 'RiaSans-ExtraBold';
 
 
 }
-.review-enroll-Button:hover{
+
+.review-enroll-Button:hover {
     background-color: #f29101;
     cursor: pointer;
 }
-.review-cancel-Button:hover{
+
+.review-cancel-Button:hover {
     background-color: #f29101;
     cursor: pointer;
 }
 
 
-
-
-
-
-.review-star{
+.review-star {
     display: flex;
-    gap:6px;
-    cursor:pointer;
+    gap: 6px;
+    cursor: pointer;
 }
-.star i{    
-    color:#f29101;
-    transition: color 0.3s ease;
-    transform : 0.2s ease;
+
+.star i {
+    color: #f29101;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
+
 .star.active i, .star:hover i {
     color: #f29101;
     transform: scale(1.2); /* 클릭 시 별 확대 효과 */
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width: 768px) {
-    .main-wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;   
-        align-items: center;    
-        width: 100%;
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 20px;
-
-    }
-    .review-header{
+    .review-header {
         display: flex;
         flex-direction: row;
         align-items: center;
-      
+
     }
-    .review-title{
+
+    .review-title {
         display: flex;
         font-size: 100%;
         flex-direction: row;
         align-items: center;
     }
-    
-    .review-button-box{
+
+    .review-button-box {
         display: flex;
         font-size: 90%;
         align-items: center;
         justify-content: center;
-        
+
     }
+
     #reviewText {
         width: 100%;
         height: 200px;
     }
+
     .review-image-upload {
         display: flex;
         justify-content: left;
         align-items: center;
     }
+
     .review-rating-stars {
-        margin-top : 300px;
+        margin-top: 300px;
         overflow-y: hidden;
     }
-    #imageUploadIcon{
-    font-size: 50%;
+
+    #imageUploadIcon {
+        font-size: 50%;
     }
-    .image-text{
-    font-size: 60%;
+
+    .image-text {
+        font-size: 60%;
     }
-    .review-image-delete{
-        display:inline-flex;
+
+    .review-image-delete {
+        display: inline-flex;
         justify-content: flex-start;
     }
-    .file-tag{
-        font-size:110%;
+
+    .file-tag {
+        font-size: 110%;
     }
-    .delete-btn{
-        font-size:120%;
+
+    .delete-btn {
+        font-size: 120%;
     }
 }

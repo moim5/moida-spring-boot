@@ -38,15 +38,17 @@ function showMenu() {
     if (menuWrapper) {
         menuWrapper.classList.add("active");
         showBackdrop();
-
     }
 }
 
 function hideMenu() {
     const menuWrapper = document.querySelector(".menu-wrapper");
     if (menuWrapper) {
-        menuWrapper.classList.remove("active");
         hideBackdrop();
+
+        setTimeout(() => {
+            menuWrapper.classList.remove("active");
+        }, 300);
     }
 }
 
@@ -71,4 +73,73 @@ function execDaumPostcode() {
         width: "100%",
         height: "100%"
     }).open();
+}
+
+function showModal({header = "", body = "", footer = ""} = {}) {
+    const modalWrapper = document.querySelector(".modal-wrapper");
+    const headerEl = modalWrapper?.querySelector(".modal-header");
+    const bodyEl = modalWrapper?.querySelector(".modal-body");
+    const footerEl = modalWrapper?.querySelector(".modal-footer");
+
+    if (modalWrapper) {
+        if (header) {
+            headerEl.innerHTML = header;
+        }
+        if (body) {
+            bodyEl.innerHTML = body;
+        }
+        if (footer) {
+            footerEl.innerHTML = footer;
+        }
+        modalWrapper.classList.add("active");
+        showBackdrop();
+    }
+}
+
+function hideModal() {
+    const modalWrapper = document.querySelector(".modal-wrapper");
+    const modalBox = modalWrapper?.querySelector(".modal-box");
+
+    if (modalWrapper && modalBox) {
+        modalBox.style.opacity = "0";
+        modalBox.style.transform = "translateY(50px)";
+
+        hideBackdrop();
+    }
+
+    setTimeout(() => {
+        modalWrapper.classList.remove("active");
+        modalBox.style.opacity = "";
+        modalBox.style.transform = "";
+    }, 300);
+}
+
+function changeModalHeader(value) {
+    if (value) {
+        const modalWrapper = document.querySelector(".modal-wrapper");
+        const headerEl = modalWrapper?.querySelector(".modal-header");
+        if (headerEl) {
+            headerEl.innerHTML = value;
+        }
+    }
+}
+
+function changeModalBody(value) {
+    if (value) {
+        const modalWrapper = document.querySelector(".modal-wrapper");
+        const bodyEl = modalWrapper?.querySelector(".modal-body");
+        if (bodyEl) {
+            bodyEl.innerHTML = value;
+        }
+    }
+}
+
+function changeModalFooter(value) {
+    if (value) {
+        const modalWrapper = document.querySelector(".modal-wrapper");
+        const footerEl = modalWrapper?.querySelector(".modal-footer");
+        if (footerEl) {
+            footerEl.innerHTML = value;
+        }
+    }
 }
