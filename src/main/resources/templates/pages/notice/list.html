@@ -26,7 +26,7 @@
                 <td th:text="${notice.noticeId}"></td>
                 <td th:text="${notice.noticeTitle}"></td>
                 <td>관리자</td>
-                <td th:text="${notice.noticeDate}" class="notice-date-cell"></td>
+                <td th:text="${#dates.format(notice.noticeDate, 'yyyy-MM-dd')}" class="notice-date-cell"></td>
                 <td th:text="${notice.noticeCount}"></td>
             </tr>
             </tbody>
@@ -34,7 +34,8 @@
     </div>
 
 
-    <div class="notice-write-button-wrapper">
+    <div class="notice-write-button-wrapper"
+         th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
         <button class="notice-write-button" type="button"
                 onclick="location.href='/notice/write'">공지사항 작성
         </button>
@@ -77,7 +78,6 @@
     </nav>
 
 
-
 </main>
 
 <script th:inline="javascript">
@@ -85,7 +85,7 @@
         const currentPage = /*<![CDATA[*//*[[${pi.currentPage}]]*/1/*]]>*/
         const tbody = document.querySelector("tbody");
         const tds = tbody.querySelectorAll('td');
-        for(const td of tds) {
+        for (const td of tds) {
             td.addEventListener('click', e => {
                 const trTds = e.target.parentElement.querySelectorAll('td');
                 const noticeId = trTds[0].innerText;
