@@ -13,4 +13,6 @@ public interface NoticeMapper {
     int write(Notice notice);
 
     Notice selectBoard(int id);
+
+    int delete(int id);
 }

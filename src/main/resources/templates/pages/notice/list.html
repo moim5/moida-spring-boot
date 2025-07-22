@@ -77,26 +77,28 @@
         </ul>
     </nav>
 
-
 </main>
-
-<script th:inline="javascript">
-    window.onload = () => {
-        const currentPage = /*<![CDATA[*//*[[${pi.currentPage}]]*/1/*]]>*/
-        const tbody = document.querySelector("tbody");
-        const tds = tbody.querySelectorAll('td');
-        for (const td of tds) {
-            td.addEventListener('click', e => {
-                const trTds = e.target.parentElement.querySelectorAll('td');
-                const noticeId = trTds[0].innerText;
-                location.href = '/notice/' + noticeId + '/' + /*<![CDATA[*//*[[${pi.currentPage}]]*/1/*]]>*/;
-            });
-        }
-    }
-</script>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <div th:replace="~{fragments/backdrop :: backdrop}"></div>
 <div th:replace="~{fragments/mobileMenu :: mobileMenu}"></div>
+
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = /*[[${pi.currentPage}]]*/ 1;
+            const tbody = document.querySelector('tbody');
+
+            if (!tbody) return; // tbody 없으면 종료
+
+            const trs = tbody.querySelectorAll('tr');
+            trs.forEach(tr => {
+                tr.addEventListener('click', () => {
+                    const noticeId = tr.querySelector('td').innerText.trim();
+                    location.href = '/notice/' + noticeId + '/' + currentPage;
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

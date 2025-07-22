@@ -41,4 +41,11 @@
         WHERE NOTICE_ID = #{id}
     </select>
 
+    <delete id="delete">
+        delete
+        FROM NOTICE
+        WHERE NOTICE_ID = #{id}
+
+    </delete>
+
 </mapper>

@@ -34,35 +34,26 @@
         내용
     </div>
 
-    <form id="detailForm" method="POST">
-        <button class="w-100 btn btn-success btn-lg" type="button" id="updateForm">UPDATE</button>
-        <button class="w-100 btn btn-secondary btn-lg" type="button" id="deleteForm">DELETE</button>
+    <form id="detailForm" method="POST" class="notice-detail-form">
+        <!-- noticeId 숨겨서 전송 -->
+        <input type="hidden" name="noticeId" th:value="${n.noticeId}" />
+
+        <button class="btn-detail-update" type="button"
+                onclick="document.getElementById('detailForm').action='/notice/updForm'; document.getElementById('detailForm').submit();"
+        >수정</button>
+
+        <button class="btn-detail-delete" type="button"
+                onclick="if(confirm('삭제하시겠습니까?')) { document.getElementById('detailForm').action='/notice/delete'; document.getElementById('detailForm').submit(); } else { alert('삭제가 취소되었습니다.'); }"
+        >삭제</button>
     </form>
 
-    <button class="w-100 btn btn-dark btn-lg" type="button" onclick="history.back();">BACK</button>
+    <button class="btn-detail-back" type="button" onclick="history.back();">뒤로가기</button>
 
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <div th:replace="~{fragments/backdrop :: backdrop}"></div>
 <div th:replace="~{fragments/mobileMenu :: mobileMenu}"></div>
-
-<!-- 자바스크립트 -->
-<script>
-    window.onload = () => {
-        const form = document.getElementById('detailForm');
-
-        document.getElementById('updateForm')?.addEventListener('click', () => {
-            form.action = '/notice/updForm';
-            form.submit();
-        });
-
-        document.getElementById('deleteForm')?.addEventListener('click', () => {
-            form.action = '/notice/delete';
-            form.submit();
-        });
-    }
-</script>
 
 </body>
 </html>

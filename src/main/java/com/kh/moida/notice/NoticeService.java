@@ -26,4 +26,8 @@ public class NoticeService {
     public Notice selectBoard(int id) {
         return mapper.selectBoard(id);
     }
+
+    public int delete(int id) {
+        return mapper.delete(id);
+    }
 }

@@ -58,4 +58,11 @@ public class NoticeController {
         model.addAttribute("n", n).addAttribute("page", page);
         return "pages/notice/detail";
     }
+
+    @PostMapping("delete")
+    public String noticedelete(@RequestParam("noticeId") int noticeId) {
+        int result = noticeService.delete(noticeId);
+        return "redirect:/notice/list";
+    }
+
 }
