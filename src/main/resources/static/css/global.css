@@ -243,6 +243,48 @@ a {
     align-items: center;
 }
 
+.error-container {
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-container .errorBox {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.error-container .errorBox .error-icon {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.error-container .errorBox > h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.error-container .errorBox > h6 {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.error-container .errorBox > button {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+}
+
 footer {
     margin-top: 50px;
     width: 100%;
