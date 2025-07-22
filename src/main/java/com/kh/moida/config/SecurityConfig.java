@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/notice/write", "/notice/insert").hasRole("ADMIN")
                         .requestMatchers("/notice/**").permitAll()
-                        .requestMatchers("/", "/sign/**", "/error/**", "/category/**", "/createMoim", "/joinMoim", "/moimAdminPage", "/modifyMoim", "/personalInfo", "/css/**", "/js/**", "/images/**", "/uploads/**").permitAll()
+                        .requestMatchers("/", "/sign/**", "/review/**", "/error/**", "/category/**", "/createMoim", "/joinMoim", "/moimAdminPage", "/modifyMoim", "/personalInfo", "/css/**", "/js/**", "/images/**", "/uploads/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/my/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()

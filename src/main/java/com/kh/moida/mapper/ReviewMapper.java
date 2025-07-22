@@ -9,6 +9,7 @@ import com.kh.moida.model.Review;
 @Mapper
 public interface ReviewMapper {
 
+	//리뷰리스트뽑기
 	public ArrayList<Review> getReviewList();
 
 }

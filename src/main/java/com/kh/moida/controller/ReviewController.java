@@ -22,6 +22,15 @@ import lombok.RequiredArgsConstructor;
 public class ReviewController {
     private final ReviewService rService;
 
+    //reviewList
+    @GetMapping("/pages/moim/moim_detail/{moimId}")
+    public String reviewList(@PathVariable int moimId, Model model) {
+        ArrayList<Review> reviewList = rService.getReviewList();
+        model.addAttribute("reviewList", reviewList);
+
+        return "pages/moim/moim_detail";
+    }
+    
     //후기 쓰기 view이동
     @GetMapping("/review/write")
     public String writeReview() {
@@ -35,27 +44,27 @@ public class ReviewController {
             @RequestParam("imageUpload") MultipartFile image
     ) {
         //파일을 .. 서버에 저장하고싶은데요.
-//    	String fileName = image.getOriginalFilename();
-//    	rService.enrollReview(review, fileName);
-//        return "mv";
+
     }
 
-    //후기 상세보기 view이동
+    //후기 상세보기 read view이동
     @GetMapping("/review/detail")
     public String readReview() {
-        return "pages/my/review/read";
+        return "pages/my/review/review_read";
     }
 
-    //reviewList (moimDetail에서 보여줄 거..)
-    @GetMapping("/pages/moim/moim_detail/{moimId}")
-    public String reviewList(@PathVariable int moimId, Model model) {
-        //review list가져오는 로직
-        ArrayList<Review> reviewList = rService.getReviewList();
-        model.addAttribute("reviewList", reviewList);
+    
+    //후기write 등록 : read view 이동
+    
+    //후기 작성view
+ /*   @GetMapping("review/edit")
+    public ModelAndView editReview(@ModelAttribute Review r, ModelAndView mv) {
+    	
+    	return "pages/my/review/review_edit";
+    }		
 
-        return "pages/moim/moim_detail";
-
-    }
-
+    //후기 수정
+    @PostMapping("review/update")
+    public void 	*/
 
 }

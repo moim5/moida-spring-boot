@@ -138,7 +138,9 @@
   margin-left: auto;
   margin-right: 10px;
  }
-
+.review-edit:hover{
+	cursor:pointer;
+}
 .review-content-title{
     display: flex;
     font-size: 20px;
