@@ -64,10 +64,9 @@ public class JwtFilter extends OncePerRequestFilter {
         } catch (ExpiredJwtException | IllegalArgumentException e) {
             SecurityContextHolder.clearContext();
             clearJwtCookie(response);
-            throw new BadCredentialsException("JWT expired or invalid", e);  // ✅ 여기!
         } catch (Exception e) {
             clearJwtCookie(response);
-            throw new InternalAuthenticationServiceException("JWT validation error", e); // ✅ 여기!
+            SecurityContextHolder.clearContext();
         }
     }
 

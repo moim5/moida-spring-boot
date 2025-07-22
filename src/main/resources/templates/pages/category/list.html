@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container category">
+    <div class="category-left">
+        <div class="category-box">
+            <a href="/category"
+               th:classappend="${(requestURI == '/category' or requestURI == '/category/') ? 'active' : ''}">
+                전체
+            </a>
+
+            <a th:each="c : ${categoryList}"
+               th:href="@{/category/{id}(id=${c.categoryId})}"
+               th:text="${c.categoryName}"
+               th:classappend="${requestURI == '/category/' + c.categoryId ? 'active' : ''}"></a>
+        </div>
+    </div>
+    <div class="category-right">
+
+    </div>
+</main>
+</body>
+</html>
