@@ -4,45 +4,64 @@
       layout:decorate="~{layouts/base}"
       lang="ko">
 <head>
+      <script src="./review_read.js"></script>
+      <link href="./review_read.css" rel="stylesheet"/>
 <meta charset="UTF-8">
 <title>리뷰 상세페이지</title>
 </head>
 <body>
 <main class="container" layout:fragment="content">
    <div class="review-wrapper">
-      <div class="review-photo-container">
-            <div class="review-photo" th:each="r : ${reviewImgList}">
-                  <img src="./review01.webp" width="150px" height="150px"/>
+      <div class="review-banner">
+            <div class="review-title">나만의 특별한 경험을 공유해요.</div>
+            <div class="moim-title">내가 참여한 모임 : [[${moimTitle}]]</div>
+            <div class="moim-info">
+                  <i class="ti ti-calendar-week"></i>[[${moimAddress1}]] 종로구 &nbsp;[[${moimDate}]] 25-05-22
             </div>
       </div>
-      <div class="review-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
+      <div class="review-photo-container">
+            <div class="review-photo" th:each="r : ${reviewImgList}">
+                  <img src="./review01.webp"/>
+                  <img src="./review01.webp"/>
+                  <img src="./review01.webp"/>
+                  <img src="./review01.webp"/>
+            </div>
+      </div>
+      <div class="review-content-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
             <div class="review-writer">
                   <div class="writer-profile">
-                        <img src="./review02.webp" width="150px" height="150px"/>
+                        <img src="./review_read_profileImg.jpg"/>
                         <div class="writer-name">[[${r.name}]]</div>
                   </div>
-                  <div class="review-form"> 
-                        <div class="review-rate-box">
-                              <div class="review-star">
-                                    <span th:each = "r : ${#numbers.sequece(1, r.reviewRate)}"class="star" data-value="1">
-                                          <i class="ti ti-carambola"></i>
-                                    </span>
-                              </div>
-                              <div class="review-rate">[[${r.reviewRate}]]</div>
-                              <div class="review-date">[[${r.reviewDate}]]</div>
+            </div>
+            <div class="review-form"> 
+                  <div class="review-rate-box"> <!--별 박스-->
+                        <div class="review-star">
+                              <span th:each = "r : ${#numbers.sequence(1, r.reviewRate)}"class="star" data-value="1">
+                                    <i class="ti ti-carambola"></i>
+                              </span>
                         </div>
-
-                        <div class="review-title">[[${r.reviewTitle}]]</div>
-                        <div class="review-content">[[${r.reviewContent}]]</div>
-                        <div class="review-img">
-                              <img src="./review03.webp" width="15%"/>
+                        <div class="review-rate">([[${r.reviewRate}]])</div>
+                        <div class="review-date">[[${r.reviewDate}]]</div>
+                        <div class="review-edit" th:if="${user.name = r.reviewWriter}"><!--확인할 것-->
+                              <span><i class="ti ti-pencil"></i></span>&nbsp;&nbsp;
+                              <span><i class="ti ti-trash"></i></span>
                         </div>
-
-
                   </div>
 
-                  
+                  <div class="review-content-title">[[${r.reviewTitle}]]</div>
+                  <div class="review-content"> <!--리뷰 txt + img-->
+                        <div class="review-txt">[[${r.reviewContent}]]</div>
+                        <div class="review-img"> <!--없을 수도잇자나-->
+                              <img src="./review03.webp"/>
+                        </div>
+                  </div>
+
+
             </div>
+
+                  
+            
 
       </div>
 

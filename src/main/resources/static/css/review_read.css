@@ -1,16 +1,168 @@
-.wrapper{ 
+.review-wrapper{ 
     /* 화면 가운데 정렬 */
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     max-width: 1200px;      
     margin: 50px auto; 
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+/* 리뷰상단 */
+.review-banner{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+
+}
+.review-title{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex-grow: 1; /* 제목이 남은 공간을 차지하도록 */
+    font-size: 30px;
+    font-weight: bold;
+    color: #f29101;
 }
 
+.moim-title{
+    display: flex;
+    font-size: 25px;
+    margin-top: 10px;
+}
+.moim-info{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    margin-top: 8px;
+}
+
+/* 사진모음 */
 .review-photo-container{
-    margin: 5px;
-    padding: 3px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    padding: 10px;
+    border: solid 1px rgba(207, 203, 203, 0.713);
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: 30px;
+    width: 1200px;    
+    max-width: 1200px;    
+}
+.review-photo{
+    display: flex;
+    overflow-x: auto;
+    width:100%;
+    max-width: 1200px;
+    white-space: nowrap;
+
+}
+.review-photo img{
+    width: 130px;
+    height:130px;
+    margin-right: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    display: inline-block;
+    flex-direction: column;
+}
+
+/* 리뷰내용 전체 컨테이너 */
+.review-content-container{
+    display: flex;
+    margin: 5px 0;
+    padding: 10px;
+    border: solid 1px rgba(207, 203, 203, 0.713);
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: 80px;
+    width: 100% ;
+    max-width: 1200px;
+}
+
+/* 쓰니 : 프사, 이름 */
+.review-writer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left:30px;
+    width: 200px;
+
+}
+.writer-profile img{
+    border-radius: 50%;
+    width:100px; height:100px;
+    
+}
+.writer-name{
+    margin-top: 8px;
+}
+
+.review-form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-right: 10px;
+    width: 100%;             
+    box-sizing: border-box;
+    
+}
+.review-rate-box{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin-left: 10px;
+    width: 100%;
+    max-width: 1000px;
+}
+.review-star{
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+}
+.review-rate, .review-date, .review-edit{
+    display: flex;
+    font-size: 15px;
+    color: rgba(207, 203, 203, 0.947);
+    margin-left: 5px;
+}
+ .review-edit{
+  display: flex;
+  gap: 10px; 
+  margin-left: auto;
+  margin-right: 10px;
+ }
+
+.review-content-title{
+    display: flex;
+    font-size: 20px;
+    color:black;
+    margin-top: 25px;
+    width: 100%;
+    max-width: 1000px;
+    overflow: visible;
+    white-space: pre-wrap;   
+    overflow-wrap: break-word;
+}
+.review-content{
+    font-size: 15px;
+     overflow: visible;
+     white-space: pre-wrap;   
+     overflow-wrap: break-word;
+     width: 100%;
+     max-width: 1000px;
+     line-height: 1.6;
+     
+}
+.review-form img{
+    width:100%;
+    max-width: 400px;
+    height:auto;
+    margin-top: 30px;
 }
