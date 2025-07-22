@@ -1,0 +1,160 @@
+.admin-button-confirm {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-category-table {
+    width: 100%;
+}
+
+.admin-category-table > thead > tr {
+    padding: 10px 0;
+    color: black;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-category-table > thead > tr > th {
+    padding: 10px;
+}
+
+.admin-category-table > tbody > tr {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-category-table th {
+    vertical-align: middle;
+}
+
+.admin-category-table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.admin-category-table td.cell-center {
+    text-align: center;
+}
+
+.admin-category-table td.icon-cell {
+    box-sizing: border-box;
+}
+
+.admin-category-table td.icon-cell > .category-iconBox {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-category-table td.func-cell {
+    vertical-align: middle;
+}
+
+.admin-category-table td.func-cell > .category-funcBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-category-table td.func-cell > .category-funcBox button {
+    font-size: 1.5rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.admin-category-table td.func-cell > .category-funcBox button:hover {
+    color: var(--main-color);
+}
+
+.admin-inputBox {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.admin-inputBox label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.admin-inputBox input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.admin-inputBox > .admin-inputColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-originFileBox {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.admin-originFileBox button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-updateFileBox {
+    display: none;
+}
+
+.modal-confirmCategoryDelete-body {
+    font-size: 1.2rem;
+    padding: 50px;
+    text-align: center;
+}
+
+.modal-confirmCategoryDelete-footer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-confirmCategoryDelete-footer button {
+    width: 100px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.modal-confirmCategoryDelete-footer button.confirm {
+    background-color: green;
+    border: none;
+    color: white;
+}
+
+.modal-confirmCategoryDelete-footer button.cancel {
+    border: 1px solid red;
+    background-color: transparent;
+    color: red;
+}

@@ -59,7 +59,7 @@
     font-size: 0.9rem;
     border-radius: 8px;
     padding: 10px;
-    background-color: #FFA600;
+    background-color: var(--main-color);
     color: white;
     border: none;
     transition: background-color 0.3s ease;

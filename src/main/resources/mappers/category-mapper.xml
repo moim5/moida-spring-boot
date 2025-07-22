@@ -10,6 +10,30 @@
             SEQ_CATEGORY_ID.NEXTVAL, #{categoryName}, #{fileId}
         )
     </insert>
+    <update id="updateCategoryNameOnly">
+        UPDATE
+            CATEGORY
+        SET
+            CATEGORY_NAME = #{categoryName}
+        WHERE
+            CATEGORY_ID = #{categoryId}
+    </update>
+    <update id="updateCategoryWithFile">
+        UPDATE
+            CATEGORY
+        SET
+            CATEGORY_NAME = #{categoryName},
+            FILE_ID = #{fileId}
+        WHERE
+            CATEGORY_ID = #{categoryId}
+    </update>
+    <delete id="deleteCategory">
+        DELETE
+        FROM
+            CATEGORY
+        WHERE
+            CATEGORY_ID = #{categoryId}
+    </delete>
     <select id="findAllCategoriesWithFile" resultType="com.kh.moida.model.Category">
         SELECT
             c.CATEGORY_ID,
@@ -21,5 +45,18 @@
             CATEGORY c
             INNER JOIN FILES f ON c.FILE_ID = f.FILE_ID
         ORDER BY c.CATEGORY_ID ASC
+    </select>
+    <select id="findCategoryWithFile" resultType="com.kh.moida.model.Category">
+        SELECT
+            c.CATEGORY_ID,
+            c.CATEGORY_NAME,
+            f.FILE_ID,
+            f.FILE_ORIGIN,
+            f.FILE_CONVERT
+        FROM
+            CATEGORY c
+        INNER JOIN FILES f ON c.FILE_ID = f.FILE_ID
+        WHERE
+            CATEGORY_ID = #{categoryId}
     </select>
 </mapper>

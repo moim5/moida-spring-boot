@@ -13,4 +13,11 @@
             #{fileId}, #{fileOrigin}, #{fileConvert}
         )
     </insert>
+    <delete id="deleteFile">
+        DELETE
+        FROM
+            FILES
+        WHERE
+            FILE_ID = #{fileId}
+    </delete>
 </mapper>
