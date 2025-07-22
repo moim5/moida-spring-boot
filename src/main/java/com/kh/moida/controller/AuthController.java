@@ -51,30 +51,36 @@ public class AuthController {
             @RequestParam String address2,
             Model model
     ) {
-        if (username.length() < 4 || username.length() > 20) {
-            model.addAttribute("error", "아이디는 4~20자여야 합니다.");
-            return "pages/sign/up/signUp";
-        }
-        if (!password.equals(confirm)) {
-            model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
-            return "pages/sign/up/signUp";
-        }
+        try {
+            if (username.length() < 4 || username.length() > 20) {
+                model.addAttribute("error", "아이디는 4~20자여야 합니다.");
+                return "pages/sign/up/signUp";
+            }
+            if (!password.equals(confirm)) {
+                model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+                return "pages/sign/up/signUp";
+            }
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-        user.setName(name);
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setZipCode(zipCode);
-        user.setAddress1(address1);
-        user.setAddress2(address2);
-        user.setGender(gender);
-        user.setBirthday(Date.valueOf(birthday));
-        user.setIsActive("Y");
-        user.setIsAdmin("N");
-        userService.save(user);
-        return "redirect:/sign/in";
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(passwordEncoder.encode(password));
+            user.setName(name);
+            user.setEmail(email);
+            user.setPhone(phone);
+            user.setZipCode(zipCode);
+            user.setAddress1(address1);
+            user.setAddress2(address2);
+            user.setGender(gender);
+            user.setBirthday(Date.valueOf(birthday));
+            user.setIsActive("Y");
+            user.setIsAdmin("N");
+            userService.save(user);
+            return "redirect:/sign/in";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error", "회원가입 중 오류가 발생했습니다.");
+            return "pages/sign/up/signUp";
+        }
     }
 
     @GetMapping("/in")
