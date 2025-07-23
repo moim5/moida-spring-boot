@@ -1,3 +1,22 @@
+.admin-table {
+    width: 100%;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+.admin-table thead {
+    border-top: 1px solid var(--border-color);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.admin-table tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
 .admin-button-confirm {
     width: 100px;
     font-size: 0.9rem;
@@ -40,40 +59,40 @@
     vertical-align: middle;
 }
 
-.admin-category-table td.cell-center {
+td.cell-center {
     text-align: center;
 }
 
-.admin-category-table td.icon-cell {
+td.icon-cell {
     box-sizing: border-box;
 }
 
-.admin-category-table td.icon-cell > .category-iconBox {
+td.icon-cell > .category-iconBox {
     box-sizing: border-box;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.admin-category-table td.func-cell {
+td.func-cell {
     vertical-align: middle;
 }
 
-.admin-category-table td.func-cell > .category-funcBox {
+td.func-cell > .admin-table-funcBox {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.admin-category-table td.func-cell > .category-funcBox button {
+td.func-cell > .admin-table-funcBox button {
     font-size: 1.5rem;
     border: none;
     background: none;
     cursor: pointer;
 }
 
-.admin-category-table td.func-cell > .category-funcBox button:hover {
+td.func-cell > .admin-table-funcBox button:hover {
     color: var(--main-color);
 }
 

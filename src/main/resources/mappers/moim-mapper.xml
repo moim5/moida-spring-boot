@@ -6,7 +6,7 @@
     <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
         INSERT INTO MOIM (
             MOIM_ID,
-            MOIM_NAME,
+            MOIM_TITLE,
             MOIM_TYPE,
             MOIM_CONTENT,
             MOIM_ATTENDEE_COUNT,
@@ -25,7 +25,7 @@
             FILE_ID
         ) VALUES (
             SEQ_MOIM_ID.NEXTVAL,
-            #{moimName},
+            #{moimTitle},
             #{moimType},
             #{moimContent},
             #{moimAttendeeCount},
@@ -116,7 +116,7 @@
     <select id="findMoimById" resultType="com.kh.moida.model.Moim">
         SELECT
             M.MOIM_ID,
-            M.MOIM_NAME,
+            M.MOIM_TITLE,
             M.MOIM_CONTENT,
             M.MOIM_DATE,
             M.MOIM_ATTENDEE_COUNT,

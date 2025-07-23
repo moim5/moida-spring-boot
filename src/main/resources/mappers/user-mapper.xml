@@ -52,4 +52,31 @@
             USERS
         WHERE USER_ID = #{userId}
     </select>
+    <select id="findUser" parameterType="map" resultType="com.kh.moida.model.User">
+        SELECT
+            *
+        FROM (
+            SELECT
+                U.*,
+                ROWNUM AS RN
+            FROM (
+                SELECT
+                    *
+                FROM
+                    USERS
+                ORDER BY
+                    USER_ID DESC
+                ) U
+            WHERE ROWNUM &lt;= #{endRow}
+            )
+        WHERE RN &gt;= #{startRow}
+    </select>
+    <select id="findUserByUserId" resultType="com.kh.moida.model.User">
+        SELECT
+            *
+        FROM
+            USERS
+        WHERE
+            USER_ID = #{userId}
+    </select>
 </mapper>

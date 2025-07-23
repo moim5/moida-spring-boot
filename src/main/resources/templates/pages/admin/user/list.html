@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="subTitle" style="margin-bottom: 30px;">
+        회원 관리
+    </div>
+    <div th:if="${#lists.isEmpty(userList)}" class="empty-container">
+        <i class="ti ti-hexagon-minus empty-icon"></i> 아직 등록된 회원이 없어요!
+    </div>
+    <table class="admin-table">
+        <thead>
+        <tr>
+            <th style="width: 15%">회원번호</th>
+            <th style="width: 20%">아이디</th>
+            <th style="width: 30%">이메일</th>
+            <th style="width: 20%">전화번호</th>
+            <th style="width: 15%">기능</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u : ${userList}">
+            <td class="cell-center" th:text="${u.userId}"></td>
+            <td class="cell-center" th:text="${u.username}"></td>
+            <td class="cell-center" th:text="${u.email}"></td>
+            <td class="cell-center" th:text="${u.phone}"></td>
+            <td class="func-cell">
+                <div class="admin-table-funcBox">
+                    <a th:href="@{/admin/user/modify/{id}(id=${u.userId})}">
+                        <button type="button">
+                            <i class="ti ti-edit"></i>
+                        </button>
+                    </a>
+                    <button type="button" th:onclick="|confirmCategoryDelete(${u.userId})|">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

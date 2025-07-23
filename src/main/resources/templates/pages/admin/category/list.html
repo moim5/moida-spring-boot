@@ -12,7 +12,7 @@
             <button class="admin-button-confirm">추가하기</button>
         </a>
     </div>
-    <table class="admin-category-table">
+    <table class="admin-table">
         <thead>
         <tr>
             <th style="width: 20%;">ID</th>
@@ -34,7 +34,7 @@
                 </div>
             </td>
             <td class="func-cell">
-                <div class="category-funcBox">
+                <div class="admin-table-funcBox">
                     <a th:href="@{/admin/category/modify/{id}(id=${c.categoryId})}">
                         <button type="button">
                             <i class="ti ti-edit"></i>

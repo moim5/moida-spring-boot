@@ -76,6 +76,10 @@ public class CategoryService {
         updated.setFileId(file.getFileId());
 
         categoryMapper.updateCategoryWithFile(updated);
+        // 1. 새로운 파일이 생겼나? -> 없으면, 디비만 쓰고 끝
+        // 2. 그럼 원래 있던 파일을 지우자
+        // 3. 그리고 새로운 파일을 올리자
+        // 4. 디비 정보를 업데이트 하자
     }
 
     public void deleteCategory(Long categoryId) {

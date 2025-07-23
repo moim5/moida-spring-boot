@@ -9,7 +9,7 @@
         <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}" alt="모임메인사진"
              class="moim-main-image">
         <!--모바일 버전 모임 제목, 설명, 신청버튼-->
-        <div class="moim-title-mobile">[[${moimTitle}]]</div>
+        <div class="moim-title-mobile" th:text="${moim.moimTitle}"></div>
         <div class="moim-description-mobile">
             <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimDate}]]
         </div>
