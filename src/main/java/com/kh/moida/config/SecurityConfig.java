@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,14 +28,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         return http
-                .csrf(csrf -> csrf.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/notice/write", "/notice/insert").hasRole("ADMIN")
+                        .requestMatchers("/admin/**", "/notice/write", "/notice/insert").hasRole("ADMIN")
                         .requestMatchers("/notice/**").permitAll()
-                        .requestMatchers("/", "/sign/**", "/review/**", "/error/**", "/category/**", "/createMoim", "/joinMoim", "/moimAdminPage", "/modifyMoim", "/personalInfo", "/css/**", "/js/**", "/images/**", "/uploads/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/my/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/", "/sign/**", "/review/**", "/error/**", "/category/**", "/moim/**", "/joinMoim", "/moimAdminPage", "/modifyMoim", "/personalInfo", "/css/**", "/js/**", "/images/**", "/uploads/**").permitAll()
+                        .requestMatchers("/my/**", "/moim/create", "/moim/insert").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception

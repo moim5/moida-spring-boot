@@ -20,6 +20,25 @@
     </div>
     <div class="category-right">
         <div class="subTitle" style="margin-bottom: 30px;" th:text="${selectedCategoryName}"></div>
+        <div th:if="${#lists.isEmpty(moimList)}" class="empty-container">
+            <i class="ti ti-hexagon-minus empty-icon"></i> 아직 등록된 모임이 없어요!
+        </div>
+        <div class="moim-list-container">
+            <a th:each="m : ${moimList}" class="moim-list-item" th:href="|/moim/${m.moimId}|" target="_self">
+                <div class="moim-image">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${m.fileConvert})}" alt="moim-01"/>
+                </div>
+                <div class="moim-categoryText">
+
+                </div>
+                <div class="moim-titleText" th:text="${m.moimName}">
+                </div>
+                <div class="moim-dateText">
+                    <i class="ti ti-calendar-week"></i>
+                    <div th:text="${#dates.format(m.moimDate, 'yy.MM.dd(E) a hh:mm')}"></div>
+                </div>
+            </a>
+        </div>
     </div>
 </main>
 </body>

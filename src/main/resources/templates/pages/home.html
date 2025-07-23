@@ -5,391 +5,48 @@
       layout:decorate="~{layouts/base}"
       lang="ko">
 <body>
-    <main class="" layout:fragment="content">
-        <div class="banner-container">
-            <img th:src="@{/images/home/1749630156_pc_main_banner_summersweet.png}" alt="banner"/>
+<main class="" layout:fragment="content">
+    <div class="banner-container">
+        <img th:src="@{/images/home/1749630156_pc_main_banner_summersweet.png}" alt="banner"/>
+    </div>
+    <div class="main-wrapper">
+        <div class="category-container">
+            <a th:each="c : ${categoryList}"
+               th:href="@{/category/{id}(id=${c.categoryId})}" class="category-item">
+                <div class="category-item-icon">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}" alt="category-01"/>
+                </div>
+                <span th:text="${c.categoryName}"></span>
+            </a>
         </div>
-        <div class="main-wrapper">
-            <div class="category-container">
-                <a th:each="c : ${categoryList}"
-                   th:href="@{/category/${id}(id=${c.categoryId})}" class="category-item">
-                    <div class="category-item-icon">
-                        <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}" alt="category-01"/>
-                    </div>
-                    <span th:text="${c.categoryName}"></span>
-                </a>
-            </div>
-        </div>
-        <div class="main-wrapper">
-            <div class="subTitle-container">
+    </div>
+    <div class="main-wrapper">
+        <div class="subTitle-container">
              <span class="subTitle">
             지금 핫한 모임 🎉
         </span>
-            </div>
-
-            <div class="moim-container">
-                <a class="moim-item" href="/[category]/moimDetail.html" target="_self">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-01.jpeg}" alt="moim-01"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        마포구 | N잡
-                    </div>
-                    <div class="moim-titleText">
-                        [부린이환영]어서와,부동산은 처음이지?
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.25(수) 오후 07:30</div>
-                    </div>
-                </a>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-02.jpeg}" alt="moim-02"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        영등포구 | 소셜게임
-                    </div>
-                    <div class="moim-titleText">
-                        13회차.즐거운 개미네 보드게임
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.24(화) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-03.jpeg}" alt="moim-03"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        강남구 | 자기계발
-                    </div>
-                    <div class="moim-titleText">
-                        스피치 : 목소리, 화술, 발표, PT, 면접, 토론(2분 선예약 확인)
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.29(일) 오후 01:00</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-04.jpeg}" alt="moim-04"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        종로구 | 파티
-                    </div>
-                    <div class="moim-titleText">
-                        2030 아트 & 와인 파티! 아트팅
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.28(토) 오후 06:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-01.jpeg}" alt="moim-01"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        마포구 | N잡
-                    </div>
-                    <div class="moim-titleText">
-                        [부린이환영]어서와,부동산은 처음이지?
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.25(수) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-02.jpeg}" alt="moim-02"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        영등포구 | 소셜게임
-                    </div>
-                    <div class="moim-titleText">
-                        13회차.즐거운 개미네 보드게임
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.24(화) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-03.jpeg}" alt="moim-03"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        강남구 | 자기계발
-                    </div>
-                    <div class="moim-titleText">
-                        스피치 : 목소리, 화술, 발표, PT, 면접, 토론(2분 선예약 확인)
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.29(일) 오후 01:00</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-04.jpeg}" alt="moim-04"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        종로구 | 파티
-                    </div>
-                    <div class="moim-titleText">
-                        2030 아트 & 와인 파티! 아트팅
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.28(토) 오후 06:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-01.jpeg}" alt="moim-01"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        마포구 | N잡
-                    </div>
-                    <div class="moim-titleText">
-                        [부린이환영]어서와,부동산은 처음이지?
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.25(수) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-02.jpeg}" alt="moim-02"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        영등포구 | 소셜게임
-                    </div>
-                    <div class="moim-titleText">
-                        13회차.즐거운 개미네 보드게임
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.24(화) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-03.jpeg}" alt="moim-03"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        강남구 | 자기계발
-                    </div>
-                    <div class="moim-titleText">
-                        스피치 : 목소리, 화술, 발표, PT, 면접, 토론(2분 선예약 확인)
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.29(일) 오후 01:00</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-04.jpeg}" alt="moim-04"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        종로구 | 파티
-                    </div>
-                    <div class="moim-titleText">
-                        2030 아트 & 와인 파티! 아트팅
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.28(토) 오후 06:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-01.jpeg}" alt="moim-01"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        마포구 | N잡
-                    </div>
-                    <div class="moim-titleText">
-                        [부린이환영]어서와,부동산은 처음이지?
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.25(수) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-02.jpeg}" alt="moim-02"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        영등포구 | 소셜게임
-                    </div>
-                    <div class="moim-titleText">
-                        13회차.즐거운 개미네 보드게임
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.24(화) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-03.jpeg}" alt="moim-03"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        강남구 | 자기계발
-                    </div>
-                    <div class="moim-titleText">
-                        스피치 : 목소리, 화술, 발표, PT, 면접, 토론(2분 선예약 확인)
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.29(일) 오후 01:00</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-04.jpeg}" alt="moim-04"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        종로구 | 파티
-                    </div>
-                    <div class="moim-titleText">
-                        2030 아트 & 와인 파티! 아트팅
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.28(토) 오후 06:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-01.jpeg}" alt="moim-01"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        마포구 | N잡
-                    </div>
-                    <div class="moim-titleText">
-                        [부린이환영]어서와,부동산은 처음이지?
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.25(수) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-02.jpeg}" alt="moim-02"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        영등포구 | 소셜게임
-                    </div>
-                    <div class="moim-titleText">
-                        13회차.즐거운 개미네 보드게임
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.24(화) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-03.jpeg}" alt="moim-03"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        강남구 | 자기계발
-                    </div>
-                    <div class="moim-titleText">
-                        스피치 : 목소리, 화술, 발표, PT, 면접, 토론(2분 선예약 확인)
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.29(일) 오후 01:00</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-04.jpeg}" alt="moim-04"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        종로구 | 파티
-                    </div>
-                    <div class="moim-titleText">
-                        2030 아트 & 와인 파티! 아트팅
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.28(토) 오후 06:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-01.jpeg}" alt="moim-01"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        마포구 | N잡
-                    </div>
-                    <div class="moim-titleText">
-                        [부린이환영]어서와,부동산은 처음이지?
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.25(수) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-02.jpeg}" alt="moim-02"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        영등포구 | 소셜게임
-                    </div>
-                    <div class="moim-titleText">
-                        13회차.즐거운 개미네 보드게임
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.24(화) 오후 07:30</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-03.jpeg}" alt="moim-03"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        강남구 | 자기계발
-                    </div>
-                    <div class="moim-titleText">
-                        스피치 : 목소리, 화술, 발표, PT, 면접, 토론(2분 선예약 확인)
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.29(일) 오후 01:00</div>
-                    </div>
-                </div>
-                <div class="moim-item">
-                    <div class="moim-image">
-                        <img th:src="@{/images/home/moim-04.jpeg}" alt="moim-04"/>
-                    </div>
-                    <div class="moim-categoryText">
-                        종로구 | 파티
-                    </div>
-                    <div class="moim-titleText">
-                        2030 아트 & 와인 파티! 아트팅
-                    </div>
-                    <div class="moim-dateText">
-                        <i class="ti ti-calendar-week"></i>
-                        <div>25.06.28(토) 오후 06:30</div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </main>
+
+        <div th:if="${#lists.isEmpty(moimList)}" class="empty-container">
+            <i class="ti ti-hexagon-minus empty-icon"></i> 아직 등록된 모임이 없어요!
+        </div>
+        <div class="moim-container">
+            <a th:each="m : ${moimList}" class="moim-list-item" th:href="|/moim/${m.moimId}|" target="_self">
+                <div class="moim-image">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${m.fileConvert})}" alt="moim-01"/>
+                </div>
+                <div class="moim-categoryText">
+
+                </div>
+                <div class="moim-titleText" th:text="${m.moimName}">
+                </div>
+                <div class="moim-dateText">
+                    <i class="ti ti-calendar-week"></i>
+                    <div th:text="${#dates.format(m.moimDate, 'yy.MM.dd(E) a hh:mm')}"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</main>
 </body>
 </html>

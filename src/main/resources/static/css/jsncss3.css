@@ -1,20 +1,4 @@
-.create-moim-container {
-	width: 100%;
-	padding: 20px;
-	box-sizing: border-box;
-}
 
-.create-moim-row {
-	width: 100%;
-	display: flex;
-	margin-bottom: 20px;
-}
-
-.create-moim-label {
-	width: 110px;
-	display: flex;
-	font-weight: bold;
-}
 
 .create-moim-input {
 	width: 100%;

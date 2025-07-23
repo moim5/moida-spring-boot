@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}" lang="ko">
+<body>
+<main layout:fragment="content" class="main-wrapper main-wrapper-center">
+    <form class="moim-create-container" method="POST" th:action="@{/moim/insert}" enctype="multipart/form-data">
+        <div class="subTitle" style="margin-bottom: 30px;">모임 생성하기</div>
+        <div class="moim-create-row">
+            <label for="moimType">모임유형</label>
+            <select id="moimType" name="moimType">
+                <option value="1">온라인</option>
+                <option value="2">오프라인</option>
+            </select>
+        </div>
+
+        <div class="moim-create-row">
+            <label for="categoryId">카테고리</label>
+            <select id="categoryId" name="categoryId">
+                <th:block th:each="c : ${categoryList}">
+                    <option th:value="${c.categoryId}" th:text="${c.categoryName}"></option>
+                </th:block>
+            </select>
+        </div>
+
+        <div class="moim-create-row">
+            <label for="moimName">모임제목</label>
+            <input type="text" id="moimName" name="moimName" placeholder="모임 제목을 입력하세요"/>
+        </div>
+
+        <div class="moim-create-row">
+            <label for="moimAttendeeCount">인원수</label>
+            <input type="number" id="moimAttendeeCount" name="moimAttendeeCount" placeholder="모임 제목을 입력하세요"/>
+        </div>
+
+        <div class="moim-create-row">
+            <label for="moimDate">모임날짜</label>
+            <input type="datetime-local" id="moimDate" name="moimDate"/>
+        </div>
+        <div class="moim-create-row">
+            <label for="address2">모임장소</label>
+            <div class="moim-create-addressBox">
+                <div class="address-inline">
+                    <button type="button" class="btn address-search-btn"
+                            onclick="execDaumPostcode()">주소찾기
+                    </button>
+                    <input type="text" id="zipCode" name="moimZipCode" readonly
+                           placeholder="우편번호"/>
+                </div>
+                <input type="text" id="address1" name="moimAddress1" readonly
+                       placeholder="기본 주소"/>
+                <input type="text" id="address2"
+                       name="moimAddress2" placeholder="상세 주소 입력"/>
+            </div>
+        </div>
+        <div class="moim-create-row">
+            <label for="moimMoney">참가비용</label>
+            <input type="number" id="moimMoney" name="moimMoney"/>
+        </div>
+        <div class="moim-create-row">
+            <label for="moimContent">모임설명</label>
+            <textarea id="moimContent" name="moimContent"
+                      placeholder="모임 설명을 입력하세요"></textarea>
+        </div>
+        <div class="moim-create-row">
+            <label for="moimHostIntro">호스트 소개</label>
+            <textarea id="moimHostIntro" name="moimHostIntro"
+                      placeholder="간단한 자기소개를 써주세요."></textarea>
+        </div>
+        <div class="moim-create-row">
+            <label>사진 업로드</label>
+            <input type="file" name="moimImage" required/>
+        </div>
+
+        <div class="error-text" th:if="${error}" th:text="${error}"></div>
+
+        <div class="moim-create-buttonBox">
+            <button type="submit">
+                모임 생성<i class="ti ti-users-group"></i>
+            </button>
+        </div>
+    </form>
+</main>
+</body>
+</html>
