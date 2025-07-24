@@ -1,4 +1,19 @@
 window.onload = () => {
+	//파일 한 개만 올리기 -> 새 파일 선택 시, 기존 파일 덮어쓰기
+	const fileInput = document.getElementById('imageUpload');
+	fileInput.addEventListener('change', () => {
+		const newFile = fileInput.files[0]; //크기 1개짜리 배열생성
+		if(!newFile) return;
+		
+		selectedFiles = [newFile]; //배열을 초기화시키고 새 파일 추가하기
+		
+		
+	});
+	
+	
+	
+	
+	
     const imageUpload = document.getElementsByClassName('review-image-upload')[0];
     const fileInput = document.getElementById('imageUpload');
     const fileListDiv = document.getElementById('imageFileList');
@@ -46,8 +61,6 @@ window.onload = () => {
         fileItem.appendChild(deleteBtn);
         fileListDiv.appendChild(fileItem);
     }
-
-//***남은 일 : 등록하기 버튼 클릭 시 후기, 별점 필수 확인 => 등록하시겠습니까 컨펌 ->true->후기상세페이지 이동
 
 
     //후기작성 : 10자이상 작성 필수 및 별점 선택 필수
@@ -164,7 +177,7 @@ window.onload = () => {
     });
 
 
-};
+}
 
 
 const reviewModalBody = `

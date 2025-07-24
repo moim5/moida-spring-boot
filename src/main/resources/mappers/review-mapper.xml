@@ -19,6 +19,10 @@
  	order by
  		r.review_date desc
  </select>
+ <!-- 2.리뷰 작성 여부 확인 -->
+ <select id="countReview" resultType="_int">
+ 	select count(*) from review where review_id = #{reviewId}
+ </select>
  
  
  

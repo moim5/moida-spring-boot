@@ -20,4 +20,9 @@ public class ReviewService {
 		return mapper.getReviewList();
 	}
 
+	//리뷰 이미 작성했을 경우 write view이동 막기
+	public int countReview(int reviewId) {
+		return mapper.countReview(reviewId);
+	}
+
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.moida.model.Review;
 import com.kh.moida.service.ReviewService;
@@ -31,10 +31,14 @@ public class ReviewController {
         return "pages/moim/moim_detail";
     }
     
-    //후기 쓰기 view이동
+    //후기 쓰기 view이동(이미 작성완료했을 경우 현재 페이지 리다이렉트)
     @GetMapping("/review/write")
-    public String writeReview() {
-        return "pages/my/review/review_write";
+    public String writeReview(@RequestParam("reviewId")int reviewId) {
+        int result = rService.countReview(reviewId);
+        if(result > 0) {
+        	return "redirect:/my/review/list?msg=exist"; //할일 : 이미 후기를 작성하셨습니다 알럿창 띄우기(js)
+        }
+    	return "pages/my/review/review_write";
     }
 
     //후기 등록
