@@ -1,7 +1,9 @@
 package com.kh.moida.notice;
 
+import com.kh.moida.model.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,10 +56,28 @@ public class NoticeController {
             Model model
     ) {
         Notice n = noticeService.selectBoard(id);
+        int count = noticeService.updateCount(n);
 
         model.addAttribute("n", n).addAttribute("page", page);
         return "pages/notice/detail";
     }
+
+    @PostMapping("updForm")
+    public String updateForm(@ModelAttribute Notice notice, @RequestParam("page") int page, Model model) {
+        Notice n = noticeService.updateForm(notice);
+        model.addAttribute("n",n).addAttribute("page",page);
+
+        return "pages/notice/edit";
+    }
+
+    @PostMapping("update")
+    public String updateBoard(@ModelAttribute Notice notice, @RequestParam("page") int page, Model model) {
+            int result = noticeService.updateBoard(notice);
+        model.addAttribute("n", notice);
+        model.addAttribute("page", page);
+            return "redirect:/notice/" + notice.getNoticeId() + "/" + page;
+    }
+
 
     @PostMapping("delete")
     public String noticedelete(@RequestParam("noticeId") int noticeId) {

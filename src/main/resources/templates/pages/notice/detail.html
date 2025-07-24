@@ -37,17 +37,21 @@
     <form id="detailForm" method="POST" class="notice-detail-form">
         <!-- noticeId 숨겨서 전송 -->
         <input type="hidden" name="noticeId" th:value="${n.noticeId}" />
-
+        <input type="hidden" name="page" th:value="${page}" />
+        <input type="hidden" name="noticeCount" th:value="${n.noticeCount}" />
         <button class="btn-detail-update" type="button"
+                th:if="${loginUser != null && loginUser.isAdmin == 'Y'}"
                 onclick="document.getElementById('detailForm').action='/notice/updForm'; document.getElementById('detailForm').submit();"
         >수정</button>
 
         <button class="btn-detail-delete" type="button"
+                th:if="${loginUser != null && loginUser.isAdmin == 'Y'}"
                 onclick="if(confirm('삭제하시겠습니까?')) { document.getElementById('detailForm').action='/notice/delete'; document.getElementById('detailForm').submit(); } else { alert('삭제가 취소되었습니다.'); }"
         >삭제</button>
+
     </form>
 
-    <button class="btn-detail-back" type="button" onclick="history.back();">뒤로가기</button>
+    <button class="btn-detail-back" type="button" onclick="location.href='/notice/list'">뒤로가기</button>
 
 </main>
 

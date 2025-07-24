@@ -15,4 +15,10 @@ public interface NoticeMapper {
     Notice selectBoard(int id);
 
     int delete(int id);
+
+    Notice updateForm(Notice notice);
+
+    int updateBoard(Notice notice);
+
+    int updateCount(Notice notice);
 }

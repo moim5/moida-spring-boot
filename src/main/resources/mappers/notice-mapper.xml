@@ -45,7 +45,26 @@
         delete
         FROM NOTICE
         WHERE NOTICE_ID = #{id}
-
     </delete>
+
+    <select id="updateForm" resultType="com.kh.moida.notice.Notice" >
+        select *
+        FROM NOTICE
+        WHERE NOTICE_ID = #{noticeId}
+    </select>
+
+    <update id="updateBoard">
+        update notice
+        set
+        notice_title = #{noticeTitle},
+        notice_content = #{noticeContent}
+        WHERE NOTICE_ID = #{noticeId}
+    </update>
+
+    <update id="updateCount">
+        update notice
+        set notice_count = #{noticeCount} + 1
+        WHERE NOTICE_ID = #{noticeId}
+    </update>
 
 </mapper>

@@ -30,4 +30,16 @@ public class NoticeService {
     public int delete(int id) {
         return mapper.delete(id);
     }
+
+    public Notice updateForm(Notice notice) {
+        return mapper.updateForm(notice);
+    }
+
+    public int updateBoard(Notice notice) {
+        return mapper.updateBoard(notice);
+    }
+
+    public int updateCount(Notice notice) {
+        return mapper.updateCount(notice);
+    }
 }

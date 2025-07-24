@@ -21,6 +21,7 @@
                 <th width="80px" class="notice-title-cell">조회수</th>
             </tr>
             </thead>
+            <hr/>
             <tbody>
             <tr th:each="notice : ${list}">
                 <td th:text="${notice.noticeId}"></td>
@@ -40,6 +41,8 @@
                 onclick="location.href='/notice/write'">공지사항 작성
         </button>
     </div>
+
+    <br>
 
     <nav aria-label="Standard pagination example" style="float: right;">
         <ul class="pagination">
