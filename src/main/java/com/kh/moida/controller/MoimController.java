@@ -30,8 +30,6 @@ public class MoimController {
             @AuthenticationPrincipal UserPrincipal loginUser,
             Model model
     ) {
-        System.out.println("모임 생성 요청 들어옴!");
-
         try {
             moimService.insertMoim(loginUser.getUser(), moim, moimImage);
             return "redirect:/my/moim";
