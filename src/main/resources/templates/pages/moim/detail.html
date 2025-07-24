@@ -14,7 +14,7 @@
             <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimDate}]]
         </div>
         <div class="moim-fee-mobile">참가비
-            <div class="moim-fee-2-mobile">[[${moimMoney}]] 원</div>
+            <div class="moim-fee-2-mobile" th:text="${moim.moimTitle}">&nbsp;원</div>
         </div>
         <hr class="moim-enroll-divider-mobile"/>
         <div class="main-enroll-mobile">
@@ -22,7 +22,7 @@
         </div>
 
         <div class="review-content">
-            <div class="review-title">참여자 후기</div>
+            <div class="reviewTitle">참여자 후기</div>
         </div>
         <div class="reviews-container"> <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
             <div class="review-item" th:each="r : ${reviewList}">
@@ -75,9 +75,6 @@
                 <div class="host-introduction">[[${hostIntro}]]</div>
             </div>
             <div class="host-moimImg"> <!--모임관련 대문사진 제외한 나머지 사진이 들어갑니다.-->
-                <img src="./host-moimImg1.JPG" alt="모임이미지1">
-                <img src="./host-moimImg2.JPG" alt="모임이미지2">
-                <img src="./host-moimImg3.JPG" alt="모임이미지3">
             </div>
         </div>
 
@@ -85,7 +82,7 @@
     </div>
     <div class="main-container2"> <!--모임 신청칸 pc-->
         <div class="main-enroll-pc">
-            <button class="moim-category" type="button">[[${moimType}]]</button> <!--카테고리-->
+            <button class="moim-category" type="button">[[${categoryName}]]</button> <!--카테고리-->
             <div class="moim-title">[[${moimTitle}]]</div>
             <div class="moim-description">
                 <div class="moim-arrange">

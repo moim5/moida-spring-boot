@@ -10,15 +10,15 @@
 </head>
 <body>
 	<div class="moim-join">
-		<h2 class="moim-title">다섯명이 모여요~</h2>
+		<h2 class="moim-title" th:text="${moimTitle}"></h2>
 
 		<div class="line"></div>
 		<div class="moim-info">
-			<span>온라인 · 서울시 중구 · 5월 28일 </span>
+			<span>[[${moimType}]] · [[${moimAddress1}]] ·[[${moimDate}]] </span>
 		</div>
 		<div class="line"></div>
 		<div class="moim-price">
-			<span>참가비</span> <strong>00,000d원</strong>
+			<span>참가비</span> <strong>[[${moimMoney}]]원</strong>
 		</div>
 		<div class="line"></div>
 		<br />

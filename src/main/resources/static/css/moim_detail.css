@@ -157,7 +157,7 @@
 
 }
 /* <참여자후기>title */
-.review-title{
+.reviewTitle{
     justify-content: left;
     font-size:30px;
     font-weight: 500;
@@ -540,7 +540,7 @@ text-overflow: unset;
         height:100%;
         border:none;
         background: none;
-        font-size: 40px;
+        font-size: 35px;
         color:inherit
     }
     .main-enroll-mobile:hover{
@@ -563,14 +563,14 @@ text-overflow: unset;
         flex-direction: column;
         justify-content: flex-start;
         margin-top: 15px;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 300;
         color:#0000009d;
     }
     .moim-fee-mobile{
         display: flex;
-        font-size:25px;
-        font-weight: 500;
+        font-size:15px;
+        font-weight: 400;
         color:#000;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -618,16 +618,7 @@ text-overflow: unset;
         padding: 10px;
     }
 
-    .host-moimImg {
-        max-width: 100%;
-        padding: 5px;
-        gap: 8px;
-    }
-
-    .host-moimImg img {
-        min-width: 180px;
-        height: 220px;
-    }
+    
 
     .host-name,
     .host-introduction {
