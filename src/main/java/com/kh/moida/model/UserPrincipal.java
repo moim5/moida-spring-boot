@@ -1,5 +1,6 @@
 package com.kh.moida.model;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 public class UserPrincipal implements UserDetails {
     private User user;
 
@@ -20,10 +22,6 @@ public class UserPrincipal implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String role = Objects.equals(user.getIsAdmin(), "Y") ? "ROLE_ADMIN" : "ROLE_USER";
         return List.of(new SimpleGrantedAuthority(role));
-    }
-
-    public User getUser() {
-        return user;
     }
 
     @Override

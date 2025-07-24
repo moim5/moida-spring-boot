@@ -12,7 +12,10 @@
             </div>
         </div>
         <div class="menu-content">
-            <div class="menu-categoryBox">
+            <a th:if="${loginUser != null}" href="/moim/create" target="_self" class="menu-contentBox">
+                <button type="button" class="menu-button">모임 생성하기</button>
+            </a>
+            <div class="menu-contentBox">
                 <div class="menu-title subTitle">
                     카테고리
                 </div>
@@ -25,7 +28,7 @@
                     </a>
                 </div>
             </div>
-            <div class="menu-categoryBox">
+            <div class="menu-contentBox">
                 <div class="menu-title subTitle">
                     마이페이지
                 </div>
@@ -54,7 +57,7 @@
                     </a>
                 </div>
             </div>
-            <div class="menu-categoryBox" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
+            <div class="menu-contentBox" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
                 <div class="menu-title subTitle">
                     관리자전용
                 </div>
@@ -62,7 +65,7 @@
                     <a href="/admin/category/list" class="menu-item">
                         카테고리 관리
                     </a>
-                    <a href="/admin/member/list" class="menu-item">
+                    <a href="/admin/user/list" class="menu-item">
                         회원 관리
                     </a>
                     <a href="/admin/moim/list" class="menu-item">

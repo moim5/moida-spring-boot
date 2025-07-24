@@ -3,6 +3,47 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
+    <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
+        INSERT INTO MOIM (
+            MOIM_ID,
+            MOIM_TITLE,
+            MOIM_TYPE,
+            MOIM_CONTENT,
+            MOIM_ATTENDEE_COUNT,
+            MOIM_ZIPCODE,
+            MOIM_ADDRESS1,
+            MOIM_ADDRESS2,
+            MOIM_DATE,
+            MOIM_MONEY,
+            MOIM_AVG_RATE,
+            MOIM_HOST_INTRO,
+            IS_VISIBLE,
+            IS_ACTIVE,
+            MOIM_COUNT,
+            USER_ID,
+            CATEGORY_ID,
+            FILE_ID
+        ) VALUES (
+            SEQ_MOIM_ID.NEXTVAL,
+            #{moimTitle},
+            #{moimType},
+            #{moimContent},
+            #{moimAttendeeCount},
+            #{moimZipCode},
+            #{moimAddress1},
+            #{moimAddress2},
+            #{moimDate},
+            #{moimMoney},
+            #{moimAvgRate},
+            #{moimHostIntro},
+            #{isVisible},
+            #{isActive},
+            #{moimCount},
+            #{userId},
+            #{categoryId},
+            #{fileId}
+        )
+    </insert>
     <update id="updateMoimCategoryToDefault">
         UPDATE
             MOIM
@@ -11,4 +52,91 @@
         WHERE
             CATEGORY_ID = #{categoryId}
     </update>
+    <select id="findMoim" resultType="com.kh.moida.model.Moim">
+        SELECT
+            M.*,
+            F.FILE_ORIGIN,
+            F.FILE_CONVERT
+        FROM
+            MOIM M
+        LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+        <where>
+            M.IS_VISIBLE = 'Y'
+            AND M.IS_ACTIVE = 'Y'
+            <if test="categoryId != null">
+                AND M.CATEGORY_ID = #{categoryId}
+            </if>
+        </where>
+        ORDER BY moim_id DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+    <select id="countMoim" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            MOIM
+        <where>
+            IS_VISIBLE = 'Y'
+            AND IS_ACTIVE = 'Y'
+            <if test="categoryId != null">
+                AND CATEGORY_ID = #{categoryId}
+            </if>
+        </where>
+    </select>
+    <select id="findMoims" parameterType="map" resultType="com.kh.moida.model.Moim">
+        SELECT
+            *
+        FROM (
+            SELECT
+                ROWNUM AS rn, moim_data.*
+            FROM (
+                SELECT
+                    M.*,
+                    F.FILE_ORIGIN AS fileOrigin,
+                    F.FILE_CONVERT AS fileConvert
+                FROM
+                    MOIM M
+                LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+                <where>
+                    M.IS_VISIBLE = 'Y'
+                    AND M.IS_ACTIVE = 'Y'
+                    <if test="categoryId != null">
+                        AND M.CATEGORY_ID = #{categoryId}
+                    </if>
+                </where>
+                ORDER BY
+                    M.MOIM_ID DESC
+            ) moim_data
+            WHERE
+                ROWNUM &lt;= #{endRow}
+        )
+        WHERE
+            rn &gt;= #{startRow}
+    </select>
+    <select id="findMoimById" resultType="com.kh.moida.model.Moim">
+        SELECT
+            M.MOIM_ID,
+            M.MOIM_TITLE,
+            M.MOIM_CONTENT,
+            M.MOIM_DATE,
+            M.MOIM_ATTENDEE_COUNT,
+            M.MOIM_MONEY,
+            M.MOIM_HOST_INTRO,
+            M.MOIM_ZIPCODE,
+            M.MOIM_ADDRESS1,
+            M.MOIM_ADDRESS2,
+            M.IS_VISIBLE,
+            M.IS_ACTIVE,
+            C.CATEGORY_NAME,
+            F.FILE_ORIGIN,
+            F.FILE_CONVERT
+        FROM
+            MOIM M
+        LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+        LEFT JOIN CATEGORY C ON M.CATEGORY_ID = C.CATEGORY_ID
+        WHERE
+            M.MOIM_ID = #{moimId}
+            AND M.IS_VISIBLE = 'Y'
+            AND M.IS_ACTIVE = 'Y'
+    </select>
 </mapper>

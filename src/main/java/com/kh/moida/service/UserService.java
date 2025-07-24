@@ -6,6 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -35,5 +39,20 @@ public class UserService {
         String newHash = passwordEncoder.encode(password);
         userMapper.updatePassword(userId, newHash);
         return true;
+    }
+
+    public List<User> findUser(int offset, int limit) {
+        int startRow = offset + 1;
+        int endRow = offset + limit;
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("startRow", startRow);
+        params.put("endRow", endRow);
+
+        return userMapper.findUser(params);
+    }
+
+    public User findUserByUserId(Long userId) {
+        return userMapper.findUserByUserId(userId);
     }
 }

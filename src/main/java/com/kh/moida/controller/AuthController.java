@@ -38,17 +38,17 @@ public class AuthController {
 
     @PostMapping("/up")
     public String register(
-            @RequestParam String username,
-            @RequestParam String password,
-            @RequestParam String confirm,
-            @RequestParam String name,
-            @RequestParam String birthday,
-            @RequestParam String gender,
-            @RequestParam String email,
-            @RequestParam String phone,
-            @RequestParam String zipCode,
-            @RequestParam String address1,
-            @RequestParam String address2,
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam("confirm") String confirm,
+            @RequestParam("name") String name,
+            @RequestParam("birthday") String birthday,
+            @RequestParam("gender") String gender,
+            @RequestParam("email") String email,
+            @RequestParam("phone") String phone,
+            @RequestParam("zipCode") String zipCode,
+            @RequestParam("address1") String address1,
+            @RequestParam("address2") String address2,
             Model model
     ) {
         try {
@@ -90,8 +90,8 @@ public class AuthController {
 
     @PostMapping("/in")
     public String login(
-            @RequestParam String username,
-            @RequestParam String password,
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
             HttpServletResponse response,
             Model model
     ) {

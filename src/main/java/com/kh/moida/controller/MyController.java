@@ -42,9 +42,9 @@ public class MyController {
     @PostMapping("/password")
     public String UpdatePassword(
             @AuthenticationPrincipal(expression = "user") User user,
-            @RequestParam String prevPassword,
-            @RequestParam String password,
-            @RequestParam String confirmPassword,
+            @RequestParam("prevPassword") String prevPassword,
+            @RequestParam("password") String password,
+            @RequestParam("confirmPassword") String confirmPassword,
             Model model
     ) {
         if (!password.equals(confirmPassword)) {

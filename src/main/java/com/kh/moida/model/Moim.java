@@ -17,20 +17,24 @@ import lombok.ToString;
 @ToString
 public class Moim {
     private int moimId;
-    private String moimName;
-    private String moimType; //ERD : char?
+    private String moimTitle;
+    private String moimType;
     private String moimContent;
     private String moimAttendeeCount;
     private String moimZipCode;
     private String moimAddress1;
     private String moimAddress2;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")  //위치 변경 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date moimDate;
     private int moimMoney;
     private int moimAvgRate;
     private int moimCount;
-    private char isVisible;
-    private char isActive;
-    private String hostIntro; //DB : clob
-    
+    private String isVisible;
+    private String isActive;
+    private String moimHostIntro;
+    private Long userId;
+    private Long categoryId;
+    private Long fileId;
+    private String fileOrigin;
+    private String fileConvert;
 }

@@ -32,11 +32,30 @@
 }
 
 .category-right {
+    width: 100%;
     flex-grow: 1;
+    box-sizing: border-box;
 }
+
+.moim-list-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+    gap: 30px;
+}
+
 
 @media (max-width: 48rem) {
     .category-left {
         display: none;
+    }
+
+    .moim-list-container {
+        grid-template-columns: repeat(2, minmax(0px, 1fr));
+    }
+}
+
+@media (max-width: 32rem) {
+    .moim-list-container {
+        grid-template-columns: repeat(1, minmax(0px, 1fr));
     }
 }

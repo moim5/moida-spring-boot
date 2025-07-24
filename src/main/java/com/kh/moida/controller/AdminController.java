@@ -1,14 +1,13 @@
 package com.kh.moida.controller;
 
 import com.kh.moida.model.Category;
+import com.kh.moida.model.User;
 import com.kh.moida.service.CategoryService;
+import com.kh.moida.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -18,6 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final CategoryService categoryService;
+    private final UserService userService;
+    private static final int PAGE_SIZE = 20;
 
     @GetMapping("/category/list")
     public String CategoryList(Model model) {
@@ -84,5 +85,26 @@ public class AdminController {
     ) {
         categoryService.deleteCategory(categoryId);
         return "redirect:/admin/category/list";
+    }
+
+    @GetMapping("/user/list")
+    public String UserList(
+            @RequestParam(defaultValue = "1") int page,
+            Model model
+    ) {
+        int offset = (page - 1) * PAGE_SIZE;
+        List<User> userList = userService.findUser(offset, PAGE_SIZE);
+        model.addAttribute("userList", userList);
+        return "pages/admin/user/list";
+    }
+
+    @GetMapping("/user/modify/{userId}")
+    public String UserModify(
+            @PathVariable("userId") Long userId,
+            Model model
+    ) {
+        User user = userService.findUserByUserId(userId);
+        model.addAttribute("user", user);
+        return "pages/admin/user/detail";
     }
 }

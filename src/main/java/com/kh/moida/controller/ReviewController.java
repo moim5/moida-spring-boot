@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.moida.model.Review;
 import com.kh.moida.service.ReviewService;
@@ -28,7 +27,7 @@ public class ReviewController {
         ArrayList<Review> reviewList = rService.getReviewList();
         model.addAttribute("reviewList", reviewList);
 
-        return "pages/moim/moim_detail";
+        return "detail";
     }
     
     //후기 쓰기 view이동(이미 작성완료했을 경우 현재 페이지 리다이렉트)

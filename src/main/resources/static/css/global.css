@@ -6,7 +6,10 @@
 }
 
 :root {
+    --dark-color: #D08906;
     --main-color: #FFA600;
+    --light-color: #FFCD62;
+    --border-color: #CCCCCC;
 }
 
 body {
@@ -19,6 +22,11 @@ a {
     color: inherit;
 }
 
+button {
+    border: none;
+    cursor: pointer;
+}
+
 .logo {
     font-family: 'RiaSans-ExtraBold', serif;
     font-weight: bold;
@@ -26,6 +34,9 @@ a {
 
 .header {
     position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 1;
     width: 100%;
     height: 100px;
     background-image: linear-gradient(to right, var(--main-color), #FFCD62);
@@ -180,9 +191,25 @@ a {
     position: absolute;
     left: 0;
     bottom: 0;
-    background: linear-gradient(to right, var(--main-color), #ffcd62);
+    background: linear-gradient(to right, var(--main-color), var(--light-color));
     height: 3px;
     width: 100%;
+}
+
+.empty-container {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.empty-container .empty-icon {
+    font-size: 1.7rem;
+    color: var(--main-color);
 }
 
 .moim-container {
@@ -191,7 +218,7 @@ a {
     gap: 30px;
 }
 
-.moim-container .moim-item {
+.moim-list-item {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -199,26 +226,26 @@ a {
     cursor: pointer;
 }
 
-.moim-container .moim-item .moim-image {
+.moim-item .moim-image {
     width: 100%;
     height: 150px;
     margin-bottom: 16px;
     object-fit: cover;
 }
 
-.moim-container .moim-item .moim-image img {
+.moim-list-item .moim-image img {
     width: 100%;
-    height: 100%;
+    height: 200px;
     border-radius: 16px;
     object-fit: cover;
 }
 
-.moim-container .moim-item .moim-categoryText {
+.moim-list-item .moim-categoryText {
     font-size: 0.9rem;
     color: #999999;
 }
 
-.moim-container .moim-item .moim-titleText {
+.moim-list-item .moim-titleText {
     font-size: 1.1rem;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -228,7 +255,7 @@ a {
     line-height: 1.4;
 }
 
-.moim-container .moim-item .moim-dateText {
+.moim-list-item .moim-dateText {
     font-size: 0.8rem;
     color: #999999;
     display: flex;
@@ -237,7 +264,7 @@ a {
     gap: 4px;
 }
 
-.moim-container .moim-item .moim-dateText > div {
+.moim-list-item .moim-dateText > div {
     margin-top: 2px;
     display: flex;
     align-items: center;
@@ -375,8 +402,24 @@ footer .footer-container .footer-copyrightText {
     gap: 50px;
 }
 
-.menu-content .menu-categoryBox .menu-title {
+.menu-content .menu-contentBox .menu-title {
     margin-bottom: 20px;
+}
+
+.menu-content .menu-contentBox button.menu-button {
+    width: 100%;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-content .menu-contentBox button.menu-button:hover {
+    background-color: var(--dark-color);
 }
 
 .menu-content .menu-title {
@@ -460,7 +503,7 @@ footer .footer-container .footer-copyrightText {
     opacity: 1;
     transform: translateY(0);
     pointer-events: all;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 48rem) {
