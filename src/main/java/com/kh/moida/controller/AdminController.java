@@ -107,4 +107,21 @@ public class AdminController {
         model.addAttribute("user", user);
         return "pages/admin/user/detail";
     }
+    
+    @GetMapping("/pages/admin/moimList/moimList")
+    public String moimList() {
+    	//model에서 보낸 method로 데이터 받아서 삭제처리 후 현재페이지로 redirect하기
+    	return null;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

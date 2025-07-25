@@ -1,0 +1,114 @@
+<!-- src/main/resources/templates/layout/base.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head th:replace="~{fragments/header :: head}"></head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<main class="moim-container" layout:fragment="content">
+    <h2 class="moim-title">모임 리스트</h2>
+
+    <div class="bd-example">
+        <table class="moim-table">
+            <thead>
+            <tr>
+                <th width="80px" class="moim-title-cell">모임 번호</th>
+                <th class="moim-title-cell">모임 제목</th>
+                <th width="130px" class="moim-title-cell">호스트</th>
+                <th width="130px" class="moim-title-cell">모임 일자</th>
+                <th width="80px" class="moim-title-cell">참여 인원</th>
+            </tr>
+            </thead>
+            <hr/>
+            <tbody>
+            <tr th:each="moim : ${moimList}">
+                <td th:text="${moim.moimId}"></td>
+                <td th:text="${moim.moimTitle}"></td>
+                <td th:text="${moim.moim}"></td>
+                <td th:text="${#dates.format(moim.moimDate, 'yyyy-MM-dd')}" class="moim-date-cell"></td>
+                <td th:text="${moim.moiomAttendeeCount}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="moim-delete-button-wrapper"
+         th:if="${loginUser != null && loginUser.isAdmin == 'Y'}">
+        <button class="moim-delete-button" type="button"
+               onclick="moimDeleteModal()">모임 삭제하기
+        </button>
+    </div>
+    <div id="moimDeleteModal" class="modal" style="display:none;">
+        <div class="modal-content">
+	        <p>삭제되었습니다.</p>
+	        <button id="deleteConfirm" onclick="location.href='/pages/admin/moimList/moimList'">확인</button>
+    	</div>
+    </div>
+    
+
+    <br>
+
+    <nav aria-label="Standard pagination example" style="float: right;">
+        <ul class="pagination">
+
+            <!-- 이전 버튼 -->
+            <li class="page-item" th:if="${pi.currentPage > 1}">
+                <a class="page-link" th:href="@{${loc}(page=${pi.currentPage - 1})}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item disabled" th:unless="${pi.currentPage > 1}">
+                <a class="page-link" href="javascript:void(0);" tabindex="-1" aria-disabled="true">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            <!-- 페이지 번호 -->
+            <li class="page-item" th:each="p : ${#numbers.sequence(pi.startPage, pi.endPage)}"
+                th:classappend="${p == pi.currentPage} ? 'active'">
+                <a class="page-link" th:href="@{${loc}(page=${p})}">[[${p}]]</a>
+            </li>
+
+            <!-- 다음 버튼 -->
+            <li class="page-item" th:if="${pi.currentPage < pi.maxPage}">
+                <a class="page-link" th:href="@{${loc}(page=${pi.currentPage + 1})}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            <li class="page-item disabled" th:unless="${pi.currentPage < pi.maxPage}">
+                <a class="page-link" href="javascript:void(0);" tabindex="-1" aria-disabled="true">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="~{fragments/backdrop :: backdrop}"></div>
+<div th:replace="~{fragments/mobileMenu :: mobileMenu}"></div>
+
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = /*[[${pi.currentPage}]]*/ 1;
+            const tbody = document.querySelector('tbody');
+
+            if (!tbody) return; // tbody 없으면 종료
+
+            const trs = tbody.querySelectorAll('tr');
+            trs.forEach(tr => {
+                tr.addEventListener('click', () => {
+                    const noticeId = tr.querySelector('td').innerText.trim();
+                    location.href = '/notice/' + noticeId + '/' + currentPage;
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
