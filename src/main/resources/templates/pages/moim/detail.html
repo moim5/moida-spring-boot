@@ -14,7 +14,7 @@
             <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimDate}]]
         </div>
         <div class="moim-fee-mobile">참가비
-            <div class="moim-fee-2-mobile" th:text="${moim.moimTitle}">&nbsp;원</div>
+            <div class="moim-fee-2-mobile" th:text="${moim.moimMoney}">원</div>
         </div>
         <hr class="moim-enroll-divider-mobile"/>
         <div class="main-enroll-mobile">
@@ -23,11 +23,12 @@
 
         <div class="review-content">
             <div class="reviewTitle">참여자 후기</div>
+            <hr class="moimReview-divider">
+            <button class="review-read-btn" onclick="location.href='/review/detail'">리뷰 상세보기</button>
         </div>
-        <div class="reviews-container"> <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
+        <div class="review-container"> <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
             <div class="review-item" th:each="r : ${reviewList}">
-                <img src="https://media.bunjang.co.kr/product/283006372_1_1722771500_w360.jpg" alt="후기1"
-                     class="profile-img">
+                <img src="https://media.bunjang.co.kr/product/283006372_1_1722771500_w360.jpg" alt="후기1"class="profile-img">
                 <div class="review-text">
                     <div class="review-writer">[[${r.reviewId}]]</div>
                     <div class="user-star">

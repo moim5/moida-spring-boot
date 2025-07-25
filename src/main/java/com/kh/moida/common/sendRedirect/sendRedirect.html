@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body> 
+	<!-- 우회해서 "모임삭제완료" 메시지를 띄우고 그다음 admin의 moimList로 이동-->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			window.onload = () => {
+				alert(/*[[${msg}]]*/);
+				location.href=/*[[${url}]]*/null;
+			}
+			
+		/*]]*/
+	
+	
+	
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

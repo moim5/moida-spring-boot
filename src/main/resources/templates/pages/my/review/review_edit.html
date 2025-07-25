@@ -15,7 +15,7 @@
 
         <!--리뷰 작성란-->
         <div class="review-content">
-            <form id="reviewForm" method="post" action="/review/update" th:enctype="'multiPart/form-data'">
+            <form id="reviewForm" method="post" action="/review/update" th:enctype="'multipart/form-data'">
                 <input type="hidden" name="reviewId" value="reviewNo"/>
                 <input type="text" name="reviewTitle" value="originalTitle"/>
                 <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
@@ -30,8 +30,8 @@
                     <div class="review-image-list" id="imageFileList"> <!--이미지-->
                         <span id="imageName"></span>
                         <span class="image-delete-icon" id="imageDeleteIcon" style="display:none">
-                                <i class="ti ti-trash"></i>
-                            </span>
+                        	<i class="ti ti-trash"></i>
+                        </span>
                     </div>
                 </div>
 

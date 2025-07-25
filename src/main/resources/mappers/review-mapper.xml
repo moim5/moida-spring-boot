@@ -24,6 +24,12 @@
  	select count(*) from review where review_id = #{reviewId}
  </select>
  
+ <!-- 3.리뷰 등록 -->
+ <insert id="enrollReview">
+ 	insert into review
+ 	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}
+ 	where reviewId = #{reviewId}
+ </insert>
  
  
  

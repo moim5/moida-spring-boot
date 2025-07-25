@@ -1,16 +1,24 @@
 package com.kh.moida.controller;
 
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.kh.moida.exception.MoimException;
 import com.kh.moida.model.Category;
 import com.kh.moida.model.User;
 import com.kh.moida.service.CategoryService;
+import com.kh.moida.service.MoimService;
 import com.kh.moida.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/admin")
@@ -18,6 +26,7 @@ import java.util.List;
 public class AdminController {
     private final CategoryService categoryService;
     private final UserService userService;
+    private final MoimService mService;
     private static final int PAGE_SIZE = 20;
 
     @GetMapping("/category/list")
@@ -108,18 +117,21 @@ public class AdminController {
         return "pages/admin/user/detail";
     }
     
-    @GetMapping("/pages/admin/moimList/moimList")
-    public String moimList() {
-    	//model에서 보낸 method로 데이터 받아서 삭제처리 후 현재페이지로 redirect하기
-    	return null;
+    @GetMapping("/moimList/delete")
+    public String deleteMoimList(@RequestParam("moimId")int moimId, Model model) {
+    	//update로 스테이터스 N으로 변경
+    	int result = mService.deleteMoimList(moimId);
+    	if(result > 0) {
+    		model.addAttribute("msg","모임이 삭제 되었습니다.");
+    		model.addAttribute("url","/pages/admin/moimList/moimList");
+    		return "views/common/sendRedirect";
+    	} else {
+    		throw new MoimException("모임 삭제를 실패하였습니다.");
+    	}
+    	
     }
     
-    
-    
-    
-    
-    
-    
+ 
     
     
     

@@ -74,8 +74,10 @@ public class MoimController {
     public String enrollMoim(@ModelAttribute Moim moim) {
 //    	moimService.enrollMoim(moim);
         return "redirect:/pages/moim/moim_datil?moimId=" + moim.getMoimId();
+        
     }
 
+    //moim_detail이동
     @GetMapping("/{moimId}")
     public String MoimDetail(
             @PathVariable("moimId") int moimId,

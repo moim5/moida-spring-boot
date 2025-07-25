@@ -18,7 +18,10 @@ public interface MoimMapper {
 
     Moim findMoimById(int moimId);
 
+
 	void updateMoimWithoutFile(Moim moim);
 
 	void updateMoimWithFile(Moim moim);
+
+	int deleteMoimList(int moimId);
 }
