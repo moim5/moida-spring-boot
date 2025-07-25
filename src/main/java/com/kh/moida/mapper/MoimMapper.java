@@ -17,4 +17,8 @@ public interface MoimMapper {
     int countMoim(Long categoryId);
 
     Moim findMoimById(int moimId);
+
+	void updateMoimWithoutFile(Moim moim);
+
+	void updateMoimWithFile(Moim moim);
 }

@@ -79,4 +79,47 @@ public class MoimService {
     public Moim findById(int moimId) {
         return moimMapper.findMoimById(moimId);
     }
+
+	public void moimUpdate(Moim moim, MultipartFile moimImage, User user) {
+		// 들어오는 값은 있을 것이다. 근데 파일이 변경됐을까?
+		if (moimImage == null || moimImage.isEmpty()) { 
+            moimMapper.updateMoimWithoutFile(moim); //사진 업데이트 없을때 
+            return;
+        }
+
+        if (moim.getFileConvert() != null) { // 사진 업데이트 있을때 기존 사진 삭제하기 moim에 등록된 바뀐파일명
+            fileUploadService.deleteFile(moim.getFileConvert()); // 삭제
+        }
+
+        String originalName = moimImage.getOriginalFilename();
+        String ext = Objects.requireNonNull(originalName).substring(originalName.lastIndexOf(".") + 1);
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+        String newName = "category/" + timestamp + "." + ext;
+
+        try {
+			fileUploadService.uploadFile(moimImage, newName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}// 파일업로드 
+
+        File file = new File();
+        file.setFileOrigin(originalName);
+        file.setFileConvert(newName);
+        fileMapper.insertFile(file); //파일 업로드 (원본명, 새이름)
+
+        moim.setFileOrigin(originalName);
+        moim.setFileConvert(newName);
+        moim.setFileId(file.getFileId());
+
+        moimMapper.updateMoimWithFile(moim);
+		
+        // 1. 새로운 파일이 생겼나? -> 없으면, 디비만 쓰고 끝
+        // 2. 그럼 원래 있던 파일을 지우자
+        // 3. 그리고 새로운 파일을 올리자
+        // 4. 디비 정보를 업데이트 하자
+		
+		
+
+	}
 }

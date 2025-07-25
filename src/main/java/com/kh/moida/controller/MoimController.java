@@ -38,6 +38,16 @@ public class MoimController {
             return "pages/moim/create";
         }
     }
+    
+    @PostMapping("/modifyMoim")
+    public String MoimUpdate(
+    		Moim moim,
+    		MultipartFile moimImage,
+    		@AuthenticationPrincipal UserPrincipal loginUser,
+    		Model model) {
+    	moimService.moimUpdate(moim, moimImage, loginUser.getUser());
+    	return "pages/moim/modifyMoim";
+    }
 
     @GetMapping("/joinMoim")
     public String JoinMoim() {

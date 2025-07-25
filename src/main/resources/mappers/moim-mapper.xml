@@ -139,4 +139,42 @@
             AND M.IS_VISIBLE = 'Y'
             AND M.IS_ACTIVE = 'Y'
     </select>
+    
+    <update id="updateMoimWithoutFile">
+    	UPDATE MOIM
+			SET
+				MOIM_TITLE = #{moimTitle},
+				MOIM_TYPE = #{moimType},
+				MOIM_CONTENT = #{moimContent},
+				MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
+				MOIM_ZIPCODE = #{moimZipCode},
+				MOIM_ADDRESS1 = #{moimAddress1},
+				MOIM_ADDRESS2 = #{moimAddress2},
+				MOIM_DATE = #{moimDate},
+				MOIM_MONEY = #{moimMoney},
+				MOIM_HOST_INTRO = #{moimHostIntro},
+<!-- 				IS_VISIBLE = #{isVisible}, -->
+				IS_ACTIVE = #{isActive},
+				CATEGORY_ID = #{categoryId},
+		WHERE MOIM_ID = #{moimId}
+    </update>
+    
+    <update id="updateMoimWithFile">
+    	UPDATE MOIM
+			SET
+				MOIM_TITLE = #{moimTitle},
+				MOIM_TYPE = #{moimType},
+				MOIM_CONTENT = #{moimContent},
+				MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
+				MOIM_ZIPCODE = #{moimZipCode},
+				MOIM_ADDRESS1 = #{moimAddress1},
+				MOIM_ADDRESS2 = #{moimAddress2},
+				MOIM_DATE = #{moimDate},
+				MOIM_MONEY = #{moimMoney},
+				MOIM_HOST_INTRO = #{moimHostIntro},
+<!-- 				IS_VISIBLE = #{isVisible}, -->
+				IS_ACTIVE = #{isActive},
+				CATEGORY_ID = #{categoryId},
+		WHERE MOIM_ID = #{moimId}
+    </update>
 </mapper>
