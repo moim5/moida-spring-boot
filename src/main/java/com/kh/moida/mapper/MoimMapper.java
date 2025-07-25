@@ -19,4 +19,8 @@ public interface MoimMapper {
     Moim findMoimById(int moimId);
 
 	int deleteMoimList(int moimId);
+	
+	//리뷰 리스트뽑기
+	int countReview(int moimId);
+
 }

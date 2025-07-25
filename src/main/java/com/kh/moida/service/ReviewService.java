@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.moida.mapper.MoimMapper;
 import com.kh.moida.mapper.ReviewMapper;
 import com.kh.moida.model.Review;
 
@@ -17,16 +18,11 @@ public class ReviewService {
 
 	
 	//review객체배열 
-	public ArrayList<Review> getReviewList() {
-		return mapper.getReviewList();
+	public ArrayList<Review> getReviewList(int moimId) {
+		return mapper.getReviewList(moimId);
 	}
 
-	//리뷰 이미 작성했을 경우 write view이동 막기
-	public int countReview(int reviewId) {
-		return mapper.countReview(reviewId);
-	}
-
-	//후기 등록(write, edit 등록 합침)
+	//후기 등록(write, edit 등록 합침): if로 나누기
 	public int enrollReview(Review r, MultipartFile image) {
 		return mapper.enrollReview(r, image);
 		

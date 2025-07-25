@@ -1,22 +1,31 @@
 package com.kh.moida.controller;
 
-import com.kh.moida.model.UserPrincipal;
-import com.kh.moida.service.MoimService;
+import java.util.ArrayList;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.moida.model.Moim;
+import com.kh.moida.model.Review;
+import com.kh.moida.model.UserPrincipal;
+import com.kh.moida.service.MoimService;
+import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/moim")
 @RequiredArgsConstructor
 public class MoimController {
     private final MoimService moimService;
+    private final MoimService reviewService;
 
     @GetMapping("/create")
     public String MoimCreate() {
@@ -76,5 +85,16 @@ public class MoimController {
         Moim moim = moimService.findById(moimId);
         model.addAttribute("moim", moim);
         return "pages/moim/detail";
+    }
+    
+    
+    //reviewList뽑기
+    @GetMapping("/pages/moim/moim_detail/{moimId}")
+    public String reviewList(@PathVariable int moimId, Model model) {
+    	ReviewService rService = new ReviewService();
+        ArrayList<Review> reviewList = rService.getReviewList(moimId);
+        model.addAttribute("reviewList", reviewList);
+
+        return "detail";
     }
 }
