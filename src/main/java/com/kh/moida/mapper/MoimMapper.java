@@ -17,4 +17,6 @@ public interface MoimMapper {
     int countMoim(Long categoryId);
 
     Moim findMoimById(int moimId);
+
+	int deleteMoimList(int moimId);
 }

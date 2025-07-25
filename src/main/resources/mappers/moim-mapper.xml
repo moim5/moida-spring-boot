@@ -4,26 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
     <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
-        INSERT INTO MOIM (
-            MOIM_ID,
-            MOIM_TITLE,
-            MOIM_TYPE,
-            MOIM_CONTENT,
-            MOIM_ATTENDEE_COUNT,
-            MOIM_ZIPCODE,
-            MOIM_ADDRESS1,
-            MOIM_ADDRESS2,
-            MOIM_DATE,
-            MOIM_MONEY,
-            MOIM_AVG_RATE,
-            MOIM_HOST_INTRO,
-            IS_VISIBLE,
-            IS_ACTIVE,
-            MOIM_COUNT,
-            USER_ID,
-            CATEGORY_ID,
-            FILE_ID
-        ) VALUES (
+        INSERT INTO MOIM VALUES (
             SEQ_MOIM_ID.NEXTVAL,
             #{moimTitle},
             #{moimType},
@@ -44,6 +25,7 @@
             #{fileId}
         )
     </insert>
+    
     <update id="updateMoimCategoryToDefault">
         UPDATE
             MOIM
@@ -52,6 +34,7 @@
         WHERE
             CATEGORY_ID = #{categoryId}
     </update>
+    
     <select id="findMoim" resultType="com.kh.moida.model.Moim">
         SELECT
             M.*,
@@ -70,6 +53,8 @@
         ORDER BY moim_id DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
+    
+    
     <select id="countMoim" resultType="java.lang.Integer">
         SELECT
             COUNT(*)
@@ -83,6 +68,8 @@
             </if>
         </where>
     </select>
+    
+    
     <select id="findMoims" parameterType="map" resultType="com.kh.moida.model.Moim">
         SELECT
             *
@@ -113,6 +100,8 @@
         WHERE
             rn &gt;= #{startRow}
     </select>
+    
+    
     <select id="findMoimById" resultType="com.kh.moida.model.Moim">
         SELECT
             M.MOIM_ID,
@@ -139,4 +128,10 @@
             AND M.IS_VISIBLE = 'Y'
             AND M.IS_ACTIVE = 'Y'
     </select>
+    
+    <!-- 관리자 모임삭제 -->
+    <update id="deleteMoimList">
+    	update moim set moim_status ='N'
+    	where moim_id = #{moimId}
+    </update>
 </mapper>

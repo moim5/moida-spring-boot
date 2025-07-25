@@ -9,6 +9,12 @@ function closeModal(id) {
      document.getElementById('moimDeleteModal').style.display = "flex";
  }
 
+//삭제확인 알럿 
+
+document.getElementById('deleteConfirm').addEventListener('click', () => {
+	alert("모임이 삭제되었습니다.");
+	document.getElementById('deleteForm').submit(); //모임아이디 전송
+	
 
 
 const moimDeleteModal = `

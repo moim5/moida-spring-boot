@@ -68,7 +68,6 @@ public class MoimService {
         params.put("categoryId", categoryId);
         params.put("startRow", startRow);
         params.put("endRow", endRow);
-
         return moimMapper.findMoims(params);
 	}
 
@@ -76,7 +75,13 @@ public class MoimService {
 		return moimMapper.countMoim(categoryId);
 	}
 
+	//모임 아이디찾기
     public Moim findById(int moimId) {
         return moimMapper.findMoimById(moimId);
     }
+
+    //admin:모임삭제
+	public int deleteMoimList(int moimId) {
+		return moimMapper.deleteMoimList(moimId);
+	}
 }
