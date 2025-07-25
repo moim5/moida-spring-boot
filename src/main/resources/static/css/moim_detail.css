@@ -18,10 +18,11 @@
     max-width: 500px;
     min-height: 300px;
     min-width: 300px;
+    box-sizing: border-box;
     background-color: white;
 }
 
-.moim-main-image{ /*뷰 이미지 출력 크기조절학*/
+.moim-main-image{ /*뷰 이미지 출력 크기조절하기*/
     width: 100%;
     max-width:700px;
     height: 400px;
@@ -178,6 +179,28 @@
     height:auto;
     margin-top: 20px;
 
+}
+hr .moimReview-divider{
+    border: none;
+    border-bottom: 2px solid rgba(150, 149, 149, 0.267);
+    width: 700px;
+    margin:10px auto;
+}
+.review-read-btn{
+    display: inline;
+    white-space: nowrap;
+    background: none;
+    color:rgb(185, 182, 182);
+    cursor:pointer;
+    font-family: Arial, sans-serif;
+    font-size:13px;
+    font-weight:400;
+    letter-spacing:-0.25px;
+    line-height:22px;
+    word-break:break-word;
+    padding:0;
+    border-style: none;
+    
 }
 
 /* 각 리뷰칸 */
@@ -560,16 +583,16 @@ text-overflow: unset;
     }
     .moim-description-mobile{
         display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        flex-direction: row;
+        justify-content: center;
         margin-top: 15px;
-        font-size: 20px;
+        font-size: 25px;
         font-weight: 300;
         color:#0000009d;
     }
     .moim-fee-mobile{
         display: flex;
-        font-size:15px;
+        font-size:25px;
         font-weight: 400;
         color:#000;
         margin-top: 20px;
