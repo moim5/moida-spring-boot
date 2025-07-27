@@ -58,8 +58,9 @@
         update notice
         set
         notice_title = #{noticeTitle},
-        notice_content = #{noticeContent}
-        WHERE NOTICE_ID = #{noticeId}
+        notice_content = #{noticeContent},
+        file_id = #{fileId}
+        where notice_id = #{noticeId}
     </update>
 
     <update id="updateCount">
@@ -80,6 +81,13 @@
         #{fileId}
         )
     </insert>
+
+    <select id="findNoticeWithFile" resultType="com.kh.moida.notice.Notice">
+        SELECT *
+        FROM notice n
+        LEFT JOIN files f ON n.FILE_ID = f.FILE_ID
+        WHERE notice_ID = #{noticeID}
+    </select>
 
 
 

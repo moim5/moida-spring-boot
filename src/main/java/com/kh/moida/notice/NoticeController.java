@@ -74,17 +74,21 @@ public class NoticeController {
     }
 
     @PostMapping("update")
-    public String updateBoard(@ModelAttribute Notice notice, @RequestParam("page") int page, Model model) {
-            int result = noticeService.updateBoard(notice);
+    public String updateBoard(@ModelAttribute Notice notice,
+                              @RequestParam("moimImage") MultipartFile moimImage,
+                              @RequestParam("page") int page,
+                              Model model) throws IOException {
+        int result = noticeService.updateBoard(notice, moimImage);
+
         model.addAttribute("n", notice);
         model.addAttribute("page", page);
-            return "redirect:/notice/" + notice.getNoticeId() + "/" + page;
+        return "redirect:/notice/" + notice.getNoticeId() + "/" + page;
     }
 
 
     @PostMapping("delete")
     public String noticedelete(@RequestParam("noticeId") int noticeId) {
-        int result = noticeService.delete(noticeId);
+        int result = noticeService.deleteFile(noticeId);
         return "redirect:/notice/list";
     }
 

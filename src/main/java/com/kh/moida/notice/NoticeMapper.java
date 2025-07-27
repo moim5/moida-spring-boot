@@ -24,4 +24,8 @@ public interface NoticeMapper {
     int updateCount(Notice notice);
 
     void insertNotice(Notice notice);
+
+    Notice findNoticeWithFile(int id);
+
+    void updateNoticeNameOnly(Notice notice);
 }

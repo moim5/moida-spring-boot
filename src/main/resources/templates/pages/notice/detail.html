@@ -49,6 +49,7 @@
         <!-- noticeId 숨겨서 전송 -->
         <input type="hidden" name="noticeId" th:value="${n.noticeId}" />
         <input type="hidden" name="page" th:value="${page}" />
+        <input type="hidden" name="fileId" th:value="${n.fileId}" />
         <input type="hidden" name="noticeCount" th:value="${n.noticeCount}" />
         <button class="btn-detail-update" type="button"
                 th:if="${loginUser != null && loginUser.isAdmin == 'Y'}"
