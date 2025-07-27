@@ -18,4 +18,6 @@ public class Notice {
     private int noticeCount;
     private int fileId;
 
+    private String fileConvert;
+
 }

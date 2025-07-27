@@ -36,9 +36,10 @@
     </insert>
 
     <select id="selectBoard" resultType="com.kh.moida.notice.Notice">
-        select *
-        FROM NOTICE
-        WHERE NOTICE_ID = #{id}
+        SELECT n.*, f.file_convert
+        FROM NOTICE n
+        LEFT JOIN FILES f ON n.FILE_ID = f.FILE_ID
+        WHERE n.NOTICE_ID = #{id}
     </select>
 
     <delete id="delete">

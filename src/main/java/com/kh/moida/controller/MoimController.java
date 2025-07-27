@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MoimController {
     private final MoimService moimService;
-    private final MoimService reviewService;
+    private final ReviewService rService;
 
     @GetMapping("/create")
     public String MoimCreate() {
@@ -91,7 +91,7 @@ public class MoimController {
     //reviewList뽑기
     @GetMapping("/pages/moim/moim_detail/{moimId}")
     public String reviewList(@PathVariable int moimId, Model model) {
-    	ReviewService rService = new ReviewService();
+        // new ReviewService()는  위에 final로 의존성 해둠
         ArrayList<Review> reviewList = rService.getReviewList(moimId);
         model.addAttribute("reviewList", reviewList);
 

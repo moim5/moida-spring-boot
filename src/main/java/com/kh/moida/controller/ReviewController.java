@@ -26,10 +26,10 @@ public class ReviewController {
     //review_write view이동(이미 작성완료했을 경우 현재 페이지 리다이렉트)
     @GetMapping("/review/write/{moimid}")
     public String writeReview(@RequestParam("moimId")int moimId) {
-        int result = rService.countReview(moimId);
-        if(result > 0) {
-        	return "redirect:/my/review/list?msg=exist"; //할일 : 이미 후기를 작성하셨습니다 알럿창 띄우기(js)
-        }
+        //int result = rService.countReview(moimId);   다 만들지 않았으면 주석처리로 해둘것 다음사람 에러떠서 사용못함
+//        if(result > 0) {
+//        	return "redirect:/my/review/list?msg=exist"; //할일 : 이미 후기를 작성하셨습니다 알럿창 띄우기(js)
+//        }
     	return "pages/my/review/review_write";
     }
 

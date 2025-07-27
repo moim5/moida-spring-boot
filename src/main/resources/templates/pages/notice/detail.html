@@ -30,9 +30,20 @@
         <span class="notice-label">내용:</span>
     </div>
 
-    <div class="notice-detail-content" th:utext="${n.noticeContent}">
-        내용
+    <div class="notice-detail-content">
+        <div th:if="${n != null}">
+            <div th:if="${n.fileConvert != null}">
+                <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${n.fileConvert})}" alt="기존 이미지"/>
+            </div>
+        </div>
+
+        [[${n.noticeContent}]]
+
     </div>
+
+
+
+
 
     <form id="detailForm" method="POST" class="notice-detail-form">
         <!-- noticeId 숨겨서 전송 -->

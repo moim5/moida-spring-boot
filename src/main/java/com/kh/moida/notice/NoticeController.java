@@ -49,13 +49,13 @@ public class NoticeController {
         return "redirect:/notice/list";
     }
 
-    @GetMapping("/{id}/{page}")
+    @GetMapping("/{noticeId}/{page}")
     public String noticeBoard(
-            @PathVariable("id") int id,
+            @PathVariable("noticeId") int noticeId,
             @PathVariable("page") int page,
             Model model
     ) {
-        Notice n = noticeService.selectBoard(id);
+        Notice n = noticeService.selectBoard(noticeId);
         int count = noticeService.updateCount(n);
 
         model.addAttribute("n", n).addAttribute("page", page);
