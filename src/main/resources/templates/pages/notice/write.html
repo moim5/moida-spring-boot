@@ -11,14 +11,14 @@
 
     <h2 class="notice-form-title">공지사항 작성</h2>
 
-    <form class="notice-form" action="/notice/insert" method="POST">
+    <form class="notice-form" action="/notice/insert" method="POST" enctype="multipart/form-data">
         <label class="notice-form-label" for="title">제목</label>
         <input class="notice-form-input" type="text" id="title" name="noticeTitle" required>
 
         <label class="notice-form-label" for="content">내용</label>
         <textarea class="notice-form-textarea" id="content" name="noticeContent" required></textarea>
 
-        <input type="file" id="moimImage" name="moimImage" style="display:block; width:300px; height:auto;" />
+        <input type="file" id="NoticeImage" name="NoticeImage" style="display:block; width:300px; height:auto;" />
 
         <div class="notice-form-button-wrapper">
             <button type="submit" class="notice-form-submit-button">등록하기</button>

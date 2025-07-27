@@ -7,7 +7,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Controller
@@ -44,8 +46,9 @@ public class NoticeController {
     }
 
     @PostMapping("insert")
-    public String insert(@ModelAttribute Notice notice) {
-        int result = noticeService.write(notice);
+    public String insert(@ModelAttribute Notice notice, MultipartFile NoticeImage) throws IOException {
+        noticeService.insertNoticeFile(notice, NoticeImage);
+        //int result = noticeService.write(notice);
         return "redirect:/notice/list";
     }
 

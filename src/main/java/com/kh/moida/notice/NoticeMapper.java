@@ -1,6 +1,7 @@
 package com.kh.moida.notice;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 
@@ -21,4 +22,6 @@ public interface NoticeMapper {
     int updateBoard(Notice notice);
 
     int updateCount(Notice notice);
+
+    void insertNotice(Notice notice);
 }

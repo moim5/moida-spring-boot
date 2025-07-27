@@ -68,4 +68,19 @@
         WHERE NOTICE_ID = #{noticeId}
     </update>
 
+    <!--파일 시작-->
+    <insert id="insertNotice">
+        INSERT INTO Notice
+        VALUES (
+        SEQ_NOTICE_ID.nextval,
+        #{noticeTitle},
+        #{noticeContent},
+        SYSDATE,
+        0,
+        #{fileId}
+        )
+    </insert>
+
+
+
 </mapper>
