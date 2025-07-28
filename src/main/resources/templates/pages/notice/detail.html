@@ -17,11 +17,6 @@
     </div>
 
     <div class="notice-detail-row">
-        <span class="notice-label">작성자:</span>
-        <span class="notice-content">관리자</span>
-    </div>
-
-    <div class="notice-detail-row">
         <span class="notice-label">작성일:</span>
         <span class="notice-content" th:text="${#dates.format(n.noticeDate, 'yyyy-MM-dd')}">날짜</span>
     </div>
@@ -30,14 +25,26 @@
         <span class="notice-label">내용:</span>
     </div>
 
-    <div class="notice-detail-content" th:utext="${n.noticeContent}">
-        내용
+    <div class="notice-detail-content">
+        <div th:if="${n != null}">
+            <div th:if="${n.fileConvert != null}">
+                <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${n.fileConvert})}" alt="기존 이미지"/>
+            </div>
+        </div>
+
+        [[${n.noticeContent}]]
+
     </div>
+
+
+
+
 
     <form id="detailForm" method="POST" class="notice-detail-form">
         <!-- noticeId 숨겨서 전송 -->
         <input type="hidden" name="noticeId" th:value="${n.noticeId}" />
         <input type="hidden" name="page" th:value="${page}" />
+        <input type="hidden" name="fileId" th:value="${n.fileId}" />
         <input type="hidden" name="noticeCount" th:value="${n.noticeCount}" />
         <button class="btn-detail-update" type="button"
                 th:if="${loginUser != null && loginUser.isAdmin == 'Y'}"

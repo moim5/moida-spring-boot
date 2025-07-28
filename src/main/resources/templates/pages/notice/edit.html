@@ -11,20 +11,23 @@
 
     <h2 class="notice-form-title">공지사항 수정</h2>
 
-    <form class="notice-form" action="/notice/update" method="POST">
+    <form class="notice-form" action="/notice/update" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="noticeId" th:value="${n.noticeId}" />
         <input type="hidden" name="page" th:value="${page}" />
-
+        <input type="hidden" name="fileId" th:value="${n.fileId}" />
         <label class="notice-form-label" for="title">제목</label>
         <input class="notice-form-input" type="text" id="title" name="noticeTitle" required th:value="${n.noticeTitle}">
 
         <label class="notice-form-label" for="content">내용</label>
         <textarea class="notice-form-textarea" id="content" name="noticeContent" required>[[${n.noticeContent}]]</textarea>
 
+        <input type="file" id="noticeImage" name="noticeImage" th:value="${n.fileConvert}" />
+
         <div class="notice-form-button-wrapper">
             <button type="submit" class="notice-form-submit-button">수정하기</button>
         </div>
     </form>
+
 
 </main>
 

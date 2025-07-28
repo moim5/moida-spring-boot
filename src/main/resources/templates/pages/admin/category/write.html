@@ -1,0 +1,24 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="subTitle" style="margin-bottom: 30px;">카테고리 생성</div>
+    <form class="my-right-container" method="POST" enctype="multipart/form-data" th:action="@{/admin/category/insert}">
+        <div class="my-info-inputBox">
+            <label>카테고리명
+                <input type="text" name="categoryName" placeholder="카테고리명을 입력해주세요" required/>
+            </label>
+            <label>카테고리 이미지
+                <input type="file" name="categoryImage" required/>
+            </label>
+        </div>
+        <div class="error-text" th:if="${error}" th:text="${error}"></div>
+        <button type="submit">저장</button>
+    </form>
+</main>
+</body>
+</html>

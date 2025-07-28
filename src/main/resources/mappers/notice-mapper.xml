@@ -12,12 +12,17 @@
 
     <select id="selectBoardList" parameterType="com.kh.moida.notice.PageInfo" resultType="com.kh.moida.notice.Notice">
         /*<![CDATA[*/
-        SELECT * FROM (
-        SELECT ROWNUM AS RNUM, N.*
-        FROM (
-        SELECT * FROM NOTICE ORDER BY NOTICE_ID DESC
-        ) N
-        WHERE ROWNUM <= #{endRow}
+        SELECT
+            *
+        FROM (SELECT
+                ROWNUM AS RNUM, N.*
+            FROM (SELECT
+                    *
+                FROM
+                    NOTICE
+                ORDER BY
+                    NOTICE_ID DESC) N
+            WHERE ROWNUM <= #{endRow}
         )
         WHERE RNUM >= #{startRow}
         /*]]>*/
@@ -36,9 +41,10 @@
     </insert>
 
     <select id="selectBoard" resultType="com.kh.moida.notice.Notice">
-        select *
-        FROM NOTICE
-        WHERE NOTICE_ID = #{id}
+        SELECT n.*, f.file_convert
+        FROM NOTICE n
+        LEFT JOIN FILES f ON n.FILE_ID = f.FILE_ID
+        WHERE n.NOTICE_ID = #{id}
     </select>
 
     <delete id="delete">
@@ -57,8 +63,9 @@
         update notice
         set
         notice_title = #{noticeTitle},
-        notice_content = #{noticeContent}
-        WHERE NOTICE_ID = #{noticeId}
+        notice_content = #{noticeContent},
+        file_id = #{fileId}
+        where notice_id = #{noticeId}
     </update>
 
     <update id="updateCount">
@@ -66,5 +73,27 @@
         set notice_count = #{noticeCount} + 1
         WHERE NOTICE_ID = #{noticeId}
     </update>
+
+    <!--파일 시작-->
+    <insert id="insertNotice">
+        INSERT INTO Notice
+        VALUES (
+        SEQ_NOTICE_ID.nextval,
+        #{noticeTitle},
+        #{noticeContent},
+        SYSDATE,
+        0,
+        #{fileId}
+        )
+    </insert>
+
+    <select id="findNoticeWithFile" resultType="com.kh.moida.notice.Notice">
+        SELECT *
+        FROM notice n
+        LEFT JOIN files f ON n.FILE_ID = f.FILE_ID
+        WHERE notice_ID = #{noticeID}
+    </select>
+
+
 
 </mapper>

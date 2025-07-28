@@ -16,6 +16,8 @@ public class Notice {
     private String noticeContent;
     private Date noticeDate;
     private int noticeCount;
-    private int fileId;
+    private Long  fileId;
+    private String fileOrigin;
+    private String fileConvert;
 
 }

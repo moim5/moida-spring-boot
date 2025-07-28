@@ -124,4 +124,10 @@ public class MoimService {
 	public int deleteMoimList(int moimId) {
 		return moimMapper.deleteMoimList(moimId);
 	}
+	
+	//해당하는 모임에 대한 리뷰 리스트 출력
+	//리뷰 이미 작성했을 경우 write view이동 막기->모임아이디 기준으로 찾아야돼서 맵퍼 다르게하기
+	 public int countReview(int moimId) {
+		 return moimMapper.countReview(moimId);
+	  }
 }

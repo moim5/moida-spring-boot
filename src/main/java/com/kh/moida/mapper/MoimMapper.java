@@ -24,4 +24,8 @@ public interface MoimMapper {
 	void updateMoimWithFile(Moim moim);
 
 	int deleteMoimList(int moimId);
+	
+	//리뷰 리스트뽑기
+	int countReview(int moimId);
+
 }

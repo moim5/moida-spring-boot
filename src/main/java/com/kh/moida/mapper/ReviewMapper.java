@@ -10,11 +10,8 @@ import com.kh.moida.model.Review;
 @Mapper
 public interface ReviewMapper {
 
-	//리뷰리스트뽑기
-	public ArrayList<Review> getReviewList();
-	
-	//리뷰 이미 작성했을 경우 write view이동 막기
-	public int countReview(int reviewId);
+	//리뷰리스트뽑기(moimId기준 최신날짜로n개 뽑기)
+	public ArrayList<Review> getReviewList(int moimId);
 
 	//후기등록
 	public int enrollReview(Review r, MultipartFile image);

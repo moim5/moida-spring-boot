@@ -172,4 +172,23 @@
     	update moim set moim_status ='N'
     	where moim_id = #{moimId}
     </update>
+    
+    <!-- 모임 리스트 출력 -->
+    <!-- 1.리뷰리스트 불러오기-->
+	 <select id="getReviewList" parameterType="com.kh.moida.model.Review">
+	 	select 
+		 	r.review_id, r.review_date, r.review_title, r.review_content, r.review_rate, u.username, u.name,
+		 	f.file_convert as review_image
+	 	from review r
+	 	join users u on r.user_id = u.user_id
+	 	left join
+	 		files f on r.file_id = f.file_id
+	 	where
+	 		r.moim_id = #{moimId}
+	 	order by
+	 		r.review_date desc
+	 </select>
+	    
+    
+    
 </mapper>

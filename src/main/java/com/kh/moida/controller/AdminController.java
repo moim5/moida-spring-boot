@@ -124,11 +124,15 @@ public class AdminController {
     	if(result > 0) {
     		model.addAttribute("msg","모임이 삭제 되었습니다.");
     		model.addAttribute("url","/pages/admin/moimList/moimList");
-    		return "views/common/sendRedirect";
+    		return "pages/sendRedirect";
     	} else {
     		throw new MoimException("모임 삭제를 실패하였습니다.");
     	}
-    	
+    }
+
+    @GetMapping("/moim/list")
+    public String MoimList() {
+        return "pages/admin/moim/list";
     }
     
  
