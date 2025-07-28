@@ -18,6 +18,11 @@ public interface MoimMapper {
 
     Moim findMoimById(int moimId);
 
+
+	void updateMoimWithoutFile(Moim moim);
+
+	void updateMoimWithFile(Moim moim);
+
 	int deleteMoimList(int moimId);
 	
 	//리뷰 리스트뽑기

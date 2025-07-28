@@ -47,20 +47,30 @@ public class MoimController {
             return "pages/moim/create";
         }
     }
+    
+    @PostMapping("/modifyMoim") //모임 수정
+    public String MoimUpdate(
+    		Moim moim,
+    		MultipartFile moimImage,
+    		@AuthenticationPrincipal UserPrincipal loginUser,
+    		Model model) {
+    	moimService.moimUpdate(moim, moimImage, loginUser.getUser());
+    	return "pages/moim/modifyMoim";
+    }
 
-    @GetMapping("/joinMoim")
+    @GetMapping("/joinMoim") //모임 참여
     public String JoinMoim() {
         return "pages/moim/JoinMoim";
     }
 
-    @GetMapping("/modifyMoim")
-    public String modifyMoim() {
-        return "pages/moim/modifyMoim";
-    }
+//    @GetMapping("/modifyMoim")
+//    public String modifyMoim() {
+//        return "pages/moim/modifyMoim";
+//    }
 
     @GetMapping("/moimAdminPage")
     public String moimAdminPage() {
-        return "pages/moim/moimAdminPage";
+        return "pages/admin/moim/list";
     }
 
     @GetMapping("/personalInfo")
