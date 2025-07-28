@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**", "/notice/write", "/notice/insert").hasRole("ADMIN")
+                        .requestMatchers("/admin/**", "/notice/write", "/notice/insert", "/notice/updForm", "/notice/update", "/notice/delete").hasRole("ADMIN")
                         .requestMatchers("/notice/**").permitAll()
                         .requestMatchers("/", "/sign/**", "/review/**", "/error/**", "/category/**", "/moim/**", "/joinMoim", "/moimAdminPage", "/modifyMoim", "/personalInfo", "/css/**", "/js/**", "/images/**", "/uploads/**").permitAll()
                         .requestMatchers("/my/**", "/moim/create", "/moim/insert").hasAnyRole("USER", "ADMIN")

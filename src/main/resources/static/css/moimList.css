@@ -1,64 +1,63 @@
 /* =============================
    공지사항 리스트 스타일 (Notice Page)
-   파일명: notice_list.css
+   파일명: notice.css
    네임스페이스 접두사: notice-
    ============================= */
 
-.moim-container {
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
+.admin-moim-container {
+    padding: 20px;
+    margin: 0 auto;
 }
 
 .moim-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
 }
 
 .moim-table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .moim-table tbody tr td {
-  padding: 12px 8px;
-  border-bottom: 1px solid #ddd;
+    padding: 12px 8px;
+    border-bottom: 1px solid #ddd;
 }
 
 .moim-title-cell {
-  font-weight: 600;
-  text-align: left;
-  color: #222;
+    font-weight: 600;
+    text-align: left;
+    color: #222;
 }
 
 .moim-date-cell {
-  text-align: right;
-  color: #888;
-  white-space: nowrap;
+    text-align: right;
+    color: #888;
+    white-space: nowrap;
 }
 
 /* 삭제 버튼 영역 */
 .moim-delete-button-wrapper {
-  margin-top: 30px;
-  text-align: right;
+    margin-top: 30px;
+    text-align: right;
 }
 
 .moim-delete-button {
-  background-color: #000;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .moim-delete-button:hover {
-  background-color: #333;
+    background-color: #333;
 }
 
 /* =============================
@@ -69,11 +68,11 @@
 
 
 .pagination {
-    list-style: none;   /* 기본 점 제거 */
+    list-style: none; /* 기본 점 제거 */
     padding: 0;
     margin: 0;
-    display: flex;      /* 가로 배치 */
-    gap: 8px;           /* 아이템 간격 (필요하면 조절) */
+    display: flex; /* 가로 배치 */
+    gap: 8px; /* 아이템 간격 (필요하면 조절) */
 }
 
 .pagination li {
@@ -92,11 +91,12 @@
 .pagination li a:hover {
     background-color: #eee;
 }
+
 .pagination .page-item.disabled .page-link {
-        color: #6c757d;
-        pointer-events: none;
-        background-color: #fff;
-        border-color: #dee2e6;
-        cursor: not-allowed;
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: not-allowed;
 }
 

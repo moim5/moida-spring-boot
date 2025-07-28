@@ -12,12 +12,17 @@
 
     <select id="selectBoardList" parameterType="com.kh.moida.notice.PageInfo" resultType="com.kh.moida.notice.Notice">
         /*<![CDATA[*/
-        SELECT * FROM (
-        SELECT ROWNUM AS RNUM, N.*
-        FROM (
-        SELECT * FROM NOTICE ORDER BY NOTICE_ID DESC
-        ) N
-        WHERE ROWNUM <= #{endRow}
+        SELECT
+            *
+        FROM (SELECT
+                ROWNUM AS RNUM, N.*
+            FROM (SELECT
+                    *
+                FROM
+                    NOTICE
+                ORDER BY
+                    NOTICE_ID DESC) N
+            WHERE ROWNUM <= #{endRow}
         )
         WHERE RNUM >= #{startRow}
         /*]]>*/

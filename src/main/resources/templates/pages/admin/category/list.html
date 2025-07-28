@@ -1,0 +1,53 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="subTitle" style="margin-bottom: 30px;">카테고리 관리</div>
+    <div style="width: 100%; display: flex; justify-content: flex-end; margin-bottom: 25px;">
+        <a href="/admin/category/write">
+            <button class="admin-button-confirm">추가하기</button>
+        </a>
+    </div>
+    <table class="admin-table">
+        <thead>
+        <tr>
+            <th style="width: 20%;">ID</th>
+            <th style="width: 20%;">카테고리명</th>
+            <th style="width: 40%;">이미지</th>
+            <th style="width: 20%;">기능</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${list}">
+            <td class="cell-center" th:text="${c.categoryId}"></td>
+            <td class="cell-center" th:text="${c.categoryName}"></td>
+            <td class="icon-cell">
+                <div class="category-iconBox">
+                    <div class="category-item-icon">
+                        <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${c.fileConvert})}"
+                             alt="카테고리 이미지"/>
+                    </div>
+                </div>
+            </td>
+            <td class="func-cell">
+                <div class="admin-table-funcBox">
+                    <a th:href="@{/admin/category/modify/{id}(id=${c.categoryId})}">
+                        <button type="button">
+                            <i class="ti ti-edit"></i>
+                        </button>
+                    </a>
+                    <button type="button" th:onclick="|confirmCategoryDelete(${c.categoryId})|">
+                        <i class="ti ti-trash"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

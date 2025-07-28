@@ -17,11 +17,6 @@
     </div>
 
     <div class="notice-detail-row">
-        <span class="notice-label">작성자:</span>
-        <span class="notice-content">관리자</span>
-    </div>
-
-    <div class="notice-detail-row">
         <span class="notice-label">작성일:</span>
         <span class="notice-content" th:text="${#dates.format(n.noticeDate, 'yyyy-MM-dd')}">날짜</span>
     </div>

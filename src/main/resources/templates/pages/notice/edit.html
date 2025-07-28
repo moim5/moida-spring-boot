@@ -21,7 +21,7 @@
         <label class="notice-form-label" for="content">내용</label>
         <textarea class="notice-form-textarea" id="content" name="noticeContent" required>[[${n.noticeContent}]]</textarea>
 
-        <input type="file" id="moimImage" name="moimImage" style="display:block; width:300px; height:auto;"  th:value="${n.fileConvert}" />
+        <input type="file" id="noticeImage" name="noticeImage" th:value="${n.fileConvert}" />
 
         <div class="notice-form-button-wrapper">
             <button type="submit" class="notice-form-submit-button">수정하기</button>

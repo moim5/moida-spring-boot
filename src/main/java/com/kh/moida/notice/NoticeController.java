@@ -1,9 +1,7 @@
 package com.kh.moida.notice;
 
-import com.kh.moida.model.UserPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +44,10 @@ public class NoticeController {
     }
 
     @PostMapping("insert")
-    public String insert(@ModelAttribute Notice notice, MultipartFile NoticeImage) throws IOException {
+    public String insert(
+            @ModelAttribute Notice notice,
+            MultipartFile NoticeImage
+    ) throws IOException {
         noticeService.insertNoticeFile(notice, NoticeImage);
         //int result = noticeService.write(notice);
         return "redirect:/notice/list";
@@ -59,37 +60,41 @@ public class NoticeController {
             Model model
     ) {
         Notice n = noticeService.selectBoard(noticeId);
-        int count = noticeService.updateCount(n);
+        noticeService.updateCount(n);
 
         model.addAttribute("n", n).addAttribute("page", page);
         return "pages/notice/detail";
     }
 
-    @PostMapping("updForm")
-    public String updateForm(@ModelAttribute Notice notice, @RequestParam("page") int page, Model model) {
+    @GetMapping("updForm")
+    public String updateForm(
+            @ModelAttribute Notice notice,
+            @RequestParam("page") int page,
+            Model model
+    ) {
         Notice n = noticeService.updateForm(notice);
-        model.addAttribute("n",n).addAttribute("page",page);
+        model.addAttribute("n", n).addAttribute("page", page);
 
         return "pages/notice/edit";
     }
 
     @PostMapping("update")
-    public String updateBoard(@ModelAttribute Notice notice,
-                              @RequestParam("moimImage") MultipartFile moimImage,
-                              @RequestParam("page") int page,
-                              Model model) throws IOException {
-        int result = noticeService.updateBoard(notice, moimImage);
+    public String updateBoard(
+            @ModelAttribute Notice notice,
+            @RequestParam("noticeImage") MultipartFile noticeImage,
+            @RequestParam("page") int page,
+            Model model
+    ) throws IOException {
+        noticeService.updateBoard(notice, noticeImage);
 
         model.addAttribute("n", notice);
         model.addAttribute("page", page);
         return "redirect:/notice/" + notice.getNoticeId() + "/" + page;
     }
 
-
     @PostMapping("delete")
-    public String noticedelete(@RequestParam("noticeId") int noticeId) {
-        int result = noticeService.deleteFile(noticeId);
+    public String noticeDelete(@RequestParam("noticeId") int noticeId) {
+        noticeService.deleteFile(noticeId);
         return "redirect:/notice/list";
     }
-
 }

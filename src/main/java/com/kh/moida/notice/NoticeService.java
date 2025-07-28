@@ -2,7 +2,6 @@ package com.kh.moida.notice;
 
 import com.kh.moida.common.file.FileUploadService;
 import com.kh.moida.mapper.FileMapper;
-import com.kh.moida.model.Category;
 import com.kh.moida.model.File;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class NoticeService {
-
     private final NoticeMapper mapper;
     private final FileUploadService fileUploadService;
     private final FileMapper fileMapper;
@@ -38,7 +36,7 @@ public class NoticeService {
         return mapper.selectBoard(id);
     }
 
-    public int deleteFile(int id) {
+    public void deleteFile(int id) {
         // 1. 조회
         Notice notice = mapper.findNoticeWithFile(id);
         if (notice == null) {
@@ -52,19 +50,17 @@ public class NoticeService {
         }
 
         // 3. 공지사항 삭제
-        int result = mapper.delete(id);
+        mapper.delete(id);
 
         // 4. 파일 삭제
         fileMapper.deleteFile(notice.getFileId());
-
-        return result;
     }
 
     public Notice updateForm(Notice notice) {
         return mapper.updateForm(notice);
     }
 
-    public int updateBoard(Notice notice, MultipartFile noticeImage) throws IOException {
+    public void updateBoard(Notice notice, MultipartFile noticeImage) throws IOException {
 
         // 새 파일이 업로드 되었는지 체크
         if (noticeImage != null && !noticeImage.isEmpty()) {
@@ -91,17 +87,14 @@ public class NoticeService {
             notice.setFileOrigin(originalName);
             notice.setFileConvert(newName);
             notice.setFileId(file.getFileId());
-        } else {
-            // 새 파일 없으면 기존 파일 정보 유지
-            // (필요 시 추가 로직 가능)
         }
 
-        return mapper.updateBoard(notice);
+        mapper.updateBoard(notice);
     }
 
 
-    public int updateCount(Notice notice) {
-        return mapper.updateCount(notice);
+    public void updateCount(Notice notice) {
+        mapper.updateCount(notice);
     }
 
     public void insertNoticeFile(Notice notice, MultipartFile NoticeImage) throws IOException {

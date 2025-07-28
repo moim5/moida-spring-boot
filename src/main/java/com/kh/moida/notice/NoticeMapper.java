@@ -1,7 +1,6 @@
 package com.kh.moida.notice;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 
@@ -26,6 +25,4 @@ public interface NoticeMapper {
     void insertNotice(Notice notice);
 
     Notice findNoticeWithFile(int id);
-
-    void updateNoticeNameOnly(Notice notice);
 }
