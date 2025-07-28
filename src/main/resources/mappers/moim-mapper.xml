@@ -114,7 +114,7 @@
             M.MOIM_ZIPCODE,
             M.MOIM_ADDRESS1,
             M.MOIM_ADDRESS2,
-            M.IS_VISIBLE,
+<!--             M.IS_VISIBLE, -->
             M.IS_ACTIVE,
             C.CATEGORY_NAME,
             F.FILE_ORIGIN,
@@ -128,7 +128,7 @@
             AND M.IS_VISIBLE = 'Y'
             AND M.IS_ACTIVE = 'Y'
     </select>
-    
+    <!--  모임수정 (파일 안들어왔을 때) -->
     <update id="updateMoimWithoutFile">
     	UPDATE MOIM
 			SET
@@ -148,6 +148,7 @@
 		WHERE MOIM_ID = #{moimId}
     </update>
     
+    <!-- 모임수정 (파일 들어왔을 때) -->
     <update id="updateMoimWithFile">
     	UPDATE MOIM
 			SET
@@ -196,7 +197,6 @@
     		USER_ID = #{user_id}
     		MOIM_ID = #{moim_id}
     		ATT_DATE = SYSDATE
-    	
     </update>
     
     <select id="countHostedMoimCount" resultType="java.lang.Integer">

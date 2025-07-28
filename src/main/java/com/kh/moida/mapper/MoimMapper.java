@@ -30,7 +30,7 @@ public interface MoimMapper {
 	//리뷰 리스트뽑기
 	int countReview(int moimId);
 
-
+	//조인 참여하기 
 	void moimJoinMoim(Moim moim, User user);
 
 
