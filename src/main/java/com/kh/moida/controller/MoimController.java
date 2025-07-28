@@ -59,7 +59,10 @@ public class MoimController {
     }
 
     @GetMapping("/joinMoim") //모임 참여
-    public String JoinMoim() {
+    public String JoinMoim(
+    		@AuthenticationPrincipal UserPrincipal loginUser,
+    		Moim moim) {
+    	moimService.moimJoinMoim(moim,loginUser.getUser());
         return "pages/moim/JoinMoim";
     }
 

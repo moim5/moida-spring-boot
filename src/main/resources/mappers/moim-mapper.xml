@@ -189,6 +189,14 @@
 	 		r.review_date desc
 	 </select>
 	    
-    
+	<!-- 모임 참여 -->
+    <update id="moimJoinMoim">
+    	UPDATE MOIM_ATTENDEE
+    	SET
+    		USER_ID = #{user_id}
+    		MOIM_ID = #{moim_id}
+    		ATT_DATE = SYSDATE
+    	
+    </update>
     
 </mapper>

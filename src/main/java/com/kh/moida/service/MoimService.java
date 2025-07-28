@@ -130,4 +130,14 @@ public class MoimService {
 	 public int countReview(int moimId) {
 		 return moimMapper.countReview(moimId);
 	  }
+
+	 public void moimJoinMoim(Moim moim, User user) {
+		// TODO Auto-generated method stub
+		// 가입 하려는 모임 ID가 뭔지 참여하기 버튼 누르고, 그 모임의 moimId 가져오기
+		// user 에서 user_id 가져오기 
+		 
+		 moimMapper.moimJoinMoim(moim, user);
+		 return;
+		
+	 }
 }

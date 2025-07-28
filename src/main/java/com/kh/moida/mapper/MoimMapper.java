@@ -1,6 +1,8 @@
 package com.kh.moida.mapper;
 
 import com.kh.moida.model.Moim;
+import com.kh.moida.model.User;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -27,5 +29,7 @@ public interface MoimMapper {
 	
 	//리뷰 리스트뽑기
 	int countReview(int moimId);
+
+	void moimJoinMoim(Moim moim, User user);
 
 }
