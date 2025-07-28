@@ -96,3 +96,68 @@
     transition: background-color 0.3s ease;
     cursor: pointer;
 }
+
+.my-right-container .my-moim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.my-right-container .my-moim-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.my-right-container .my-moim-item img {
+    width: 153px;
+    height: 110px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.my-right-container .my-moim-item .my-moim-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.my-right-container .my-moim-item .my-moim-info .my-moim-date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.my-moim-date i {
+    margin-top: -4px;
+}
+
+.my-right-container .my-moim-item .my-moim-func {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.my-right-container .my-moim-item .my-moim-func > a {
+    width: 100%;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 10px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+.my-right-container .my-moim-item .my-moim-func > .modify-button {
+    background-color: var(--main-color);
+}
+
+.my-right-container .my-moim-item .my-moim-func > .cancel-button {
+    background-color: red;
+}
