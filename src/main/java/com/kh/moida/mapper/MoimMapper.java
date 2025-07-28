@@ -23,4 +23,11 @@ public interface MoimMapper {
 	//리뷰 리스트뽑기
 	int countReview(int moimId);
 
+    int countHostedMoimCount(Long userId);
+
+    List<Moim> findHostedMoim(Map<String, Object> params);
+
+    int countJoinedMoim(Long userId);
+
+    List<Moim> findManyJoinedMoim(Map<String, Object> params);
 }

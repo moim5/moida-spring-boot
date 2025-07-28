@@ -1,0 +1,38 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="my-container">
+        <div class="my-left-container" th:replace="~{fragments/myLeft :: myLeft}"></div>
+        <div class="my-right-container">
+            <div class="subTitle" style="margin-bottom: 30px;">
+                <th:block th:if="${type == 'hosted'}">나의 개설 모임</th:block>
+                <th:block th:if="${type == 'joined'}">나의 참가 모임</th:block>
+            </div>
+            <div class="my-moim-list">
+                <div class="my-moim-item" th:each="m : ${moimList}">
+                    <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${m.fileConvert})}" alt="모임이미지"/>
+                    <div class="my-moim-info">
+                        <div class="my-moim-title" th:text="${m.moimTitle}"></div>
+                        <div class="my-moim-date">
+                            <i class="ti ti-calendar-week"></i>
+                            <div th:text="${#dates.format(m.moimDate, 'yy.MM.dd(E) a hh:mm')}"></div>
+                        </div>
+                        <div class="my-moim-location" th:text="${m.moimAddress1}"></div>
+                        <div class="my-moim-attendee" th:text="${'모집인원 : ' + m.moimAttendeeCount + '명'}"></div>
+                    </div>
+                    <div class="my-moim-func">
+                        <a th:if="${type == 'hosted'}" class="modify-button" href="/moim/">수정</a>
+                        <a th:if="${type == 'hosted'}" class="cancel-button" href="/moim/">모집중단</a>
+                        <a th:if="${type == 'joined'}" class="cancel-button" href="/moim">참가취소</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

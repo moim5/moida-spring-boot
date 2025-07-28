@@ -89,7 +89,7 @@ public class MoimController {
     
     
     //reviewList뽑기
-    @GetMapping("/pages/moim/moim_detail/{moimId}")
+    @GetMapping("/moim/moim_detail/{moimId}")
     public String reviewList(@PathVariable int moimId, Model model) {
         // new ReviewService()는  위에 final로 의존성 해둠
         ArrayList<Review> reviewList = rService.getReviewList(moimId);

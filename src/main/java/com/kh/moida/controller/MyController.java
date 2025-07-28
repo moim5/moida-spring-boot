@@ -1,6 +1,8 @@
 package com.kh.moida.controller;
 
+import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
+import com.kh.moida.service.MoimService;
 import com.kh.moida.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -8,11 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/my")
 public class MyController {
     private final UserService userService;
+    private final MoimService moimService;
 
     @GetMapping("/info")
     public String MyInfo(
@@ -59,5 +64,47 @@ public class MyController {
         }
 
         return "redirect:/my/password";
+    }
+
+    @GetMapping("/moim/hosted/list")
+    public String MyHostedMoimList(
+            @AuthenticationPrincipal(expression = "user") User user,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model
+    ) {
+        int totalCount = moimService.countHostedMoim(user.getUserId());
+        int offset = (page - 1) * size;
+
+        List<Moim> moimList = moimService.findManyHostedMoim(user.getUserId(), offset, size);
+
+        model.addAttribute("moimList", moimList);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        model.addAttribute("type", "hosted");
+
+        return "pages/my/moim/list";
+    }
+
+    @GetMapping("/moim/joined/list")
+    public String MyJoinedMoimList(
+            @AuthenticationPrincipal(expression = "user") User user,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model
+    ) {
+        int totalCount = moimService.countJoinedMoim(user.getUserId());
+        int offset = (page - 1) * size;
+
+        List<Moim> moimList = moimService.findManyJoinedMoim(user.getUserId(), offset, size);
+
+        model.addAttribute("moimList", moimList);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        model.addAttribute("type", "joined");
+
+        return "pages/my/moim/list";
     }
 }
