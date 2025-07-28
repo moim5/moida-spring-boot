@@ -25,12 +25,12 @@
 
         <div class="moim-create-row">
             <label for="moimTitle">모임제목</label>
-            <input type="text" id="moimTitle" name="moimTitle" placeholder="모임 제목을 입력하세요"/>
+            <input type="text" id="moimTitle" name="moimTitle" th:text="${moim.moimName}"/>
         </div>
 
         <div class="moim-create-row">
             <label for="moimAttendeeCount">인원수</label>
-            <input type="number" id="moimAttendeeCount" name="moimAttendeeCount" placeholder="모임 제목을 입력하세요"/>
+            <input type="number" id="moimAttendeeCount" name="moimAttendeeCount" th:text="${moim.moimAttendeeCount}"/>
         </div>
 
         <div class="moim-create-row">
@@ -55,17 +55,17 @@
         </div>
         <div class="moim-create-row">
             <label for="moimMoney">참가비용</label>
-            <input type="number" id="moimMoney" name="moimMoney"/>
+            <input type="number" id="moimMoney" name="moimMoney" th:text=${moim.moimMoney}/>
         </div>
         <div class="moim-create-row">
             <label for="moimContent">모임설명</label>
             <textarea id="moimContent" name="moimContent"
-                      placeholder="모임 설명을 입력하세요"></textarea>
+                      th:text="${moim.moimContent}"></textarea>
         </div>
         <div class="moim-create-row">
             <label for="moimHostIntro">호스트 소개</label>
             <textarea id="moimHostIntro" name="moimHostIntro"
-                      placeholder="간단한 자기소개를 써주세요."></textarea>
+                      th:text="${moim.moimHostIntro}"></textarea>
         </div>
         <div class="moim-create-row">
             <label>사진 업로드</label>
