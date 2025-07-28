@@ -114,7 +114,7 @@
             M.MOIM_ZIPCODE,
             M.MOIM_ADDRESS1,
             M.MOIM_ADDRESS2,
-<!--             M.IS_VISIBLE, -->
+            M.IS_VISIBLE,
             M.IS_ACTIVE,
             C.CATEGORY_NAME,
             F.FILE_ORIGIN,
