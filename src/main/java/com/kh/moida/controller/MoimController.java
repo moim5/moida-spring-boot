@@ -65,6 +65,15 @@ public class MoimController {
     	moimService.moimJoinMoim(moim,loginUser.getUser());
         return "pages/moim/JoinMoim";
     }
+    
+    @GetMapping("/joinMoimCancel")
+    public String joinMoimCancel(
+    		@AuthenticationPrincipal UserPrincipal loginUser,
+    		Moim moim
+    		) {
+    	moimService.joinMoimCancel(moim, loginUser.getUser());
+    	return "";
+    }
 
 //    @GetMapping("/modifyMoim")
 //    public String modifyMoim() {

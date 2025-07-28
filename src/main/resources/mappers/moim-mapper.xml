@@ -199,6 +199,12 @@
     		ATT_DATE = SYSDATE
     </update>
     
+    <!-- 모임 참여 취소 -->
+    <delete id="joinMoimCancel">
+    	DELETE FROM MOIM_ATTENDEE
+    	WHERE MOIM_ID = #{moim_id} AND USER_ID = #{user_id}
+    </delete>
+    
     <select id="countHostedMoimCount" resultType="java.lang.Integer">
         SELECT
             COUNT(*)

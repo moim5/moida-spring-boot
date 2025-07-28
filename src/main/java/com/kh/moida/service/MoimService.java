@@ -165,4 +165,10 @@ public class MoimService {
         return moimMapper.findManyJoinedMoim(params);
 
     }
+
+	public void joinMoimCancel(Moim moim, User user) {
+		// 참여 신청 취소하고 싶은 moim_id 
+		 moimMapper.joinMoimCancel(moim,user);
+		
+	}
 }

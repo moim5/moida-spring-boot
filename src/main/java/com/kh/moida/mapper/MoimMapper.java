@@ -1,12 +1,13 @@
 package com.kh.moida.mapper;
 
-import com.kh.moida.model.Moim;
-import com.kh.moida.model.User;
-
-import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.kh.moida.model.Moim;
+import com.kh.moida.model.User;
 
 @Mapper
 public interface MoimMapper {
@@ -31,7 +32,7 @@ public interface MoimMapper {
 	int countReview(int moimId);
 
 	//조인 참여하기 
-	void moimJoinMoim(Moim moim, User user);
+	void moimJoinMoim(@Param("moim") Moim moim, @Param("user") User user);
 
 
     int countHostedMoimCount(Long userId);
@@ -41,5 +42,7 @@ public interface MoimMapper {
     int countJoinedMoim(Long userId);
 
     List<Moim> findManyJoinedMoim(Map<String, Object> params);
+
+	void joinMoimCancel(@Param("moim") Moim moim, @Param("user") User user);
 
 }
