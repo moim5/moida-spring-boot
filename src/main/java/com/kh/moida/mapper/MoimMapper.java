@@ -45,4 +45,6 @@ public interface MoimMapper {
 
 	void joinMoimCancel(@Param("moim") Moim moim, @Param("user") User user);
 
+	int deleteMoim(Moim moim);
+
 }

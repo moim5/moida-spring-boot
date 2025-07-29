@@ -204,6 +204,12 @@
     	DELETE FROM MOIM_ATTENDEE
     	WHERE MOIM_ID = #{moim_id} AND USER_ID = #{user_id}
     </delete>
+    <!-- 호스트의 모임 삭제 -->
+    <update id="deleteMoim">
+    	UPDATE MOIM
+    	SET IS_VISIBLE = 'N'
+    	WHERE MOIM_ID = #{moim_id}
+    </update>
     
     <select id="countHostedMoimCount" resultType="java.lang.Integer">
         SELECT

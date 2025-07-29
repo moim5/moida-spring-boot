@@ -57,6 +57,19 @@ public class MoimController {
     	moimService.moimUpdate(moim, moimImage, loginUser.getUser());
     	return "pages/moim/modifyMoim";
     }
+    
+    //모임 삭제
+    @GetMapping("/deleteMoim")
+	public String MoimDelete(Moim moim) {
+    	//is_visible N으로 업데이트 
+    	int result = moimService.deleteMoim(moim);
+    	if(result>0) {
+    		
+    	}
+    	return "";
+    }
+    	
+    
 
     @GetMapping("/joinMoim") //모임 참여
     public String JoinMoim(
@@ -66,6 +79,7 @@ public class MoimController {
         return "pages/moim/JoinMoim";
     }
     
+    //모임 참가신청 취소
     @GetMapping("/joinMoimCancel")
     public String joinMoimCancel(
     		@AuthenticationPrincipal UserPrincipal loginUser,

@@ -171,4 +171,9 @@ public class MoimService {
 		 moimMapper.joinMoimCancel(moim,user);
 		
 	}
+
+	public int deleteMoim(Moim moim) {
+		
+		return moimMapper.deleteMoim(moim);
+	}
 }
