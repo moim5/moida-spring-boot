@@ -98,9 +98,9 @@ public class MoimController {
 
     //모임 삭제
     @GetMapping("/deleteMoim")
-    public String MoimDelete(Moim moim) {
+    public String MoimDelete(Moim moim,@RequestParam("moimId") int moimId) {
         //is_visible N으로 업데이트
-        int result = moimService.deleteMoim(moim);
+        int result = moimService.deleteMoim(moimId);
         if (result > 0) {
 
         }
@@ -118,6 +118,7 @@ public class MoimController {
     }
 
     //모임 참가신청 취소
+    //참가 신청할 모임 id 
     @GetMapping("/joinMoimCancel")
     public String joinMoimCancel(
             @AuthenticationPrincipal UserPrincipal loginUser,
