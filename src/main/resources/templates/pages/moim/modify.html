@@ -4,13 +4,14 @@
       layout:decorate="~{layouts/base}" lang="ko">
 <body>
 <main layout:fragment="content" class="main-wrapper main-wrapper-center">
-    <form class="moim-create-container" method="POST" th:action="@{/moim/insert}" enctype="multipart/form-data">
+    <form class="moim-create-container" method="POST" th:action="@{/moim/modify}" enctype="multipart/form-data">
+        <input type="hidden" name="moimId" th:value="${moim.moimId}"/>
         <div class="subTitle" style="margin-bottom: 30px;">모임 수정하기</div>
         <div class="moim-create-row">
             <label for="moimType">모임유형</label>
             <select id="moimType" name="moimType">
-                <option value="1">온라인</option>
-                <option value="2">오프라인</option>
+                <option value="1" th:selected="${moim.moimType == '1'}">온라인</option>
+                <option value="2" th:selected="${moim.moimType == '2'}">오프라인</option>
             </select>
         </div>
 
@@ -18,24 +19,27 @@
             <label for="categoryId">카테고리</label>
             <select id="categoryId" name="categoryId">
                 <th:block th:each="c : ${categoryList}">
-                    <option th:value="${c.categoryId}" th:text="${c.categoryName}"></option>
+                    <option th:value="${c.categoryId}"
+                            th:selected="${moim.categoryId == c.categoryId}"
+                            th:text="${c.categoryName}"></option>
                 </th:block>
             </select>
         </div>
 
         <div class="moim-create-row">
             <label for="moimTitle">모임제목</label>
-            <input type="text" id="moimTitle" name="moimTitle" th:text="${moim.moimName}"/>
+            <input type="text" id="moimTitle" name="moimTitle" th:value="${moim.moimTitle}"/>
         </div>
 
         <div class="moim-create-row">
             <label for="moimAttendeeCount">인원수</label>
-            <input type="number" id="moimAttendeeCount" name="moimAttendeeCount" th:text="${moim.moimAttendeeCount}"/>
+            <input type="number" id="moimAttendeeCount" name="moimAttendeeCount" th:value="${moim.moimAttendeeCount}"/>
         </div>
 
         <div class="moim-create-row">
             <label for="moimDate">모임날짜</label>
-            <input type="datetime-local" id="moimDate" name="moimDate"/>
+            <input type="datetime-local" id="moimDate" name="moimDate"
+                   th:value="${#dates.format(moim.moimDate, 'yyyy-MM-dd''T''HH:mm')}"/>
         </div>
         <div class="moim-create-row">
             <label for="address2">모임장소</label>
@@ -44,32 +48,42 @@
                     <button type="button" class="btn address-search-btn"
                             onclick="execDaumPostcode()">주소찾기
                     </button>
-                    <input type="text" id="zipCode" name="moimZipCode" readonly
+                    <input type="text" id="zipCode" name="moimZipCode" th:value="${moim.moimZipCode}" readonly
                            placeholder="우편번호"/>
                 </div>
-                <input type="text" id="address1" name="moimAddress1" readonly
+                <input type="text" id="address1" name="moimAddress1" th:value="${moim.moimAddress1}" readonly
                        placeholder="기본 주소"/>
                 <input type="text" id="address2"
-                       name="moimAddress2" placeholder="상세 주소 입력"/>
+                       name="moimAddress2" th:value="${moim.moimAddress2}" placeholder="상세 주소 입력"/>
             </div>
         </div>
         <div class="moim-create-row">
             <label for="moimMoney">참가비용</label>
-            <input type="number" id="moimMoney" name="moimMoney" th:text=${moim.moimMoney}/>
+            <input type="number" id="moimMoney" name="moimMoney" th:value="${moim.moimMoney}"/>
         </div>
         <div class="moim-create-row">
             <label for="moimContent">모임설명</label>
             <textarea id="moimContent" name="moimContent"
-                      th:text="${moim.moimContent}"></textarea>
+                      th:value="${moim.moimContent}"></textarea>
         </div>
         <div class="moim-create-row">
             <label for="moimHostIntro">호스트 소개</label>
             <textarea id="moimHostIntro" name="moimHostIntro"
-                      th:text="${moim.moimHostIntro}"></textarea>
+                      th:value="${moim.moimHostIntro}"></textarea>
         </div>
         <div class="moim-create-row">
             <label>사진 업로드</label>
-            <input type="file" name="moimImage" required/>
+            <div class="admin-originFileBox" id="originFileWrapper">
+                <div>
+                    <button type="button" onclick="showFileInput()">파일 변경</button>
+                </div>
+                <div style="font-size: 0.9rem;">
+                    현재 파일: <span class="fileName" th:text="${moim.fileOrigin}"></span>
+                </div>
+            </div>
+            <div class="admin-updateFileBox" id="fileInputWrapper" style="width: 100%;">
+                <input type="file" name="moimImage" id="moimImage"/>
+            </div>
         </div>
 
         <div class="error-text" th:if="${error}" th:text="${error}"></div>

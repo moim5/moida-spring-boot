@@ -1,5 +1,6 @@
 package com.kh.moida.config;
 
+import lombok.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -25,9 +26,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
+            @NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain
     ) {
         String jwt = null;
         String authHeader = request.getHeader("Authorization");
@@ -67,7 +68,6 @@ public class JwtFilter extends OncePerRequestFilter {
             clearJwtCookie(response);
         } catch (Exception e) {
             e.printStackTrace();
-            clearJwtCookie(response);
             SecurityContextHolder.clearContext();
         }
     }

@@ -123,10 +123,19 @@ td.func-cell > .admin-table-funcBox button:hover {
 }
 
 .admin-originFileBox {
+    width: 100%;
     display: flex;
     gap: 20px;
     justify-content: flex-start;
     align-items: center;
+}
+
+.admin-originFileBox span {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
 }
 
 .admin-originFileBox button {
