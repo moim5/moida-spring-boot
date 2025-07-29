@@ -1,8 +1,10 @@
 package com.kh.moida.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.moida.notice.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,4 +49,8 @@ public interface MoimMapper {
 
 	int deleteMoim(int moimId);
 
+    int moimquestion(Question question);
+
+
+    ArrayList<Question> findQuestion(int moimId);
 }

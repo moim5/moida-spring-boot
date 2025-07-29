@@ -5,6 +5,7 @@ import com.kh.moida.mapper.FileMapper;
 import com.kh.moida.model.File;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
+import com.kh.moida.notice.Question;
 import org.springframework.stereotype.Service;
 
 import com.kh.moida.mapper.MoimMapper;
@@ -15,10 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -163,5 +161,13 @@ public class MoimService {
     public int deleteMoim(int moimId) {
 
         return moimMapper.deleteMoim(moimId);
+    }
+
+    public int moimquestion(Question question) {
+        return moimMapper.moimquestion(question);
+    }
+
+    public ArrayList<Question> findQuestion(int moimId) {
+        return moimMapper.findQuestion(moimId);
     }
 }

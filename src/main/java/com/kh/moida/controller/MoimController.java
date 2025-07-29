@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import com.kh.moida.model.User;
+import com.kh.moida.notice.Question;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -158,7 +160,8 @@ public class MoimController {
             Model model
     ) {
         Moim moim = moimService.findById(moimId);
-        model.addAttribute("moim", moim);
+        ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
+        model.addAttribute("moim", moim).addAttribute("questions", questions);
         return "pages/moim/detail";
     }
 
@@ -172,4 +175,17 @@ public class MoimController {
 
         return "detail";
     }
+
+
+
+    // 문의 등록
+    @PostMapping("question")
+    public String moimquestion(@ModelAttribute Question question, @AuthenticationPrincipal UserPrincipal userPrincipal) {
+        User loginUser = userPrincipal.getUser();
+        question.setUserId(loginUser.getUserId());
+        int q = moimService.moimquestion(question);
+        return "redirect:/moim/" + question.getMoimId();
+    }
+
+
 }

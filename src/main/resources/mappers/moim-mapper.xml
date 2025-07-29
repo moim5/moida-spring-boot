@@ -262,5 +262,21 @@
         WHERE
             rnum BETWEEN #{startRow} AND #{endRow}
     </select>
- 
+
+    <insert id="moimquestion" parameterType="com.kh.moida.notice.Question">
+        INSERT INTO question
+        VALUES (
+        SEQ_QUESTION_ID.NEXTVAL,
+        #{quesContent},
+        #{userId},
+        #{moimId}
+        )
+    </insert>
+
+    <select id="findQuestion" parameterType="com.kh.moida.notice.Question">
+        select *
+        from question
+        where moim_id = #{moinId}
+    </select>
+
 </mapper>
