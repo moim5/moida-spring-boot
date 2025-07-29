@@ -41,7 +41,7 @@ public class MoimController {
     ) {
         try {
             moimService.insertMoim(loginUser.getUser(), moim, moimImage);
-            return "redirect:/my/moim";
+            return "redirect:/moim/detail";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "pages/moim/create";
