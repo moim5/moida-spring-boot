@@ -38,14 +38,14 @@ public class MoimController {
 
     @PostMapping("/insert")
     public String MoimWrite(
-            Moim moim,
+            @ModelAttribute Moim moim,
             MultipartFile moimImage,
             @AuthenticationPrincipal UserPrincipal loginUser,
             Model model
     ) {
         try {
-            moimService.insertMoim(loginUser.getUser(), moim, moimImage);
-            return "redirect:/my/moim";
+            Moim createdMoim = moimService.insertMoim(loginUser.getUser(), moim, moimImage);
+            return "redirect:/moim/" + createdMoim.getMoimId();
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "pages/moim/create";
@@ -73,7 +73,7 @@ public class MoimController {
 
     @PostMapping("/update")
     public String MoimUpdate(
-            Moim moim,
+            @ModelAttribute Moim moim,
             MultipartFile moimImage,
             @AuthenticationPrincipal(expression = "user") User loginUser,
             Model model
@@ -110,7 +110,8 @@ public class MoimController {
     @GetMapping("/joinMoim") //모임 참여
     public String JoinMoim(
             @AuthenticationPrincipal UserPrincipal loginUser,
-            Moim moim) {
+            Moim moim
+    ) {
         moimService.moimJoinMoim(moim, loginUser.getUser());
         return "pages/moim/JoinMoim";
     }
@@ -119,7 +120,7 @@ public class MoimController {
     @GetMapping("/joinMoimCancel")
     public String joinMoimCancel(
             @AuthenticationPrincipal UserPrincipal loginUser,
-            Moim moim
+            @ModelAttribute Moim moim
     ) {
         moimService.joinMoimCancel(moim, loginUser.getUser());
         return "";

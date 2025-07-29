@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.moida.exception.MoimException;
@@ -43,7 +39,7 @@ public class AdminController {
 
     @PostMapping("/category/insert")
     public String CategoryInsert(
-            Category category,
+            @ModelAttribute Category category,
             MultipartFile categoryImage,
             Model model
     ) {
@@ -69,7 +65,7 @@ public class AdminController {
     @PostMapping("/category/update/{categoryId}")
     public String CategoryUpdate(
             @PathVariable("categoryId") Long categoryId,
-            Category category,
+            @ModelAttribute Category category,
             MultipartFile categoryImage,
             Model model
     ) {
@@ -118,7 +114,10 @@ public class AdminController {
     }
     
     @GetMapping("/moimList/delete")
-    public String deleteMoimList(@RequestParam("moimId")int moimId, Model model) {
+    public String deleteMoimList(
+            @RequestParam("moimId")int moimId,
+            Model model
+    ) {
     	//update로 스테이터스 N으로 변경
     	int result = mService.deleteMoimList(moimId);
     	if(result > 0) {

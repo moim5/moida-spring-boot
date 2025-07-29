@@ -27,7 +27,7 @@ public class MoimService {
     private final FileMapper fileMapper;
     private final FileUploadService fileUploadService;
 
-    public void insertMoim(User loginUser, Moim moim, MultipartFile moimImage) throws IOException {
+    public Moim insertMoim(User loginUser, Moim moim, MultipartFile moimImage) throws IOException {
         String originalName = moimImage.getOriginalFilename();
         String ext = Objects.requireNonNull(originalName).substring(originalName.lastIndexOf(".") + 1);
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
@@ -47,7 +47,7 @@ public class MoimService {
         moim.setFileConvert(newName);
         moim.setIsVisible("Y");
         moim.setIsActive("Y");
-        moimMapper.insertMoim(moim);
+        return moimMapper.insertMoim(moim);
     }
 
     public List<Moim> findMoim(Long categoryId, int offset, int limit) {

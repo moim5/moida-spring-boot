@@ -13,7 +13,7 @@ import com.kh.moida.model.User;
 public interface MoimMapper {
     void updateMoimCategoryToDefault(Long categoryId);
 
-    void insertMoim(Moim moim);
+    Moim insertMoim(Moim moim);
 
     List<Moim> findMoims(Map<String, Object> params);
 
