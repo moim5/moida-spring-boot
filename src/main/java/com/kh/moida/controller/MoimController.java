@@ -114,7 +114,7 @@ public class MoimController {
     		Moim moim,
     		@PathVariable("moimId") int moimId) {
     	moimService.moimJoinMoim(moim,loginUser.getUser());
-        return "joinMoim";
+        return "pages/moim/joinMoim";
     }
 
     //모임 참가신청 취소
