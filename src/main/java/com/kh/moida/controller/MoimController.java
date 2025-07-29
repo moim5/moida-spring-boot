@@ -1,7 +1,10 @@
 package com.kh.moida.controller;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
+import com.kh.moida.model.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,7 @@ import com.kh.moida.service.MoimService;
 import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @RequestMapping("/moim")
@@ -47,46 +51,78 @@ public class MoimController {
             return "pages/moim/create";
         }
     }
-    
-    @PostMapping("/modifyMoim") //모임 수정
-    public String MoimUpdate(
-    		Moim moim,
-    		MultipartFile moimImage,
-    		@AuthenticationPrincipal UserPrincipal loginUser,
-    		Model model) {
-    	moimService.moimUpdate(moim, moimImage, loginUser.getUser());
-    	return "pages/moim/modifyMoim";
+
+    @GetMapping("/modify/{moimId}")
+    public String MoimModify(
+            @AuthenticationPrincipal(expression = "user") User loginUser,
+            @PathVariable("moimId") int moimId,
+            Model model
+    ) {
+        Moim moim = moimService.findById(moimId);
+        if (moim == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        if (!Objects.equals(moim.getUserId(), loginUser.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
+        model.addAttribute("moim", moim);
+        return "pages/moim/modify";
     }
-    
+
+    @PostMapping("/update")
+    public String MoimUpdate(
+            Moim moim,
+            MultipartFile moimImage,
+            @AuthenticationPrincipal(expression = "user") User loginUser,
+            Model model
+    ) {
+        Moim prevMoim = moimService.findById(moim.getMoimId());
+        if (prevMoim == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        if (!Objects.equals(moim.getUserId(), loginUser.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        try {
+            moimService.moimUpdate(moim, moimImage);
+            return "redirect:/my/moim/hosted/list";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/moim/modify/" + moim.getMoimId();
+        }
+    }
+
     //모임 삭제
     @GetMapping("/deleteMoim")
-	public String MoimDelete(Moim moim) {
-    	//is_visible N으로 업데이트 
-    	int result = moimService.deleteMoim(moim);
-    	if(result>0) {
-    		
-    	}
-    	return "";
+    public String MoimDelete(Moim moim) {
+        //is_visible N으로 업데이트
+        int result = moimService.deleteMoim(moim);
+        if (result > 0) {
+
+        }
+        return "";
     }
-    	
-    
+
 
     @GetMapping("/joinMoim") //모임 참여
     public String JoinMoim(
-    		@AuthenticationPrincipal UserPrincipal loginUser,
-    		Moim moim) {
-    	moimService.moimJoinMoim(moim,loginUser.getUser());
+            @AuthenticationPrincipal UserPrincipal loginUser,
+            Moim moim) {
+        moimService.moimJoinMoim(moim, loginUser.getUser());
         return "pages/moim/JoinMoim";
     }
-    
+
     //모임 참가신청 취소
     @GetMapping("/joinMoimCancel")
     public String joinMoimCancel(
-    		@AuthenticationPrincipal UserPrincipal loginUser,
-    		Moim moim
-    		) {
-    	moimService.joinMoimCancel(moim, loginUser.getUser());
-    	return "";
+            @AuthenticationPrincipal UserPrincipal loginUser,
+            Moim moim
+    ) {
+        moimService.joinMoimCancel(moim, loginUser.getUser());
+        return "";
     }
 
 //    @GetMapping("/modifyMoim")
@@ -109,7 +145,7 @@ public class MoimController {
     public String enrollMoim(@ModelAttribute Moim moim) {
 //    	moimService.enrollMoim(moim);
         return "redirect:/pages/moim/moim_datil?moimId=" + moim.getMoimId();
-        
+
     }
 
     //moim_detail이동
@@ -122,8 +158,8 @@ public class MoimController {
         model.addAttribute("moim", moim);
         return "pages/moim/detail";
     }
-    
-    
+
+
     //reviewList뽑기
     @GetMapping("/moim/moim_detail/{moimId}")
     public String reviewList(@PathVariable int moimId, Model model) {

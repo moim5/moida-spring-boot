@@ -105,6 +105,7 @@
     <select id="findMoimById" resultType="com.kh.moida.model.Moim">
         SELECT
             M.MOIM_ID,
+            M.MOIM_TYPE,
             M.MOIM_TITLE,
             M.MOIM_CONTENT,
             M.MOIM_DATE,
@@ -116,7 +117,8 @@
             M.MOIM_ADDRESS2,
             M.IS_VISIBLE,
             M.IS_ACTIVE,
-            C.CATEGORY_NAME,
+            M.USER_ID,
+            C.CATEGORY_ID,
             F.FILE_ORIGIN,
             F.FILE_CONVERT
         FROM
@@ -128,7 +130,7 @@
             AND M.IS_VISIBLE = 'Y'
             AND M.IS_ACTIVE = 'Y'
     </select>
-    <!--  모임수정 (파일 안들어왔을 때) -->
+
     <update id="updateMoimWithoutFile">
     	UPDATE MOIM
 			SET
@@ -142,13 +144,11 @@
 				MOIM_DATE = #{moimDate},
 				MOIM_MONEY = #{moimMoney},
 				MOIM_HOST_INTRO = #{moimHostIntro},
-<!-- 				IS_VISIBLE = #{isVisible}, -->
 				IS_ACTIVE = #{isActive},
 				CATEGORY_ID = #{categoryId},
 		WHERE MOIM_ID = #{moimId}
     </update>
     
-    <!-- 모임수정 (파일 들어왔을 때) -->
     <update id="updateMoimWithFile">
     	UPDATE MOIM
 			SET
@@ -162,9 +162,9 @@
 				MOIM_DATE = #{moimDate},
 				MOIM_MONEY = #{moimMoney},
 				MOIM_HOST_INTRO = #{moimHostIntro},
-<!-- 				IS_VISIBLE = #{isVisible}, -->
 				IS_ACTIVE = #{isActive},
 				CATEGORY_ID = #{categoryId},
+                FILE_ID = #{fileId}
 		WHERE MOIM_ID = #{moimId}
 	</update>
 	
