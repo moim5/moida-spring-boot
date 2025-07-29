@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -53,4 +54,6 @@ public interface MoimMapper {
 
 
     ArrayList<Question> findQuestion(int moimId);
+
+    int moimanswer(Question question);
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import com.kh.moida.model.User;
+import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
@@ -156,14 +157,25 @@ public class MoimController {
     //moim_detail이동
     @GetMapping("/{moimId}")
     public String MoimDetail(
+            @AuthenticationPrincipal UserPrincipal userPrincipal,
             @PathVariable("moimId") int moimId,
             Model model
     ) {
         Moim moim = moimService.findById(moimId);
+        User loginUser = null;
+        if(userPrincipal != null) {
+            loginUser = userPrincipal.getUser();
+        }
+
         ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
-        model.addAttribute("moim", moim).addAttribute("questions", questions);
+
+        model.addAttribute("moim", moim)
+                .addAttribute("questions", questions)
+                .addAttribute("loginUser", loginUser);
+
         return "pages/moim/detail";
     }
+
 
 
     //reviewList뽑기
@@ -182,8 +194,14 @@ public class MoimController {
     @PostMapping("question")
     public String moimquestion(@ModelAttribute Question question, @AuthenticationPrincipal UserPrincipal userPrincipal) {
         User loginUser = userPrincipal.getUser();
-        question.setUserId(loginUser.getUserId());
-        int q = moimService.moimquestion(question);
+        question.setQuestionUserId(loginUser.getUserId());
+        int result = moimService.moimquestion(question);
+        return "redirect:/moim/" + question.getMoimId();
+    }
+
+    @PostMapping("answer")
+    public String moimanswer(@ModelAttribute Question question, @ModelAttribute Answer answer, @AuthenticationPrincipal UserPrincipal userPrincipal) {
+        int result = moimService.moimanswer(question);
         return "redirect:/moim/" + question.getMoimId();
     }
 

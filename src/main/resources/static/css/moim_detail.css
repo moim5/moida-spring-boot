@@ -720,70 +720,177 @@ text-overflow: unset;
 
 
 /* 공통 컨테이너 */
-.question-container {
-  max-width: 800px;
+.question-container-wide {
+  max-width: 900px;   /* 좀 더 넓게 */
   margin: 0 auto;
+  padding: 0 15px;    /* 좌우 여백 추가 */
 }
 
 /* 제목 스타일 */
 .section-title,
 .section-subtitle {
-  font-weight: 600;
+  font-weight: 700;
   color: #333;
   margin-bottom: 1rem;
+  font-size: 1.4rem;
 }
 
 /* 카드 스타일 */
 .question-form,
 .question-result {
   background-color: #fff;
-  border-radius: 12px;
-  padding: 2rem;
-  border: 1px solid #f0f0f0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
-/* 텍스트 입력 영역 */
+/* textarea 공통 스타일 */
 textarea.form-control {
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+  border-radius: 12px;
+  border: 1.5px solid #ddd;
+  padding: 1rem 1.2rem;
+  font-size: 1.1rem;
+  resize: vertical;
+  min-height: 100px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 textarea.form-control:focus {
   border-color: #ffa600;
   outline: none;
-  box-shadow: 0 0 0 0.15rem rgba(255, 166, 0, 0.25);
+  box-shadow: 0 0 6px rgba(255, 166, 0, 0.4);
 }
 
-/* 제출 버튼 */
+/* 문의 등록 버튼 */
 .btn-submit {
   background-color: #ffa600;
   border: none;
   color: #fff;
-  padding: 0.6rem 1.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 999px;
-  transition: background-color 0.3s;
+  padding: 0.7rem 2rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-  background-color: #ff9600;
+  background-color: #ff8f00;
   cursor: pointer;
+}
+
+/* 답변 입력 폼 */
+.answer-form {
+  margin-top: 1.5rem;
+  padding: 1.5rem 2rem;
+  background-color: #fff9e6;
+  border: 1.5px solid #ffdb8b;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(255, 166, 0, 0.15);
+}
+
+/* 답변 제출 버튼 */
+.btn-answer {
+  background-color: #00b894;
+  border: none;
+  color: #fff;
+  padding: 0.55rem 1.7rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-answer:hover {
+  background-color: #019875;
+  cursor: pointer;
+}
+
+.answer-result {
+  background-color: #fefcf8;
+  border-left: 5px solid #ffa600;
+  border-radius: 12px;
+  padding: 0.4rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: #444;
+  white-space: pre-wrap;
+  max-width: 620px;
+  word-break: break-word;
+
+  /* 내용 정렬 및 내부 폭 제한 */
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;  /* 항목들 간 간격 */
+}
+
+/* 답변 제목과 작성자 ID 부분 스타일 */
+.answer-result h6.section-subtitle {
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+  max-width: 300px;   /* 너무 넓게 퍼지는 걸 막음 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 작성자 ID 텍스트 스타일 */
+.answer-result p.text-muted {
+  font-weight: 600;
+  font-size: 0.85rem;
+  max-width: 300px;   /* 적당히 좁힘 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 답변 내용 */
+.answer-result p.mb-0 {
+  max-width: 620px;   /* 답변 본문은 폼 너비에 맞춤 */
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 0;
+}
+
+
+
+/* 문의 유저 아이디, 답변 작성자 아이디 강조 */
+.question-result p.text-muted {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 /* 모바일 대응 */
 @media screen and (max-width: 768px) {
-  .question-form,
-  .question-result {
-    padding: 1.5rem;
+  .question-container-wide {
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
-  .btn-submit {
+  .question-form,
+  .question-result,
+  .answer-form {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .btn-submit,
+  .btn-answer {
     width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  textarea.form-control {
+    font-size: 1rem;
+    min-height: 90px;
   }
 }
+
+
 

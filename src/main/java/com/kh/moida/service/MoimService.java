@@ -5,6 +5,7 @@ import com.kh.moida.mapper.FileMapper;
 import com.kh.moida.model.File;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
+import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
 import org.springframework.stereotype.Service;
 
@@ -169,5 +170,9 @@ public class MoimService {
 
     public ArrayList<Question> findQuestion(int moimId) {
         return moimMapper.findQuestion(moimId);
+    }
+
+    public int moimanswer(Question question) {
+        return moimMapper.moimanswer(question);
     }
 }

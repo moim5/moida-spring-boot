@@ -268,15 +268,38 @@
         VALUES (
         SEQ_QUESTION_ID.NEXTVAL,
         #{quesContent},
-        #{userId},
+        #{questionUserId},
         #{moimId}
         )
     </insert>
 
-    <select id="findQuestion" parameterType="com.kh.moida.notice.Question">
-        select *
-        from question
-        where moim_id = #{moinId}
+    <select id="findQuestion" resultType="com.kh.moida.notice.Question" parameterType="int">
+        SELECT
+        q.QUES_ID AS quesId,
+        q.QUES_CONTENT AS quesContent,
+        q.USER_ID AS questionUserId,
+        q.MOIM_ID AS moimId,
+
+        a.ANS_ID AS ansId,
+        a.ANS_CONTENT AS ansContent,
+        a.ANS_DATE AS ansDate,
+        a.USER_ID AS answerUserId
+
+        FROM Question q
+        LEFT JOIN Answer a ON q.QUES_ID = a.QUES_ID
+        WHERE q.MOIM_ID = #{moimId}
+        ORDER BY q.QUES_ID DESC
     </select>
+
+    <insert id="moimanswer" parameterType="com.kh.moida.notice.Question">
+        INSERT INTO answer
+        VALUES (
+        SEQ_ANSWER_ID.NEXTVAL,
+        #{ansContent},
+        SYSDATE,
+        #{quesId},
+        #{answerUserId}
+        )
+    </insert>
 
 </mapper>
