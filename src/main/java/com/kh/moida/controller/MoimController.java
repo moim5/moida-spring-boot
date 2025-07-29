@@ -42,7 +42,7 @@ public class MoimController {
     ) {
         try {
             moimService.insertMoim(loginUser.getUser(), moim, moimImage);
-            return "redirect:/moim/detail";
+            return "redirect:/moim";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "pages/moim/create";
@@ -56,7 +56,7 @@ public class MoimController {
     		@AuthenticationPrincipal UserPrincipal loginUser,
     		Model model) {
     	moimService.moimUpdate(moim, moimImage, loginUser.getUser());
-    	return "pages/moim/modifyMoim";
+    	return "modifyMoim";
     }
     
     //모임 삭제
@@ -72,12 +72,13 @@ public class MoimController {
     	
     
 
-    @GetMapping("/joinMoim") //모임 참여
+    @GetMapping("/joinMoim/{moimId}") //모임 참여
     public String JoinMoim(
     		@AuthenticationPrincipal UserPrincipal loginUser,
-    		Moim moim) {
+    		Moim moim,
+    		@PathVariable("moimId") int moimId) {
     	moimService.moimJoinMoim(moim,loginUser.getUser());
-        return "pages/moim/JoinMoim";
+        return "joinMoim";
     }
     
     //모임 참가신청 취소
