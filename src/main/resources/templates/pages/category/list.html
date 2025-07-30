@@ -39,7 +39,9 @@
                 </div>
             </a>
         </div>
-        <div th:replace="fragments/pagination :: pagination(${page}, ${size}, ${totalCount}, ${baseUrl})"></div>
+        <div th:if="${!#lists.isEmpty(moimList)}">
+            <div th:replace="fragments/pagination :: pagination(${page}, ${size}, ${totalCount}, ${baseUrl})"></div>
+        </div>
     </div>
 </main>
 </body>
