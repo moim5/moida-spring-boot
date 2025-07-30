@@ -55,4 +55,8 @@ public interface MoimMapper {
     ArrayList<Question> findQuestion(int moimId);
 
     int moimanswer(Question question);
+
+	int cancelMoim(int moimId);
+
+	int reviveMoim(int moimId);
 }

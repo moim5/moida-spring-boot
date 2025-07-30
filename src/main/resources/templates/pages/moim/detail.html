@@ -88,44 +88,50 @@
 				<div class="container question-container-wide">
 
 					<!-- 문의 작성 폼 -->
-					<form class="question-form shadow-sm" action="/moim/question" method="POST">
+					<form class="question-form shadow-sm" action="/moim/question"
+						method="POST">
 						<h5 class="section-title">문의하기</h5>
 
 						<input type="hidden" name="moimId" th:value="${moim.moimId}" />
 
 						<div class="form-group mb-3">
 							<label for="questionContent" class="form-label">문의 내용</label>
-							<textarea id="questionContent" name="quesContent" class="form-control" rows="4"
-									  placeholder="문의 내용을 입력하세요..." style="width: 620px; height: 82px;"></textarea>
+							<textarea id="questionContent" name="quesContent"
+								class="form-control" rows="4" placeholder="문의 내용을 입력하세요..."
+								style="width: 620px; height: 82px;"></textarea>
 						</div>
 
 						<div class="text-end">
 							<div th:if="${loginUser == null}">
-								<p>문의하려면 <a href="/login">로그인</a> 해주세요.</p>
+								<p>
+									문의하려면 <a href="/login">로그인</a> 해주세요.
+								</p>
 							</div>
-							<button type="submit" class="btn btn-submit" th:if="${loginUser != null}">문의 등록</button>
+							<button type="submit" class="btn btn-submit"
+								th:if="${loginUser != null}">문의 등록</button>
 						</div>
 					</form>
 
 					<!-- 문의 완료 카드 -->
-					<div th:each="question : ${questions}" class="question-result shadow-sm mt-4">
+					<div th:each="question : ${questions}"
+						class="question-result shadow-sm mt-4">
 						<h6 class="section-subtitle">문의 내용</h6>
-						<p class="text-muted mb-1">문의 유저ID: <span th:text="${question.questionUserId}"></span></p>
+						<p class="text-muted mb-1">
+							문의 유저ID: <span th:text="${question.questionUserId}"></span>
+						</p>
 						<p class="mb-3" th:text="${question.quesContent}"></p>
 
 						<!-- 호스트이고 + 답변이 없을 경우에만 답변 입력폼 표시 -->
-						<div th:if="${loginUser != null and moim.userId == loginUser.userId and question.ansContent == null}">
-						<form class="answer-form" action="/moim/answer" method="POST">
+						<div
+							th:if="${loginUser != null and moim.userId == loginUser.userId and question.ansContent == null}">
+							<form class="answer-form" action="/moim/answer" method="POST">
 								<input type="hidden" name="quesId" th:value="${question.quesId}" />
-								<input type="hidden" name="answerUserId" th:value="${loginUser.userId}" />
-								<input type="hidden" name="moimId" th:value="${moim.moimId}" />
+								<input type="hidden" name="answerUserId"
+									th:value="${loginUser.userId}" /> <input type="hidden"
+									name="moimId" th:value="${moim.moimId}" />
 								<textarea th:id="'ansContent-' + ${question.quesId}"
-										  name="ansContent"
-										  class="form-control mb-2"
-										  rows="3"
-										  placeholder="답변을 입력하세요..."
-										  style="width: 620px; height: 82px;"
-								></textarea>
+									name="ansContent" class="form-control mb-2" rows="3"
+									placeholder="답변을 입력하세요..." style="width: 620px; height: 82px;"></textarea>
 								<div class="text-end">
 									<button type="submit" class="btn btn-answer">답변 등록</button>
 								</div>
@@ -133,9 +139,12 @@
 						</div>
 
 						<!-- 답변이 있을 경우 출력 -->
-						<div th:if="${question.ansContent} != null" class="answer-result mt-3 p-3">
+						<div th:if="${question.ansContent} != null"
+							class="answer-result mt-3 p-3">
 							<h6 class="section-subtitle">답변</h6>
-							<p class="text-muted mb-1">답변 작성자 ID: <span th:text="${question.answerUserId}"></span></p>
+							<p class="text-muted mb-1">
+								답변 작성자 ID: <span th:text="${question.answerUserId}"></span>
+							</p>
 							<p class="mb-0" th:text="${question.ansContent}"></p>
 						</div>
 					</div>
@@ -169,7 +178,7 @@
 					<hr class="moim-enroll-divider" />
 				</div>
 
-				<button id="applyBtn" type="button" class="enroll-button-pc">신청하기</button>
+				<button type="button" class="enroll-button-pc">신청하기</button>
 
 
 
@@ -198,26 +207,6 @@
 
 	<div class="backdrop" onclick="hideBackdrop()"></div>
 
-	<script>
-	//모임 참가신청 눌렀을때 모달창 띄우기
-		window.onload = () => {
-			const joinMoimModal = document.getElementById('applyBtn');
-			if(joinMoimModal != null){
-				joinMoimModal.addEventListener('click', () =>{
-					 document.getElementById('joinMoimModal').style.display = 'block';
-				});
-			}
-			
-			document.getElementById('joinMoimYes').addEventListener('click', ()=>{
-				form.action ='';
-				form.submit();
-			});
-			
-			document.getElementById('joinMoimNo').addEventListener('click', () => {
-			    document.getElementById('joinMoimModal').style.display = 'none';
-			});
-		}
-	</script>
 </body>
 
 </html>

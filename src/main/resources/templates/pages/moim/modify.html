@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/base}" lang="ko">
 <body>
 <main layout:fragment="content" class="main-wrapper main-wrapper-center">
-    <form class="moim-create-container" method="POST" th:action="@{/moim/modify}" enctype="multipart/form-data">
+    <form class="moim-create-container" method="POST" th:action="@{/moim/update}" enctype="multipart/form-data">
         <input type="hidden" name="moimId" th:value="${moim.moimId}"/>
         <div class="subTitle" style="margin-bottom: 30px;">모임 수정하기</div>
         <div class="moim-create-row">
