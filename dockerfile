@@ -2,7 +2,8 @@ FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
 COPY . .
 
-RUN ./gradlew build -x test && cp build/libs/*.jar app.jar
+RUN chmod +x ./gradlew
+RUN ./gradlew build -x test
 
 FROM eclipse-temurin:17-jre
 WORKDIR /app
