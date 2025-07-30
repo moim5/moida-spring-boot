@@ -5,7 +5,6 @@ import com.kh.moida.mapper.FileMapper;
 import com.kh.moida.model.File;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
-import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +45,8 @@ public class MoimService {
         moim.setFileConvert(newName);
         moim.setIsVisible("Y");
         moim.setIsActive("Y");
-        return moimMapper.insertMoim(moim);
+        moimMapper.insertMoim(moim);
+        return moim;
     }
 
     public List<Moim> findMoim(Long categoryId, int offset, int limit) {

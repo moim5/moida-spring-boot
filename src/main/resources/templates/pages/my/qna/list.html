@@ -1,0 +1,19 @@
+<!-- src/main/resources/templates/pages/home.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<body>
+<main layout:fragment="content" class="detail-container">
+    <div class="my-container">
+        <div class="my-left-container" th:replace="~{fragments/myLeft :: myLeft}"></div>
+        <div class="my-right-container">
+            <div class="subTitle" style="margin-bottom: 30px;">
+                나의 문의 목록
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

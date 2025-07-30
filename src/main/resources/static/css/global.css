@@ -514,6 +514,43 @@ footer .footer-container .footer-copyrightText {
     cursor: pointer;
 }
 
+.global-pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.global-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.global-pagination li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    font-size: 14px;
+    background-color: var(--light-color);
+}
+
+.global-pagination li a:hover {
+    background-color: var(--dark-color);
+}
+
+.global-pagination li.active a {
+    background-color: var(--main-color);
+    color: white;
+}
+
 @media (max-width: 48rem) {
     .moim-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -585,5 +622,18 @@ footer .footer-container .footer-copyrightText {
         text-align: center;
         margin-top: 20px;
         margin-bottom: 0;
+    }
+
+    .global-pagination li {
+        display: none;
+    }
+
+    .global-pagination li:first-child,
+    .global-pagination li:last-child,
+    .global-pagination li.active,
+    .global-pagination li.active ~ li,
+    .global-pagination li:nth-child(2),
+    .global-pagination li:nth-last-child(2) {
+        display: block;
     }
 }

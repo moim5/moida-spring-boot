@@ -79,6 +79,7 @@ public class MyController {
         List<Moim> moimList = moimService.findManyHostedMoim(user.getUserId(), offset, size);
 
         model.addAttribute("moimList", moimList);
+        model.addAttribute("baseUrl", "/moim/hosted/list");
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("page", page);
         model.addAttribute("size", size);
@@ -100,11 +101,17 @@ public class MyController {
         List<Moim> moimList = moimService.findManyJoinedMoim(user.getUserId(), offset, size);
 
         model.addAttribute("moimList", moimList);
+        model.addAttribute("baseUrl", "/moim/joined/list");
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("page", page);
         model.addAttribute("size", size);
         model.addAttribute("type", "joined");
 
         return "pages/my/moim/list";
+    }
+
+    @GetMapping("/qna/list")
+    public String MyQnAList() {
+        return "pages/my/qna/list";
     }
 }

@@ -21,19 +21,19 @@ import java.util.List;
 public class CategoryController {
     private final CategoryService categoryService;
     private final MoimService moimService;
-    private static final int PAGE_SIZE = 30;
 
     @GetMapping({"/", "", "/{categoryId}"})
     public String categoryList(
             @PathVariable(name = "categoryId", required = false) Long categoryId,
             HttpServletRequest request,
             @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "12") int size,
             Model model
     ) {
-        int offset = (page - 1) * PAGE_SIZE;
+        int offset = (page - 1) * size;
 
         List<Category> categoryList = categoryService.getCategoryList();
-        List<Moim> moimList = moimService.findMoim(categoryId, offset, PAGE_SIZE);
+        List<Moim> moimList = moimService.findMoim(categoryId, offset, size);
 
         String selectedCategoryName = (categoryId == null)
                 ? "전체"
@@ -43,12 +43,13 @@ public class CategoryController {
                 .findFirst()
                 .orElse("알 수 없음");
         int totalCount = moimService.countMoim(categoryId);
-        int totalPages = (int) Math.ceil((double) totalCount / PAGE_SIZE);
 
         model.addAttribute("selectedCategoryName", selectedCategoryName);
+        model.addAttribute("baseUrl", "/category" + (categoryId != null ? "/" + categoryId : ""));
         model.addAttribute("moimList", moimList);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("currentPage", page);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
         model.addAttribute("requestURI", request.getRequestURI());
         return "pages/category/list";
     }

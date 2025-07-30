@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +15,7 @@ import com.kh.moida.model.User;
 public interface MoimMapper {
     void updateMoimCategoryToDefault(Long categoryId);
 
-    Moim insertMoim(Moim moim);
+    int insertMoim(Moim moim);
 
     List<Moim> findMoims(Map<String, Object> params);
 

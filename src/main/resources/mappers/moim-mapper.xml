@@ -4,8 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
     <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
+        <selectKey resultType="int" keyProperty="moimId" order="BEFORE">
+            SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
+        </selectKey>
+
         INSERT INTO MOIM VALUES (
-            SEQ_MOIM_ID.NEXTVAL,
+            #{moimId},
             #{moimTitle},
             #{moimType},
             #{moimContent},
@@ -25,7 +29,7 @@
             #{fileId}
         )
     </insert>
-    
+
     <update id="updateMoimCategoryToDefault">
         UPDATE
             MOIM
@@ -34,7 +38,7 @@
         WHERE
             CATEGORY_ID = #{categoryId}
     </update>
-    
+
     <select id="findMoim" resultType="com.kh.moida.model.Moim">
         SELECT
             M.*,
@@ -53,8 +57,8 @@
         ORDER BY moim_id DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
-    
-    
+
+
     <select id="countMoim" resultType="java.lang.Integer">
         SELECT
             COUNT(*)
@@ -68,8 +72,8 @@
             </if>
         </where>
     </select>
-    
-    
+
+
     <select id="findMoims" parameterType="map" resultType="com.kh.moida.model.Moim">
         SELECT
             *
@@ -100,8 +104,8 @@
         WHERE
             rn &gt;= #{startRow}
     </select>
-    
-    
+
+
     <select id="findMoimById" resultType="com.kh.moida.model.Moim">
         SELECT
             M.MOIM_ID,
@@ -148,7 +152,7 @@
 				CATEGORY_ID = #{categoryId},
 		WHERE MOIM_ID = #{moimId}
     </update>
-    
+
     <update id="updateMoimWithFile">
     	UPDATE MOIM
 			SET
@@ -167,17 +171,17 @@
                 FILE_ID = #{fileId}
 		WHERE MOIM_ID = #{moimId}
 	</update>
-	
+
     <!-- 관리자 모임삭제 -->
     <update id="deleteMoimList">
     	update moim set moim_status ='N'
     	where moim_id = #{moimId}
     </update>
-    
+
     <!-- 모임 리스트 출력 -->
     <!-- 1.리뷰리스트 불러오기-->
 	 <select id="getReviewList" parameterType="com.kh.moida.model.Review">
-	 	select 
+	 	select
 		 	r.review_id, r.review_date, r.review_title, r.review_content, r.review_rate, u.username, u.name,
 		 	f.file_convert as review_image
 	 	from review r
@@ -189,7 +193,7 @@
 	 	order by
 	 		r.review_date desc
 	 </select>
-	    
+
 	<!-- 모임 참여 -->
     <update id="moimJoinMoim">
     	UPDATE MOIM_ATTENDEE
@@ -198,7 +202,7 @@
     		MOIM_ID = #{moim_id}
     		ATT_DATE = SYSDATE
     </update>
-    
+
     <!-- 모임 참여 취소 -->
     <delete id="joinMoimCancel">
     	DELETE FROM MOIM_ATTENDEE
@@ -210,7 +214,7 @@
     	SET IS_VISIBLE = 'N'
     	WHERE MOIM_ID = #{moim_id}
     </update>
-    
+
     <select id="countHostedMoimCount" resultType="java.lang.Integer">
         SELECT
             COUNT(*)

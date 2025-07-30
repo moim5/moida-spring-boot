@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="global-pagination-wrapper" th:fragment="pagination(page, size, totalCount, baseUrl)">
+    <ul class="global-pagination">
+        <!-- 이전 페이지 -->
+        <li th:if="${page > 1}">
+            <a th:href="@{${baseUrl}(page=${page - 1}, size=${size})}">
+              <i class="ti ti-chevron-left-pipe"></i>
+            </a>
+        </li>
+
+        <!-- 페이지 번호 버튼 -->
+        <li th:each="i : ${#numbers.sequence(1, T(java.lang.Math).max(1, T(java.lang.Math).ceil((totalCount * 1.0) / size).intValue()))}"
+            th:if="${i <= 2 or i == page or (i >= page - 1 and i <= page + 1) or i > T(java.lang.Math).ceil((totalCount * 1.0) / size).intValue() - 1}"
+            th:classappend="${i == page} ? 'active' : ''">
+            <a th:href="@{${baseUrl}(page=${i}, size=${size})}" th:text="${i}"></a>
+        </li>
+
+        <!-- 다음 페이지 -->
+        <li th:if="${page < T(java.lang.Math).ceil(totalCount / size).intValue()}">
+            <a th:href="@{${baseUrl}(page=${page + 1}, size=${size})}">
+              <i class="ti ti-chevron-right-pipe"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
