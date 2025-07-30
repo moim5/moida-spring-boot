@@ -96,10 +96,14 @@
 
 						<div class="form-group mb-3">
 							<label for="questionContent" class="form-label">문의 내용</label>
+
+							<hr>
+
 							<textarea id="questionContent" name="quesContent"
 								class="form-control" rows="4" placeholder="문의 내용을 입력하세요..."
 								style="width: 620px; height: 82px;"></textarea>
 						</div>
+
 
 						<div class="text-end">
 							<div th:if="${loginUser == null}">
@@ -119,7 +123,9 @@
 						<p class="text-muted mb-1">
 							문의 유저ID: <span th:text="${question.questionUserId}"></span>
 						</p>
-						<p class="mb-3" th:text="${question.quesContent}"></p>
+						<p class="mb-4" th:text="${question.quesContent}"></p>
+
+						<br>
 
 						<!-- 호스트이고 + 답변이 없을 경우에만 답변 입력폼 표시 -->
 						<div
