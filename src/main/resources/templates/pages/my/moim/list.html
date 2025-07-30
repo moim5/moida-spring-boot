@@ -29,10 +29,26 @@
                         <div class="my-moim-attendee" th:text="${'모집인원 : ' + m.moimAttendeeCount + '명'}"></div>
                     </div>
                     <div class="my-moim-func">
-                        <a th:if="${type == 'hosted'}" class="modify-button"
-                           th:href="@{/moim/modify/{moimId}(moimId=${m.moimId})}">수정</a>
-                        <a th:if="${type == 'hosted'}" class="cancel-button" href="/moim/">모집중단</a>
-                        <a th:if="${type == 'joined'}" class="cancel-button" href="/moim">참가취소</a></div>
+                        <a th:if="${type == 'hosted'}"
+                           th:href="@{/moim/modify/{moimId}(moimId=${m.moimId})}">
+                            <button class="modify-button"
+                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                수정
+                            </button>
+                        </a>
+                        <a th:if="${type == 'hosted'}" class="cancel-button" href="/moim/">
+                            <button class="cancel-button"
+                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                모집중단
+                            </button>
+                        </a>
+                        <a th:if="${type == 'joined'}" class="cancel-button" href="/moim">
+                            <button class="cancel-button"
+                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                참가취소
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div th:if="${!#lists.isEmpty(moimList)}">

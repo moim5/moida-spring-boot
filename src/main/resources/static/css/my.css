@@ -142,7 +142,7 @@
     gap: 10px;
 }
 
-.my-right-container .my-moim-item .my-moim-func > a {
+.my-right-container .my-moim-item .my-moim-func button {
     width: 100%;
     font-size: 0.9rem;
     border-radius: 8px;
@@ -154,10 +154,16 @@
     text-align: center;
     box-sizing: border-box;
 }
-.my-right-container .my-moim-item .my-moim-func > .modify-button {
+
+.my-right-container .my-moim-item .my-moim-func button.modify-button {
     background-color: var(--main-color);
 }
 
-.my-right-container .my-moim-item .my-moim-func > .cancel-button {
+.my-right-container .my-moim-item .my-moim-func button.cancel-button {
     background-color: red;
+}
+
+.my-right-container .my-moim-item .my-moim-func button:disabled {
+    background-color: #aaaaaa;
+    cursor: not-allowed;
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -84,7 +85,7 @@ public class MyController {
         model.addAttribute("page", page);
         model.addAttribute("size", size);
         model.addAttribute("type", "hosted");
-
+        model.addAttribute("now", new Date());
         return "pages/my/moim/list";
     }
 
@@ -106,6 +107,7 @@ public class MyController {
         model.addAttribute("page", page);
         model.addAttribute("size", size);
         model.addAttribute("type", "joined");
+        model.addAttribute("now", new Date());
 
         return "pages/my/moim/list";
     }
