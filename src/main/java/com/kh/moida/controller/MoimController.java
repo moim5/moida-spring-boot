@@ -1,22 +1,18 @@
 package com.kh.moida.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import com.kh.moida.dto.MoimAttendeeWithUser;
 import com.kh.moida.model.User;
 import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.moida.model.Moim;
@@ -98,46 +94,44 @@ public class MoimController {
             return "redirect:/moim/modify/" + moim.getMoimId();
         }
     }
-// 모임 중단
+
+    // 모임 중단
     @PostMapping("/cancelMoim/{moimId}")
     public String CancelMoim(
-    		@PathVariable("moimId") int moimId,
-    		@AuthenticationPrincipal UserPrincipal loginUser
-    		) {
-    	int result = moimService.cancelMoim(moimId, loginUser.getUser());
-    	if(result>0) {
-    		return "true";
-    	}
-    	return "false";
+            @PathVariable("moimId") int moimId,
+            @AuthenticationPrincipal UserPrincipal loginUser
+    ) {
+        int result = moimService.cancelMoim(moimId, loginUser.getUser());
+        if (result > 0) {
+            return "true";
+        }
+        return "false";
     }
-// 모임 중단 취소 ( 재 활성화 ? )
+
+    // 모임 중단 취소 ( 재 활성화 ? )
     @PostMapping("/reviveMoim/{moimId}")
     public String ReviveMoim(
-    		@PathVariable("moimId") int moimId,
-    		@AuthenticationPrincipal UserPrincipal loginUser
-    		) {
-    	int result = moimService.reviveMoim(moimId, loginUser.getUser());
-    	if(result>0) {
-    		return "true";
-    	}
-    	return "false";
+            @PathVariable("moimId") int moimId,
+            @AuthenticationPrincipal UserPrincipal loginUser
+    ) {
+        int result = moimService.reviveMoim(moimId, loginUser.getUser());
+        if (result > 0) {
+            return "true";
+        }
+        return "false";
     }
-    
-   
-    
-    
 
 
     @PostMapping("/joinMoim/{moimId}") //모임 참여
     public String JoinMoim(
-    		@AuthenticationPrincipal UserPrincipal loginUser,
-    		@PathVariable("moimId") int moimId
-   ) {
-    	int result = moimService.moimJoinMoim(loginUser.getUser(),moimId);
-    	if (result > 0) {
-    		return "true";
-    	}
-    	return "false";
+            @AuthenticationPrincipal UserPrincipal loginUser,
+            @PathVariable("moimId") int moimId
+    ) {
+        int result = moimService.moimJoinMoim(loginUser.getUser(), moimId);
+        if (result > 0) {
+            return "true";
+        }
+        return "false";
     }
 
     //모임 참가신청 취소
@@ -148,8 +142,8 @@ public class MoimController {
             @PathVariable("moimId") int moimId
     ) {
         int result = moimService.joinMoimCancel(moimId, loginUser.getUser());
-        if(result>0) {
-        	return "true";
+        if (result > 0) {
+            return "true";
         }
         return "false";
     }
@@ -182,7 +176,7 @@ public class MoimController {
     ) {
         Moim moim = moimService.findById(moimId);
         User loginUser = null;
-        if(userPrincipal != null) {
+        if (userPrincipal != null) {
             loginUser = userPrincipal.getUser();
         }
 
@@ -196,7 +190,6 @@ public class MoimController {
     }
 
 
-
     //reviewList뽑기
     @GetMapping("/moim/moim_detail/{moimId}")
     public String reviewList(@PathVariable int moimId, Model model) {
@@ -206,7 +199,6 @@ public class MoimController {
 
         return "detail";
     }
-
 
 
     // 문의 등록
@@ -224,5 +216,12 @@ public class MoimController {
         return "redirect:/moim/" + question.getMoimId();
     }
 
-
+    @PostMapping("/attendee/list")
+    @ResponseBody
+    public List<MoimAttendeeWithUser> attendeeList(
+            @AuthenticationPrincipal(expression = "user") User loginUser,
+            @RequestParam("moimId") int moimId
+    ) {
+        return moimService.attendeeList(moimId, loginUser);
+    }
 }

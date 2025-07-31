@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.kh.moida.dto.MoimAttendeeWithUser;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +24,7 @@ import com.kh.moida.model.User;
 import com.kh.moida.notice.Question;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +33,7 @@ public class MoimService {
     private final FileMapper fileMapper;
     private final FileUploadService fileUploadService;
     private final MoimAttendeeMapper maMapper;
+    private final MoimAttendeeMapper moimAttendeeMapper;
 
     public Moim insertMoim(User loginUser, Moim moim, MultipartFile moimImage) throws IOException {
         String originalName = moimImage.getOriginalFilename();
@@ -121,15 +125,15 @@ public class MoimService {
         // user 에서 user_id 가져오기
 //    	moimId.getUserId();
 //        moimMapper.moimJoinMoim(user, moimId);
-    	Map<String, Object> params = new HashMap<>();
-    	params.put("userId", user.getUserId());
-    	params.put("moimId", moimId);
-    	int count = maMapper.searchMoimAttendee(params);
-    	if(count > 0) {
-    		return 0;
-    	}
-    	
-    	return maMapper.joinMoim(params);
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", user.getUserId());
+        params.put("moimId", moimId);
+        int count = maMapper.searchMoimAttendee(params);
+        if (count > 0) {
+            return 0;
+        }
+
+        return maMapper.joinMoim(params);
 
     }
 
@@ -169,15 +173,15 @@ public class MoimService {
 
     public int joinMoimCancel(int moimId, User user) {
         // 참여 신청 취소하고 싶은 moim_id
-    	Map<String, Object> params = new HashMap<>();
-    	params.put("moimId", moimId);
-    	params.put("userId", user.getUserId());
-    	int count = maMapper.searchMoimAttendee(params);
-    	if(count==0) {
-    		return 0;
-    	}
-    	return maMapper.joinMoimCancel(params);
-    	
+        Map<String, Object> params = new HashMap<>();
+        params.put("moimId", moimId);
+        params.put("userId", user.getUserId());
+        int count = maMapper.searchMoimAttendee(params);
+        if (count == 0) {
+            return 0;
+        }
+        return maMapper.joinMoimCancel(params);
+
 
     }
 
@@ -198,21 +202,29 @@ public class MoimService {
         return moimMapper.moimanswer(question);
     }
 
-	public int cancelMoim(int moimId, User user) {
-		Moim moim = moimMapper.findMoimById(moimId);
-		if(moim.getUserId()!=user.getUserId()) {
-			return 0;
-		}
-		return moimMapper.cancelMoim(moimId);
-		
-	}
+    public int cancelMoim(int moimId, User user) {
+        Moim moim = moimMapper.findMoimById(moimId);
+        if (moim.getUserId() != user.getUserId()) {
+            return 0;
+        }
+        return moimMapper.cancelMoim(moimId);
 
-	public int reviveMoim(int moimId, User user) {
-		Moim moim = moimMapper.findMoimById(moimId);
-		if(moim.getUserId()!=user.getUserId()) {
-			//모임 호스트 아이디랑 로그인유저 아이디랑 같지 않으면
-			return 0;
-		}
-		return moimMapper.reviveMoim(moimId);
-	}
+    }
+
+    public int reviveMoim(int moimId, User user) {
+        Moim moim = moimMapper.findMoimById(moimId);
+        if (moim.getUserId() != user.getUserId()) {
+            //모임 호스트 아이디랑 로그인유저 아이디랑 같지 않으면
+            return 0;
+        }
+        return moimMapper.reviveMoim(moimId);
+    }
+
+    public List<MoimAttendeeWithUser> attendeeList(int moimId, User loginUser) {
+        Moim moim = moimMapper.findMoimById(moimId);
+        if (!Objects.equals(moim.getUserId(), loginUser.getUserId())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        return moimAttendeeMapper.findMoimAttendee(moimId);
+    }
 }
