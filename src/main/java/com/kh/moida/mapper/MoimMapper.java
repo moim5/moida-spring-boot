@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.kh.moida.model.Moim;
+import com.kh.moida.model.Review;
 import com.kh.moida.model.User;
 
 @Mapper
@@ -59,4 +60,6 @@ public interface MoimMapper {
 	int cancelMoim(int moimId);
 
 	int reviveMoim(int moimId);
+
+	ArrayList<Review> getReviewList(int moimId);
 }

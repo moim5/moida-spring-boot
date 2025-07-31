@@ -4,6 +4,7 @@
 	layout:decorate="~{layouts/base}" lang="ko">
 <body>
 	<main class="main-wrapper" layout:fragment="content">
+	<div class="main-anchor-container">
 		<div class="main-container">
 			<!--모임메인사진-->
 			<img
@@ -36,7 +37,7 @@
 						src="https://media.bunjang.co.kr/product/283006372_1_1722771500_w360.jpg"
 						alt="후기1" class="profile-img">
 					<div class="review-text">
-						<div class="review-writer">[[${r.reviewId}]]</div>
+						<div class="review-writer">[[${r.username}]]</div>
 						<div class="user-star">
 							<i class="ti ti-carambola"></i> <i class="ti ti-carambola"></i> <i
 								class="ti ti-carambola"></i> <i class="ti ti-carambola"></i> <i
@@ -201,7 +202,7 @@
 			</div>
 		</div>
 
-
+	</div>
 	</main>
 	<div id="joinMoimModal" class="modal" style="display: none;">
 		<div class="modal-content">

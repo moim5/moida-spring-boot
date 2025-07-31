@@ -16,12 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class ReviewService {
 	private final ReviewMapper mapper;
 
-	
-	//review객체배열 
-	public ArrayList<Review> getReviewList(int moimId) {
-		return mapper.getReviewList(moimId);
-	}
-
 	//후기 등록(write, edit 등록 합침): if로 나누기
 	public int enrollReview(Review r, MultipartFile image) {
 		return mapper.enrollReview(r, image);

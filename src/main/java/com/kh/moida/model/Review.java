@@ -13,9 +13,9 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Review {
-	private int reviewId;
+	 private int reviewId;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date reviewDate;
+	 private Date reviewDate;
 	 private String reviewTitle;
 	 private String reviewContent;
 	 private int reviewRate;

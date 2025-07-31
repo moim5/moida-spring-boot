@@ -18,7 +18,14 @@
  	where reviewId = #{reviewId}
  </insert>
  
- 
+ <!-- 리뷰리스트 뽑기 -->
+ <select id="getReviewList">
+ 	select 
+ 	r.review_date,r.review_content, r.review_rate, u.username
+ 	from review r
+ 		join users u on user_id = r.user_id
+ 	where moim_id = #{moimId}
+ </select>
  
  
  

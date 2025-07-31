@@ -3,10 +3,6 @@ package com.kh.moida.controller;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import com.kh.moida.model.User;
-import com.kh.moida.notice.Answer;
-import com.kh.moida.notice.Question;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,15 +14,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
+import com.kh.moida.exception.MoimException;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.Review;
+import com.kh.moida.model.User;
 import com.kh.moida.model.UserPrincipal;
+import com.kh.moida.notice.Answer;
+import com.kh.moida.notice.Question;
 import com.kh.moida.service.MoimService;
 import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @RequestMapping("/moim")
@@ -154,10 +154,6 @@ public class MoimController {
         return "false";
     }
 
-//    @GetMapping("/modifyMoim")
-//    public String modifyMoim() {
-//        return "pages/moim/modifyMoim";
-//    }
 
     @GetMapping("/moimAdminPage")
     public String moimAdminPage() {
@@ -175,11 +171,8 @@ public class MoimController {
 
     //moim_detail이동
     @GetMapping("/{moimId}")
-    public String MoimDetail(
-            @AuthenticationPrincipal UserPrincipal userPrincipal,
-            @PathVariable("moimId") int moimId,
-            Model model
-    ) {
+    public String MoimDetail(@AuthenticationPrincipal UserPrincipal userPrincipal,
+            @PathVariable("moimId") int moimId, Model model) {
         Moim moim = moimService.findById(moimId);
         User loginUser = null;
         if(userPrincipal != null) {
@@ -196,17 +189,14 @@ public class MoimController {
     }
 
 
-
     //reviewList뽑기
     @GetMapping("/moim/moim_detail/{moimId}")
     public String reviewList(@PathVariable int moimId, Model model) {
-        // new ReviewService()는  위에 final로 의존성 해둠
         ArrayList<Review> reviewList = rService.getReviewList(moimId);
-        model.addAttribute("reviewList", reviewList);
 
-        return "detail";
+        	model.addAttribute("reviewList", reviewList);
+        	return "pages/moim/detail";
     }
-
 
 
     // 문의 등록

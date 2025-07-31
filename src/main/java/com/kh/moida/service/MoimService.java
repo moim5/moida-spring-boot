@@ -18,6 +18,7 @@ import com.kh.moida.mapper.MoimAttendeeMapper;
 import com.kh.moida.mapper.MoimMapper;
 import com.kh.moida.model.File;
 import com.kh.moida.model.Moim;
+import com.kh.moida.model.Review;
 import com.kh.moida.model.User;
 import com.kh.moida.notice.Question;
 
@@ -215,4 +216,15 @@ public class MoimService {
 		}
 		return moimMapper.reviveMoim(moimId);
 	}
+	
+	
+	//review객체배열 
+	public ArrayList<Review> getReviewList(int moimId) {
+		return moimMapper.getReviewList(moimId);
+	}
+	
+	
+	
+	
+	
 }
