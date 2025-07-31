@@ -3,318 +3,369 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
-    <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
-        <selectKey resultType="int" keyProperty="moimId" order="BEFORE">
-            SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
-        </selectKey>
+	<insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
+		<selectKey resultType="int" keyProperty="moimId"
+			order="BEFORE">
+			SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
+		</selectKey>
 
-        INSERT INTO MOIM VALUES (
-            #{moimId},
-            #{moimTitle},
-            #{moimType},
-            #{moimContent},
-            #{moimAttendeeCount},
-            #{moimZipCode},
-            #{moimAddress1},
-            #{moimAddress2},
-            #{moimDate},
-            #{moimMoney},
-            #{moimAvgRate},
-            #{moimHostIntro},
-            #{isVisible},
-            #{isActive},
-            #{moimCount},
-            #{userId},
-            #{categoryId},
-            #{fileId}
-        )
-    </insert>
+		INSERT INTO MOIM VALUES (
+		#{moimId},
+		#{moimTitle},
+		#{moimType},
+		#{moimContent},
+		#{moimAttendeeCount},
+		#{moimZipCode},
+		#{moimAddress1},
+		#{moimAddress2},
+		#{moimDate},
+		#{moimMoney},
+		#{moimAvgRate},
+		#{moimHostIntro},
+		#{isVisible},
+		#{isActive},
+		#{moimCount},
+		#{userId},
+		#{categoryId},
+		#{fileId}
+		)
+	</insert>
 
-    <update id="updateMoimCategoryToDefault">
-        UPDATE
-            MOIM
-        SET
-            CATEGORY_ID = 21
-        WHERE
-            CATEGORY_ID = #{categoryId}
-    </update>
+	<update id="updateMoimCategoryToDefault">
+		UPDATE
+		MOIM
+		SET
+		CATEGORY_ID = 21
+		WHERE
+		CATEGORY_ID = #{categoryId}
+	</update>
 
-    <select id="findMoim" resultType="com.kh.moida.model.Moim">
-        SELECT
-            M.*,
-            F.FILE_ORIGIN,
-            F.FILE_CONVERT
-        FROM
-            MOIM M
-        LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
-        <where>
-            M.IS_VISIBLE = 'Y'
-            AND M.IS_ACTIVE = 'Y'
-            <if test="categoryId != null">
-                AND M.CATEGORY_ID = #{categoryId}
-            </if>
-        </where>
-        ORDER BY moim_id DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
-
-
-    <select id="countMoim" resultType="java.lang.Integer">
-        SELECT
-            COUNT(*)
-        FROM
-            MOIM
-        <where>
-            IS_VISIBLE = 'Y'
-            AND IS_ACTIVE = 'Y'
-            <if test="categoryId != null">
-                AND CATEGORY_ID = #{categoryId}
-            </if>
-        </where>
-    </select>
+	<select id="findMoim" resultType="com.kh.moida.model.Moim">
+		SELECT
+		M.*,
+		F.FILE_ORIGIN,
+		F.FILE_CONVERT
+		FROM
+		MOIM M
+		LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+		<where>
+			M.IS_VISIBLE = 'Y'
+			AND M.IS_ACTIVE = 'Y'
+			<if test="categoryId != null">
+				AND M.CATEGORY_ID = #{categoryId}
+			</if>
+		</where>
+		ORDER BY moim_id DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
 
 
-    <select id="findMoims" parameterType="map" resultType="com.kh.moida.model.Moim">
-        SELECT
-            *
-        FROM (
-            SELECT
-                ROWNUM AS rn, moim_data.*
-            FROM (
-                SELECT
-                    M.*,
-                    F.FILE_ORIGIN AS fileOrigin,
-                    F.FILE_CONVERT AS fileConvert
-                FROM
-                    MOIM M
-                LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
-                <where>
-                    M.IS_VISIBLE = 'Y'
-                    AND M.IS_ACTIVE = 'Y'
-                    <if test="categoryId != null">
-                        AND M.CATEGORY_ID = #{categoryId}
-                    </if>
-                </where>
-                ORDER BY
-                    M.MOIM_ID DESC
-            ) moim_data
-            WHERE
-                ROWNUM &lt;= #{endRow}
-        )
-        WHERE
-            rn &gt;= #{startRow}
-    </select>
+	<select id="countMoim" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		MOIM
+		<where>
+			IS_VISIBLE = 'Y'
+			AND IS_ACTIVE = 'Y'
+			<if test="categoryId != null">
+				AND CATEGORY_ID = #{categoryId}
+			</if>
+		</where>
+	</select>
 
 
-    <select id="findMoimById" resultType="com.kh.moida.model.Moim">
-        SELECT
-            M.MOIM_ID,
-            M.MOIM_TYPE,
-            M.MOIM_TITLE,
-            M.MOIM_CONTENT,
-            M.MOIM_DATE,
-            M.MOIM_ATTENDEE_COUNT,
-            M.MOIM_MONEY,
-            M.MOIM_HOST_INTRO,
-            M.MOIM_ZIPCODE,
-            M.MOIM_ADDRESS1,
-            M.MOIM_ADDRESS2,
-            M.IS_VISIBLE,
-            M.IS_ACTIVE,
-            M.USER_ID,
-            C.CATEGORY_ID,
-            F.FILE_ORIGIN,
-            F.FILE_CONVERT
-        FROM
-            MOIM M
-        LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
-        LEFT JOIN CATEGORY C ON M.CATEGORY_ID = C.CATEGORY_ID
-        WHERE
-            M.MOIM_ID = #{moimId}
-            AND M.IS_VISIBLE = 'Y'
-            AND M.IS_ACTIVE = 'Y'
-    </select>
+	<select id="findMoims" parameterType="map"
+		resultType="com.kh.moida.model.Moim">
+		SELECT
+		*
+		FROM (
+		SELECT
+		ROWNUM AS rn, moim_data.*
+		FROM (
+		SELECT
+		M.*,
+		F.FILE_ORIGIN AS fileOrigin,
+		F.FILE_CONVERT AS fileConvert
+		FROM
+		MOIM M
+		LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+		<where>
+			M.IS_VISIBLE = 'Y'
+			AND M.IS_ACTIVE = 'Y'
+			<if test="categoryId != null">
+				AND M.CATEGORY_ID = #{categoryId}
+			</if>
+		</where>
+		ORDER BY
+		M.MOIM_ID DESC
+		) moim_data
+		WHERE
+		ROWNUM &lt;= #{endRow}
+		)
+		WHERE
+		rn &gt;= #{startRow}
+	</select>
 
-    <update id="updateMoimWithoutFile">
-    	UPDATE MOIM
-			SET
-				MOIM_TITLE = #{moimTitle},
-				MOIM_TYPE = #{moimType},
-				MOIM_CONTENT = #{moimContent},
-				MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
-				MOIM_ZIPCODE = #{moimZipCode},
-				MOIM_ADDRESS1 = #{moimAddress1},
-				MOIM_ADDRESS2 = #{moimAddress2},
-				MOIM_DATE = #{moimDate},
-				MOIM_MONEY = #{moimMoney},
-				MOIM_HOST_INTRO = #{moimHostIntro},
-				IS_ACTIVE = #{isActive},
-				CATEGORY_ID = #{categoryId},
-		WHERE MOIM_ID = #{moimId}
-    </update>
 
-    <update id="updateMoimWithFile">
-    	UPDATE MOIM
-			SET
-				MOIM_TITLE = #{moimTitle},
-				MOIM_TYPE = #{moimType},
-				MOIM_CONTENT = #{moimContent},
-				MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
-				MOIM_ZIPCODE = #{moimZipCode},
-				MOIM_ADDRESS1 = #{moimAddress1},
-				MOIM_ADDRESS2 = #{moimAddress2},
-				MOIM_DATE = #{moimDate},
-				MOIM_MONEY = #{moimMoney},
-				MOIM_HOST_INTRO = #{moimHostIntro},
-				IS_ACTIVE = #{isActive},
-				CATEGORY_ID = #{categoryId},
-                FILE_ID = #{fileId}
+	<select id="findMoimById" resultType="com.kh.moida.model.Moim">
+		SELECT
+		M.MOIM_ID,
+		M.MOIM_TYPE,
+		M.MOIM_TITLE,
+		M.MOIM_CONTENT,
+		M.MOIM_DATE,
+		M.MOIM_ATTENDEE_COUNT,
+		M.MOIM_MONEY,
+		M.MOIM_HOST_INTRO,
+		M.MOIM_ZIPCODE,
+		M.MOIM_ADDRESS1,
+		M.MOIM_ADDRESS2,
+		M.IS_VISIBLE,
+		M.IS_ACTIVE,
+		M.USER_ID,
+		C.CATEGORY_ID,
+		F.FILE_ORIGIN,
+		F.FILE_CONVERT
+		FROM
+		MOIM M
+		LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+		LEFT JOIN CATEGORY C ON M.CATEGORY_ID = C.CATEGORY_ID
+		WHERE
+		M.MOIM_ID = #{moimId}
+		AND M.IS_VISIBLE = 'Y'
+		AND M.IS_ACTIVE = 'Y'
+	</select>
+
+	<update id="updateMoimWithoutFile">
+		UPDATE MOIM
+		SET
+		MOIM_TITLE = #{moimTitle},
+		MOIM_TYPE = #{moimType},
+		MOIM_CONTENT = #{moimContent},
+		MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
+		MOIM_ZIPCODE = #{moimZipCode},
+		MOIM_ADDRESS1 = #{moimAddress1},
+		MOIM_ADDRESS2 = #{moimAddress2},
+		MOIM_DATE = #{moimDate},
+		MOIM_MONEY = #{moimMoney},
+		MOIM_HOST_INTRO = #{moimHostIntro},
+		IS_ACTIVE = #{isActive},
+		CATEGORY_ID = #{categoryId},
 		WHERE MOIM_ID = #{moimId}
 	</update>
 
-    <!-- 관리자 모임삭제 -->
-    <update id="deleteMoimList">
-    	update moim set moim_status ='N'
-    	where moim_id = #{moimId}
-    </update>
+	<update id="updateMoimWithFile">
+		UPDATE MOIM
+		SET
+		MOIM_TITLE = #{moimTitle},
+		MOIM_TYPE = #{moimType},
+		MOIM_CONTENT = #{moimContent},
+		MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
+		MOIM_ZIPCODE = #{moimZipCode},
+		MOIM_ADDRESS1 = #{moimAddress1},
+		MOIM_ADDRESS2 = #{moimAddress2},
+		MOIM_DATE = #{moimDate},
+		MOIM_MONEY = #{moimMoney},
+		MOIM_HOST_INTRO = #{moimHostIntro},
+		IS_ACTIVE = #{isActive},
+		CATEGORY_ID = #{categoryId},
+		FILE_ID = #{fileId}
+		WHERE MOIM_ID = #{moimId}
+	</update>
 
-    <!-- 모임 리스트 출력 -->
-    <!-- 1.리뷰리스트 불러오기-->
-	 <select id="getReviewList" parameterType="com.kh.moida.model.Review">
-	 	select
-		 	r.review_id, r.review_date, r.review_title, r.review_content, r.review_rate, u.username, u.name,
-		 	f.file_convert as review_image
-	 	from review r
-	 	join users u on r.user_id = u.user_id
-	 	left join
-	 		files f on r.file_id = f.file_id
-	 	where
-	 		r.moim_id = #{moimId}
-	 	order by
-	 		r.review_date desc
-	 </select>
+	<!-- 관리자 모임삭제 -->
+	<update id="deleteMoimList">
+		update moim set moim_status ='N'
+		where moim_id = #{moimId}
+	</update>
+
+	<!-- 모임 리스트 출력 -->
+	<!-- 1.리뷰리스트 불러오기 -->
+	<select id="getReviewList"
+		parameterType="com.kh.moida.model.Review">
+		select
+		r.review_id, r.review_date, r.review_title, r.review_content, r.review_rate,
+		u.username, u.name,
+		f.file_convert as review_image
+		from review r
+		join users u on r.user_id = u.user_id
+		left join
+		files f on r.file_id = f.file_id
+		where
+		r.moim_id = #{moimId}
+		order by
+		r.review_date desc
+	</select>
 
 	<!-- 모임 참여 -->
-    <update id="moimJoinMoim">
-    	UPDATE MOIM_ATTENDEE
-    	SET
-    		USER_ID = #{user_id}
-    		MOIM_ID = #{moim_id}
-    		ATT_DATE = SYSDATE
-    </update>
+	<update id="moimJoinMoim">
+		UPDATE MOIM_ATTENDEE
+		SET
+		USER_ID = #{user_id}
+		MOIM_ID = #{moim_id}
+		ATT_DATE = SYSDATE
+	</update>
 
-    <!-- 모임 삭제 -->
-    <update id="cancelMoim">
-    	UPDATE MOIM
-    	SET
-    		IS_ACTIVE = 'N'
-    	WHERE MOIM_ID = #{moimId}
-    </update>
-    <!-- 모임 삭제 취소 -->
-    <update id="reviveMoim">
-    	UPDATE MOIM
-    	SET
-    		IS_ACTIVE = 'Y'
-    	WHERE MOIM_ID = #{moimId}
-    </update>
-    
-    
-    <!-- 호스트의 모임 삭제 -->
-    <update id="deleteMoim">
-    	UPDATE MOIM
-    	SET IS_VISIBLE = 'N'
-    	WHERE MOIM_ID = #{moim_id}
-    </update>
+	<!-- 모임 삭제 -->
+	<update id="cancelMoim">
+		UPDATE MOIM
+		SET
+		IS_ACTIVE = 'N'
+		WHERE MOIM_ID = #{moimId}
+	</update>
+	<!-- 모임 삭제 취소 -->
+	<update id="reviveMoim">
+		UPDATE MOIM
+		SET
+		IS_ACTIVE = 'Y'
+		WHERE MOIM_ID = #{moimId}
+	</update>
 
-    <select id="countHostedMoimCount" resultType="java.lang.Integer">
-        SELECT
-            COUNT(*)
-        FROM
-            MOIM
-        WHERE
-            USER_ID = #{userId}
-    </select>
-    <select id="findHostedMoim" resultType="com.kh.moida.model.Moim">
-        SELECT *
-        FROM (
-            SELECT
-                M.*,
-                F.FILE_ORIGIN,
-                F.FILE_CONVERT,
-                ROW_NUMBER() OVER (ORDER BY MOIM_DATE DESC) AS rnum
-            FROM
-                MOIM M
-            LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
-            WHERE
-                USER_ID = #{userId}
-        )
-        WHERE
-            rnum BETWEEN #{startRow} AND #{endRow}
-    </select>
-    <select id="countJoinedMoim" resultType="java.lang.Integer">
-        SELECT COUNT(*)
-        FROM
-            MOIM_ATTENDEE
-        WHERE
-            USER_ID = #{userId}
-    </select>
-    <select id="findManyJoinedMoim" resultType="com.kh.moida.model.Moim">
-        SELECT
-            *
-        FROM (
-            SELECT
-                M.*,
-                F.FILE_ORIGIN,
-                F.FILE_CONVERT,
-                ROW_NUMBER() OVER (ORDER BY M.MOIM_DATE DESC) AS rnum
-            FROM
-                MOIM_ATTENDEE MA
-            JOIN MOIM M ON MA.MOIM_ID = M.MOIM_ID
-            LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
-            WHERE
-                MA.USER_ID = #{userId}
-            )
-        WHERE
-            rnum BETWEEN #{startRow} AND #{endRow}
-    </select>
 
-    <insert id="moimquestion" parameterType="com.kh.moida.notice.Question">
-        INSERT INTO question
-        VALUES (
-        SEQ_QUESTION_ID.NEXTVAL,
-        #{quesContent},
-        #{questionUserId},
-        #{moimId}
-        )
-    </insert>
+	<!-- 호스트의 모임 삭제 -->
+	<update id="deleteMoim">
+		UPDATE MOIM
+		SET IS_VISIBLE = 'N'
+		WHERE MOIM_ID = #{moim_id}
+	</update>
 
-    <select id="findQuestion" resultType="com.kh.moida.notice.Question" parameterType="int">
-        SELECT
-        q.QUES_ID AS quesId,
-        q.QUES_CONTENT AS quesContent,
-        q.USER_ID AS questionUserId,
-        q.MOIM_ID AS moimId,
+	<select id="countHostedMoimCount" resultType="java.lang.Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		MOIM
+		WHERE
+		USER_ID = #{userId}
+	</select>
+	<select id="findHostedMoim" resultType="com.kh.moida.model.Moim">
+		SELECT *
+		FROM (
+		SELECT
+		M.*,
+		F.FILE_ORIGIN,
+		F.FILE_CONVERT,
+		ROW_NUMBER() OVER (ORDER BY MOIM_DATE DESC) AS rnum
+		FROM
+		MOIM M
+		LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+		WHERE
+		USER_ID = #{userId}
+		)
+		WHERE
+		rnum BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="countJoinedMoim" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM
+		MOIM_ATTENDEE
+		WHERE
+		USER_ID = #{userId}
+	</select>
+	<select id="findManyJoinedMoim"
+		resultType="com.kh.moida.model.Moim">
+		SELECT
+		*
+		FROM (
+		SELECT
+		M.*,
+		F.FILE_ORIGIN,
+		F.FILE_CONVERT,
+		ROW_NUMBER() OVER (ORDER BY M.MOIM_DATE DESC) AS rnum
+		FROM
+		MOIM_ATTENDEE MA
+		JOIN MOIM M ON MA.MOIM_ID = M.MOIM_ID
+		LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+		WHERE
+		MA.USER_ID = #{userId}
+		)
+		WHERE
+		rnum BETWEEN #{startRow} AND #{endRow}
+	</select>
 
-        a.ANS_ID AS ansId,
-        a.ANS_CONTENT AS ansContent,
-        a.ANS_DATE AS ansDate,
-        a.USER_ID AS answerUserId
+	<insert id="moimquestion"
+		parameterType="com.kh.moida.notice.Question">
+		INSERT INTO question
+		VALUES (
+		SEQ_QUESTION_ID.NEXTVAL,
+		#{quesContent},
+		#{questionUserId},
+		#{moimId}
+		)
+	</insert>
 
-        FROM Question q
-        LEFT JOIN Answer a ON q.QUES_ID = a.QUES_ID
-        WHERE q.MOIM_ID = #{moimId}
-        ORDER BY q.QUES_ID DESC
-    </select>
+	<select id="findQuestion"
+		resultType="com.kh.moida.notice.Question" parameterType="int">
+		SELECT
+		q.QUES_ID AS quesId,
+		q.QUES_CONTENT AS quesContent,
+		q.USER_ID AS questionUserId,
+		q.MOIM_ID AS moimId,
 
-    <insert id="moimanswer" parameterType="com.kh.moida.notice.Question">
-        INSERT INTO answer
-        VALUES (
-        SEQ_ANSWER_ID.NEXTVAL,
-        #{ansContent},
-        SYSDATE,
-        #{quesId},
-        #{answerUserId}
-        )
-    </insert>
+		a.ANS_ID AS ansId,
+		a.ANS_CONTENT AS ansContent,
+		a.ANS_DATE AS ansDate,
+		a.USER_ID AS answerUserId
+
+		FROM Question q
+		LEFT JOIN Answer a ON q.QUES_ID = a.QUES_ID
+		WHERE q.MOIM_ID = #{moimId}
+		ORDER BY q.QUES_ID DESC
+	</select>
+
+	<insert id="moimanswer"
+		parameterType="com.kh.moida.notice.Question">
+		INSERT INTO answer
+		VALUES (
+		SEQ_ANSWER_ID.NEXTVAL,
+		#{ansContent},
+		SYSDATE,
+		#{quesId},
+		#{answerUserId}
+		)
+	</insert>
+	
+<!-- 내가 참여한 모임 리스트, -->
+<!-- 	<select id="ㅇㅇㅇ" resultType="com.kh.moida.model.Moim"> -->
+<!-- 		SELECT -->
+<!-- 			MOIM.MOIM_ID, -->
+<!-- 			MOIM.MOIM_TITLE, -->
+<!-- 			MOIM.MOIM_TYPE, -->
+<!-- 			MOIM.MOIM_CONTENT, -->
+<!-- 			MOIM.MOIM_ATTENDEE_COUNT, -->
+<!-- 			MOIM.MOIM_ZIPCODE, -->
+<!-- 			MOIM.MOIM_ADDRESS1, -->
+<!-- 			MOIM.MOIM_ADDRESS2, -->
+<!-- 			MOIM.MOIM_DATE, -->
+<!-- 			MOIM.MOIM_MONEY, -->
+<!-- 			MOIM.MOIM_AVG_RATE, -->
+<!-- 			MOIM.MOIM_HOST_INTRO, -->
+<!-- 			MOIM.IS_VISIBLE, -->
+<!-- 			MOIM.IS_ACTIVE, -->
+<!-- 			MOIM.MOIM_COUNT, -->
+<!-- 			MOIM.USER_ID, -->
+<!-- 			USERS.NAME, -->
+<!-- 			USERS.EMAIL, -->
+<!-- 			USERS.PHONE, -->
+<!-- 			FILES.FILE_ORIGIN -->
+<!-- 			FILES.FILE_CONVERT -->
+
+<!-- 		FROM -->
+<!-- 			MOIM_ATTENDEE -->
+<!-- 		JOIN -->
+<!-- 			MOIM ON MOIM_ATTENDEE.MOIM_ID = MOIM.MOIM_ID -->
+<!-- 		JOIN -->
+<!-- 			USERS ON MOIM.USER_ID = USERS.USER_ID -->
+<!-- 		LEFT JOIN -->
+<!-- 			FILES ON MOIM.FILE_ID = FILES.FILE_ID -->
+
+<!-- 		WHERE -->
+<!-- 			MOIM_ATTENDEE.USER_ID = #{userId} -->
+<!-- 			AND MOIM.IS_ACTIVE = 'Y' -->
+<!-- 			AND MOIM.IS_VISIBLE = 'Y' -->
+
+<!-- 		ORDER BY -->
+<!-- 			MOIM.MOIM_DATE DESC; -->
+<!-- 	</select> -->
 
 </mapper>
