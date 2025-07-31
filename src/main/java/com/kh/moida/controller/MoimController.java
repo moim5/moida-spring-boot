@@ -195,8 +195,8 @@ public class MoimController {
     public String reviewList(@PathVariable int moimId, Model model) {
         ArrayList<Review> reviewList = moimService.getReviewList(moimId);
 
-        	model.addAttribute("reviewList", reviewList);
-        	return "pages/moim/detail";
+        model.addAttribute("reviewList", reviewList);
+        return "pages/moim/detail";
     }
 
 

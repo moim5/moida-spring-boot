@@ -95,7 +95,7 @@ public class ReviewController {
     		@AuthenticationPrincipal(expression = "user") User loginUser,
             @ModelAttribute Review r,
             @RequestParam(value="imageUpload",required = false) MultipartFile image
-    ) {
+    ) throws IOException {
     	// 수정을 작업
     	// (있는지 여부 판별) + 쓴 사람과 등록한 사람을 비교
     	// 파일을 바꾸나? > 기존 파일을 삭제해야됨. 그리고서 파일을 업로드 하고, 그 이후 File DB를 쓰고, Review를 업데이트

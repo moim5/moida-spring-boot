@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.kh.moida.dto.MoimAttendeeWithUser;
+import com.kh.moida.mapper.ReviewMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,7 @@ public class MoimService {
     private final FileUploadService fileUploadService;
     private final MoimAttendeeMapper maMapper;
     private final MoimAttendeeMapper moimAttendeeMapper;
+    private final ReviewMapper reviewMapper;
 
     public Moim insertMoim(User loginUser, Moim moim, MultipartFile moimImage) throws IOException {
         String originalName = moimImage.getOriginalFilename();
@@ -222,7 +224,7 @@ public class MoimService {
 	
 	//review객체배열 
 	public ArrayList<Review> getReviewList(int moimId) {
-		return moimMapper.getReviewList(moimId);
+		return reviewMapper.getReviewList(moimId);
 	}
 	
 
