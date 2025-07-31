@@ -69,5 +69,41 @@ public class ReviewService {
 	        return mapper.writeReview(r);
 	}
 
+	public Review readReview(Long reviewId) {
+		return mapper.readReview(reviewId);
+	}
+
+	public int updateReview(Long userId, Review r, MultipartFile image) throws IOException {
+		// 1. 쓴 사람과 원래 있는 리뷰 작성자가 같은가
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("moimId", r.getMoimId());
+		map.put("userId", userId);
+		int result = mapper.existWriter(map);
+		if (result == 0) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+		}
+		
+		// 2. 파일이 있는가
+		if (image == null) {
+			mapper.updateReviewWithoutFile(r);
+		} else {
+			String originalName = image.getOriginalFilename();
+	        String ext = Objects.requireNonNull(originalName).substring(originalName.lastIndexOf(".") + 1);
+	        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
+	        String newName = "review/" + timestamp + "." + ext;
+
+	        fileUploadService.uploadFile(image, newName);
+
+	        File file = new File();
+	        file.setFileOrigin(originalName);
+	        file.setFileConvert(newName);
+	        fileMapper.insertFile(file);
+			
+	        r.setFileId(file.getFileId());
+	        mapper.updateReviewWithFile(r);
+		}
+		return 1;
+	}
+
 	
 }

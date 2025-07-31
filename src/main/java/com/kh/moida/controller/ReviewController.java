@@ -69,18 +69,44 @@ public class ReviewController {
     
 
     //후기 상세보기 read view이동
-    @GetMapping("/review/detail")
-    public String readReview() {
+    @GetMapping("/review/detail/{reviewId}")
+    public String readReview(
+    		@AuthenticationPrincipal(expression = "user") User loginUser,
+    		@PathVariable Long reviewId,
+    		Model model
+    ) {
+    	Review result = rService.readReview(reviewId);
+    	
+    	model.addAttribute("review", result);
+    	model.addAttribute("loginUser", loginUser);
         return "pages/my/review/review_read";
     }
-
+    
     //후기 수정 페이지 이동(리뷰아이디로 조회 후 데이터보내주기)
     @GetMapping("/review/edit/{reviewId}")
     public String editReview(@PathVariable int reviewId, Model model) {
     	Review r = rService.selectReview(reviewId);
     	model.addAttribute("review",r);
     	return "pages/my/review/review_edit";
-    }		
+    }	
+    
+    @PostMapping("/review/update")
+    public boolean updateReview(
+    		@AuthenticationPrincipal(expression = "user") User loginUser,
+            @ModelAttribute Review r,
+            @RequestParam(value="imageUpload",required = false) MultipartFile image
+    ) {
+    	// 수정을 작업
+    	// (있는지 여부 판별) + 쓴 사람과 등록한 사람을 비교
+    	// 파일을 바꾸나? > 기존 파일을 삭제해야됨. 그리고서 파일을 업로드 하고, 그 이후 File DB를 쓰고, Review를 업데이트
+    	int result = rService.updateReview(loginUser.getUserId(), r, image);
+    	if (result == 0) {
+    		return false;
+    	}
+    	return true;
+    }
+    
+	
     
     //후기 삭제하기(수정중)
     @PostMapping("/review/delete/{reviewId}")

@@ -36,6 +36,39 @@
  	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
  </insert>
  
+ <select id="readReview">
+ 	SELECT
+ 		R.*,
+ 		F.FILE_CONVERT,
+ 		F.FILE_ORIGIN
+ 	FROM REVIEW R
+ 	JOIN FILE F ON R.FILE_ID = F.FILE_ID
+ 	WHERE
+ 		R.REVIEW_ID = #{reviewId}
+ </select>
+ 
+ <update id="updateReviewWithoutFile">
+ 	UPDATE
+ 		REVIEW
+	SET
+		REVIEW_TITLE = #{reviewTitle},
+		REVIEW_CONTENT = #{reviewContent},
+		REVIEW_RATE = #{reviewRate}
+	WHERE
+		REVIEW_ID = #{reviewId}
+ </update>
+ <update id="updateReviewWithFile">
+  	UPDATE
+ 		REVIEW
+	SET
+		REVIEW_TITLE = #{reviewTitle},
+		REVIEW_CONTENT = #{reviewContent},
+		REVIEW_RATE = #{reviewRate},
+		FILE_ID = #{fileId}
+	WHERE
+		REVIEW_ID = #{reviewId}
+ </update>
+ 
  
  
  

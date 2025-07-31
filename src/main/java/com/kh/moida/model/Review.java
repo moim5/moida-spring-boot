@@ -22,4 +22,6 @@ public class Review {
 	 private Long moimId;
 	 private Long fileId;
 	 private Long userId;
+	 private String fileOrigin;
+	 private String fileConvert;
 }

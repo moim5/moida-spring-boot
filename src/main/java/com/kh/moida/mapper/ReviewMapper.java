@@ -22,4 +22,10 @@ public interface ReviewMapper {
 	//후기 등록 (체크)
 	public int existWriter(HashMap<String, Object> map);
 
+	public Review readReview(Long reviewId);
+
+	public void updateReviewWithoutFile(Review r);
+
+	public void updateReviewWithFile(Review r);
+
 }
