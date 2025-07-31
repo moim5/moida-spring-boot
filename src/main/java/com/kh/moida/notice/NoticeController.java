@@ -66,7 +66,7 @@ public class NoticeController {
         return "pages/notice/detail";
     }
 
-    @GetMapping("updForm")
+    @PostMapping("updForm")
     public String updateForm(
             @ModelAttribute Notice notice,
             @RequestParam("page") int page,

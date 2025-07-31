@@ -11,21 +11,30 @@
  	select count(*) from review where review_id = #{reviewId}
  </select>
  
- <!-- 2.리뷰 등록 -->
- <insert id="enrollReview">
- 	insert into review
- 	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}
- 	where reviewId = #{reviewId}
- </insert>
  
  <!-- 리뷰리스트 뽑기 -->
- <select id="getReviewList">
+ <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
  	select 
  	r.review_date,r.review_content, r.review_rate, u.username
  	from review r
  		join users u on user_id = r.user_id
  	where moim_id = #{moimId}
+ 	order by r.review_date desc
+ 	FETCH FIRST 3 ROWS ONLY
  </select>
+ 
+ <select id="existWriter" parameterType="map">
+ 	SELECT COUNT(*)
+ 	FROM REVIEW
+ 	WHERE
+ 		MOIM_ID = #{moimId} AND USER_ID = #{userId}
+ </select>
+ 
+ <!-- 후기등록 -->
+ <insert id="writeReview">
+ 	insert into review
+ 	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
+ </insert>
  
  
  

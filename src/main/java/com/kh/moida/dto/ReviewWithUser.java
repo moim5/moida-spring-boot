@@ -1,4 +1,5 @@
-package com.kh.moida.model;
+package com.kh.moida.dto;
+
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,14 +13,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Review {
+public class ReviewWithUser {
 	 private int reviewId;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
 	 private Date reviewDate;
 	 private String reviewTitle;
 	 private String reviewContent;
 	 private int reviewRate;
-	 private Long moimId;
-	 private Long fileId;
-	 private Long userId;
+	 
+	 private String username;
+	 
 }

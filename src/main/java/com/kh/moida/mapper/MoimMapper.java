@@ -1,6 +1,7 @@
 package com.kh.moida.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.kh.moida.model.Moim;
-import com.kh.moida.model.Review;
 import com.kh.moida.model.User;
 
 @Mapper
@@ -61,5 +61,5 @@ public interface MoimMapper {
 
 	int reviveMoim(int moimId);
 
-	ArrayList<Review> getReviewList(int moimId);
+	int existMoimAttendee(HashMap<String, Object> map);
 }

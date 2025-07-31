@@ -317,6 +317,8 @@
         )
     </insert>
     
-    
+    <select id="existMoimAttendee" parameterType="map">
+    	select count(*) from moim_attendee where moim_id=#{moimId} and user_id=#{userId}
+    </select>
 
 </mapper>

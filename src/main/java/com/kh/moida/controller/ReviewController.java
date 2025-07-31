@@ -1,7 +1,10 @@
 package com.kh.moida.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.kh.moida.model.Review;
+import com.kh.moida.model.User;
 import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,28 +28,45 @@ public class ReviewController {
 
 
     
-    //review_write view이동(이미 작성완료했을 경우 현재 페이지 리다이렉트)
+    //review_write view이동
     @GetMapping("/review/write/{moimid}")
-    public String writeReview(@RequestParam("moimId")int moimId) {
-        //int result = rService.countReview(moimId);   다 만들지 않았으면 주석처리로 해둘것 다음사람 에러떠서 사용못함
-//        if(result > 0) {
-//        	return "redirect:/my/review/list?msg=exist"; //할일 : 이미 후기를 작성하셨습니다 알럿창 띄우기(js)
-//        }
-    	return "pages/my/review/review_write";
+    public String writeReview(
+    		@RequestParam("moimId")Long moimId,
+    		@AuthenticationPrincipal(expression = "user") User loginUser
+    ) {
+    	int result = rService.checkReview(moimId, loginUser.getUserId());
+    	if (result == 0) {
+    		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+    	}
+		return "pages/my/review/review_write";
     }
 
-    //후기 write + edit-> enroll+update 합치기
-    @PostMapping({"/review/enroll","/review/update"})
+    @PostMapping("/review/enroll")
     public String insertReview(
+    		@AuthenticationPrincipal(expression = "user") User loginUser,
             @ModelAttribute Review r,
-            @RequestParam(value="imageUpload",required = false)
-            Model model, MultipartFile image) {
-        //파일을 .. 서버에 저장하고싶은데요.
-    	int result = rService.enrollReview(r,image);
+            @RequestParam(value="imageUpload",required = false) MultipartFile image
+    ) throws IOException {
+    	//1. 제약 걸기 : 리뷰작성자랑 모임 참여자랑 같은지 확인
+    	//2. 제약 걸기 : 리뷰가 이미 등록되어 있나?
+    	//2. 맞으면 등록 아니면 에러
+    	int result = rService.checkReview(r.getMoimId(), loginUser.getUserId());
+    	if (result == 0) {
+    		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+    	}
+    	int result2 = rService.existReview(r.getMoimId(), loginUser.getUserId());
+    	if (result2 == 0) {
+    		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+    	}
     	
-    	model.addAttribute("msg","후기 등록을 성공하였습니다.");
-    	return "redirect:/pages/my/review/review_read";
+    	
+    	int result3 = rService.writeReview(loginUser.getUserId(), r, image);
+    	if(result3 > 0) {
+    		return "redirect:/review/detail/" + r.getReviewId();
+    	}
+    	return "redirect:/review/write/" + r.getMoimId();
     }
+    
 
     //후기 상세보기 read view이동
     @GetMapping("/review/detail")
