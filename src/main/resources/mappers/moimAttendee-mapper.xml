@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+ <mapper namespace="com.kh.moida.mapper.MoimAttendeeMapper">
+ 	<select id="searchMoimAttendee">
+ 		SELECT count(*)
+ 		FROM MOIM_ATTENDEE
+ 		WHERE USER_ID = #{userId} and MOIM_ID = #{moimId}
+ 	</select>
+ 	
+ 	<insert id="joinMoim">
+ 		INSERT TO MOIM_ATTENDEE VALUES (
+ 		USER_ID = #{userId},
+ 		MOIM_ID = #{moimId},
+ 		ATT_DATE = SYSDATE
+ 		)
+ 	</insert>
+ 	
+ 	<delete id="joinMoimCancel">
+    	DELETE FROM MOIM_ATTENDEE
+    	WHERE MOIM_ID = #{moim_id} AND USER_ID = #{user_id}
+    </delete>
+ </mapper>

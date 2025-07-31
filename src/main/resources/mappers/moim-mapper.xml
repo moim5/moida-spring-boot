@@ -203,11 +203,22 @@
     		ATT_DATE = SYSDATE
     </update>
 
-    <!-- 모임 참여 취소 -->
-    <delete id="joinMoimCancel">
-    	DELETE FROM MOIM_ATTENDEE
-    	WHERE MOIM_ID = #{moim_id} AND USER_ID = #{user_id}
-    </delete>
+    <!-- 모임 삭제 -->
+    <update id="cancelMoim">
+    	UPDATE MOIM
+    	SET
+    		IS_ACTIVE = 'N'
+    	WHERE MOIM_ID = #{moimId}
+    </update>
+    <!-- 모임 삭제 취소 -->
+    <update id="reviveMoim">
+    	UPDATE MOIM
+    	SET
+    		IS_ACTIVE = 'Y'
+    	WHERE MOIM_ID = #{moimId}
+    </update>
+    
+    
     <!-- 호스트의 모임 삭제 -->
     <update id="deleteMoim">
     	UPDATE MOIM

@@ -70,8 +70,8 @@ public class MyController {
     @GetMapping("/moim/hosted/list")
     public String MyHostedMoimList(
             @AuthenticationPrincipal(expression = "user") User user,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
             Model model
     ) {
         int totalCount = moimService.countHostedMoim(user.getUserId());
@@ -92,8 +92,8 @@ public class MyController {
     @GetMapping("/moim/joined/list")
     public String MyJoinedMoimList(
             @AuthenticationPrincipal(expression = "user") User user,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size,
             Model model
     ) {
         int totalCount = moimService.countJoinedMoim(user.getUserId());

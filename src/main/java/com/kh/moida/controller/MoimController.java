@@ -78,7 +78,7 @@ public class MoimController {
     @PostMapping("/update")
     public String MoimUpdate(
             @ModelAttribute Moim moim,
-            MultipartFile moimImage,
+            @RequestParam("moimImage") MultipartFile moimImage,
             @AuthenticationPrincipal(expression = "user") User loginUser,
             Model model
     ) {
@@ -87,7 +87,7 @@ public class MoimController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        if (!Objects.equals(moim.getUserId(), loginUser.getUserId())) {
+        if (!Objects.equals(prevMoim.getUserId(), loginUser.getUserId())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         try {
@@ -98,37 +98,60 @@ public class MoimController {
             return "redirect:/moim/modify/" + moim.getMoimId();
         }
     }
-
-    //모임 삭제
-    @GetMapping("/deleteMoim")
-    public String MoimDelete(Moim moim,@RequestParam("moimId") int moimId) {
-        //is_visible N으로 업데이트
-        int result = moimService.deleteMoim(moimId);
-        if (result > 0) {
-
-        }
-        return "";
+// 모임 중단
+    @PostMapping("/cancelMoim/{moimId}")
+    public String CancelMoim(
+    		@PathVariable("moimId") int moimId,
+    		@AuthenticationPrincipal UserPrincipal loginUser
+    		) {
+    	int result = moimService.cancelMoim(moimId, loginUser.getUser());
+    	if(result>0) {
+    		return "true";
+    	}
+    	return "false";
     }
+// 모임 중단 취소 ( 재 활성화 ? )
+    @PostMapping("/reviveMoim/{moimId}")
+    public String ReviveMoim(
+    		@PathVariable("moimId") int moimId,
+    		@AuthenticationPrincipal UserPrincipal loginUser
+    		) {
+    	int result = moimService.reviveMoim(moimId, loginUser.getUser());
+    	if(result>0) {
+    		return "true";
+    	}
+    	return "false";
+    }
+    
+   
+    
+    
 
 
-    @GetMapping("/joinMoim/{moimId}") //모임 참여
+    @PostMapping("/joinMoim/{moimId}") //모임 참여
     public String JoinMoim(
     		@AuthenticationPrincipal UserPrincipal loginUser,
-    		Moim moim,
-    		@PathVariable("moimId") int moimId) {
-    	moimService.moimJoinMoim(moim,loginUser.getUser());
-        return "pages/moim/joinMoim";
+    		@PathVariable("moimId") int moimId
+   ) {
+    	int result = moimService.moimJoinMoim(loginUser.getUser(),moimId);
+    	if (result > 0) {
+    		return "true";
+    	}
+    	return "false";
     }
 
     //모임 참가신청 취소
     //참가 신청할 모임 id 
-    @GetMapping("/joinMoimCancel")
+    @PostMapping("/joinMoimCancel/{moimId}")
     public String joinMoimCancel(
             @AuthenticationPrincipal UserPrincipal loginUser,
-            @ModelAttribute Moim moim
+            @PathVariable("moimId") int moimId
     ) {
-        moimService.joinMoimCancel(moim, loginUser.getUser());
-        return "";
+        int result = moimService.joinMoimCancel(moimId, loginUser.getUser());
+        if(result>0) {
+        	return "true";
+        }
+        return "false";
     }
 
 //    @GetMapping("/modifyMoim")
@@ -141,10 +164,6 @@ public class MoimController {
         return "pages/admin/moim/list";
     }
 
-    @GetMapping("/personalInfo")
-    public String personalInfo() {
-        return "pages/personalInfo";
-    }
 
     //모임 신청하기 (moimId만 url에 정보 담고 서버에서 DB조회해서 데이터 뽑아오기
     @PostMapping("/moimEnroll")
