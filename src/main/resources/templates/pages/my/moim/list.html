@@ -42,7 +42,7 @@
                                 모집중단
                             </button>
                         </a>
-                        <a th:if="${type == 'joined'}" class="cancel-button" href="/moim">
+                        <a th:if="${type == 'joined'}" class="cancel-button" href="/moim/">
                             <button class="cancel-button"
                                     th:attr="disabled=${m.moimDate.before(now)}">
                                 참가취소

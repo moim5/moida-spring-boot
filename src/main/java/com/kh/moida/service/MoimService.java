@@ -215,4 +215,8 @@ public class MoimService {
 		}
 		return moimMapper.reviveMoim(moimId);
 	}
+	
+	
+
+
 }

@@ -326,24 +326,9 @@
 	</insert>
 	
 <!-- 내가 참여한 모임 리스트, -->
-<!-- 	<select id="ㅇㅇㅇ" resultType="com.kh.moida.model.Moim"> -->
+<!-- 	<select id="myJoinedMoimList" resultType="com.kh.moida.model.Moim"> -->
 <!-- 		SELECT -->
-<!-- 			MOIM.MOIM_ID, -->
-<!-- 			MOIM.MOIM_TITLE, -->
-<!-- 			MOIM.MOIM_TYPE, -->
-<!-- 			MOIM.MOIM_CONTENT, -->
-<!-- 			MOIM.MOIM_ATTENDEE_COUNT, -->
-<!-- 			MOIM.MOIM_ZIPCODE, -->
-<!-- 			MOIM.MOIM_ADDRESS1, -->
-<!-- 			MOIM.MOIM_ADDRESS2, -->
-<!-- 			MOIM.MOIM_DATE, -->
-<!-- 			MOIM.MOIM_MONEY, -->
-<!-- 			MOIM.MOIM_AVG_RATE, -->
-<!-- 			MOIM.MOIM_HOST_INTRO, -->
-<!-- 			MOIM.IS_VISIBLE, -->
-<!-- 			MOIM.IS_ACTIVE, -->
-<!-- 			MOIM.MOIM_COUNT, -->
-<!-- 			MOIM.USER_ID, -->
+<!-- 			MOIM.* -->
 <!-- 			USERS.NAME, -->
 <!-- 			USERS.EMAIL, -->
 <!-- 			USERS.PHONE, -->

@@ -50,7 +50,7 @@ public interface MoimMapper {
 	int deleteMoim(int moimId);
 
     int moimquestion(Question question);
-
+    
 
     ArrayList<Question> findQuestion(int moimId);
 

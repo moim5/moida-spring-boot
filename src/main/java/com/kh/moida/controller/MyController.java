@@ -96,10 +96,12 @@ public class MyController {
             @RequestParam(name = "size", defaultValue = "10") int size,
             Model model
     ) {
-        int totalCount = moimService.countJoinedMoim(user.getUserId());
+        int totalCount = moimService.countJoinedMoim(user.getUserId()); //참가자 수
         int offset = (page - 1) * size;
 
         List<Moim> moimList = moimService.findManyJoinedMoim(user.getUserId(), offset, size);
+
+        
 
         model.addAttribute("moimList", moimList);
         model.addAttribute("baseUrl", "/moim/joined/list");
