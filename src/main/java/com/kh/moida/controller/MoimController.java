@@ -141,7 +141,6 @@ public class MoimController {
     }
 
     //모임 참가신청 취소
-    //참가 신청할 모임 id 
     @PostMapping("/joinMoimCancel/{moimId}")
     public String joinMoimCancel(
             @AuthenticationPrincipal UserPrincipal loginUser,
@@ -154,10 +153,6 @@ public class MoimController {
         return "false";
     }
 
-//    @GetMapping("/modifyMoim")
-//    public String modifyMoim() {
-//        return "pages/moim/modifyMoim";
-//    }
 
     @GetMapping("/moimAdminPage")
     public String moimAdminPage() {
