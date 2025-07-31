@@ -13,8 +13,10 @@
                 <th:block th:if="${type == 'hosted'}">나의 개설 모임</th:block>
                 <th:block th:if="${type == 'joined'}">나의 참가 모임</th:block>
             </div>
+            
             <div th:if="${#lists.isEmpty(moimList)}" class="empty-container">
-                <i class="ti ti-hexagon-minus empty-icon"></i> 아직 연관된 모임이 없어요!
+                <i class="ti ti-hexagon-minus empty-icon"></i> 아직 연관된 모임이 없어요! 
+                
             </div>
             <div class="my-moim-list">
                 <div class="my-moim-item" th:each="m : ${moimList}">

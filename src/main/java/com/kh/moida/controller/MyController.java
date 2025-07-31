@@ -86,6 +86,7 @@ public class MyController {
         model.addAttribute("size", size);
         model.addAttribute("type", "hosted");
         model.addAttribute("now", new Date());
+//        System.out.println(moimList);
         return "pages/my/moim/list";
     }
 
@@ -110,6 +111,8 @@ public class MyController {
         model.addAttribute("size", size);
         model.addAttribute("type", "joined");
         model.addAttribute("now", new Date());
+//        System.out.println(moimList);
+        System.out.println("userId: " + user.getUserId() + ", offset: " + offset);
 
         return "pages/my/moim/list";
     }

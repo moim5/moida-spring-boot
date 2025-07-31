@@ -265,22 +265,24 @@
 	<select id="findManyJoinedMoim"
 		resultType="com.kh.moida.model.Moim">
 		SELECT
-		*
+			*
 		FROM (
-		SELECT
-		M.*,
-		F.FILE_ORIGIN,
-		F.FILE_CONVERT,
-		ROW_NUMBER() OVER (ORDER BY M.MOIM_DATE DESC) AS rnum
-		FROM
-		MOIM_ATTENDEE MA
-		JOIN MOIM M ON MA.MOIM_ID = M.MOIM_ID
-		LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+				SELECT
+					M.*,
+					F.FILE_ORIGIN,
+					F.FILE_CONVERT,
+					ROW_NUMBER() OVER (ORDER BY M.MOIM_DATE DESC) AS rnum
+				FROM
+					MOIM_ATTENDEE MA
+				JOIN MOIM M ON MA.MOIM_ID = M.MOIM_ID
+				LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+				WHERE
+					MA.USER_ID = #{userId} AND 
+					M.IS_ACTIVE = 'Y' AND
+					M.IS_VISIBLE = 'Y'
+			)
 		WHERE
-		MA.USER_ID = #{userId}
-		)
-		WHERE
-		rnum BETWEEN #{startRow} AND #{endRow}
+			rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 
 	<insert id="moimquestion"
