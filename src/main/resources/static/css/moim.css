@@ -1,0 +1,137 @@
+.main-anchor-container {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.moim-detail-mobileBox {
+    width: 100%;
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    border-top: 1px solid #666;
+    padding: 20px 30px;
+    box-sizing: border-box;
+}
+
+.moim-detail-container {
+    width: 65%;
+}
+
+.moim-detail-container > img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 50px;
+}
+
+.moim-detail-pcBox {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.moim-detail-pcBox .moim-title,
+.moim-detail-mobileBox .moim-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.moim-detail-pcBox .moim-detail-description,
+.moim-detail-mobileBox .moim-detail-description {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.moim-detail-pcBox .moim-detail-description i,
+.moim-detail-mobileBox .moim-detail-description i{
+    font-size: 1.1rem;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.moim-detail-pcBox .moim-detail-fee,
+.moim-detail-mobileBox .moim-detail-fee{
+    display: flex;
+}
+
+.moim-detail-pcBox .moim-detail-buttonBox,
+.moim-detail-mobileBox .moim-detail-buttonBox {
+    margin-top: 20px;
+}
+
+.moim-detail-buttonBox button {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.moim-detail-buttonBox button:hover {
+    background-color: var(--light-color);
+    color: #fff;
+}
+
+.moim-detail-sectionBox {
+    margin-bottom: 50px;
+}
+
+.moim-detail-sectionBox .subTitle {
+    margin-bottom: 20px;
+}
+
+.moim-detail-sectionTitleSub {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.moim-detail-content {
+    white-space: pre-line;
+}
+
+.moim-detail-hostContent {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 20px;
+    white-space: pre-line;
+    box-sizing: border-box;
+}
+
+@media (max-width: 42rem) {
+    .moim-detail-container {
+        width: 100%;
+    }
+
+    .moim-detail-pcBox {
+        display: none;
+    }
+
+    .moim-detail-mobileBox {
+        display: flex;
+    }
+}

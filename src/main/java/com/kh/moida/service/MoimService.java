@@ -167,7 +167,7 @@ public class MoimService {
 
     }
 
-    public int joinMoimCancel(int moimId, User user) {
+    public int cancelMoimAttendee(int moimId, User user) {
         // 참여 신청 취소하고 싶은 moim_id
         Map<String, Object> params = new HashMap<>();
         params.put("moimId", moimId);

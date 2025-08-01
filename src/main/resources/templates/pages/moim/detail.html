@@ -5,96 +5,54 @@
 <body>
 <main class="main-wrapper" layout:fragment="content">
     <div class="main-anchor-container">
-        <div class="main-container">
-            <!--모임메인사진-->
-            <img
-                    th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"
-                    alt="모임메인사진" class="moim-main-image">
-            <!--모바일 버전 모임 제목, 설명, 신청버튼-->
-            <div class="moim-title-mobile" th:text="${moim.moimTitle}"></div>
-            <div class="moim-description-mobile">
-                <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimDate}]]
-            </div>
-            <div class="moim-fee-mobile">
-                참가비
-                <div class="moim-fee-2-mobile" th:text="${moim.moimMoney}">원</div>
-            </div>
-            <hr class="moim-enroll-divider-mobile"/>
-            <div id="moim-enroll-buttonBox-mobile" class="moim-enroll-buttonBox">
-                <button th:if="${isMoimAttendee == 0}"
-                        data-context="detail" th:data-moim-id="${moim.moimId}"
-                        th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
-                        th:text="참가신청">
-                    
-                </button>
-                <button th:if="${isMoimAttendee != 0}"
-                        data-context="detail" th:data-moim-id="${moim.moimId}"
-                        th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
-                        th:text="참가신청취소">
-                    >
-                </button>
-            </div>
+        <div class="moim-detail-container">
+            <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"
+                 alt="모임메인사진"/>
 
-            <div class="review-content">
-                <div class="reviewTitle">참여자 후기</div>
-                <hr class="moimReview-divider">
-                	<button class="review-read-btn"
-                			type="button"
-                			th:onclick="|location.href='/review/detail/' + ${moim.moimId}|">
-                			리뷰 더보기
-                	</button>
-            </div>
-            <div class="review-container">
-                <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
-                <div class="review-item" th:each="r : ${reviewList}">
-                    <img
-                            th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${user.fileConvert})}"
-                            alt="후기1" class="profile-img">
-                    <div class="review-text">
-                        <div class="review-writer">[[${r.username}]]</div>
-                        <div class="user-star">
-                            <i class="ti ti-carambola"></i> <i class="ti ti-carambola"></i> <i
-                                class="ti ti-carambola"></i> <i class="ti ti-carambola"></i> <i
-                                class="ti ti-carambola"></i>
-                        </div>
-                        <div class="review">
-                            <p class="reviewText">
-                                <span> [[${r.reviewContent}]] </span>
-                                <button class="more-btn" onclick="openModal(this)">더보기</button>
-                            </p>
+            <div class="moim-detail-sectionBox">
+                <div class="subTitle" style="display: flex; justify-content: space-between; align-items: center;">
+                    참여자 후기
+                    <a th:href="@{|/my/review/${moim.moimId}|}" class="moim-detail-sectionTitleSub">
+                        <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기</a>
+                </div>
+                <div class="review-container">
+                    <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
+                    <div class="review-item" th:each="r : ${reviewList}">
+                        <img
+                                src="https://media.bunjang.co.kr/product/283006372_1_1722771500_w360.jpg"
+                                alt="후기1" class="profile-img">
+                        <div class="review-text">
+                            <div class="review-writer">[[${r.username}]]</div>
+                            <div class="user-star">
+                                <i class="ti ti-carambola"></i> <i class="ti ti-carambola"></i> <i
+                                    class="ti ti-carambola"></i> <i class="ti ti-carambola"></i> <i
+                                    class="ti ti-carambola"></i>
+                            </div>
+                            <div class="review">
+                                <p class="reviewText">
+                                    <span> [[${r.reviewContent}]] </span>
+                                    <button class="more-btn" onclick="openModal(this)">더보기</button>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--review container-->
 
-            <div class="moim-detail-title">
-                상세정보
-                <hr class="moimInfo-divider">
-            </div>
-            <div class="main-moimInfo">
-                <div class="moimInfo-container">
-                    <div class="moimInfo-title">
-                        <div class="moimInfo">
-                            <p id="content">[[${moimContent}]]</p>
-                        </div>
-                    </div>
-                    <button class="moreInfo" id="moreInfo">더보기</button>
+            <div class="moim-detail-sectionBox">
+                <div class="subTitle">
+                    상세정보
                 </div>
+                <div class="moim-detail-content" th:text="${moim.moimContent}"></div>
             </div>
+
             <!--moimInfo-->
-            <div class="host-intro">호스트 소개</div>
-            <div class="host-intro-2">앞으로 함께할 호스트에요</div>
-            <div class="host-container">
-                <div class="host-profile-img">
-                    <img 
-                    	th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"
-                     	alt="호스트 프로필 사진">
+            <div class="moim-detail-sectionBox">
+                <div class="subTitle">
+                    호스트 소개
                 </div>
-                <div class="host-info-container">
-                    <div class="host-name">[[${name}]]</div>
-                    <div class="host-introduction">[[${hostIntro}]]</div>
-                </div>
+                <div class="moim-detail-hostContent" th:text="${moim.moimHostIntro}"></div>
             </div>
 
             <!-- 문의창 -->
@@ -115,7 +73,7 @@
 
                             <textarea id="questionContent" name="quesContent"
                                       class="form-control" rows="4" placeholder="문의 내용을 입력하세요..."
-                                      style="width: 620px; height: 82px;"></textarea>
+                                      style="width: 100%; height: 82px;"></textarea>
                         </div>
 
 
@@ -172,69 +130,71 @@
 
                 </div>
             </section>
-
-
         </div>
 
 
-        <div class="main-container2">
-            <!--모임 신청칸 pc-->
-            <div class="main-enroll-pc">
-                <button class="moim-category" type="button">[[${categoryName}]]</button>
-                <!--카테고리-->
-                <div class="moim-title">[[${moimTitle}]]</div>
-                <div class="moim-description">
-                    <div class="moim-arrange">
-                        <i class="ti ti-calendar-week"></i>[[${moimAddress1}]]&nbsp;[[${moimAddress2}]]&nbsp;[[${moimDate}]]
-                    </div>
-                    <div class="moim-fee">
-                        참가비
-                        <div class="moim-fee-2">[[${moimMoney}]]</div>
-                    </div>
-                    <hr class="moim-enroll-divider"/>
-                </div>
-
-                <div id="moim-enroll-buttonBox-pc" class="moim-enroll-buttonBox">
-                    <button th:if="${isMoimAttendee == 0}"
-                            class="enroll-button-pc"
-                            data-context="detail" th:data-moim-id="${moim.moimId}"
-                            th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
-                            th:text="참가신청">
-                        
-                    </button>
-                    <button th:if="${isMoimAttendee != 0}"
-                            class="enroll-button-pc"
-                            data-context="detail" th:data-moim-id="${moim.moimId}"
-                            th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
-                            th:text="참가신청취소">
-                    </button>
-                </div>
-
-
+        <div class="moim-detail-pcBox">
+            <div class="moim-title" th:text="${moim.moimTitle}"></div>
+            <div class="moim-detail-description">
+                <i class="ti ti-calendar-week"></i><span
+                    th:text="${#dates.format(moim.moimDate, 'yyyy년 MM월 dd일 a hh시 mm분')}"></span>
+            </div>
+            <div class="moim-detail-description">
+                <i class="ti ti-map"></i><span th:text="${moim.moimAddress1}"></span>
+            </div>
+            <div class="moim-detail-description">
+                <i class="ti ti-moneybag"></i>
+                <div class="moim-detail-fee"
+                     th:text="@{|${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')}원|}"></div>
+            </div>
+            <div id="moim-enroll-buttonBox-pc" class="moim-detail-buttonBox">
+                <button th:if="isMoimAttendee == '0'"
+                        class="enroll-button-pc"
+                        data-context="detail" th:data-moim-id="${moim.moimId}"
+                        th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
+                        th:text="참가신청">
+                    >
+                </button>
+                <button th:if="isMoimAttendee != '0'"
+                        class="enroll-button-pc"
+                        data-context="detail" th:data-moim-id="${moim.moimId}"
+                        th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
+                        th:text="참가신청취소">
+                </button>
             </div>
         </div>
-        <!--리뷰 상세 : 모달창 띄우기-->
-        <div class="modal-backdrop" onclick="closeModal()"
-             style="display: none;"></div>
-        <div class="modal" style="display: none;">
-            <div class="modal-content">
-                <span class="modal-close" onclick="closeModal()"></span>
-                <p id="reviewText"></p>
-            </div>
-        </div>
+    </div>
 
+    <div class="moim-detail-mobileBox">
+        <div class="moim-title" th:text="${moim.moimTitle}"></div>
+        <div class="moim-detail-description">
+            <i class="ti ti-calendar-week"></i><span
+                th:text="${#dates.format(moim.moimDate, 'yyyy년 MM월 dd일 a hh시 mm분')}"></span>
+        </div>
+        <div class="moim-detail-description">
+            <i class="ti ti-map"></i><span th:text="${moim.moimAddress1}"></span>
+        </div>
+        <div class="moim-detail-description">
+            <i class="ti ti-moneybag"></i>
+            <div class="moim-detail-fee"
+                 th:text="@{|${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')}원|}"></div>
+        </div>
+        <div id="moim-enroll-buttonBox-mobile" class="moim-enroll-buttonBox">
+            <button th:if="isMoimAttendee == '0'"
+                    data-context="detail" th:data-moim-id="${moim.moimId}"
+                    th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
+                    th:text="참가신청">
+                >
+            </button>
+            <button th:if="isMoimAttendee != '0'"
+                    data-context="detail" th:data-moim-id="${moim.moimId}"
+                    th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
+                    th:text="참가신청취소">
+                >
+            </button>
+        </div>
     </div>
 </main>
-<div id="joinMoimModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <p>신청하시겠습니까?</p>
-        <button id="joinMoimYes">예</button>
-        <button id="joinMoimNo">아니오</button>
-    </div>
-</div>
-
-<div class="backdrop" onclick="hideBackdrop()"></div>
-
 </body>
 
 </html>
