@@ -1,13 +1,15 @@
 
 	//파일 한 개만 올리기 -> 새 파일 선택 시, 기존 파일 덮어쓰기
 	const fileInput = document.getElementById('imageUpload');
-	fileInput.addEventListener('change', () => {
+	if (fileInput) {
+        fileInput.addEventListener('change', () => {
 		const newFile = fileInput.files[0]; //크기 1개짜리 배열생성
 		if(!newFile) return;
 		
 		selectedFiles = [newFile]; //배열을 초기화시키고 새 파일 추가하기
 		
 	});
+}
 	
 
 

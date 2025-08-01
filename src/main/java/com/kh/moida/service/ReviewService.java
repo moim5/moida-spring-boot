@@ -48,7 +48,9 @@ public class ReviewService {
 //후기 등록하기 (파일이 있으면 선 등록 후 리뷰 등록하기)
 	public int writeReview(Long userId, Review r, MultipartFile image) throws IOException {
 		// 파일을 업로드를 하고, DB File을 씀
-
+	if (image == null || image.isEmpty()) {
+		// 파일이 없으면 파일 관련 로직 실행하지 말 것
+	} else {
 		String originalName = image.getOriginalFilename();
 		String ext = Objects.requireNonNull(originalName).substring(originalName.lastIndexOf(".") + 1);
 		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
@@ -63,6 +65,7 @@ public class ReviewService {
 
 		r.setFileId(file.getFileId());
 		r.setUserId(userId);
+	}
 		// review DB
 		return mapper.writeReview(r);
 	}

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -51,13 +50,13 @@ public class ReviewController {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
 		int result2 = rService.existReview(r.getMoimId(), loginUser.getUserId());
-		if (result2 == 0) {
+		if (result2 > 0) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
 		// 3. 리뷰 등록하기
 		int result3 = rService.writeReview(loginUser.getUserId(), r, image);
 		if (result3 > 0) {
-			return "redirect:/review/detail/" + r.getMoimId();
+			return "redirect:/review/detail/" + r.getReviewId();
 		}
 		return "redirect:/review/write/" + r.getMoimId();
 	}

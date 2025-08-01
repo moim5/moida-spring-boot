@@ -4,12 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kh.moida.mapper.ReviewMapper">
-    <!-- 1.리뷰 작성 여부 확인 -->
-    <select id="countReview" resultType="_int">
-        select count(*) from review where review_id = #{reviewId}
-    </select>
-
-
     <!-- 리뷰리스트 뽑기 : moimDetail -->
     <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
         SELECT
@@ -34,11 +28,15 @@
     </select>
 
     <!-- 후기등록 -->
-    <insert id="writeReview">
-        insert into review
-        values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId},
-        #{userId}
+    <insert id="writeReview" parameterType="com.kh.moida.model.Review" useGeneratedKeys="true" keyProperty="reviewId">
+    INSERT INTO review (
+        review_id, review_date, review_title, review_content, review_rate, moim_id, file_id, user_id
+    ) VALUES (
+        review_seq.nextval, SYSDATE, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
+    )
     </insert>
+
+
 
     <!-- review edit  -->
     <select id="selectReview">
