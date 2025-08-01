@@ -7,36 +7,9 @@ window.onload = () => {
 		
 		selectedFiles = [newFile]; //배열을 초기화시키고 새 파일 추가하기
 		
-		
 	});
 	
-	
-	
-	
-	
-    const imageUpload = document.getElementsByClassName('review-image-upload')[0];
-    const fileInput = document.getElementById('imageUpload');
-    const fileListDiv = document.getElementById('imageFileList');
 
-    let selectedFiles = [];
-
-    imageUpload.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    fileInput.addEventListener('change', () => {
-        const newFiles = Array.from(fileInput.files);
-
-        newFiles.forEach(file => {
-            if (!selectedFiles.some(f => f.name === file.name)) {
-                selectedFiles.push(file);
-                addFileTag(file.name);
-            }
-        });
-
-        fileInput.value = '';
-        console.log('파일 목록:', selectedFiles.map(f => f.name));
-    });
 
     // 파일명 표시 + 삭제 버튼 추가
     function addFileTag(fileName) {
