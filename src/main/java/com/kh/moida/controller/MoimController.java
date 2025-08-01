@@ -63,7 +63,6 @@ public class MoimController {
         if (userPrincipal != null) {
             loginUser = userPrincipal.getUser();
             isMoimAttendee = moimService.isMoimAttendee(moimId, userPrincipal.getUser().getUserId());
-
         }
 
         ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
