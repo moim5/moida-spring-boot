@@ -1,6 +1,7 @@
 /* 리뷰 헤더 */
 .review-header {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 64px;
     padding: 5px;
@@ -16,7 +17,6 @@
 
 .review-title {
     text-align: left;
-    flex-grow: 1; /* 제목이 남은 공간을 차지하도록 */
     font-size: 30px;
     font-weight: bold;
     color: #f29101;
@@ -152,17 +152,12 @@
 
 @media screen and (max-width: 768px) {
     .review-header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
+        flex-direction: column;
+        align-items: flex-start;
     }
-
     .review-title {
-        display: flex;
+        display: block;
         font-size: 100%;
-        flex-direction: row;
-        align-items: center;
     }
 
     .review-button-box {
