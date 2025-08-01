@@ -184,8 +184,6 @@ public class MoimService {
             return 0;
         }
         return maMapper.joinMoimCancel(params);
-
-
     }
 
     public int deleteMoim(int moimId) {

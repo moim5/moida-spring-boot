@@ -60,3 +60,60 @@ async function showAttendeeListModal(moimId) {
         alert("알 수 없는 오류가 발생했습니다.")
     }
 }
+
+async function createMoimAttendee(moimId) {
+    const clickedButton = event.currentTarget;
+    const context = clickedButton.dataset.context;
+
+    try {
+        const response = await fetch(`/moim/join/${moimId}`, {method: "POST"});
+        const result = await response.text();
+
+        if (result === "true") {
+            updateJoinButtonUI(moimId, context, true, clickedButton);
+        } else {
+            alert("모임 참가 신청이 실패되었습니다. 다시 시도해주세요.");
+        }
+    } catch {
+        alert("모임 참가 신청이 실패되었습니다.")
+    }
+}
+
+async function cancelMoimAttendee(moimId) {
+    const clickedButton = event.currentTarget;
+    const context = clickedButton.dataset.context;
+
+    try {
+        const response = await fetch(`/moim/cancel/${moimId}`, {method: "POST"});
+        const result = await response.text();
+
+        console.log(result);
+        if (result === "true") {
+            updateJoinButtonUI(moimId, context, false, clickedButton);
+        } else {
+            alert("모임 취소 신청이 실패되었습니다. 다시 시도해주세요.");
+        }
+    } catch {
+        alert("모임 취소 신청이 실패되었습니다.");
+    }
+}
+
+function updateJoinButtonUI(moimId, context, isJoined, button) {
+    if (context === "detail") {
+        const buttons = document.querySelectorAll(
+            `button[data-moim-id="${moimId}"][data-context="detail"]`
+        );
+
+        buttons.forEach((btn) => {
+            btn.textContent = isJoined ? "참가취소" : "신청하기";
+            btn.classList.toggle("cancel-button", isJoined);
+            btn.onclick = isJoined ? () => cancelMoimAttendee(moimId) : () => createMoimAttendee(moimId);
+        });
+    } else {
+        button.textContent = isJoined ? '참가취소' : '재신청';
+        button.className = isJoined ? "cancel-button" : "modify-button";
+        button.onclick = isJoined
+            ? () => cancelMoimAttendee(moimId)
+            : () => createMoimAttendee(moimId);
+    }
+}

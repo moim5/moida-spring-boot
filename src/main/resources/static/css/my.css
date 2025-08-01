@@ -180,3 +180,28 @@
     color: #aaaaaa;
     cursor: not-allowed;
 }
+
+@media(max-width: 42rem) {
+    .my-container > .my-left-container {
+        display: none;
+    }
+}
+
+@media(max-width: 30rem) {
+    .my-moim-list {
+        gap: 50px !important;
+    }
+    .my-moim-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .my-moim-item img {
+        width: 100% !important;
+        height: 240px !important;
+    }
+
+    .my-moim-func {
+        width: 100% !important;
+    }
+}

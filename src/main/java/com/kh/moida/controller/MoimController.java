@@ -16,15 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.kh.moida.exception.MoimException;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.Review;
-import com.kh.moida.model.User;
 import com.kh.moida.model.UserPrincipal;
-import com.kh.moida.notice.Answer;
-import com.kh.moida.notice.Question;
 import com.kh.moida.service.MoimService;
-import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MoimController {
     private final MoimService moimService;
-    private final ReviewService rService;
 
     @GetMapping("/create")
     public String MoimCreate() {
@@ -126,8 +120,9 @@ public class MoimController {
     }
 
 
-    @PostMapping("/joinMoim/{moimId}") //모임 참여
-    public String JoinMoim(
+    @PostMapping("/join/{moimId}") //모임 참여
+    @ResponseBody
+    public String CreateMoimAttendee(
             @AuthenticationPrincipal UserPrincipal loginUser,
             @PathVariable("moimId") int moimId
     ) {
@@ -140,8 +135,9 @@ public class MoimController {
 
     //모임 참가신청 취소
     //참가 신청할 모임 id 
-    @PostMapping("/joinMoimCancel/{moimId}")
-    public String joinMoimCancel(
+    @PostMapping("/cancel/{moimId}")
+    @ResponseBody
+    public String CancelMoimAttendee(
             @AuthenticationPrincipal UserPrincipal loginUser,
             @PathVariable("moimId") int moimId
     ) {
