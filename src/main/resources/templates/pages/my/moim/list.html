@@ -46,8 +46,10 @@
                                 모집중단
                             </button>
                         </a>
-                        <a th:if="${type == 'joined'}" class="cancel-button" href="/moim">
-                            <button class="cancel-button"
+                        <a class="cancel-button">
+                            <button th:if="${type == 'joined'}" class="cancel-button"
+                                    data-context="mypage" th:data-moim-id="${m.moimId}"
+                                    th:onclick="@{|cancelMoimAttendee(${m.moimId})|}"
                                     th:attr="disabled=${m.moimDate.before(now)}">
                                 참가취소
                             </button>

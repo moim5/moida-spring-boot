@@ -126,28 +126,34 @@
     align-content: center;
     margin: 0 auto;
 }
-/* 신청하기 버튼 */
-.enroll-button-pc{
-    display: flex;
-    background-color:#FFA600;
-    color: black;
-    border: none;
-    border-radius: 999px;
-    font-size: 25px;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    width:100%;
-    height: 60px;
-    margin-bottom:20px;
+
+.moim-enroll-buttonBox {
+    width: 100%;
 }
 
-.enroll-button-pc:hover{
-    background-color: rgb(255,188,1);
+.moim-enroll-buttonBox button {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+.moim-enroll-buttonBox button:hover {
+    background-color: var(--light-color);
     color:#fff;
 }
- .main-enroll-mobile,
+/* 신청하기 버튼 */
+.enroll-button-pc{
+    background-color: var(--main-color);
+    color: black;
+}
+
+#moim-enroll-buttonBox,
  .main-enroll-mobile button, 
  .moim-title-mobile,
  .moim-description-mobile,
@@ -215,7 +221,7 @@ hr .moimReview-divider{
 .review-item{
     display: flex;
     align-items: flex-start;
-    justify-content: center space-evenly;
+    justify-content: center;
     width: 200px;
     height:130px;
     padding: 10px;
