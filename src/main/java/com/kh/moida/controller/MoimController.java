@@ -50,6 +50,33 @@ public class MoimController {
         }
     }
 
+    //moim_detail이동
+    @GetMapping("/{moimId}")
+    public String MoimDetail(
+            @AuthenticationPrincipal UserPrincipal userPrincipal,
+            @PathVariable("moimId") int moimId,
+            Model model
+    ) {
+        Moim moim = moimService.findById(moimId);
+        User loginUser = null;
+        int isMoimAttendee = 0;
+        if (userPrincipal != null) {
+            loginUser = userPrincipal.getUser();
+            isMoimAttendee = moimService.isMoimAttendee(moimId, userPrincipal.getUser().getUserId());
+
+        }
+
+        ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
+
+        model.addAttribute("moim", moim)
+                .addAttribute("questions", questions)
+                .addAttribute("loginUser", loginUser)
+                .addAttribute("isMoimAttendee", isMoimAttendee);
+
+        return "pages/moim/detail";
+    }
+
+
     @GetMapping("/modify/{moimId}")
     public String MoimModify(
             @AuthenticationPrincipal(expression = "user") User loginUser,
@@ -108,6 +135,7 @@ public class MoimController {
 
     // 모임 중단 취소 ( 재 활성화 ? )
     @PostMapping("/reviveMoim/{moimId}")
+    @ResponseBody
     public String ReviveMoim(
             @PathVariable("moimId") int moimId,
             @AuthenticationPrincipal UserPrincipal loginUser
@@ -147,44 +175,6 @@ public class MoimController {
         }
         return "false";
     }
-
-
-    @GetMapping("/moimAdminPage")
-    public String moimAdminPage() {
-        return "pages/admin/moim/list";
-    }
-
-
-    //모임 신청하기 (moimId만 url에 정보 담고 서버에서 DB조회해서 데이터 뽑아오기
-    @PostMapping("/moimEnroll")
-    public String enrollMoim(@ModelAttribute Moim moim) {
-//    	moimService.enrollMoim(moim);
-        return "redirect:/pages/moim/moim_datil?moimId=" + moim.getMoimId();
-
-    }
-
-    //moim_detail이동
-    @GetMapping("/{moimId}")
-    public String MoimDetail(
-            @AuthenticationPrincipal UserPrincipal userPrincipal,
-            @PathVariable("moimId") int moimId,
-            Model model
-    ) {
-        Moim moim = moimService.findById(moimId);
-        User loginUser = null;
-        if (userPrincipal != null) {
-            loginUser = userPrincipal.getUser();
-        }
-
-        ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
-
-        model.addAttribute("moim", moim)
-                .addAttribute("questions", questions)
-                .addAttribute("loginUser", loginUser);
-
-        return "pages/moim/detail";
-    }
-
 
     //reviewList뽑기
     @GetMapping("/moim/moim_detail/{moimId}")
