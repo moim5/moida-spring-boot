@@ -1,32 +1,33 @@
-
-    //모임상세설명 부분 클릭 시 오버플로우 -> display 구현
+document.addEventListener("DOMContentLoaded", function () {
     const moreInfo = document.getElementById('moreInfo');
     const content = document.getElementById('content');
+    if (!content || !moreInfo) return; // null 체크
+
     const fullText = content.innerHTML.trim();
     const maxLength = 1000;
 
     if (fullText.length > maxLength) {
-    const shortText = fullText.slice(0, maxLength) + '...';
-    content.innerHTML = shortText;
-
-    moreInfo.style.display = "block"; 
+        const shortText = fullText.slice(0, maxLength) + '...';
+        content.innerHTML = shortText;
+        moreInfo.style.display = "block";
     } else {
-    moreInfo.style.display = "none"; 
+        moreInfo.style.display = "none";
     }
 
     let isExpanded = false;
 
     moreInfo.addEventListener('click', () => {
-    if (!isExpanded) {
-        content.innerHTML = fullText;
-        moreInfo.textContent = "접기";
-        isExpanded = true;
-    } else {
-        content.innerHTML = fullText.slice(0, maxLength)+'...';
-        moreInfo.textContent = "더보기";
-        isExpanded = false;
-    }
+        if (!isExpanded) {
+            content.innerHTML = fullText;
+            moreInfo.textContent = "접기";
+        } else {
+            content.innerHTML = fullText.slice(0, maxLength) + '...';
+            moreInfo.textContent = "더보기";
+        }
+        isExpanded = !isExpanded;
+    });
 });
+
 
 // 리뷰 클릭 : 모달창 열기+닫기 (모달 제외 배경 클릭 시 close)
 function openModal(button) {

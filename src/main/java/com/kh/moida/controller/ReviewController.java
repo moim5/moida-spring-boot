@@ -39,8 +39,10 @@ public class ReviewController {
 	}
 
 	@PostMapping("/review/enroll")
-	public String insertReview(@AuthenticationPrincipal(expression = "user") User loginUser, @ModelAttribute Review r,
-			@RequestParam(value = "imageUpload", required = false) MultipartFile image) throws IOException {
+	public String insertReview(
+		@AuthenticationPrincipal(expression = "user") User loginUser, 
+		@ModelAttribute Review r,
+		@RequestParam(value = "imageUpload", required = false) MultipartFile image) throws IOException {
 		// 1. 제약 걸기 : 리뷰작성자랑 모임 참여자랑 같은지 확인
 		// 2. 제약 걸기 : 리뷰가 이미 등록되어 있나?
 		// 2. 맞으면 등록 아니면 에러
@@ -52,10 +54,10 @@ public class ReviewController {
 		if (result2 == 0) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 		}
-
+		// 3. 리뷰 등록하기
 		int result3 = rService.writeReview(loginUser.getUserId(), r, image);
 		if (result3 > 0) {
-			return "redirect:/review/detail/" + r.getReviewId();
+			return "redirect:/review/detail/" + r.getMoimId();
 		}
 		return "redirect:/review/write/" + r.getMoimId();
 	}

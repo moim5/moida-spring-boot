@@ -72,9 +72,15 @@
     display: inline-flex;
     justify-content: left;
     align-items: center;
-    font-size: 40px;
+    font-size: 30px;
+    cursor: pointer;
 }
-
+#imageUpload{
+    display: none;
+}
+.image-text:hover{
+    cursor: pointer;
+}
 .review-image-upload:hover {
     cursor: pointer;
 }
@@ -82,7 +88,6 @@
 /* 이미지업로드 글자 */
 .image-text {
     font-size: 18px;
-
 }
 
 /* 별점wrapper */
