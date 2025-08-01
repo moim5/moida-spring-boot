@@ -49,6 +49,12 @@
                                     th:attr="disabled=${m.moimDate.before(now)}">
                                 참가취소
                             </button>
+                         </a>
+                    	 <a th:if="${type == 'joined'}" class="modify-button"
+                    	 	th:href="@{|/review/write/${m.moimId}|}">
+                            <button class="review-write-button">
+					       		후기 쓰기
+					    	</button>
                         </a>
                     </div>
                 </div>

@@ -17,7 +17,6 @@
         <div class="review-content">
             <form id="reviewForm" method="post" action="/review/update" th:enctype="'multipart/form-data'">
                 <input type="hidden" name="reviewId" value="#{reviewId}"/>
-               	 <input type="hidden" name="moimId" th:value="${moimId}">
                 <input type="text" name="reviewTitle" value="originalTitle"/>
                 <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
                           required maxlength="1000" th:text="${review.reviewContent}"></textarea>

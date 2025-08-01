@@ -174,10 +174,19 @@
     color: red;
 }
 
-.my-right-container .my-moim-item .my-moim-func button:disabled {
-    background-color: #cccccc;
+.my-right-container .my-moim-item .my-moim-func button.review-write-button {
+    background-color: transparent;
+    border: 1px solid  #FFA600;
+    color:  #FFA600;
+}
+.review-write-button{
+	margin-top:10px;
+}
+
+.my-right-container .my-moim-item .my-moim-func button:disabled:not(.review-write-button) {
+    background-color: #ccc;
     border: none;
-    color: #aaaaaa;
+    color: #aaa;
     cursor: not-allowed;
 }
 

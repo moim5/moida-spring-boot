@@ -18,14 +18,18 @@ public interface ReviewMapper {
 	public int writeReview(Review r);
 	//후기 등록 (체크)
 	public int existWriter(HashMap<String, Object> map);
-
-	public Review readReview(Long reviewId);
-
-	//후기 수정
+	
+	//후기 뽑기 (edit)
 	public Review selectReview(Long reviewId);
 
 	public void updateReviewWithoutFile(Review r);
 
 	public void updateReviewWithFile(Review r);
+
+	//후기삭제
+	public int deleteReview(int reviewId);
+
+	//후기 읽기 (read)
+	public Review getReview(Long moimId);
 
 }

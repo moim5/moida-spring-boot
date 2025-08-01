@@ -31,9 +31,6 @@ public interface MoimMapper {
 
 	int deleteMoimList(int moimId);
 	
-	//리뷰 리스트뽑기
-	int countReview(int moimId);
-
 	//조인 참여하기 
 	void moimJoinMoim(@Param("moim") Moim moim, @Param("user") User user);
 

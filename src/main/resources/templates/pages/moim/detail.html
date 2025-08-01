@@ -25,7 +25,7 @@
                         data-context="detail" th:data-moim-id="${moim.moimId}"
                         th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
                         th:text="참가신청">
-                    >
+                    
                 </button>
                 <button th:if="${isMoimAttendee != 0}"
                         data-context="detail" th:data-moim-id="${moim.moimId}"
@@ -38,15 +38,17 @@
             <div class="review-content">
                 <div class="reviewTitle">참여자 후기</div>
                 <hr class="moimReview-divider">
-                <button class="review-read-btn"
-                        onclick="location.href='/review/detail'">리뷰 상세보기
-                </button>
+                	<button class="review-read-btn"
+                			type="button"
+                			th:onclick="|location.href='/review/detail/' + ${moim.moimId}|">
+                			리뷰 더보기
+                	</button>
             </div>
             <div class="review-container">
                 <!--모임 후기 섹션 : 클릭 시 모달창으로 후기상세내용 보이기-->
                 <div class="review-item" th:each="r : ${reviewList}">
                     <img
-                            src="https://media.bunjang.co.kr/product/283006372_1_1722771500_w360.jpg"
+                            th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${user.fileConvert})}"
                             alt="후기1" class="profile-img">
                     <div class="review-text">
                         <div class="review-writer">[[${r.username}]]</div>
@@ -85,14 +87,13 @@
             <div class="host-intro-2">앞으로 함께할 호스트에요</div>
             <div class="host-container">
                 <div class="host-profile-img">
-                    <img src="./hostPrifile01.jpg" alt="호스트 프로필 사진">
+                    <img 
+                    	th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"
+                     	alt="호스트 프로필 사진">
                 </div>
                 <div class="host-info-container">
                     <div class="host-name">[[${name}]]</div>
                     <div class="host-introduction">[[${hostIntro}]]</div>
-                </div>
-                <div class="host-moimImg">
-                    <!--모임관련 대문사진 제외한 나머지 사진이 들어갑니다.-->
                 </div>
             </div>
 
@@ -199,7 +200,7 @@
                             data-context="detail" th:data-moim-id="${moim.moimId}"
                             th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
                             th:text="참가신청">
-                        >
+                        
                     </button>
                     <button th:if="${isMoimAttendee != 0}"
                             class="enroll-button-pc"

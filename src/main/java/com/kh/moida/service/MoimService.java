@@ -116,13 +116,6 @@ public class MoimService {
         return moimMapper.deleteMoimList(moimId);
     }
 
-    //해당하는 모임에 대한 리뷰 리스트 출력
-    //리뷰 이미 작성했을 경우 write view이동 막기->모임아이디 기준으로 찾아야돼서 맵퍼 다르게하기
-    public int countReview(int moimId) {
-        return moimMapper.countReview(moimId);
-    }
-
-
     public int moimJoinMoim(User user, int moimId) {
         // 가입 하려는 모임 ID가 뭔지 참여하기 버튼 누르고, 그 모임의 moimId 가져오기
         // user 에서 user_id 가져오기
@@ -211,7 +204,7 @@ public class MoimService {
         return moimMapper.cancelMoim(moimId);
     }
 
-    //review객체배열
+    //review 리스트 뽑기 (moimDetail)
     public ArrayList<Review> getReviewList(int moimId) {
         return reviewMapper.getReviewList(moimId);
     }

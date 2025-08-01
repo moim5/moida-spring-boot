@@ -4,22 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.kh.moida.dto.MoimAttendeeWithUser;
-import com.kh.moida.model.User;
-import com.kh.moida.notice.Answer;
-import com.kh.moida.notice.Question;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.kh.moida.dto.MoimAttendeeWithUser;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.Review;
+import com.kh.moida.model.User;
 import com.kh.moida.model.UserPrincipal;
+import com.kh.moida.notice.Answer;
+import com.kh.moida.notice.Question;
 import com.kh.moida.service.MoimService;
+import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +35,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MoimController {
     private final MoimService moimService;
+    private final ReviewService rService;
 
     @GetMapping("/create")
     public String MoimCreate() {
@@ -64,9 +72,10 @@ public class MoimController {
             loginUser = userPrincipal.getUser();
             isMoimAttendee = moimService.isMoimAttendee(moimId, userPrincipal.getUser().getUserId());
         }
-
         ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
+        ArrayList<Review> reviewList = moimService.getReviewList(moimId);
 
+        model.addAttribute("reviewList", reviewList);
         model.addAttribute("moim", moim)
                 .addAttribute("questions", questions)
                 .addAttribute("loginUser", loginUser)
@@ -174,16 +183,6 @@ public class MoimController {
         }
         return "false";
     }
-
-    //reviewList뽑기
-    @GetMapping("/moim/moim_detail/{moimId}")
-    public String reviewList(@PathVariable int moimId, Model model) {
-        ArrayList<Review> reviewList = moimService.getReviewList(moimId);
-
-        model.addAttribute("reviewList", reviewList);
-        return "pages/moim/detail";
-    }
-
 
     // 문의 등록
     @PostMapping("question")
