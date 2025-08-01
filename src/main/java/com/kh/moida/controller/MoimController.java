@@ -63,6 +63,7 @@ public class MoimController {
         if (userPrincipal != null) {
             loginUser = userPrincipal.getUser();
             isMoimAttendee = moimService.isMoimAttendee(moimId, userPrincipal.getUser().getUserId());
+
         }
 
         ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
@@ -168,7 +169,7 @@ public class MoimController {
             @AuthenticationPrincipal UserPrincipal loginUser,
             @PathVariable("moimId") int moimId
     ) {
-        int result = moimService.cancelMoim(moimId, loginUser.getUser());
+        int result = moimService.cancelMoimAttendee(moimId, loginUser.getUser());
         if (result > 0) {
             return "true";
         }
