@@ -46,7 +46,7 @@
                         </a>
                         <a th:if="${type == 'joined'}" class="cancel-button" href="/moim/">
                             <button class="cancel-button"
-                                    th:attr="disabled=${m.moimDate.before(now)}">
+                                    th:attr="disqabled=${m.moimDate.before(now)}">
                                 참가취소
                             </button>
                         </a>
