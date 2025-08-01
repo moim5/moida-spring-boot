@@ -11,14 +11,63 @@
  	select count(*) from review where review_id = #{reviewId}
  </select>
  
- <!-- 2.리뷰 등록 -->
- <insert id="enrollReview">
+ 
+ <!-- 리뷰리스트 뽑기 -->
+ <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
+ 	select 
+ 	r.review_date,r.review_content, r.review_rate, u.username
+ 	from review r
+ 		join users u on user_id = r.user_id
+ 	where moim_id = #{moimId}
+ 	order by r.review_date desc
+ 	FETCH FIRST 3 ROWS ONLY
+ </select>
+ 
+ <select id="existWriter" parameterType="map">
+ 	SELECT COUNT(*)
+ 	FROM REVIEW
+ 	WHERE
+ 		MOIM_ID = #{moimId} AND USER_ID = #{userId}
+ </select>
+ 
+ <!-- 후기등록 -->
+ <insert id="writeReview">
  	insert into review
- 	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}
- 	where reviewId = #{reviewId}
+ 	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
  </insert>
  
+ <select id="readReview">
+ 	SELECT
+ 		R.*,
+ 		F.FILE_CONVERT,
+ 		F.FILE_ORIGIN
+ 	FROM REVIEW R
+ 	JOIN FILE F ON R.FILE_ID = F.FILE_ID
+ 	WHERE
+ 		R.REVIEW_ID = #{reviewId}
+ </select>
  
+ <update id="updateReviewWithoutFile">
+ 	UPDATE
+ 		REVIEW
+	SET
+		REVIEW_TITLE = #{reviewTitle},
+		REVIEW_CONTENT = #{reviewContent},
+		REVIEW_RATE = #{reviewRate}
+	WHERE
+		REVIEW_ID = #{reviewId}
+ </update>
+ <update id="updateReviewWithFile">
+  	UPDATE
+ 		REVIEW
+	SET
+		REVIEW_TITLE = #{reviewTitle},
+		REVIEW_CONTENT = #{reviewContent},
+		REVIEW_RATE = #{reviewRate},
+		FILE_ID = #{fileId}
+	WHERE
+		REVIEW_ID = #{reviewId}
+ </update>
  
  
  

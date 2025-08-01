@@ -1,6 +1,7 @@
 package com.kh.moida.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,4 +60,6 @@ public interface MoimMapper {
 	int cancelMoim(int moimId);
 
 	int reviveMoim(int moimId);
+
+	int existMoimAttendee(HashMap<String, Object> map);
 }
