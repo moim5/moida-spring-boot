@@ -21,8 +21,17 @@
             </div>
             <hr class="moim-enroll-divider-mobile"/>
             <div id="moim-enroll-buttonBox-mobile" class="moim-enroll-buttonBox">
-                <button data-context="detail" th:data-moim-id="${moim.moimId}"
-                        th:onclick="@{|createMoimAttendee(${moim.moimId})|}">신청하기
+                <button th:if="${isMoimAttendee == 0}"
+                        data-context="detail" th:data-moim-id="${moim.moimId}"
+                        th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
+                        th:text="참가신청">
+                    >
+                </button>
+                <button th:if="${isMoimAttendee != 0}"
+                        data-context="detail" th:data-moim-id="${moim.moimId}"
+                        th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
+                        th:text="참가신청취소">
+                    >
                 </button>
             </div>
 
@@ -185,9 +194,18 @@
                 </div>
 
                 <div id="moim-enroll-buttonBox-pc" class="moim-enroll-buttonBox">
-                    <button type="button" class="enroll-button-pc"
+                    <button th:if="${isMoimAttendee == 0}"
+                            class="enroll-button-pc"
                             data-context="detail" th:data-moim-id="${moim.moimId}"
-                            th:onclick="@{|createMoimAttendee(${moim.moimId})|}">신청하기
+                            th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
+                            th:text="참가신청">
+                        >
+                    </button>
+                    <button th:if="${isMoimAttendee != 0}"
+                            class="enroll-button-pc"
+                            data-context="detail" th:data-moim-id="${moim.moimId}"
+                            th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
+                            th:text="참가신청취소">
                     </button>
                 </div>
 
