@@ -1,7 +1,6 @@
 package com.kh.moida.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,8 +27,8 @@ public class ReviewController {
 
 
     
-    //review_write view이동
-    @GetMapping("/review/write/{moimid}")
+    //review_write view이동 > input hidden추가
+    @GetMapping("/review/write")
     public String writeReview(
     		@RequestParam("moimId")Long moimId,
     		@AuthenticationPrincipal(expression = "user") User loginUser
@@ -75,27 +74,46 @@ public class ReviewController {
     		@PathVariable Long reviewId,
     		Model model
     ) {
-    	Review result = rService.readReview(reviewId);
+    	Review review = rService.readReview(reviewId);
     	
-    	model.addAttribute("review", result);
+    	model.addAttribute("review", review);
     	model.addAttribute("loginUser", loginUser);
         return "pages/my/review/review_read";
     }
     
-    //후기 수정 페이지 이동(리뷰아이디로 조회 후 데이터보내주기)
+    //후기 수정 페이지 이동(input hidden moimId넣기)
     @GetMapping("/review/edit/{reviewId}")
-    public String editReview(@PathVariable int reviewId, Model model) {
-    	Review r = rService.selectReview(reviewId);
-    	model.addAttribute("review",r);
+    public String editReview(
+    		@PathVariable Long reviewId,
+    		@RequestParam("moimId")Long moimId,
+    		Model model,
+    		@AuthenticationPrincipal(expression = "user") User loginUser
+    		) {
+    	//해당 리뷰가 존재하는지 확인
+    	Review review = rService.selectReview(reviewId);
+    	if (review == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "해당 리뷰가 존재하지 않습니다.");
+        }
+    	//요청자와 후기작성자가 같은지 확인
+    	int result2 = rService.checkReview(moimId, loginUser.getUserId());
+    	if(result2 == 0) {
+    		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+    	}
+    	
+    	model.addAttribute("r", review);
+    	model.addAttribute("moimId", moimId);
+    	
     	return "pages/my/review/review_edit";
-    }	
+    }
+    	
     
+    //후기 수정
     @PostMapping("/review/update")
     public boolean updateReview(
     		@AuthenticationPrincipal(expression = "user") User loginUser,
             @ModelAttribute Review r,
             @RequestParam(value="imageUpload",required = false) MultipartFile image
-    ) {
+    ) throws IOException {
     	// 수정을 작업
     	// (있는지 여부 판별) + 쓴 사람과 등록한 사람을 비교
     	// 파일을 바꾸나? > 기존 파일을 삭제해야됨. 그리고서 파일을 업로드 하고, 그 이후 File DB를 쓰고, Review를 업데이트

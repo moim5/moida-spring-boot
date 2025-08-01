@@ -36,7 +36,7 @@
  	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
  </insert>
  
- <select id="readReview">
+ <select id="selectReview"><!-- review read랑 review edit 쿼리통합 -->
  	SELECT
  		R.*,
  		F.FILE_CONVERT,
@@ -46,6 +46,7 @@
  	WHERE
  		R.REVIEW_ID = #{reviewId}
  </select>
+
  
  <update id="updateReviewWithoutFile">
  	UPDATE

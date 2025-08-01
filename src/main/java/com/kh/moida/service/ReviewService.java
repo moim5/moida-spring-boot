@@ -28,12 +28,8 @@ public class ReviewService {
 	private final MoimMapper moimMapper;
 	private final FileMapper fileMapper;
 
-	//후기 수정페이지 이동
-	public Review selectReview(int reviewId) {
-		return mapper.selectReview(reviewId);
-	}
 
-	//후기등록( 체크)
+//후기등록(체크)
 	public int checkReview(Long moimId, Long userId) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("moimId", moimId);
@@ -47,7 +43,7 @@ public class ReviewService {
 		return mapper.existWriter(map);
 	}
 
-	//후기 등록
+//후기 등록
 	public int writeReview(Long userId, Review r, MultipartFile image) throws IOException {
 		// 파일을 업로드를 하고, DB File을 씀
 		
@@ -65,12 +61,22 @@ public class ReviewService {
 
 	        r.setFileId(file.getFileId());
 	        r.setUserId(userId);
-		//review DB
+	        //review DB
 	        return mapper.writeReview(r);
 	}
-
+//후기 읽기 페이지
 	public Review readReview(Long reviewId) {
-		return mapper.readReview(reviewId);
+		return mapper.selectReview(reviewId);
+	}
+
+//후기 수정 페이지
+	public Review editReview(Long reviewId) {
+		return mapper.selectReview(reviewId);
+	}
+//후기 불러오기
+	public Review selectReview(Long reviewId) {
+	
+		return null;
 	}
 
 	public int updateReview(Long userId, Review r, MultipartFile image) throws IOException {
@@ -105,5 +111,6 @@ public class ReviewService {
 		return 1;
 	}
 
+	
 	
 }

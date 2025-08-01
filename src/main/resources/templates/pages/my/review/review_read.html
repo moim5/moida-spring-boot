@@ -50,12 +50,12 @@
 	                        <div class="review-rate">([[${r.reviewRate}]])</div>
 	                        <div class="review-date">[[${r.reviewDate}]]</div>
 	                        <div class="review-edit" th:if="${loginUser.userId == r.userId}" ><!--확인할 것-->
-                  				<a th:href="@{/review/edit(no=${r.reviewId})}">
- 	     							<span onclick="location.href='/review/edit'">
+                  				<a th:href="@{'/review/edit/' + ${r.reviewId} + '(?moimId=' +${r.moimId}+')'}">
+ 	     							<span>
  	     								<i class="ti ti-pencil"></i>
  	     							</span>
 								</a>&nbsp;
-				     	 		<a th:href="@{/review/delete(no=${r.reviewId})}">
+				     	 		<a th:href="@{'/review/delete/' + ${r.reviewId}}">
 									<span onclick="deleteReviewModal()">
 										<i class="ti ti-trash"></i>
 									</span>
