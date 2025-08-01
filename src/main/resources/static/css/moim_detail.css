@@ -1,15 +1,5 @@
-.main-anchor-container {
-	width: 100%;
-	position: relative;
-	display: flex;
-	justify-content: space-between;
-	gap: 30px;
-	align-items: flex-start;
-	    margin: 30px 0px 30px 30px;
-}
-
 /* 사진,설명 등 왼쪽칸 */
-.main-container{
+.main-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -30,9 +20,9 @@
     background-color: white;
 }
 
-.moim-main-image{ /*뷰 이미지 출력 크기조절하기*/
+.moim-main-image { /*뷰 이미지 출력 크기조절하기*/
     width: 100%;
-    max-width:700px;
+    max-width: 700px;
     height: 400px;
     position: left;
     object-fit: cover;
@@ -42,83 +32,75 @@
 }
 
 /* 신청하기 칸 */
-.main-enroll-pc{
-  display: flex;
-  text-align: center;
-  width : 100%;
-  max-width: 430px;
-  height : 350px;
-  gap:20px;
-  padding: 24px;
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  background: none;
-  flex-direction: column; 
-  align-items: flex-start;
-  box-sizing: border-box;
- 
+.main-enroll-pc {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    max-width: 430px;
+    height: 350px;
+    gap: 20px;
+    padding: 24px;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    background: none;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+
 }
-.moim-category{
+
+.moim-category {
     display: inline-block;
     border-radius: 200px;
     border: none;
-    background-color:#FFA600;
+    background-color: #FFA600;
     font-size: 16px;
     font-weight: 300;
-    color:black;
+    color: black;
     padding: 10px 10px;
     text-align: center;
 }
-.moim-title{ 
-    display:block;
-    font-size:30px;
-    font-weight: 500;
-    color:#000;
-    font-display: block;
-    padding:5px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    
-}
+
 /* 시간장소 섹션 */
-.moim-description{
-	width: 100%;
-    display:flex;
+.moim-description {
+    width: 100%;
+    display: flex;
     justify-content: flex-start;
     flex-direction: column;
     font-size: 20px;
     font-weight: 300;
-    color:#0000009d;
+    color: #0000009d;
     margin-bottom: 0;
     box-sizing: border-box;
 }
 
 /* 캘린더표시 : 시간 장소 */
-.moim-arrange{
+.moim-arrange {
     display: flex;
     align-items: center;
-    margin-left:10px;
+    margin-left: 10px;
     margin-bottom: 20px;
 }
 
-.moim-fee{
-    font-size:25px;
+.moim-fee {
+    font-size: 25px;
     font-weight: 500;
-    color:#000;
+    color: #000;
     display: flex;
     margin-bottom: 0;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 25px;
-    
+
 }
-.moim-fee-2{
+
+.moim-fee-2 {
     display: inline-flex;
     padding-left: 230px;
 
 }
-.moim-enroll-divider{
+
+.moim-enroll-divider {
     display: block;
     border: none;
     border-bottom: 2px solid rgba(150, 149, 149, 0.267);
@@ -143,27 +125,29 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
 .moim-enroll-buttonBox button:hover {
     background-color: var(--light-color);
-    color:#fff;
+    color: #fff;
 }
+
 /* 신청하기 버튼 */
-.enroll-button-pc{
+.enroll-button-pc {
     background-color: var(--main-color);
     color: black;
 }
 
 #moim-enroll-buttonBox,
- .main-enroll-mobile button, 
- .moim-title-mobile,
- .moim-description-mobile,
- .moim-fee-mobile,
- .moim-enroll-divider-mobile{
+.main-enroll-mobile button,
+.moim-title-mobile,
+.moim-description-mobile,
+.moim-fee-mobile,
+.moim-enroll-divider-mobile {
     display: none;
 }
 
 /* 리뷰제목+리뷰더보기 섹션 */
-.review-content{
+.review-content {
     display: flex;
     justify-content: center;
     text-align: center;
@@ -171,12 +155,13 @@
     margin-bottom: 10px;
 
 }
+
 /* <참여자후기>title */
-.reviewTitle{
+.reviewTitle {
     justify-content: left;
-    font-size:30px;
+    font-size: 30px;
     font-weight: 500;
-    color:#000;
+    color: #000;
     box-sizing: border-box;
     display: inline-block;
     white-space: nowrap;
@@ -184,70 +169,75 @@
 }
 
 /* 리뷰 아이템이 들어있는 구역 */
-.review-container{
+.review-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width:800px;
-    height:auto;
+    max-width: 800px;
+    height: auto;
     margin-top: 20px;
 
 }
-hr .moimReview-divider{
+
+hr .moimReview-divider {
     border: none;
     border-bottom: 2px solid rgba(150, 149, 149, 0.267);
     width: 700px;
-    margin:10px auto;
+    margin: 10px auto;
 }
-.review-read-btn{
+
+.review-read-btn {
     display: inline;
     white-space: nowrap;
     background: none;
-    color:rgb(185, 182, 182);
-    cursor:pointer;
+    color: rgb(185, 182, 182);
+    cursor: pointer;
     font-family: Arial, sans-serif;
-    font-size:13px;
-    font-weight:400;
-    letter-spacing:-0.25px;
-    line-height:22px;
-    word-break:break-word;
-    padding:0;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.25px;
+    line-height: 22px;
+    word-break: break-word;
+    padding: 0;
     border-style: none;
-    
+
 }
 
 /* 각 리뷰칸 */
-.review-item{
+.review-item {
     display: flex;
     align-items: flex-start;
     justify-content: center;
     width: 200px;
-    height:130px;
+    height: 130px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 16px;
     margin-right: 10px;
     background-color: white;
-    color:black;
-    
+    color: black;
+
 }
-.review-text{
+
+.review-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex: 1.5;
 }
-.profile-img{
+
+.profile-img {
     border-radius: 100%;
-    width:50px;
-    height:50px;
+    width: 50px;
+    height: 50px;
     border-style: none;
     object-fit: cover;
     margin-top: 6px;
     margin-left: 6px;
 }
-.review-writer{
+
+.review-writer {
     display: flex;
     justify-content: flex-start;
     font-size: 20px;
@@ -256,151 +246,158 @@ hr .moimReview-divider{
     padding-top: 5px;
     padding-bottom: 3px;
 }
-.user-star{
+
+.user-star {
     font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     padding-left: 5px;
-    gap:1.5px;
-    
+    gap: 1.5px;
+
 }
-.review span{
+
+.review span {
     padding-top: 10px;
     display: -webkit-box;
     position: relative;
-    -webkit-line-clamp: 2;        /* 제한 줄 수  */
+    -webkit-line-clamp: 2; /* 제한 줄 수  */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.4em;           /* 줄 간격 조정 */
-    max-height: 3.5em;            /* 줄 수 × line-height */
+    line-height: 1.4em; /* 줄 간격 조정 */
+    max-height: 3.5em; /* 줄 수 × line-height */
     white-space: normal;
     margin-left: -50px;
     margin-top: 15px;
     box-sizing: border-box;
 }
-.review p{
-    margin:0;
+
+.review p {
+    margin: 0;
     display: flex;
 }
 
 /* 리뷰더보기 버튼 */
-.more-btn{
+.more-btn {
     display: inline;
     white-space: nowrap;
     background: none;
-    color:rgb(185, 182, 182);
-    cursor:pointer;
+    color: rgb(185, 182, 182);
+    cursor: pointer;
     font-family: Arial, sans-serif;
-    font-size:13px;
-    font-weight:400;
-    letter-spacing:-0.25px;
-    line-height:22px;
-    word-break:break-word;
-    padding:0;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.25px;
+    line-height: 22px;
+    word-break: break-word;
+    padding: 0;
     text-decoration: underline;
     border-style: none;
-    
+
 }
 
 /* 모달창 */
 .modal-backdrop {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 9998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
 }
 
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  z-index: 9999;
-  width: 300px;
-  max-width: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    width: 300px;
+    max-width: 80%;
 }
 
 .modal-close {
-  position: absolute;
-  top: 10px; right: 15px;
-  cursor: pointer;
-  font-size: 20px;
-  color: #555;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #555;
 }
 
 
 /* 상세정보 */
-.moim-detail-title{
+.moim-detail-title {
     font-size: 30px;
     font-weight: 500;
     margin-top: 100px;
     padding-left: 10px;
-    
-    
+
+
 }
-hr.moimInfo-divider{
+
+hr.moimInfo-divider {
     border: none;
-     border-bottom: 2px solid rgba(150, 149, 149, 0.267);
+    border-bottom: 2px solid rgba(150, 149, 149, 0.267);
     width: 700px;
-    margin:10px auto;
+    margin: 10px auto;
 }
 
 
-
-
-.moimInfo-container{
+.moimInfo-container {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     width: 100%;
     max-width: 700px;
-    height:auto;
+    height: auto;
     padding-left: 10px;
     padding-right: 10px;
-    
-}
-/* 모임정보 더보기버튼 */
-.moreInfo{
-color:rgb(185, 182, 182);
-cursor:pointer;
-display:flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-margin-top: 20px;
-font-size:30px;
-font-weight:400;
-border-radius: 16px;
-border:solid 1px rgb(185, 182, 182);
-background-color: white;
-line-height:25px;
-width: 100%;
-max-width: 1200px;
-height: 80px;
-text-overflow: unset;
+
 }
 
-.moimInfo p{
+/* 모임정보 더보기버튼 */
+.moreInfo {
+    color: rgb(185, 182, 182);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 400;
+    border-radius: 16px;
+    border: solid 1px rgb(185, 182, 182);
+    background-color: white;
+    line-height: 25px;
+    width: 100%;
+    max-width: 1200px;
+    height: 80px;
+    text-overflow: unset;
+}
+
+.moimInfo p {
     font-size: 20px;
     flex-wrap: wrap;
     justify-content: center;
-    word-break: break-word;     /* 긴 단어 줄바꿈 허용 */
-    overflow-wrap: break-word;  /* 최신 브라우저 대응 */
-    flex: 1 1 100%;    
-    margin:0;
+    word-break: break-word; /* 긴 단어 줄바꿈 허용 */
+    overflow-wrap: break-word; /* 최신 브라우저 대응 */
+    flex: 1 1 100%;
+    margin: 0;
     overflow: hidden;
-    position: relative;   /* 버튼 위치 조절용 */
+    position: relative; /* 버튼 위치 조절용 */
 }
 
 
 /* 호스트 섹션 */
-.host-intro{
+.host-intro {
     display: flex;
     font-size: 30px;
     font-weight: 500;
@@ -409,7 +406,8 @@ text-overflow: unset;
     margin-top: 50px;
     margin-left: 10px;
 }
-.host-intro-2{
+
+.host-intro-2 {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 20px;
@@ -417,7 +415,8 @@ text-overflow: unset;
     font-size: 20px;
     color: rgb(185, 182, 182);
 }
-.host-container{
+
+.host-container {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -426,33 +425,36 @@ text-overflow: unset;
     max-width: 700px;
     margin-right: 30px;
     margin-left: 10px;
-    height:auto;
+    height: auto;
     border-radius: 16px;
-    border:solid 1px rgb(185, 182, 182);
+    border: solid 1px rgb(185, 182, 182);
 }
-.host-profile-img{
+
+.host-profile-img {
     display: flex;
     justify-content: flex-start;
     padding-top: 30px;
     padding-left: 20px;
 }
-.host-profile-img img{
+
+.host-profile-img img {
     border-radius: 100%;
-    width:100px;
-    height:100px;
+    width: 100px;
+    height: 100px;
     border-style: none;
     object-fit: cover;
-    
+
 }
 
 /* 호스트이름, 소개 섹션 */
-.host-info-container{
+.host-info-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex: 1.5;
 }
-.host-name{
+
+.host-name {
     display: flex;
     justify-content: flex-start;
     font-size: 20px;
@@ -460,13 +462,14 @@ text-overflow: unset;
     padding-left: 35px;
     padding-top: 10px;
 }
-.host-introduction{
+
+.host-introduction {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding-left: 35px;
     padding-top: 10px;
-    color:rgb(185, 182, 182);
+    color: rgb(185, 182, 182);
     font-size: 18px;
     font-weight: 400;
     text-align: left;
@@ -475,7 +478,7 @@ text-overflow: unset;
     box-sizing: border-box;
 }
 
-.host-moimImg{
+.host-moimImg {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -486,108 +489,113 @@ text-overflow: unset;
     margin-left: 1px;
     margin-right: 1px;
     padding: 10px;
-    gap:5px;
+    gap: 5px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    
-}
-.host-moimImg::-webkit-scrollbar{
-    height:6px;
-}
-.host-moimImg::-webkit-scrollbar-thumb {
-  background-color: rgba(150, 150, 150, 0.5);
-  border-radius: 3px;
+
 }
 
-.host-moimImg img{
+.host-moimImg::-webkit-scrollbar {
+    height: 6px;
+}
+
+.host-moimImg::-webkit-scrollbar-thumb {
+    background-color: rgba(150, 150, 150, 0.5);
+    border-radius: 3px;
+}
+
+.host-moimImg img {
     min-width: 250px;
     height: 300px;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    scroll-snap-align: start;  /* 스크롤 시 이미지 정렬 */
+    scroll-snap-align: start; /* 스크롤 시 이미지 정렬 */
 
 }
 
 
-
-
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
     .main-wrapper {
-    flex-direction: column;
-    align-items: center; 
-    padding: 0 16px;      
-    box-sizing: border-box;
-  }
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
 
     .main-container,
     .main-container2,
     .host-container,
     .moimInfo-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;        /* 가운데 배치 */
-    padding: 0 10px;       /* 내부 여백 */
-    box-sizing: border-box;
-  }
-    
-    .main-enroll{
-    position: sticky;
-    justify-content: center;
-    top:auto;
-    bottom: 0;
-    right: 0;
-    left:0;
-    background-color:#FFA600;
-    width:100%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto; /* 가운데 배치 */
+        padding: 0 10px; /* 내부 여백 */
+        box-sizing: border-box;
+    }
 
-     }
-    .moim-main-image{
-        width:100%;
+    .main-enroll {
+        position: sticky;
+        justify-content: center;
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: #FFA600;
+        width: 100%;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .moim-main-image {
+        width: 100%;
         margin: 20px auto;
         justify-content: center;
         align-items: center;
-        
+
     }
+
     /* pc버튼 안보이게 처리 */
-  .main-enroll-pc{
-    display: none;
-  }
-  /* 신청버튼 하단 고정 */
-    .main-enroll-mobile{
+    .main-enroll-pc {
+        display: none;
+    }
+
+    /* 신청버튼 하단 고정 */
+    .main-enroll-mobile {
         display: flex;
         justify-content: center;
         align-items: center;
         position: fixed;
         bottom: 0;
-        left:50%;
+        left: 50%;
         width: 100%;
         transform: translateX(-50%);
         border-radius: 30px;
         border: none;
         color: black;
         background-color: #FFA600;
-        height:10vh;
-        z-index: 9999;     /*다른요소위에 떠 보이도록 */
+        height: 10vh;
+        z-index: 9999; /*다른요소위에 떠 보이도록 */
     }
-    .main-enroll-mobile button{
+
+    .main-enroll-mobile button {
         display: flex;
-        justify-content: center;  
-        align-items: center;      
-        width:100%;
-        height:100%;
-        border:none;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border: none;
         background: none;
         font-size: 35px;
-        color:inherit
+        color: inherit
     }
-    .main-enroll-mobile:hover{
-        background-color: rgb(255,188,1);
-        color:#fff;
+
+    .main-enroll-mobile:hover {
+        background-color: rgb(255, 188, 1);
+        color: #fff;
         cursor: pointer;
     }
 
-    .moim-title-mobile{
+    .moim-title-mobile {
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
@@ -596,31 +604,34 @@ text-overflow: unset;
         font-weight: 500;
 
     }
-    .moim-description-mobile{
+
+    .moim-description-mobile {
         display: flex;
         flex-direction: row;
         justify-content: center;
         margin-top: 15px;
         font-size: 25px;
         font-weight: 300;
-        color:#0000009d;
+        color: #0000009d;
     }
-    .moim-fee-mobile{
+
+    .moim-fee-mobile {
         display: flex;
-        font-size:25px;
+        font-size: 25px;
         font-weight: 400;
-        color:#000;
+        color: #000;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
-    .moim-fee-2-mobile{
-       display: flex;
-       margin-left: 480px;
-    
+    .moim-fee-2-mobile {
+        display: flex;
+        margin-left: 480px;
+
 
     }
-    .moim-enroll-divider-mobile{
+
+    .moim-enroll-divider-mobile {
         display: block;
         border: none;
         border-bottom: 2px solid rgba(150, 149, 149, 0.267);
@@ -656,7 +667,6 @@ text-overflow: unset;
         padding: 10px;
     }
 
-    
 
     .host-name,
     .host-introduction {
@@ -684,7 +694,7 @@ text-overflow: unset;
         flex-direction: column;
     }
 
-      .host-moimImg {
+    .host-moimImg {
         max-width: 100%;
         width: 100%;
         justify-content: flex-start;
@@ -695,109 +705,104 @@ text-overflow: unset;
         min-width: 200px;
         height: 250px;
     }
-    
-}   
 
-
-
-
-
-
+}
 
 
 /* 문의 전체 섹션 */
 .question-section {
-  padding: 40px 0;
-  font-family: 'Pretendard', sans-serif;
+    padding: 40px 0;
+    font-family: 'Pretendard', sans-serif;
 }
 
 /* 문의 작성 폼 */
 .question-form {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 32px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
 }
 
 .question-form .section-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .question-form textarea {
-  resize: none;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 12px;
-  font-size: 14px;
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 /* 문의 등록 버튼 */
 .btn-submit {
-  background-color: #346aff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 14px;
-  border-radius: 8px;
-  cursor: pointer;
+    background-color: #346aff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .btn-submit:hover {
-  background-color: #264bcc;
+    background-color: #264bcc;
 }
 
 /* 문의 카드 */
 .question-result {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 20px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .section-subtitle {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
 }
 
 .text-muted {
-  color: #666;
-  font-size: 13px;
+    color: #666;
+    font-size: 13px;
 }
 
 .answer-result {
-  background: #f3f6fb;
-  border: 1px solid #cdd9ee;
-  border-radius: 8px;
-  padding: 16px;
-  margin-top: 16px;
+    background: #f3f6fb;
+    border: 1px solid #cdd9ee;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
 }
 
 /* 답변 폼 */
 .answer-form textarea {
-  resize: none;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 14px;
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
 }
 
 .btn-answer {
-  background-color: #2d8cf0;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 8px;
-  cursor: pointer;
+    background-color: #2d8cf0;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .btn-answer:hover {
-  background-color: #1e6fc1;
+    background-color: #1e6fc1;
 }
 
 
