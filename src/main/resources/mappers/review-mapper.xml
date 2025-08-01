@@ -3,93 +3,95 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- <mapper namespace = "com.kh.moida.mapper.ReviewMapper">
- 
-
- <!-- 1.리뷰 작성 여부 확인 -->
- <select id="countReview" resultType="_int">
- 	select count(*) from review where review_id = #{reviewId}
- </select>
- 
- 
- <!-- 리뷰리스트 뽑기 : moimDetail -->
- <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
- 	select 
- 	r.review_date,r.review_content, r.review_rate, u.username
- 	from review r
- 		join users u on user_id = r.user_id
- 	where moim_id = #{moimId}
- 	order by r.review_date desc
- 	FETCH FIRST 3 ROWS ONLY
- </select>
- 
- <select id="existWriter" parameterType="map">
- 	SELECT COUNT(*)
- 	FROM REVIEW
- 	WHERE
- 		MOIM_ID = #{moimId} AND USER_ID = #{userId}
- </select>
- 
- <!-- 후기등록 -->
- <insert id="writeReview">
- 	insert into review
- 	values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
- </insert>
- 
- <!-- review edit  -->
- <select id="selectReview">
- 	SELECT
- 		R.*,
- 		F.FILE_CONVERT,
- 		F.FILE_ORIGIN
- 	FROM REVIEW R
- 	JOIN FILES F ON R.FILE_ID = F.FILE_ID
- 	WHERE
- 		R.REVIEW_ID = #{reviewId}
- </select>
+<mapper namespace="com.kh.moida.mapper.ReviewMapper">
+    <!-- 1.리뷰 작성 여부 확인 -->
+    <select id="countReview" resultType="_int">
+        select count(*) from review where review_id = #{reviewId}
+    </select>
 
 
- <!-- review read -->
- <select id="getReview" >
- 	SELECT
- 		R.*,
- 		F.FILE_CONVERT,
- 		F.FILE_ORIGIN
- 	FROM REVIEW R
- 	LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
- 	WHERE
- 		R.MOIM_ID = #{moimId}
- 	ORDER BY R.REVIEW_DATE DESC
- </select>
- 
- 
- <update id="updateReviewWithoutFile">
- 	UPDATE
- 		REVIEW
-	SET
-		REVIEW_TITLE = #{reviewTitle},
-		REVIEW_CONTENT = #{reviewContent},
-		REVIEW_RATE = #{reviewRate}
-	WHERE
-		REVIEW_ID = #{reviewId}
- </update>
- <update id="updateReviewWithFile">
-  	UPDATE
- 		REVIEW
-	SET
-		REVIEW_TITLE = #{reviewTitle},
-		REVIEW_CONTENT = #{reviewContent},
-		REVIEW_RATE = #{reviewRate},
-		FILE_ID = #{fileId}
-	WHERE
-		REVIEW_ID = #{reviewId}
- </update>
- 
- <delete id="deleteReview">
- 	delete from review where review_id=#{reviewId}
- </delete>
- 
+    <!-- 리뷰리스트 뽑기 : moimDetail -->
+    <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
+        SELECT
+        	R.REVIEW_DATE,
+			R.REVIEW_CONTENT,
+			R.REVIEW_RATE,
+			U.USERNAME
+        FROM
+			REVIEW R
+        JOIN USERS U ON U.USER_ID = R.USER_ID
+        WHERE
+			MOIM_ID = #{moimId}
+        ORDER BY R.REVIEW_DATE DESC
+        FETCH FIRST 3 ROWS ONLY
+    </select>
 
- 
- 
- </mapper>
+    <select id="existWriter" parameterType="map">
+        SELECT COUNT(*)
+        FROM REVIEW
+        WHERE
+        MOIM_ID = #{moimId} AND USER_ID = #{userId}
+    </select>
+
+    <!-- 후기등록 -->
+    <insert id="writeReview">
+        insert into review
+        values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId},
+        #{userId}
+    </insert>
+
+    <!-- review edit  -->
+    <select id="selectReview">
+        SELECT
+        R.*,
+        F.FILE_CONVERT,
+        F.FILE_ORIGIN
+        FROM REVIEW R
+        JOIN FILES F ON R.FILE_ID = F.FILE_ID
+        WHERE
+        R.REVIEW_ID = #{reviewId}
+    </select>
+
+
+    <!-- review read -->
+    <select id="getReview">
+        SELECT
+        R.*,
+        F.FILE_CONVERT,
+        F.FILE_ORIGIN
+        FROM REVIEW R
+        LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
+        WHERE
+        R.MOIM_ID = #{moimId}
+        ORDER BY R.REVIEW_DATE DESC
+    </select>
+
+
+    <update id="updateReviewWithoutFile">
+        UPDATE
+        REVIEW
+        SET
+        REVIEW_TITLE = #{reviewTitle},
+        REVIEW_CONTENT = #{reviewContent},
+        REVIEW_RATE = #{reviewRate}
+        WHERE
+        REVIEW_ID = #{reviewId}
+    </update>
+    <update id="updateReviewWithFile">
+        UPDATE
+        REVIEW
+        SET
+        REVIEW_TITLE = #{reviewTitle},
+        REVIEW_CONTENT = #{reviewContent},
+        REVIEW_RATE = #{reviewRate},
+        FILE_ID = #{fileId}
+        WHERE
+        REVIEW_ID = #{reviewId}
+    </update>
+
+    <delete id="deleteReview">
+        delete from review where review_id=#{reviewId}
+    </delete>
+
+
+</mapper>

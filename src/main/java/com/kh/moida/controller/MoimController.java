@@ -35,7 +35,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MoimController {
     private final MoimService moimService;
-    private final ReviewService rService;
 
     @GetMapping("/create")
     public String MoimCreate() {
