@@ -211,16 +211,6 @@ public class MoimService {
         return moimMapper.cancelMoim(moimId);
     }
 
-    public int reviewMoim(int moimId, User user) {
-        Moim moim = moimMapper.findMoimById(moimId);
-        if (moim.getUserId() != user.getUserId()) {
-            //모임 호스트 아이디랑 로그인유저 아이디랑 같지 않으면
-            return 0;
-        }
-        return moimMapper.reviveMoim(moimId);
-    }
-
-
     //review객체배열
     public ArrayList<Review> getReviewList(int moimId) {
         return reviewMapper.getReviewList(moimId);

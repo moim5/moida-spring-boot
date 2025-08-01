@@ -86,6 +86,7 @@ public class MyController {
         model.addAttribute("size", size);
         model.addAttribute("type", "hosted");
         model.addAttribute("now", new Date());
+//        System.out.println(moimList);
         return "pages/my/moim/list";
     }
 
@@ -96,10 +97,12 @@ public class MyController {
             @RequestParam(name = "size", defaultValue = "10") int size,
             Model model
     ) {
-        int totalCount = moimService.countJoinedMoim(user.getUserId());
+        int totalCount = moimService.countJoinedMoim(user.getUserId()); //참가자 수
         int offset = (page - 1) * size;
 
         List<Moim> moimList = moimService.findManyJoinedMoim(user.getUserId(), offset, size);
+
+        
 
         model.addAttribute("moimList", moimList);
         model.addAttribute("baseUrl", "/moim/joined/list");
@@ -108,6 +111,8 @@ public class MyController {
         model.addAttribute("size", size);
         model.addAttribute("type", "joined");
         model.addAttribute("now", new Date());
+//        System.out.println(moimList);
+        System.out.println("userId: " + user.getUserId() + ", offset: " + offset);
 
         return "pages/my/moim/list";
     }
