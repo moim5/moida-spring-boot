@@ -27,8 +27,16 @@
 		WHERE
 			A.MOIM_ID = #{moimId}
 	</select>
+	<select id="isMoimAttendee" resultType="java.lang.Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			MOIM_ATTENDEE
+		WHERE
+			MOIM_ID = #{moimId} AND USER_ID = #{userId}
+	</select>
 
-	 <insert id="joinMoim">
+	<insert id="joinMoim">
  		 INSERT INTO
 		 	MOIM_ATTENDEE VALUES (
 		 	#{userId},
