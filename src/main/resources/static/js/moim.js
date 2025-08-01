@@ -53,7 +53,9 @@ async function showAttendeeListModal(moimId) {
             header: "참가자 목록",
             body: table,
             footer: `
-                <button onclick="hideModal()">닫기</button>
+                <div style="width: 100%; display: flex; justify-content: flex-end;">
+                    <button class="ok-button" onclick="hideModal()">닫기</button>
+                </div>
             `
         });
     } catch {
@@ -87,7 +89,6 @@ async function cancelMoimAttendee(moimId) {
         const response = await fetch(`/moim/cancel/${moimId}`, {method: "POST"});
         const result = await response.text();
 
-        console.log(result);
         if (result === "true") {
             updateJoinButtonUI(moimId, context, false, clickedButton);
         } else {
@@ -112,6 +113,7 @@ function updateJoinButtonUI(moimId, context, isJoined, button) {
     } else {
         button.textContent = isJoined ? '참가취소' : '재신청';
         button.className = isJoined ? "cancel-button" : "modify-button";
+        button.removeAttribute("onclick");
         button.onclick = isJoined
             ? () => cancelMoimAttendee(moimId)
             : () => createMoimAttendee(moimId);

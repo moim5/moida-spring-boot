@@ -169,7 +169,7 @@ public class MoimController {
             @AuthenticationPrincipal UserPrincipal loginUser,
             @PathVariable("moimId") int moimId
     ) {
-        int result = moimService.cancelMoim(moimId, loginUser.getUser());
+        int result = moimService.cancelMoimAttendee(moimId, loginUser.getUser());
         if (result > 0) {
             return "true";
         }
