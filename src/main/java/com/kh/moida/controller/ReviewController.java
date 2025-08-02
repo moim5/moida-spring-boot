@@ -45,6 +45,9 @@ public class ReviewController {
 		// 1. 제약 걸기 : 리뷰작성자랑 모임 참여자랑 같은지 확인
 		// 2. 제약 걸기 : 리뷰가 이미 등록되어 있나?
 		// 2. 맞으면 등록 아니면 에러
+		
+		// 로그인 유저 ID 직접 세팅
+		r.setUserId(loginUser.getUserId());
 		int result = rService.checkReview(r.getMoimId(), loginUser.getUserId());
 		if (result == 0) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);

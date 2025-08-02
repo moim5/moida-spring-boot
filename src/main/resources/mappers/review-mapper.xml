@@ -28,14 +28,30 @@
     </select>
 
     <!-- 후기등록 -->
-    <insert id="writeReview" parameterType="com.kh.moida.model.Review" useGeneratedKeys="true" keyProperty="reviewId">
-    INSERT INTO review (
-        review_id, review_date, review_title, review_content, review_rate, moim_id, file_id, user_id
+<insert id="writeReview" parameterType="Review">
+    <selectKey keyProperty="reviewId" resultType="int" order="BEFORE">
+        SELECT REVIEW_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO REVIEW (
+        REVIEW_ID,
+        REVIEW_DATE,
+        REVIEW_TITLE,
+        REVIEW_CONTENT,
+        REVIEW_RATE,
+        MOIM_ID,
+        FILE_ID,
+        USER_ID
     ) VALUES (
-        review_seq.nextval, SYSDATE, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId}, #{userId}
+        #{reviewId},
+        SYSDATE,
+        #{reviewTitle},
+        #{reviewContent},
+        #{reviewRate},
+        #{moimId},
+        #{fileId},
+        #{userId}
     )
-    </insert>
-
+</insert>
 
 
     <!-- review edit  -->
