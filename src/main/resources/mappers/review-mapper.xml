@@ -58,8 +58,8 @@
     <select id="selectReview">
         SELECT
         R.*,
-        F.FILE_CONVERT,
-        F.FILE_ORIGIN
+        F.FILE_ORIGIN,
+        F.FILE_CONVERT
         FROM REVIEW R
         JOIN FILES F ON R.FILE_ID = F.FILE_ID
         WHERE
@@ -68,16 +68,16 @@
 
 
     <!-- review read -->
-    <select id="getReview">
-        SELECT
+    <select id="getReview" parameterType="long" resultType="com.kh.moida.model.Review">
+    SELECT
         R.*,
         F.FILE_CONVERT,
         F.FILE_ORIGIN
-        FROM REVIEW R
-        LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
-        WHERE
+    FROM REVIEW R
+    LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
+    WHERE
         R.MOIM_ID = #{moimId}
-        ORDER BY R.REVIEW_DATE DESC
+    ORDER BY R.REVIEW_DATE DESC
     </select>
 
 

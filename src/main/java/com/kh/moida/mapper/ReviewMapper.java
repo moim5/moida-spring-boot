@@ -1,6 +1,7 @@
 package com.kh.moida.mapper;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -30,6 +31,6 @@ public interface ReviewMapper {
 	public int deleteReview(int reviewId);
 
 	//후기 읽기 (read)
-	public Review getReview(Long moimId);
+	public ArrayList<Review> getReview(Long moimId);
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.ArrayList;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.kh.moida.model.Review;
@@ -72,10 +73,12 @@ public class ReviewController {
 			@PathVariable("moimId") Long moimId,
 			Model model
 			) {
-		Review review = rService.getReview(moimId);
+	
+		ArrayList<Review> reviewList = rService.getReview(moimId);
 
-		model.addAttribute("review", review);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("loginUser", loginUser);
+		System.out.println(reviewList);
 		return "pages/my/review/review_read";
 	}
 

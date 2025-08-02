@@ -31,20 +31,17 @@
       <div class="review-content-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
             <div class="review-writer">
                   <div class="writer-profile">
-                        <img src="./review_read_profileImg.jpg"/>
+                        <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"alt="프로필사진"/>
                         <div class="writer-name">[[${loginUser.name}]]</div>
                   </div>
             </div>
             <div class="review-form"> 
             	<div class="review-rate-box"> <!--별 박스-->
                 	<div class="review-star">
-                    	<span th:each = "i : ${#numbers.sequence(1, review.reviewRate)}"class="star" data-value="1">
-	                        <i class="ti ti-carambola"></i>
-	                        <i class="ti ti-carambola"></i>
-	                        <i class="ti ti-carambola"></i>
-	                        <i class="ti ti-carambola"></i>
-	                        <i class="ti ti-carambola"></i>
+                    	<span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star" data-value="${i}">
+                              <i class="ti ti-carambola"></i>
                         </span>
+
                     </div>
                     	<div class="rate-date-box">
 	                        <div class="review-rate">([[${r.reviewRate}]])</div>
@@ -67,8 +64,8 @@
                   <div class="review-content-title">[[${r.reviewTitle}]]</div>
                   <div class="review-content"> <!--리뷰 txt + img-->
                         <div class="review-txt">[[${r.reviewContent}]]</div>
-                        <div class="review-img">
-                              <img src="./review02.webp"/>
+                        <div class="review-img" th:if="${r.fileConvert != null}">
+                              <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${r.fileConvert})}" alt="리뷰 이미지"/>
                         </div>
                   </div>
 

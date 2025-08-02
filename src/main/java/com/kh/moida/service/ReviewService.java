@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.ArrayList;
+
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -68,10 +70,16 @@ public class ReviewService {
         return mapper.writeReview(r);
     }
 
+	 // 후기읽기 페이지용 리뷰가져오기
+    public ArrayList<Review> getReview(Long moimId) {
+        return mapper.getReview(moimId);
+    }
+
     //후기 수정 페이지->리뷰가져오기
     public Review selectReview(Long reviewId) {
         return mapper.selectReview(reviewId);
     }
+
 
     //후기 수정등록
     public int updateReview(Long userId, Review r, MultipartFile image) throws IOException {
@@ -121,10 +129,6 @@ public class ReviewService {
         return mapper.deleteReview(review.getReviewId());
     }
 
-    // 후기읽기 페이지용 리뷰가져오기
-    public Review getReview(Long moimId) {
-        return mapper.getReview(moimId);
-    }
-
+   
 
 }
