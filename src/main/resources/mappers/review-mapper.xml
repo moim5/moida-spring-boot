@@ -7,7 +7,9 @@
     <!-- 리뷰리스트 뽑기 : moimDetail -->
     <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
         SELECT
+            R.REVIEW_ID,
         	R.REVIEW_DATE,
+            R.REVIEW_TITLE,
 			R.REVIEW_CONTENT,
 			R.REVIEW_RATE,
 			U.USERNAME
