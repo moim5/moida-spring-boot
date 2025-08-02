@@ -28,7 +28,7 @@
     </select>
 
     <!-- 후기등록 -->
-<insert id="writeReview" parameterType="Review">
+<insert id="writeReview">
     <selectKey keyProperty="reviewId" resultType="int" order="BEFORE">
         SELECT REVIEW_SEQ.NEXTVAL FROM DUAL
     </selectKey>
