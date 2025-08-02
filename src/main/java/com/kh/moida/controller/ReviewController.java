@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.ArrayList;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.kh.moida.model.Moim;
 import com.kh.moida.model.Review;
 import com.kh.moida.model.User;
 import com.kh.moida.service.ReviewService;
+import com.kh.moida.service.MoimService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReviewController {
 	private final ReviewService rService;
+	private final MoimService moimService;
 
 	// review_write view이동 
 	@GetMapping("/review/write/{moimId}")
@@ -75,10 +77,12 @@ public class ReviewController {
 			) {
 	
 		ArrayList<Review> reviewList = rService.getReview(moimId);
+		Moim moim = moimService.findById(moimId.intValue());
 
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("loginUser", loginUser);
-		System.out.println(reviewList);
+		model.addAttribute("moim", moim);
+		
 		return "pages/my/review/review_read";
 	}
 
