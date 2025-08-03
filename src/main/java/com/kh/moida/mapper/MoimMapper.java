@@ -59,4 +59,6 @@ public interface MoimMapper {
 	int reviveMoim(int moimId);
 
 	int existMoimAttendee(HashMap<String, Object> map);
+
+    ArrayList<Question> findMyQuestion(Long userId);
 }

@@ -233,4 +233,8 @@ public class MoimService {
         params.put("userId", userId);
         return moimAttendeeMapper.searchMoimAttendee(params);
     }
+
+    public ArrayList<Question> findMyQuestion(Long userId) {
+        return moimMapper.findMyQuestion(userId);
+    }
 }

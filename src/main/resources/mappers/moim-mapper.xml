@@ -305,4 +305,22 @@
     	select count(*) from moim_attendee where moim_id=#{moimId} and user_id=#{userId}
     </select>
 
+    <select id="findMyQuestion" resultType="com.kh.moida.notice.Question" parameterType="long">
+        SELECT
+        q.QUES_ID AS quesId,
+        q.QUES_CONTENT AS quesContent,
+        q.USER_ID AS questionUserId,
+        q.MOIM_ID AS moimId,
+
+        a.ANS_ID AS ansId,
+        a.ANS_CONTENT AS ansContent,
+        a.ANS_DATE AS ansDate,
+        a.USER_ID AS answerUserId
+
+        FROM Question q
+        LEFT JOIN Answer a ON q.QUES_ID = a.QUES_ID
+        WHERE q.USER_ID = #{userId}
+        ORDER BY q.QUES_ID DESC
+    </select>
+
 </mapper>
