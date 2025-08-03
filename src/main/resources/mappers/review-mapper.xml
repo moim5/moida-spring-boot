@@ -22,11 +22,11 @@
         FETCH FIRST 3 ROWS ONLY
     </select>
 
-    <select id="existWriter" parameterType="map">
+    <select id="existWriter" parameterType="map" resultType="int">
         SELECT COUNT(*)
-        FROM REVIEW
+            FROM REVIEW
         WHERE
-        MOIM_ID = #{moimId} AND USER_ID = #{userId}
+            MOIM_ID = #{moimId} AND USER_ID = #{userId}
     </select>
 
     <!-- 후기등록 -->
@@ -57,15 +57,16 @@
 
 
     <!-- review edit  -->
-    <select id="selectReview">
+    <select id="selectReview" resultType="com.kh.moida.model.Review">
         SELECT
-        R.*,
-        F.FILE_ORIGIN,
-        F.FILE_CONVERT
-        FROM REVIEW R
+            R.*,
+            F.FILE_ORIGIN,
+            F.FILE_CONVERT
+        FROM
+            REVIEW R
         JOIN FILES F ON R.FILE_ID = F.FILE_ID
         WHERE
-        R.REVIEW_ID = #{reviewId}
+            R.REVIEW_ID = #{reviewId}
     </select>
 
 

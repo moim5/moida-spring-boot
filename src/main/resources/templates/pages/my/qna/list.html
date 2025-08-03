@@ -11,19 +11,16 @@
         <div class="my-right-container">
             <div class="subTitle" style="margin-bottom: 30px;">
                 나의 문의 목록
-
-                <div th:each="question : ${myquestions}"
-                     class="question-result shadow-sm mt-4">
-                    <a th:href="@{'/moim/' + ${question.quesId}}" style="text-decoration: none; color: inherit;">
-                        <h6 class="section-subtitle">문의 내용</h6>
-                        <p class="text-muted mb-1">
-                            문의 유저ID: <span th:text="${question.questionUserId}"></span>
-                        </p>
-                        <p class="mb-4" th:text="${question.quesContent}"></p>
-                    </a>
-                </div>
-
-
+            </div>
+            <div th:each="question : ${myquestions}"
+                 class="question-result shadow-sm mt-4">
+                <a th:href="@{'/moim/' + ${question.moimId}}" style="text-decoration: none; color: inherit;">
+                    <h6 class="section-subtitle">문의 내용</h6>
+                    <p class="text-muted mb-1">
+                        문의 유저ID: <span th:text="${question.questionUserId}"></span>
+                    </p>
+                    <p class="mb-4" th:text="${question.quesContent}"></p>
+                </a>
             </div>
         </div>
     </div>

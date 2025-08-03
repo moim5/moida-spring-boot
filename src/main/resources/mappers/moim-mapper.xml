@@ -301,7 +301,7 @@
         )
     </insert>
     
-    <select id="existMoimAttendee" parameterType="map">
+    <select id="existMoimAttendee" parameterType="map" resultType="int">
     	select count(*) from moim_attendee where moim_id=#{moimId} and user_id=#{userId}
     </select>
 

@@ -22,7 +22,7 @@ public interface MoimMapper {
 
     int countMoim(Long categoryId);
 
-    Moim findMoimById(int moimId);
+    Moim findMoimById(Long moimId);
 
 
 	void updateMoimWithoutFile(Moim moim);
@@ -43,20 +43,18 @@ public interface MoimMapper {
 
     List<Moim> findManyJoinedMoim(Map<String, Object> params);
 
-	void joinMoimCancel(@Param("moim") Moim moim, @Param("user") User user);
-
 	int deleteMoim(int moimId);
 
     int moimquestion(Question question);
     
 
-    ArrayList<Question> findQuestion(int moimId);
+    ArrayList<Question> findQuestion(Long moimId);
 
     int moimanswer(Question question);
 
-	int cancelMoim(int moimId);
+	int cancelMoim(Long moimId);
 
-	int reviveMoim(int moimId);
+	int reviveMoim(Long moimId);
 
 	int existMoimAttendee(HashMap<String, Object> map);
 

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.kh.moida.dto.MoimAttendeeWithUser;
+import com.kh.moida.dto.ReviewWithUser;
 import com.kh.moida.mapper.ReviewMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ import com.kh.moida.mapper.MoimAttendeeMapper;
 import com.kh.moida.mapper.MoimMapper;
 import com.kh.moida.model.File;
 import com.kh.moida.model.Moim;
-import com.kh.moida.model.Review;
 import com.kh.moida.model.User;
 import com.kh.moida.notice.Question;
 
@@ -78,7 +78,7 @@ public class MoimService {
     }
 
     //모임 아이디찾기
-    public Moim findById(int moimId) {
+    public Moim findById(Long moimId) {
         return moimMapper.findMoimById(moimId);
     }
 
@@ -188,7 +188,7 @@ public class MoimService {
         return moimMapper.moimquestion(question);
     }
 
-    public ArrayList<Question> findQuestion(int moimId) {
+    public ArrayList<Question> findQuestion(Long moimId) {
         return moimMapper.findQuestion(moimId);
     }
 
@@ -196,7 +196,7 @@ public class MoimService {
         return moimMapper.moimanswer(question);
     }
 
-    public int cancelMoim(int moimId, User user) {
+    public int cancelMoim(Long moimId, User user) {
         Moim moim = moimMapper.findMoimById(moimId);
         if (moim.getUserId() != user.getUserId()) {
             return 0;
@@ -205,12 +205,12 @@ public class MoimService {
     }
 
     //review 리스트 뽑기 (moimDetail)
-    public ArrayList<Review> getReviewList(int moimId) {
+    public ArrayList<ReviewWithUser> getReviewList(Long moimId) {
         return reviewMapper.getReviewList(moimId);
     }
 
 
-    public int reviveMoim(int moimId, User user) {
+    public int reviveMoim(Long moimId, User user) {
         Moim moim = moimMapper.findMoimById(moimId);
         if (moim.getUserId() != user.getUserId()) {
             //모임 호스트 아이디랑 로그인유저 아이디랑 같지 않으면
@@ -219,7 +219,7 @@ public class MoimService {
         return moimMapper.reviveMoim(moimId);
     }
 
-    public List<MoimAttendeeWithUser> attendeeList(int moimId, User loginUser) {
+    public List<MoimAttendeeWithUser> attendeeList(Long moimId, User loginUser) {
         Moim moim = moimMapper.findMoimById(moimId);
         if (!Objects.equals(moim.getUserId(), loginUser.getUserId())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
@@ -227,7 +227,7 @@ public class MoimService {
         return moimAttendeeMapper.findMoimAttendee(moimId);
     }
 
-    public int isMoimAttendee(int moimId, Long userId) {
+    public int isMoimAttendee(Long moimId, Long userId) {
         HashMap<String, Object> params = new HashMap<>();
         params.put("moimId", moimId);
         params.put("userId", userId);

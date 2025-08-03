@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.kh.moida.dto.ReviewWithUser;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,13 +21,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.kh.moida.dto.MoimAttendeeWithUser;
 import com.kh.moida.model.Moim;
-import com.kh.moida.model.Review;
 import com.kh.moida.model.User;
 import com.kh.moida.model.UserPrincipal;
 import com.kh.moida.notice.Answer;
 import com.kh.moida.notice.Question;
 import com.kh.moida.service.MoimService;
-import com.kh.moida.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -61,7 +60,7 @@ public class MoimController {
     @GetMapping("/{moimId}")
     public String MoimDetail(
             @AuthenticationPrincipal UserPrincipal userPrincipal,
-            @PathVariable("moimId") int moimId,
+            @PathVariable("moimId") Long moimId,
             Model model
     ) {
         Moim moim = moimService.findById(moimId);
@@ -73,7 +72,7 @@ public class MoimController {
 
         }
         ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
-        ArrayList<Review> reviewList = moimService.getReviewList(moimId);
+        ArrayList<ReviewWithUser> reviewList = moimService.getReviewList(moimId);
 
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("moim", moim)
@@ -88,7 +87,7 @@ public class MoimController {
     @GetMapping("/modify/{moimId}")
     public String MoimModify(
             @AuthenticationPrincipal(expression = "user") User loginUser,
-            @PathVariable("moimId") int moimId,
+            @PathVariable("moimId") Long moimId,
             Model model
     ) {
         Moim moim = moimService.findById(moimId);
@@ -131,7 +130,7 @@ public class MoimController {
     // 모임 중단
     @PostMapping("/cancelMoim/{moimId}")
     public String CancelMoim(
-            @PathVariable("moimId") int moimId,
+            @PathVariable("moimId") Long moimId,
             @AuthenticationPrincipal UserPrincipal loginUser
     ) {
         int result = moimService.cancelMoim(moimId, loginUser.getUser());
@@ -145,7 +144,7 @@ public class MoimController {
     @PostMapping("/reviveMoim/{moimId}")
     @ResponseBody
     public String ReviveMoim(
-            @PathVariable("moimId") int moimId,
+            @PathVariable("moimId") Long moimId,
             @AuthenticationPrincipal UserPrincipal loginUser
     ) {
         int result = moimService.reviveMoim(moimId, loginUser.getUser());
@@ -203,7 +202,7 @@ public class MoimController {
     @ResponseBody
     public List<MoimAttendeeWithUser> attendeeList(
             @AuthenticationPrincipal(expression = "user") User loginUser,
-            @RequestParam("moimId") int moimId
+            @RequestParam("moimId") Long moimId
     ) {
         return moimService.attendeeList(moimId, loginUser);
     }

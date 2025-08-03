@@ -77,7 +77,7 @@ public class ReviewController {
 			) {
 	
 		ArrayList<Review> reviewList = rService.getReview(moimId);
-		Moim moim = moimService.findById(moimId.intValue());
+		Moim moim = moimService.findById(moimId);
 
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("loginUser", loginUser);
