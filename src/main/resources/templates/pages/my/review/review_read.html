@@ -31,7 +31,6 @@
       <div class="review-content-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
             <div class="review-writer">
                   <div class="writer-profile">
-                        <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${moim.fileConvert})}"alt="프로필사진"/>
                         <div class="writer-name">[[${loginUser.name}]]</div>
                   </div>
             </div>
@@ -39,7 +38,7 @@
             	<div class="review-rate-box"> <!--별 박스-->
                 	<div class="review-star">
                     	<span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star" data-value="${i}">
-                              <i class="ti ti-carambola"></i>
+                              <i class="ti ti-carambola-filled"></i>
                         </span>
 
                     </div>
@@ -47,12 +46,14 @@
                         <div class="review-rate">([[${r.reviewRate}]])</div>
                         <div class="review-date">[[${r.reviewDate}]]</div>
                         <div class="review-edit" th:if="${loginUser.userId == r.userId}" ><!--확인할 것-->
-                              <a th:href="@{'/review/edit/' + ${r.reviewId} + '(?moimId=' +${r.moimId}+')'}">
+                              <a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
+
                                     <span>
                                           <i class="ti ti-pencil"></i>
                                     </span>
                               </a>&nbsp;
                               <a th:href="@{'/review/delete/' + ${r.reviewId}}">
+
                                     <span onclick="deleteReviewModal()">
                                           <i class="ti ti-trash"></i>
                                     </span>

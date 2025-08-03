@@ -88,13 +88,16 @@ public class ReviewController {
 
 	// 후기 수정 페이지 이동
 	@GetMapping("/review/edit/{reviewId}")
-	public String editReview(@PathVariable Long reviewId, @ModelAttribute Review r, @RequestParam("moimId") Long moimId,
-			Model model, @AuthenticationPrincipal(expression = "user") User loginUser) {
+	public String editReview(
+		@PathVariable("reviewId") Long reviewId,
+		@RequestParam("moimId") Long moimId,
+		Model model, 
+		@AuthenticationPrincipal(expression = "user") User loginUser) {
 		// 해당 리뷰가 존재하는지 확인
 		// 1. 리뷰 데이터 조회
 		Review review = rService.selectReview(reviewId);
 		if (review == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "해당 리뷰가 존재하지 않습니다.");
+			return "redirect:/review/write/" + moimId;
 		}
 
 		// 2. 작성자 권한 확인
@@ -111,16 +114,16 @@ public class ReviewController {
 
 	// 후기 수정
 	@PostMapping("/review/update")
-	public boolean updateReview(@AuthenticationPrincipal(expression = "user") User loginUser, @ModelAttribute Review r,
+	public String updateReview(@AuthenticationPrincipal(expression = "user") User loginUser, @ModelAttribute Review r,
 			@RequestParam(value = "imageUpload", required = false) MultipartFile image) throws IOException {
 		// 수정을 작업
 		// (있는지 여부 판별) + 쓴 사람과 등록한 사람을 비교
 		// 파일을 바꾸나? > 기존 파일을 삭제해야됨. 그리고서 파일을 업로드 하고, 그 이후 File DB를 쓰고, Review를 업데이트
 		int result = rService.updateReview(loginUser.getUserId(), r, image);
 		if (result == 0) {
-			return false;
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "수정을 실패하였습니다.");
 		}
-		return true;
+		return "redirect:/review/read/" + r.getMoimId();
 	}
 
 	// 후기 삭제

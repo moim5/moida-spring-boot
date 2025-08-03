@@ -36,8 +36,9 @@ function openModal(button) {
   const content = span.getAttribute('data-fulltext');
 
 
-  // 모달 텍스트 넣기(모달의 p태그 id가 reviewText)
-  document.getElementById('reviewText').textContent = content;
+  // 모달 텍스트 넣기(모달의 p태그 클래스명: reviewText)
+  document.getElementsByClassName('reviewText')[0].textContent = content;
+
 
   // 모달 표시
   document.querySelector('.modal').style.display = 'block';
