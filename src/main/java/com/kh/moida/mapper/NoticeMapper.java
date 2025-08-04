@@ -1,5 +1,7 @@
-package com.kh.moida.notice;
+package com.kh.moida.mapper;
 
+import com.kh.moida.model.Notice;
+import com.kh.moida.common.pagination.PageInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;

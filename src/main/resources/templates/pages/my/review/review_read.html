@@ -55,9 +55,9 @@
 							<div class="review-edit" th:if="${loginUser.userId == r.userId}">
 								<a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
 									<div class="review-date">[[${r.reviewDate}]]</div>
-									<div class="review-edit" th:if="${loginUser.userId == r.userId}"></div>
+									<div class="review-edit-icon" th:if="${loginUser.userId == r.userId}"></div>
 									<a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
-									<span> <i class="ti ti-pencil"></i></span>
+										<span> <i class="ti ti-pencil"></i></span>
 									</a>&nbsp;
 									<form th:action="@{/review/delete}" method="post" style="display: inline;">
 										<input type="hidden" name="reviewId" th:value="${r.reviewId}" />

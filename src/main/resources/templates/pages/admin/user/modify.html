@@ -8,26 +8,27 @@
 <main layout:fragment="content" class="detail-container">
     <div class="my-container">
         <form class="my-right-container" method="POST" th:action="@{/admin/user/update}">
+            <input type="hidden" name="userId" th:value="${user.userId}"/>
             <div class="subTitle" style="margin-bottom: 30px;">회원정보 수정</div>
             <div class="my-info-inputBox">
                 <label>사용자명
                     <input type="text" name="username" placeholder="아이디를 입력해주세요" readOnly required
-                           th:value="${loginUser.username}"
+                           th:value="${user.username}"
                     />
                 </label>
                 <label>이름 *
                     <input type="text" name="name" placeholder="이름을 입력해주세요" readonly required
-                           th:value="${loginUser.name}"
+                           th:value="${user.name}"
                     />
                 </label>
                 <label>생일 *
                     <input type="date" name="birthday" readonly required
-                           th:value="${#dates.format(loginUser.birthday, 'yyyy-MM-dd')}"
+                           th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"
                     />
                 </label>
                 <label>성별 *
                     <input type="text" name="gender" readonly required
-                           th:value="${loginUser.gender == 'M' ? '남자' : '여자'}"
+                           th:value="${user.gender == 'M' ? '남자' : '여자'}"
                     />
                 </label>
                 <label>이메일 *
@@ -37,17 +38,31 @@
                 </label>
                 <label>전화번호 *
                     <input type="tel" name="phone" placeholder="전화번호를 입력해주세요" required
-                           th:value="${loginUser.phone}"
+                           th:value="${user.phone}"
                     />
                 </label>
                 <label class="main-sign-postBox">주소 *
                     <div class="main-sign-postDiv">
                         <button type="button" onclick="execDaumPostcode()">주소찾기</button>
-                        <input type="text" id="zipCode" name="zipCode" readonly th:value="${loginUser.zipCode}"/>
+                        <input type="text" id="zipCode" name="zipCode" readonly th:value="${user.zipCode}"/>
                     </div>
-                    <input type="text" id="address1" name="address1" readonly th:value="${loginUser.address1}"/>
-                    <input type="text" id="address2" name="address2" th:value="${loginUser.address2}"/>
+                    <input type="text" id="address1" name="address1" readonly th:value="${user.address1}"/>
+                    <input type="text" id="address2" name="address2" th:value="${user.address2}"/>
                     <div id="daumPostcodeContainer" style="display:none; position:relative; z-index:999;"></div>
+                </label>
+                <label for="isActive">
+                    회원상태
+                    <select id="isActive" name="isActive">
+                        <option value="Y" th:selected="${user.isActive == 'Y'}">정상</option>
+                        <option value="N" th:selected="${user.isActive == 'N'}">삭제</option>
+                    </select>
+                </label>
+                <label for="isAdmin">
+                    관리자여부
+                    <select id="isAdmin" name="isAdmin">
+                        <option value="Y" th:selected="${user.isAdmin == 'Y'}">관리자</option>
+                        <option value="N" th:selected="${user.isAdmin == 'N'}">회원</option>
+                    </select>
                 </label>
             </div>
             <button type="submit">회원 정보 변경</button>

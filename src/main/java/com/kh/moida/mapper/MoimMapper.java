@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.kh.moida.notice.Question;
+import com.kh.moida.model.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -47,6 +47,7 @@ public interface MoimMapper {
 
     int moimquestion(Question question);
     
+
     ArrayList<Question> findQuestion(Long moimId);
 
     int moimanswer(Question question);
@@ -59,6 +60,7 @@ public interface MoimMapper {
 
     ArrayList<Question> findMyQuestion(Long userId);
 
-    //별점 업데이트
-    void updateAvgRate(Long moimId, Double avgRate);
+    int countMoimForAdmin();
+
+    ArrayList<Moim> findManyMoimForAdmin(Map<String, Object> params);
 }

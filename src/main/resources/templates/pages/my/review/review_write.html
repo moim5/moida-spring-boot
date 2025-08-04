@@ -7,23 +7,18 @@
     <title>모임후기 등록페이지</title>
 </head>
 <body>
-<main class="main-wrapper" layout:fragment="content">
+<main class="review-write-mainWrapper" layout:fragment="content">
     <div class="review-container"> <!--리뷰작성칸 전체-->
-        <div class="review-header"> <!--리뷰작성 상단바-->
-            <div class="review-title">내 모임 리뷰 : [[${moimTitle}]]</div>
-        </div>
-        
-
         <!--리뷰 작성란-->
         <div class="review-write-content">
             <form id="reviewForm" method="post" action="/review/enroll" enctype="multipart/form-data">
                 <input type="hidden" name="moimId" th:value="${moimId}"/>
                 <div class="review-title-box">
-                    <label for="reviewTitle">리뷰 제목</label>
+                    <label for="review-write-title">리뷰 제목</label>
                     <input type="text" id="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요"
                            required maxlength="20"/>
                 </div>
-                <textarea id="reviewText" name="reviewContent" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
+                <textarea id="reviewWriteText" name="reviewContent" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
                           required maxlength="1000"></textarea>
                 <div class="review-image-upload">
                     <i class="ti ti-library-photo"></i>
@@ -42,8 +37,8 @@
                 </div>
 
                 <!--별점 영역-->
-                <div class="review-rating-stars" id="reviewRating">
-                    <div class="review-star">
+                <div class="review-write-rating-stars" id="reviewWriteRating">
+                    <div class="review-write-stars">
                         <span class="star" data-value="1"><i class="ti ti-carambola"></i></span>
                         <span class="star" data-value="2"><i class="ti ti-carambola"></i></span>
                         <span class="star" data-value="3"><i class="ti ti-carambola"></i></span>

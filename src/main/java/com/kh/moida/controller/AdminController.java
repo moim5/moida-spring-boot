@@ -1,7 +1,9 @@
 package com.kh.moida.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.moida.model.Moim;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminController {
     private final CategoryService categoryService;
     private final UserService userService;
-    private final MoimService mService;
-    private static final int PAGE_SIZE = 20;
+    private final MoimService moimService;
 
     @GetMapping("/category/list")
     public String CategoryList(Model model) {
@@ -95,10 +96,11 @@ public class AdminController {
     @GetMapping("/user/list")
     public String UserList(
             @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "12") int size,
             Model model
     ) {
-        int offset = (page - 1) * PAGE_SIZE;
-        List<User> userList = userService.findUser(offset, PAGE_SIZE);
+        int offset = (page - 1) * size;
+        List<User> userList = userService.findUser(offset, size);
         model.addAttribute("userList", userList);
         return "pages/admin/user/list";
     }
@@ -110,33 +112,59 @@ public class AdminController {
     ) {
         User user = userService.findUserByUserId(userId);
         model.addAttribute("user", user);
-        return "pages/admin/user/detail";
+        return "pages/admin/user/modify";
     }
-    
+
+    @PostMapping("/user/update")
+    public String UpdateUser(
+            @ModelAttribute User user
+    ) {
+        User existUser = userService.findUserByUserId(user.getUserId());
+        if (existUser == null) {
+            return "redirect:/admin/user/list";
+        }
+        try {
+            userService.UpdateUserForAdmin(user);
+            return "redirect:/admin/user/list";
+        } catch (Exception e) {
+            return "redirect:/admin/user/list";
+        }
+
+    }
+
     @GetMapping("/moimList/delete")
     public String deleteMoimList(
-            @RequestParam("moimId")int moimId,
+            @RequestParam("moimId") int moimId,
             Model model
     ) {
-    	//update로 스테이터스 N으로 변경
-    	int result = mService.deleteMoimList(moimId);
-    	if(result > 0) {
-    		model.addAttribute("msg","모임이 삭제 되었습니다.");
-    		model.addAttribute("url","/pages/admin/moimList/moimList");
-    		return "pages/sendRedirect";
-    	} else {
-    		throw new MoimException("모임 삭제를 실패하였습니다.");
-    	}
+        //update로 스테이터스 N으로 변경
+        int result = moimService.deleteMoimList(moimId);
+        if (result > 0) {
+            model.addAttribute("msg", "모임이 삭제 되었습니다.");
+            model.addAttribute("url", "/pages/admin/moimList/moimList");
+            return "pages/sendRedirect";
+        } else {
+            throw new MoimException("모임 삭제를 실패하였습니다.");
+        }
     }
 
     @GetMapping("/moim/list")
-    public String MoimList() {
+    public String MoimList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "12") int size,
+            Model model
+    ) {
+        int offset = (page - 1) * size;
+
+        int totalCount = moimService.countMoimForAdmin();
+        ArrayList<Moim> moimList = moimService.findManyMoimForAdmin(offset, size);
+
+        model.addAttribute("moimList", moimList);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        model.addAttribute("baseUrl", "/admin/moim/list");
+
         return "pages/admin/moim/list";
     }
-    
- 
-    
-    
-    
-    
 }

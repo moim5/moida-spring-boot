@@ -9,16 +9,17 @@
 <body>
 <main class="main-wrapper" layout:fragment="content">
     <div class="review-container"> <!--리뷰작성칸 전체-->
-        <div class="review-header"> <!--리뷰작성 상단바-->
-            <div class="review-title">내 모임 리뷰 : [[${moimTitle}]]</div>
-        </div>
-
         <!--리뷰 작성란-->
-        <div class="review-content">
+        <div class="review-write-content">
             <form id="reviewForm" method="post" action="/review/update" th:enctype="'multipart/form-data'">
                 <input type="hidden" name="reviewId" value="#{reviewId}"/>
                 <input type="text" name="reviewTitle" value="originalTitle"/>
-                <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
+                <div class="review-title-box">
+                    <label for="review-write-title">리뷰 제목</label>
+                    <input type="text" id="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요"
+                           required maxlength="20"/>
+                </div>
+                <textarea id="reviewWriteText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
                           required maxlength="1000" th:text="${review.reviewContent}"></textarea>
                 <div class="review-image-upload">
                     <i class="ti ti-library-photo"></i>
@@ -36,8 +37,8 @@
                 </div>
 
                 <!--별점 영역-->
-                <div class="review-rating-stars" id="reviewRating">
-                    <div class="review-star">
+                <div class="review-write-rating-stars" id="reviewWriteRating">
+                    <div class="review-write-stars">
                         <span class="star" data-value="1"><i class="ti ti-carambola"></i></span>
                         <span class="star" data-value="2"><i class="ti ti-carambola"></i></span>
                         <span class="star" data-value="3"><i class="ti ti-carambola"></i></span>
@@ -45,7 +46,7 @@
                         <span class="star" data-value="5"><i class="ti ti-carambola"></i></span>
                     </div>
                 </div>
-                <input type="hidden" name="rating" id="ratingInput">
+                <input type="hidden" name="reviewRate" id="ratingInput">
                 <div class="review-button-box">
                     <button class="review-cancel-Button" type="button" onclick="location.href=document.referrer">취소하기
                     </button>

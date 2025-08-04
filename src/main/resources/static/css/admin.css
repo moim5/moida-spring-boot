@@ -186,3 +186,91 @@ td.func-cell > .admin-table-funcBox button:hover {
     background-color: transparent;
     color: red;
 }
+
+.my-moim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.my-moim-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.my-moim-item img {
+    width: 160px;
+    height: 114px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.my-moim-item .my-moim-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.my-moim-item .my-moim-info .my-moim-date {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.my-moim-date i {
+    margin-top: -4px;
+}
+
+.my-moim-item .my-moim-func {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.my-moim-item .my-moim-func button {
+    width: 100%;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    padding: 5px;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.my-moim-item .my-moim-func button.view-button {
+    background-color: var(--main-color);
+}
+
+.my-moim-item .my-moim-func button.modify-button {
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+    color: inherit;
+}
+
+.my-moim-item .my-moim-func button.cancel-button {
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
+}
+
+.my-moim-item .my-moim-func button.review-write-button {
+    background-color: transparent;
+    border: 1px solid  #FFA600;
+    color:  #FFA600;
+}
+
+.my-moim-item .my-moim-func button:disabled:not(.review-write-button) {
+    background-color: #ccc;
+    border: none;
+    color: #aaa;
+    cursor: not-allowed;
+}

@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
-
     <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
         <selectKey resultType="java.lang.Long" keyProperty="moimId" order="BEFORE">
             SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
@@ -32,9 +31,6 @@
             #{fileId}
         )
     </insert>
-    
-
-    
 
     <update id="updateMoimCategoryToDefault">
         UPDATE
@@ -274,7 +270,7 @@
             rnum BETWEEN #{startRow} AND #{endRow}
     </select>
 
-    <insert id="moimquestion" parameterType="com.kh.moida.notice.Question">
+    <insert id="moimquestion" parameterType="com.kh.moida.model.Question">
         INSERT INTO question
         VALUES (
         SEQ_QUESTION_ID.NEXTVAL,
@@ -284,7 +280,7 @@
         )
     </insert>
 
-    <select id="findQuestion" resultType="com.kh.moida.notice.Question">
+    <select id="findQuestion" resultType="com.kh.moida.model.Question">
         SELECT
             q.QUES_ID AS quesId,
             q.QUES_CONTENT AS quesContent,
@@ -304,7 +300,7 @@
             q.QUES_ID DESC
     </select>
 
-    <insert id="moimanswer" parameterType="com.kh.moida.notice.Question">
+    <insert id="moimanswer" parameterType="com.kh.moida.model.Question">
         INSERT INTO answer
         VALUES (
             SEQ_ANSWER_ID.NEXTVAL,
@@ -324,7 +320,7 @@
             MOIM_ID= #{moimId} AND USER_ID=#{userId}
     </select>
 
-    <select id="findMyQuestion" resultType="com.kh.moida.notice.Question">
+    <select id="findMyQuestion" resultType="com.kh.moida.model.Question">
         SELECT
             q.QUES_ID AS quesId,
             q.QUES_CONTENT AS quesContent,
@@ -344,17 +340,27 @@
         ORDER BY
             q.QUES_ID DESC
     </select>
-    
-    <!-- 평균 별점 계산한 것 업데이트 -->
-	<update id="updateAvgRate">
-	    UPDATE MOIM
-	    SET MOIM_AVG_RATE = (
-	        SELECT ROUND(AVG(R.RATING), 1)
-	        FROM REVIEW R
-	        WHERE R.MOIM_ID = #{moimId}
-	    )
-	    WHERE MOIM_ID = #{moimId}
-	</update>
-
-
+    <select id="countMoimForAdmin" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            MOIM
+    </select>
+    <select id="findManyMoimForAdmin" resultType="com.kh.moida.model.Moim">
+        SELECT
+            *
+        FROM (
+            SELECT
+                M.*,
+                F.FILE_ORIGIN,
+                F.FILE_CONVERT,
+                ROW_NUMBER() OVER (ORDER BY M.MOIM_DATE DESC) AS rnum
+            FROM
+                MOIM_ATTENDEE MA
+            JOIN MOIM M ON MA.MOIM_ID = M.MOIM_ID
+            LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
+            )
+        WHERE
+            rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
 </mapper>

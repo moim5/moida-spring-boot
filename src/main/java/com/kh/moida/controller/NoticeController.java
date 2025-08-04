@@ -1,5 +1,9 @@
-package com.kh.moida.notice;
+package com.kh.moida.controller;
 
+import com.kh.moida.model.Notice;
+import com.kh.moida.service.NoticeService;
+import com.kh.moida.common.pagination.PageInfo;
+import com.kh.moida.common.pagination.Pagination;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

@@ -1,28 +1,43 @@
-/* 리뷰 헤더 */
-.review-header {
+.review-write-main-wrapper{
     display: flex;
     flex-direction: column;
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 필요 시 세로 중앙도 가능 */
     width: 100%;
-    height: 64px;
-    padding: 5px;
-    margin: 2px 2px 5px;
-    background-color: #f0efecb3;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(255, 254, 254, 0.856);
-    align-items: center;
-    justify-content: space-between;
     box-sizing: border-box;
-    flex-wrap: nowrap;
+}
+.review-container{
+	 display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.review-write-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.review-title {
-    text-align: left;
-    font-size: 30px;
-    font-weight: bold;
-    color: #f29101;
-    margin: 10px;
+.review-title-box{
+	color: rgba(247, 145, 1, 0.63);
+	font-size:25px;
+	font-weight:500;
+	margin-top:70px;
+	margin-bottom:20px;
+}
+.review-title-box #reviewTitle{
+	margin-left:5px;
+	border: 4px solid rgba(247, 145, 1, 0.63);
+	border-radius: 16px;
+	width:300px;
+	height:30px;
 }
 
+.review-title-box #reviewTitle:focus{
+	outline:none;
+}
 /* 이미지 삭제영역*/
 .review-image-delete {
     display: inline-flex;
@@ -48,7 +63,7 @@
 
 
 /* 후기작성칸 */
-#reviewText {
+#reviewWriteText {
     resize: none;
     width: 100%;
     height: 300px;
@@ -63,7 +78,7 @@
 }
 
 /* 후기작성칸 클릭시 테두리없앰 */
-#reviewText:focus {
+#reviewWriteText:focus {
     outline: none;
 }
 
@@ -138,10 +153,12 @@
 }
 
 
-.review-star {
+.review-write-stars {
     display: flex;
     gap: 6px;
     cursor: pointer;
+    font-size:50px;
+    justify-align:center;
 }
 
 .star i {
@@ -156,11 +173,11 @@
 
 
 @media screen and (max-width: 768px) {
-    .review-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .review-title {
+   .review-title-box{
+	width:100%;
+	font-size:100%;
+}
+    .review-write-title {
         display: block;
         font-size: 100%;
     }
@@ -173,7 +190,7 @@
 
     }
 
-    #reviewText {
+    #reviewWritesText {
         width: 100%;
         height: 200px;
     }
@@ -184,7 +201,7 @@
         align-items: center;
     }
 
-    .review-rating-stars {
+    .review-write-rating-stars {
         margin-top: 300px;
         overflow-y: hidden;
     }

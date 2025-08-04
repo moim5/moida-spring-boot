@@ -1,8 +1,11 @@
-package com.kh.moida.notice;
+package com.kh.moida.service;
 
 import com.kh.moida.common.file.FileUploadService;
 import com.kh.moida.mapper.FileMapper;
+import com.kh.moida.mapper.NoticeMapper;
 import com.kh.moida.model.File;
+import com.kh.moida.model.Notice;
+import com.kh.moida.common.pagination.PageInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

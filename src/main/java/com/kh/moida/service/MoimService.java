@@ -23,7 +23,7 @@ import com.kh.moida.mapper.MoimMapper;
 import com.kh.moida.model.File;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
-import com.kh.moida.notice.Question;
+import com.kh.moida.model.Question;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.server.ResponseStatusException;
@@ -76,13 +76,6 @@ public class MoimService {
     public int countMoim(Long categoryId) {
         return moimMapper.countMoim(categoryId);
     }
-    //평균 별점 구하기
-    public double getRateAvgByMoimId(Long moimId) {
-        Double avg = reviewMapper.getRateAvgByMoimId(moimId);
-        return avg != null ? Math.round(avg * 10.0) / 10.0 : 0.0;
-    }
-    
-   
 
     //모임 아이디찾기
     public Moim findById(Long moimId) {
@@ -186,11 +179,6 @@ public class MoimService {
         return maMapper.joinMoimCancel(params);
     }
 
-    public int deleteMoim(int moimId) {
-
-        return moimMapper.deleteMoim(moimId);
-    }
-
     public int moimquestion(Question question) {
         return moimMapper.moimquestion(question);
     }
@@ -245,5 +233,19 @@ public class MoimService {
         return moimMapper.findMyQuestion(userId);
     }
 
-	
+    public int countMoimForAdmin() {
+        return moimMapper.countMoimForAdmin();
+    }
+
+    public ArrayList<Moim> findManyMoimForAdmin(int offset, int limit) {
+        int startRow = offset + 1;
+        int endRow = offset + limit;
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("startRow", startRow);
+        params.put("endRow", endRow);
+
+        return moimMapper.findManyMoimForAdmin(params);
+
+    }
 }

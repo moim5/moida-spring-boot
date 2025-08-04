@@ -22,4 +22,6 @@ public interface UserMapper {
     List<User> findUser(Map<String, Object> params);
 
     User findUserByUserId(Long userId);
+
+    void updateUserForAdmin(User user);
 }
