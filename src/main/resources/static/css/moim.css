@@ -190,4 +190,9 @@
     .moim-detail-mobileBox {
         display: flex;
     }
+    .subTitle .moimAvgRate{
+	color:#666;
+	display : flex;
+	margin-left : -200px;
+	}
 }

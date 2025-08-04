@@ -35,11 +35,13 @@ public class ReviewController {
     @GetMapping("/review/write/{moimId}")
     public String writeReview(
             @PathVariable("moimId") Long moimId,
-            @AuthenticationPrincipal(expression = "user") User loginUser) {
+            @AuthenticationPrincipal(expression = "user") User loginUser,
+            Model model) {
         int result = rService.checkReview(moimId, loginUser.getUserId());
         if (result == 0) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
+        model.addAttribute("moimId", moimId);
         return "pages/my/review/review_write";
     }
 
@@ -67,6 +69,7 @@ public class ReviewController {
         if (result3 > 0) {
         	rService.updateAvgRate(r.getMoimId()); //별점 업데이트
             return "redirect:/review/detail/" + r.getReviewId();
+            
         }
         return "redirect:/review/write/" + r.getMoimId();
     }

@@ -382,14 +382,7 @@ hr.moimInfo-divider {
     flex: 1.5;
 }
 
-.host-name {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 20px;
-    font-weight: 450;
-    padding-left: 35px;
-    padding-top: 10px;
-}
+
 
 .host-introduction {
     display: flex;
@@ -406,40 +399,7 @@ hr.moimInfo-divider {
     box-sizing: border-box;
 }
 
-.host-moimImg {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 700px;
-    box-sizing: border-box;
-    margin-left: 1px;
-    margin-right: 1px;
-    padding: 10px;
-    gap: 5px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
 
-}
-
-.host-moimImg::-webkit-scrollbar {
-    height: 6px;
-}
-
-.host-moimImg::-webkit-scrollbar-thumb {
-    background-color: rgba(150, 150, 150, 0.5);
-    border-radius: 3px;
-}
-
-.host-moimImg img {
-    min-width: 250px;
-    height: 300px;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
-    scroll-snap-align: start; /* 스크롤 시 이미지 정렬 */
-
-}
 
 
 @media screen and (max-width: 768px) {
