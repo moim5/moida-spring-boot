@@ -5,7 +5,7 @@
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
 
     <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
-        <selectKey resultType="int" keyProperty="moimId" order="BEFORE">
+        <selectKey resultType="java.lang.Long" keyProperty="moimId" order="BEFORE">
             SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
         </selectKey>
 

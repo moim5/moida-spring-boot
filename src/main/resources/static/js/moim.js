@@ -119,3 +119,29 @@ function updateJoinButtonUI(moimId, context, isJoined, button) {
             : () => createMoimAttendee(moimId);
     }
 }
+
+async function cancelMoim(moimId) {
+	const confirmDelete = confirm("정말 이 모임을 삭제하시겠습니까?");
+	if (!confirmDelete) {
+	    return;
+	}
+    try {
+        const response = await fetch(`/moim/cancelMoim/${moimId}`, {
+            method: 'POST',
+			headers: {
+			     "Content-type": "application/x-www-form-urlencoded",
+			 },
+			body: new URLSearchParams({"moimId": moimId.toString()})
+        });
+		
+		const result = await response.text();
+		if(result == "false") {
+			return alert("삭제 실패: " + err);
+		}
+		
+		location.reload(true);
+    } catch (error) {
+        console.error("삭제 중 오류:", error);
+        alert("서버 오류가 발생했습니다.");
+    }
+}

@@ -42,12 +42,13 @@
                                 수정
                             </button>
                         </a>
-                        <a th:if="${type == 'hosted'}" class="cancel-button" href="/moim/">
-                            <button class="cancel-button"
+                        <button
+                            th:if="${type == 'hosted'}" 
+                            class="cancel-button"
+                            th:onclick="|cancelMoim(${m.moimId})|"
                                     th:attr="disabled=${m.moimDate.before(now)}">
-                                모집중단
-                            </button>
-                        </a>
+                                모임삭제
+                        </button>
 
                         <a class="cancel-button">
                             <button th:if="${type == 'joined'}" class="cancel-button"
