@@ -3,14 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace = "com.kh.moida.notice.NoticeMapper">
+<mapper namespace = "com.kh.moida.mapper.NoticeMapper">
 
     <select id="getListCount" resultType="_int">
         select count(*) from NOTICE
 <!--        order by NOTICE_ID desc-->
     </select>
 
-    <select id="selectBoardList" parameterType="com.kh.moida.notice.PageInfo" resultType="com.kh.moida.notice.Notice">
+    <select id="selectBoardList" parameterType="com.kh.moida.common.pagination.PageInfo" resultType="com.kh.moida.model.Notice">
         /*<![CDATA[*/
         SELECT
             *
@@ -28,7 +28,7 @@
         /*]]>*/
     </select>
 
-    <insert id="write" parameterType="com.kh.moida.notice.Notice" >
+    <insert id="write" parameterType="com.kh.moida.model.Notice" >
         INSERT INTO Notice
         VALUES (
         SEQ_NOTICE_ID.nextval,
@@ -40,7 +40,7 @@
         )
     </insert>
 
-    <select id="selectBoard" resultType="com.kh.moida.notice.Notice">
+    <select id="selectBoard" resultType="com.kh.moida.model.Notice">
         SELECT n.*, f.file_convert
         FROM NOTICE n
         LEFT JOIN FILES f ON n.FILE_ID = f.FILE_ID
@@ -53,7 +53,7 @@
         WHERE NOTICE_ID = #{id}
     </delete>
 
-    <select id="updateForm" resultType="com.kh.moida.notice.Notice" >
+    <select id="updateForm" resultType="com.kh.moida.model.Notice" >
         select *
         FROM NOTICE
         WHERE NOTICE_ID = #{noticeId}
@@ -87,7 +87,7 @@
         )
     </insert>
 
-    <select id="findNoticeWithFile" resultType="com.kh.moida.notice.Notice">
+    <select id="findNoticeWithFile" resultType="com.kh.moida.model.Notice">
         SELECT *
         FROM notice n
         LEFT JOIN files f ON n.FILE_ID = f.FILE_ID

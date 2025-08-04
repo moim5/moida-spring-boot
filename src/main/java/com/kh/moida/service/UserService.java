@@ -22,10 +22,6 @@ public class UserService {
         userMapper.insertUser(user);
     }
 
-    public User findByUsername(String email) {
-        return userMapper.findByUsername(email);
-    }
-
     public void updateUserInfo(User user) {
         userMapper.updateUserInfo(user);
     }
@@ -54,5 +50,9 @@ public class UserService {
 
     public User findUserByUserId(Long userId) {
         return userMapper.findUserByUserId(userId);
+    }
+
+    public void UpdateUserForAdmin(User user) {
+        userMapper.updateUserForAdmin(user);
     }
 }

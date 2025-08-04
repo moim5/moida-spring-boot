@@ -1,4 +1,4 @@
-package com.kh.moida.notice;
+package com.kh.moida.model;
 
 import lombok.*;
 

@@ -3,7 +3,7 @@ package com.kh.moida.controller;
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
 import com.kh.moida.model.UserPrincipal;
-import com.kh.moida.notice.Question;
+import com.kh.moida.model.Question;
 import com.kh.moida.service.MoimService;
 import com.kh.moida.service.UserService;
 import lombok.RequiredArgsConstructor;

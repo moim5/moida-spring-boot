@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.kh.moida.notice.Question;
+import com.kh.moida.model.Question;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -59,4 +59,8 @@ public interface MoimMapper {
 	int existMoimAttendee(HashMap<String, Object> map);
 
     ArrayList<Question> findMyQuestion(Long userId);
+
+    int countMoimForAdmin();
+
+    ArrayList<Moim> findManyMoimForAdmin(Map<String, Object> params);
 }
