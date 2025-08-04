@@ -76,6 +76,13 @@ public class MoimService {
     public int countMoim(Long categoryId) {
         return moimMapper.countMoim(categoryId);
     }
+    //평균 별점 구하기
+    public double getRateAvgByMoimId(Long moimId) {
+        Double avg = reviewMapper.getRateAvgByMoimId(moimId);
+        return avg != null ? Math.round(avg * 10.0) / 10.0 : 0.0;
+    }
+    
+   
 
     //모임 아이디찾기
     public Moim findById(Long moimId) {
@@ -237,4 +244,6 @@ public class MoimService {
     public ArrayList<Question> findMyQuestion(Long userId) {
         return moimMapper.findMyQuestion(userId);
     }
+
+	
 }

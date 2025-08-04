@@ -29,6 +29,14 @@
             MOIM_ID = #{moimId} AND USER_ID = #{userId}
     </select>
 
+   <!-- 별점 평균 구하기 -->
+    <select id="getRateAvgByMoimId" resultType="double">
+	  SELECT AVG(REVIEW_RATE)
+	  FROM REVIEW
+	  WHERE MOIM_ID = #{moimId}
+	</select>
+	
+	
     <!-- 후기등록 -->
 <insert id="writeReview">
     <selectKey keyProperty="reviewId" resultType="int" order="BEFORE">

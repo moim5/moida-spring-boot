@@ -74,17 +74,28 @@ public class MoimController {
         ArrayList<Question> questions = moimService.findQuestion(moim.getMoimId());
         ArrayList<ReviewWithUser> reviewList = moimService.getReviewList(moimId);
 
+        //모임에 대한 평균 별점 추가
+        double avgRating = moimService.getRateAvgByMoimId(moimId);
+        
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("moim", moim)
-                .addAttribute("questions", questions)
-                .addAttribute("loginUser", loginUser)
-                .addAttribute("isMoimAttendee", isMoimAttendee);
-
+             .addAttribute("questions", questions)
+             .addAttribute("loginUser", loginUser)
+             .addAttribute("isMoimAttendee", isMoimAttendee)
+             .addAttribute("avgRating", avgRating);
         return "pages/moim/detail";
     }
+    
+
+    
 
 
-    @GetMapping("/modify/{moimId}")
+    private void addAttribute(String string, double avgRating) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@GetMapping("/modify/{moimId}")
     public String MoimModify(
             @AuthenticationPrincipal(expression = "user") User loginUser,
             @PathVariable("moimId") Long moimId,

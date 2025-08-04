@@ -66,8 +66,15 @@ public class ReviewService {
             r.setFileId(file.getFileId());
         }
         r.setUserId(userId);
-        // review DB
-        return mapper.writeReview(r);
+        // review 등록하기
+        int result = mapper.writeReview(r);
+        
+        //review등록 성공 시 평균 별점 업데이트
+        if(result > 0) {
+        	Double avgRate = mapper.getRateAvgByMoimId(r.getMoimId()); //리뷰 평균 별점 구하기
+        	moimMapper.updateAvgRate(r.getMoimId(), avgRate); //평균 별점 업데이트
+        }
+        return result;
     }
 
 	 // 후기읽기 페이지용 리뷰가져오기
@@ -129,6 +136,7 @@ public class ReviewService {
         return mapper.deleteReview(review.getReviewId());
     }
 
+   
    
 
 }

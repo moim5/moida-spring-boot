@@ -40,10 +40,10 @@
 
     //후기작성 : 10자이상 작성 필수 및 별점 선택 필수
     function submitReview() {
-        const reviewText = document.getElementById('reviewText').value.trim();
+        const rText = document.getElementById('rText').value.trim();
         const rating = document.getElementById('ratingInput').value;
 
-        if (reviewText.length < 10) {
+        if (rText.length < 10) {
             alert('후기를 10자 이상 작성해주세요.');
             return false;
         }

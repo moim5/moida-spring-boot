@@ -44,7 +44,7 @@
                     </div>
                   <div class="rate-date-box">
                         <div class="review-rate">([[${r.reviewRate}]])</div>
-                        <div class="review-date">[[${r.reviewDate}]]</div>
+                        <div class="review-date" th:text="${#dates.format(r.reviewDate, 'yyyy년 MM월 dd일')}"></div>
                         <div class="review-edit" th:if="${loginUser.userId == r.userId}" ><!--확인할 것-->
                               <a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
 

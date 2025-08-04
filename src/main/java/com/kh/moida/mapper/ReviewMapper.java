@@ -31,4 +31,12 @@ public interface ReviewMapper {
 
 	//후기 읽기 (read)
 	ArrayList<Review> getReview(Long moimId);
+
+	//평균 별점 구하기
+	Double getRateAvgByMoimId(Long moimId);
+
+
+
+
+
 }

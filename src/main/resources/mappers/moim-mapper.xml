@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kh.moida.mapper.MoimMapper">
+
     <insert id="insertMoim" parameterType="com.kh.moida.model.Moim">
         <selectKey resultType="int" keyProperty="moimId" order="BEFORE">
             SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
@@ -31,6 +32,9 @@
             #{fileId}
         )
     </insert>
+    
+
+    
 
     <update id="updateMoimCategoryToDefault">
         UPDATE
@@ -340,5 +344,17 @@
         ORDER BY
             q.QUES_ID DESC
     </select>
+    
+    <!-- 평균 별점 계산한 것 업데이트 -->
+<update id="updateAvgRate">
+    UPDATE MOIM
+    SET MOIM_AVG_RATE = (
+        SELECT ROUND(AVG(R.RATING), 1)
+        FROM REVIEW R
+        WHERE R.MOIM_ID = #{moimId}
+    )
+    WHERE MOIM_ID = #{moimId}
+</update>
+
 
 </mapper>
