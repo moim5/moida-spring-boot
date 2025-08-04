@@ -71,16 +71,21 @@
 
 
     <!-- review read -->
-    <select id="getReview" parameterType="long" resultType="com.kh.moida.model.Review">
+    <select id="getReview" parameterType="long" resultType="com.kh.moida.dto.ReviewWithUser">
     SELECT
         R.*,
         F.FILE_CONVERT,
-        F.FILE_ORIGIN
-    FROM REVIEW R
+        F.FILE_ORIGIN,
+        U.USERNAME,
+        U.NAME
+    FROM
+        REVIEW R
     LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
+    LEFT JOIN USERS U ON R.USER_ID = U.USER_ID
     WHERE
         R.MOIM_ID = #{moimId}
-    ORDER BY R.REVIEW_DATE DESC
+    ORDER BY
+        R.REVIEW_DATE DESC
     </select>
 
 

@@ -30,5 +30,5 @@ public interface ReviewMapper {
 	int deleteReview(int reviewId);
 
 	//후기 읽기 (read)
-	ArrayList<Review> getReview(Long moimId);
+	ArrayList<ReviewWithUser> getReview(Long moimId);
 }

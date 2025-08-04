@@ -205,37 +205,9 @@ hr .moimReview-divider {
 }
 
 /* 각 리뷰칸 */
-.review-item {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    width: 200px;
-    height: 130px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 16px;
-    margin-right: 10px;
-    background-color: white;
-    color: black;
 
-}
 
-.review-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1.5;
-}
 
-.review-writer {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 20px;
-    font-weight: 400;
-    padding-left: 5px;
-    padding-top: 5px;
-    padding-bottom: 3px;
-}
 
 .user-star {
     font-size: 16px;
@@ -266,25 +238,6 @@ hr .moimReview-divider {
 .review p {
     margin: 0;
     display: flex;
-}
-
-/* 리뷰더보기 버튼 */
-.more-btn {
-    display: inline;
-    white-space: nowrap;
-    background: none;
-    color: rgb(185, 182, 182);
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: -0.25px;
-    line-height: 22px;
-    word-break: break-word;
-    padding: 0;
-    text-decoration: underline;
-    border-style: none;
-
 }
 
 /* 모달창 */
@@ -614,21 +567,6 @@ hr.moimInfo-divider {
         max-width: 800px;
         align-content: center;
         margin: 0 10px;
-    }
-
-
-    .reviews-container {
-        width: 100%;
-        padding: 0 10px;
-    }
-
-    .review-item {
-        width: 100%;
-        max-width: 95%;
-        height: auto;
-        margin-bottom: 15px;
-        flex-direction: row;
-        padding: 12px;
     }
 
     .moim-enroll-divider {

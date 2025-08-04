@@ -4,78 +4,78 @@
       layout:decorate="~{layouts/base}"
       lang="ko">
 <head>
-      <script src="./review_read.js"></script>
-      <link href="./review_read.css" rel="stylesheet"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <script src="/js/review_read.js"></script>
+    <link href="/css/review_read.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
 
-<meta charset="UTF-8">
-<title>리뷰 상세페이지</title>
+    <meta charset="UTF-8">
+    <title>리뷰 상세페이지</title>
 </head>
 <body>
 <main class="container" layout:fragment="content">
-   <div class="review-wrapper">
-      <div class="review-banner">
+    <div class="review-wrapper">
+        <div class="review-banner">
             <div class="review-title">나만의 특별한 경험을 공유해요.</div>
             <div class="moim-title">내가 참여한 모임 : [[${moim.moimTitle}]]</div>
             <div class="moim-info">
-                  <i class="ti ti-calendar-week"></i>[[${moim.moimAddress1}]]&nbsp;[[${moim.moimDate}]]
+                <i class="ti ti-calendar-week"></i>[[${moim.moimAddress1}]]&nbsp;[[${moim.moimDate}]]
             </div>
-      </div>
-      <div class="review-photo-container">
-            <div class="review-photo" id="review-photo"th:each="r : ${reviewImgList}">
-                  <img src="./review03.webp"/>
+        </div>
+        <div class="review-photo-container">
+            <div class="review-photo" id="review-photo" th:each="r : ${reviewImgList}">
+                <img src="./review03.webp" alt="리뷰이미지"/>
             </div>
             <button class="review-photo-button" id="review-photo-btn"><i class="ti ti-caret-right"></i></button>
-      </div>
-      <div class="review-content-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
+        </div>
+        <div class="review-content-container" th:each="r : ${reviewList}"> <!--날짜내림차순으로 쿼리 뽑기 -->
             <div class="review-writer">
-                  <div class="writer-profile">
-                        <div class="writer-name">[[${loginUser.name}]]</div>
-                  </div>
+                <div class="writer-profile">
+                    <div class="writer-name">[[${r.username}]]</div>
+                </div>
             </div>
-            <div class="review-form"> 
-            	<div class="review-rate-box"> <!--별 박스-->
-                	<div class="review-star">
+            <div class="review-form">
+                <div class="review-rate-box"> <!--별 박스-->
+                    <div class="review-star">
                     	<span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star" data-value="${i}">
                               <i class="ti ti-carambola-filled"></i>
                         </span>
 
                     </div>
-                  <div class="rate-date-box">
+                    <div class="rate-date-box">
                         <div class="review-rate">([[${r.reviewRate}]])</div>
                         <div class="review-date">[[${r.reviewDate}]]</div>
-                        <div class="review-edit" th:if="${loginUser.userId == r.userId}" ><!--확인할 것-->
-                              <a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
+                        <div class="review-edit" th:if="${loginUser.userId == r.userId}"><!--확인할 것-->
+                            <a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
 
                                     <span>
                                           <i class="ti ti-pencil"></i>
                                     </span>
-                              </a>&nbsp;
-                              <a th:href="@{'/review/delete/' + ${r.reviewId}}">
+                            </a>&nbsp;
+                            <a th:href="@{'/review/delete/' + ${r.reviewId}}">
 
                                     <span onclick="deleteReviewModal()">
                                           <i class="ti ti-trash"></i>
                                     </span>
-                              </a>
+                            </a>
                         </div>
-                  </div>
-                        
+                    </div>
 
-                  <div class="review-content-title">[[${r.reviewTitle}]]</div>
-                  <div class="review-content"> <!--리뷰 txt + img-->
+
+                    <div class="review-content-title">[[${r.reviewTitle}]]</div>
+                    <div class="review-content"> <!--리뷰 txt + img-->
                         <div class="review-txt">[[${r.reviewContent}]]</div>
                         <div class="review-img" th:if="${r.fileConvert != null}">
-                              <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${r.fileConvert})}" alt="리뷰 이미지"/>
+                            <img th:src="@{https://kr.object.iwinv.kr/moida/{path}(path=${r.fileConvert})}"
+                                 alt="리뷰 이미지"/>
                         </div>
-                  </div>
+                    </div>
 
 
-            	</div>
-      		</div>
-
-
-   	</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 </body>
 </html>
