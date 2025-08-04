@@ -317,7 +317,7 @@
         FROM
             MOIM_ATTENDEE
         WHERE
-            MOIM_ID= # {moimId} AND USER_ID=#{userId}
+            MOIM_ID= #{moimId} AND USER_ID=#{userId}
     </select>
 
     <select id="findMyQuestion" resultType="com.kh.moida.notice.Question">
