@@ -248,4 +248,10 @@ public class MoimService {
         return moimMapper.findManyMoimForAdmin(params);
 
     }
+
+    //평균 별점 구하기
+    public double getRateAvgByMoimId(Long moimId) {
+        Double avg = reviewMapper.getRateAvgByMoimId(moimId);
+        return avg != null ? Math.round(avg * 10.0) / 10.0 : 0.0;
+    }
 }

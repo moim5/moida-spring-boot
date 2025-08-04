@@ -363,4 +363,16 @@
         WHERE
             rnum BETWEEN #{startRow} AND #{endRow}
     </select>
+    
+    <!-- 평균 별점 계산한 것 업데이트 -->
+	<update id="updateAvgRate">
+	    UPDATE MOIM
+	    SET MOIM_AVG_RATE = (
+	        SELECT ROUND(AVG(R.RATING), 1)
+	        FROM REVIEW R
+	        WHERE R.MOIM_ID = #{moimId}
+	    )
+	    WHERE MOIM_ID = #{moimId}
+	</update>
+    
 </mapper>

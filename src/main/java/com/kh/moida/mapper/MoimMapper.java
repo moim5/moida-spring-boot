@@ -47,8 +47,9 @@ public interface MoimMapper {
 
     int moimquestion(Question question);
     
-
     ArrayList<Question> findQuestion(Long moimId);
+
+    ArrayList<Question> findMyQuestion(Long userId);
 
     int moimanswer(Question question);
 
@@ -58,9 +59,10 @@ public interface MoimMapper {
 
 	int existMoimAttendee(HashMap<String, Object> map);
 
-    ArrayList<Question> findMyQuestion(Long userId);
-
     int countMoimForAdmin();
+    
+    //별점 업데이트
+    void updateAvgRate(Long moimId, Double avgRate);
 
-    ArrayList<Moim> findManyMoimForAdmin(Map<String, Object> params);
+	ArrayList<Moim> findManyMoimForAdmin(Map<String, Object> params);
 }
