@@ -12,15 +12,22 @@
         <div class="review-header"> <!--리뷰작성 상단바-->
             <div class="review-title">내 모임 리뷰 : [[${moimTitle}]]</div>
         </div>
+        
 
         <!--리뷰 작성란-->
         <div class="review-content">
             <form id="reviewForm" method="post" action="/review/enroll" enctype="multipart/form-data">
-                <textarea id="reviewText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
+                <input type="hidden" name="moimId" th:value="${moimId}"/>
+                <div class="review-title-box">
+                    <label for="reviewTitle">리뷰 제목</label>
+                    <input type="text" id="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요"
+                           required maxlength="20"/>
+                </div>
+                <textarea id="reviewText" name="reviewContent" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
                           required maxlength="1000"></textarea>
                 <div class="review-image-upload">
                     <i class="ti ti-library-photo"></i>
-                    <span class="image-text">이미지 업로드</span>
+                    <label class="image-text" for="imageUpload">이미지 업로드</label>
                     <input type="file" id="imageUpload" name="imageUpload" accept="image/*"
                            th:enctype="'multiPart/form-data'"/>
                 </div>
@@ -28,9 +35,9 @@
                 <div class="review-image-delete" id="imageDelete">
                     <div class="review-image-list" id="imageFileList"> <!--이미지-->
                         <span id="imageName"></span>
-                        <span class="image-delete-icon" id="imageDeleteIcon" style="display:none">
-                                <i class="ti ti-trash"></i>
-                            </span>
+                        <span class="image-delete-icon" style="display:none">
+                        	<i class="ti ti-trash" id="imageDeleteIcon"></i>
+                        </span>
                     </div>
                 </div>
 
@@ -44,14 +51,22 @@
                         <span class="star" data-value="5"><i class="ti ti-carambola"></i></span>
                     </div>
                 </div>
-                <input type="hidden" name="rating" id="ratingInput">
+                <input type="hidden" name="reviewRate" id="ratingInput">
                 <div class="review-button-box">
                     <button class="review-cancel-Button" type="button" onclick="location.href=document.referrer">취소하기
                     </button>
                     <!-- 사용자가 이전에 방문한 url로 이동 -->
                     <button class="review-enroll-Button" type="button"
-                            onclick="showReviewConfirmModal()">등록하기
+                            onclick="submitReview()">등록하기
                     </button>
+                </div>
+                <div id="confirmModal" class="modal" style="display:none;">
+                    <div class="modal-content">
+                        <p>리뷰를 등록하시겠습니까?</p>
+                    <button type="button"onclick="confirmAndSubmit()">예</button>
+                    <button type="button" onclick="closeModal('confirmModal')">아니오</button>
+
+                    </div>
                 </div>
                 <div id="successModal" class="modal" style="display:none;">
                     <div class="modal-content">

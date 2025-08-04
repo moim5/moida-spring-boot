@@ -5,7 +5,7 @@ async function showAttendeeListModal(moimId) {
             headers: {
                 "Content-type": "application/x-www-form-urlencoded",
             },
-            body: new URLSearchParams({moimId})
+            body: new URLSearchParams({"moimId": moimId.toString()})
         });
 
         if (!response.ok) {

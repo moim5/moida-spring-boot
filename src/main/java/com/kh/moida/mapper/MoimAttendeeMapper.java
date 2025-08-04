@@ -15,5 +15,5 @@ public interface MoimAttendeeMapper {
 
 	int joinMoimCancel(Map<String, Object> params);
 
-	List<MoimAttendeeWithUser> findMoimAttendee(int moimId);
+	List<MoimAttendeeWithUser> findMoimAttendee(Long moimId);
 }

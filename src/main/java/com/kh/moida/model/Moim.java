@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Moim {
-    private int moimId;
+    private Long moimId;
     private String moimTitle;
     private String moimType;
     private String moimContent;

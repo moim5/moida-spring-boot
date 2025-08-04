@@ -2,6 +2,8 @@ package com.kh.moida.controller;
 
 import com.kh.moida.model.Moim;
 import com.kh.moida.model.User;
+import com.kh.moida.model.UserPrincipal;
+import com.kh.moida.notice.Question;
 import com.kh.moida.service.MoimService;
 import com.kh.moida.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -117,7 +120,18 @@ public class MyController {
     }
 
     @GetMapping("/qna/list")
-    public String MyQnAList() {
+    public String MyQnAList(
+            @AuthenticationPrincipal UserPrincipal userPrincipal,
+            Model model
+    ) {
+        User loginUser = null;
+        int isMoimAttendee = 0;
+        if (userPrincipal != null) {
+            loginUser = userPrincipal.getUser();
+        }
+        ArrayList<Question> myquestions = moimService.findMyQuestion(loginUser.getUserId());
+        model.addAttribute("myquestions", myquestions);
         return "pages/my/qna/list";
+
     }
 }

@@ -8,7 +8,9 @@
             SELECT SEQ_MOIM_ID.NEXTVAL FROM DUAL
         </selectKey>
 
-        INSERT INTO MOIM VALUES (
+        INSERT INTO
+            MOIM
+        VALUES (
             #{moimId},
             #{moimTitle},
             #{moimType},
@@ -136,40 +138,44 @@
     </select>
 
     <update id="updateMoimWithoutFile">
-    	UPDATE MOIM
-			SET
-				MOIM_TITLE = #{moimTitle},
-				MOIM_TYPE = #{moimType},
-				MOIM_CONTENT = #{moimContent},
-				MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
-				MOIM_ZIPCODE = #{moimZipCode},
-				MOIM_ADDRESS1 = #{moimAddress1},
-				MOIM_ADDRESS2 = #{moimAddress2},
-				MOIM_DATE = #{moimDate},
-				MOIM_MONEY = #{moimMoney},
-				MOIM_HOST_INTRO = #{moimHostIntro},
-				IS_ACTIVE = #{isActive},
-				CATEGORY_ID = #{categoryId},
-		WHERE MOIM_ID = #{moimId}
+    	UPDATE
+            MOIM
+        SET
+            MOIM_TITLE = #{moimTitle},
+            MOIM_TYPE = #{moimType},
+            MOIM_CONTENT = #{moimContent},
+            MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
+            MOIM_ZIPCODE = #{moimZipCode},
+            MOIM_ADDRESS1 = #{moimAddress1},
+            MOIM_ADDRESS2 = #{moimAddress2},
+            MOIM_DATE = #{moimDate},
+            MOIM_MONEY = #{moimMoney},
+            MOIM_HOST_INTRO = #{moimHostIntro},
+            IS_ACTIVE = #{isActive},
+            CATEGORY_ID = #{categoryId},
+		WHERE
+            MOIM_ID = #{moimId}
     </update>
 
     <update id="updateMoimWithFile">
-    	UPDATE MOIM
-			SET
-				MOIM_TITLE = #{moimTitle},
-				MOIM_TYPE = #{moimType},
-				MOIM_CONTENT = #{moimContent},
-				MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
-				MOIM_ZIPCODE = #{moimZipCode},
-				MOIM_ADDRESS1 = #{moimAddress1},
-				MOIM_ADDRESS2 = #{moimAddress2},
-				MOIM_DATE = #{moimDate},
-				MOIM_MONEY = #{moimMoney},
-				MOIM_HOST_INTRO = #{moimHostIntro},
-				IS_ACTIVE = #{isActive},
-				CATEGORY_ID = #{categoryId},
-                FILE_ID = #{fileId}
-		WHERE MOIM_ID = #{moimId}
+    	UPDATE
+            MOIM
+        SET
+            MOIM_TITLE = #{moimTitle},
+            MOIM_TYPE = #{moimType},
+            MOIM_CONTENT = #{moimContent},
+            MOIM_ATTENDEE_COUNT = #{moimAttendeeCount},
+            MOIM_ZIPCODE = #{moimZipCode},
+            MOIM_ADDRESS1 = #{moimAddress1},
+            MOIM_ADDRESS2 = #{moimAddress2},
+            MOIM_DATE = #{moimDate},
+            MOIM_MONEY = #{moimMoney},
+            MOIM_HOST_INTRO = #{moimHostIntro},
+            IS_ACTIVE = #{isActive},
+            CATEGORY_ID = #{categoryId},
+            FILE_ID = #{fileId}
+		WHERE
+            MOIM_ID = #{moimId}
 	</update>
 
     <!-- 관리자 모임삭제 -->
@@ -231,6 +237,7 @@
             LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
             WHERE
                 USER_ID = #{userId}
+                AND IS_ACTIVE = 'Y'
         )
         WHERE
             rnum BETWEEN #{startRow} AND #{endRow}
@@ -257,6 +264,7 @@
             LEFT JOIN FILES F ON M.FILE_ID = F.FILE_ID
             WHERE
                 MA.USER_ID = #{userId}
+                AND M.IS_ACTIVE = 'Y'
             )
         WHERE
             rnum BETWEEN #{startRow} AND #{endRow}
@@ -272,37 +280,65 @@
         )
     </insert>
 
-    <select id="findQuestion" resultType="com.kh.moida.notice.Question" parameterType="int">
+    <select id="findQuestion" resultType="com.kh.moida.notice.Question">
         SELECT
-        q.QUES_ID AS quesId,
-        q.QUES_CONTENT AS quesContent,
-        q.USER_ID AS questionUserId,
-        q.MOIM_ID AS moimId,
+            q.QUES_ID AS quesId,
+            q.QUES_CONTENT AS quesContent,
+            q.USER_ID AS questionUserId,
+            q.MOIM_ID AS moimId,
 
-        a.ANS_ID AS ansId,
-        a.ANS_CONTENT AS ansContent,
-        a.ANS_DATE AS ansDate,
-        a.USER_ID AS answerUserId
+            a.ANS_ID AS ansId,
+            a.ANS_CONTENT AS ansContent,
+            a.ANS_DATE AS ansDate,
+            a.USER_ID AS answerUserId
 
         FROM Question q
         LEFT JOIN Answer a ON q.QUES_ID = a.QUES_ID
-        WHERE q.MOIM_ID = #{moimId}
-        ORDER BY q.QUES_ID DESC
+        WHERE
+            q.MOIM_ID = #{moimId}
+        ORDER BY
+            q.QUES_ID DESC
     </select>
 
     <insert id="moimanswer" parameterType="com.kh.moida.notice.Question">
         INSERT INTO answer
         VALUES (
-        SEQ_ANSWER_ID.NEXTVAL,
-        #{ansContent},
-        SYSDATE,
-        #{quesId},
-        #{answerUserId}
+            SEQ_ANSWER_ID.NEXTVAL,
+            #{ansContent},
+            SYSDATE,
+            #{quesId},
+            #{answerUserId}
         )
     </insert>
     
-    <select id="existMoimAttendee" parameterType="map">
-    	select count(*) from moim_attendee where moim_id=#{moimId} and user_id=#{userId}
+    <select id="existMoimAttendee" parameterType="map" resultType="int">
+    	SELECT
+            COUNT(*)
+        FROM
+            MOIM_ATTENDEE
+        WHERE
+            MOIM_ID= # {moimId} AND USER_ID=#{userId}
+    </select>
+
+    <select id="findMyQuestion" resultType="com.kh.moida.notice.Question">
+        SELECT
+            q.QUES_ID AS quesId,
+            q.QUES_CONTENT AS quesContent,
+            q.USER_ID AS questionUserId,
+            q.MOIM_ID AS moimId,
+
+            a.ANS_ID AS ansId,
+            a.ANS_CONTENT AS ansContent,
+            a.ANS_DATE AS ansDate,
+            a.USER_ID AS answerUserId
+
+        FROM
+            Question q
+        LEFT JOIN Answer a ON q.QUES_ID = a.QUES_ID
+        WHERE
+            q.USER_ID = #{userId}
+        ORDER BY
+            q.QUES_ID DESC
     </select>
 
 </mapper>

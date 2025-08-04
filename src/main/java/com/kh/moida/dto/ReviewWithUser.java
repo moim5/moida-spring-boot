@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ReviewWithUser {
-	 private int reviewId;
+	 private Long reviewId;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
 	 private Date reviewDate;
 	 private String reviewTitle;
@@ -22,5 +22,6 @@ public class ReviewWithUser {
 	 private int reviewRate;
 	 
 	 private String username;
+	 
 	 
 }

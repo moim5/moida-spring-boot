@@ -4,16 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kh.moida.mapper.ReviewMapper">
-    <!-- 1.리뷰 작성 여부 확인 -->
-    <select id="countReview" resultType="_int">
-        select count(*) from review where review_id = #{reviewId}
-    </select>
-
-
     <!-- 리뷰리스트 뽑기 : moimDetail -->
     <select id="getReviewList" resultType="com.kh.moida.dto.ReviewWithUser">
         SELECT
+            R.REVIEW_ID,
         	R.REVIEW_DATE,
+            R.REVIEW_TITLE,
 			R.REVIEW_CONTENT,
 			R.REVIEW_RATE,
 			U.USERNAME
@@ -26,44 +22,65 @@
         FETCH FIRST 3 ROWS ONLY
     </select>
 
-    <select id="existWriter" parameterType="map">
+    <select id="existWriter" parameterType="map" resultType="int">
         SELECT COUNT(*)
-        FROM REVIEW
+            FROM REVIEW
         WHERE
-        MOIM_ID = #{moimId} AND USER_ID = #{userId}
+            MOIM_ID = #{moimId} AND USER_ID = #{userId}
     </select>
 
     <!-- 후기등록 -->
-    <insert id="writeReview">
-        insert into review
-        values review_#{reviewId}, default, #{reviewTitle}, #{reviewContent}, #{reviewRate}, #{moimId}, #{fileId},
+<insert id="writeReview">
+    <selectKey keyProperty="reviewId" resultType="int" order="BEFORE">
+        SELECT REVIEW_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+    INSERT INTO REVIEW (
+        REVIEW_ID,
+        REVIEW_DATE,
+        REVIEW_TITLE,
+        REVIEW_CONTENT,
+        REVIEW_RATE,
+        MOIM_ID,
+        FILE_ID,
+        USER_ID
+    ) VALUES (
+        #{reviewId},
+        SYSDATE,
+        #{reviewTitle},
+        #{reviewContent},
+        #{reviewRate},
+        #{moimId},
+        #{fileId},
         #{userId}
-    </insert>
+    )
+</insert>
+
 
     <!-- review edit  -->
-    <select id="selectReview">
+    <select id="selectReview" resultType="com.kh.moida.model.Review">
         SELECT
-        R.*,
-        F.FILE_CONVERT,
-        F.FILE_ORIGIN
-        FROM REVIEW R
+            R.*,
+            F.FILE_ORIGIN,
+            F.FILE_CONVERT
+        FROM
+            REVIEW R
         JOIN FILES F ON R.FILE_ID = F.FILE_ID
         WHERE
-        R.REVIEW_ID = #{reviewId}
+            R.REVIEW_ID = #{reviewId}
     </select>
 
 
     <!-- review read -->
-    <select id="getReview">
-        SELECT
+    <select id="getReview" parameterType="long" resultType="com.kh.moida.model.Review">
+    SELECT
         R.*,
         F.FILE_CONVERT,
         F.FILE_ORIGIN
-        FROM REVIEW R
-        LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
-        WHERE
+    FROM REVIEW R
+    LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
+    WHERE
         R.MOIM_ID = #{moimId}
-        ORDER BY R.REVIEW_DATE DESC
+    ORDER BY R.REVIEW_DATE DESC
     </select>
 
 
