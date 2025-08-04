@@ -148,19 +148,19 @@
                      th:text="@{|${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')}원|}"></div>
             </div>
             <div id="moim-enroll-buttonBox-pc" class="moim-detail-buttonBox">
-                <button th:if="isMoimAttendee == '0'"
+                <button th:if="${isMoimAttendee == 0}"
                         class="enroll-button-pc"
                         data-context="detail" th:data-moim-id="${moim.moimId}"
                         th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
-                        th:text="참가신청">
-                    >
-                </button>
-                <button th:if="isMoimAttendee != '0'"
+                        th:text="참가신청"
+                        th:disabled="${loginUser.userId == moim.userId}"
+                        ></button>
+                <button th:if="${isMoimAttendee != 0}"
                         class="enroll-button-pc"
                         data-context="detail" th:data-moim-id="${moim.moimId}"
                         th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
-                        th:text="참가신청취소">
-                </button>
+                        th:text="참가신청취소"
+                        th:disabled="${loginUser.userId == moim.userId}"></button>
             </div>
         </div>
     </div>

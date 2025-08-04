@@ -111,8 +111,7 @@ public class MyController {
         model.addAttribute("size", size);
         model.addAttribute("type", "joined");
         model.addAttribute("now", new Date());
-//        System.out.println(moimList);
-        System.out.println("userId: " + user.getUserId() + ", offset: " + offset);
+
 
         return "pages/my/moim/list";
     }
