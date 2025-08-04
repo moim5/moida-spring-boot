@@ -31,4 +31,6 @@ moveReview.addEventListener('click', (e) => {
 
 
 
-
+function deleteReviewModal() {
+	if (!confirm("정말 리뷰를 삭제하시겠습니까?")) return;
+}

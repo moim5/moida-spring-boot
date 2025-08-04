@@ -13,29 +13,32 @@
                 <div class="subTitle" style="display: flex; justify-content: space-between; align-items: center;">
                     참여자 후기
                     <div class="moimAvgRate">
-	                    <div th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></div>
-						<div th:unless="${avgRating > 0}">리뷰 없음</div>
-					</div>
+                    	<div th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></div>
+                    	<div th:unless="${avgRating > 0}">리뷰 없음</div>
+                    </div>
                     <a th:href="@{|/review/detail/${moim.moimId}|}" class="moim-detail-sectionTitleSub">
-                        <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기
-                    </a>
+                        <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기</a>
                 </div>
-                <div class="review-container">
-                    <!--후기 클릭 : 모달창 추가하기-->
+                <div class="moim-detail-review-container">
                     <div class="review-item" th:each="r : ${reviewList}">
-                        <div class="review-text">
-                            <div class="review-writer">[[${r.username}]]</div>
+                        <div class="review-column">
+                            <div class="moim-detail-reviewWriter">[[${r.username}]]</div>
                             <div class="user-star">
-                                <span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star" data-value="${i}">
+                                <span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star"
+                                      data-value="${i}">
                                     <i class="ti ti-carambola-filled"></i>
                                 </span>
                             </div>
-                            <div class="review">
-                                <p class="reviewText">
-                                    <span> [[${r.reviewContent}]] </span>
-                                    <button class="more-btn" onclick="openModal(this)">더보기</button>
-                                </p>
+                        </div>
+                        <div class="review-column">
+                            <div class="moim-detail-reviewContent">
+                                [[${r.reviewContent}]]
                             </div>
+                        </div>
+                        <div class="moim-detail-reviewButtonBox">
+                            <a th:href="@{|/review/detail/${moim.moimId}|}">
+                                <button class="more-btn">...더보기</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -147,7 +150,7 @@
             <div class="moim-detail-description">
                 <i class="ti ti-moneybag"></i>
                 <div class="moim-detail-fee"
-                     th:text="@{|${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')}원|}"></div>
+                     th:text="${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')} + '원'"></div>
             </div>
             <div id="moim-enroll-buttonBox-pc" class="moim-detail-buttonBox">
                 <button th:if="${isMoimAttendee == 0}"
@@ -155,15 +158,15 @@
                         data-context="detail" th:data-moim-id="${moim.moimId}"
                         th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
                         th:text="참가신청"
-                        th:disabled="${loginUser.userId == moim.userId}"
-                        ></button>
+                        th:disabled="${loginUser != null and loginUser.userId == moim.userId}"
+                ></button>
 
                 <button th:if="${isMoimAttendee != 0}"
                         class="enroll-button-pc"
                         data-context="detail" th:data-moim-id="${moim.moimId}"
                         th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
                         th:text="참가신청취소"
-                        th:disabled="${loginUser.userId == moim.userId}"></button>
+                        th:disabled="${loginUser != null and loginUser.userId == moim.userId}"></button>
             </div>
         </div>
     </div>
@@ -180,20 +183,18 @@
         <div class="moim-detail-description">
             <i class="ti ti-moneybag"></i>
             <div class="moim-detail-fee"
-                 th:text="@{|${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')}원|}"></div>
+                 th:text="${#numbers.formatInteger(moim.moimMoney, 3, 'COMMA')} + '원'"></div>
         </div>
         <div id="moim-enroll-buttonBox-mobile" class="moim-enroll-buttonBox">
             <button th:if="${isMoimAttendee == 0}"
                     data-context="detail" th:data-moim-id="${moim.moimId}"
                     th:onclick="@{|createMoimAttendee(${moim.moimId})|}"
                     th:text="참가신청">
-                >
             </button>
             <button th:if="${isMoimAttendee != 0}"
                     data-context="detail" th:data-moim-id="${moim.moimId}"
                     th:onclick="@{|cancelMoimAttendee(${moim.moimId})|}"
                     th:text="참가신청취소">
-                >
             </button>
         </div>
     </div>

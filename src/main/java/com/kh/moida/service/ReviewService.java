@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.ArrayList;
 
 
+import com.kh.moida.dto.ReviewWithUser;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -86,7 +87,7 @@ public class ReviewService {
     }
 
 	 // 후기읽기 페이지용 리뷰가져오기
-    public ArrayList<Review> getReview(Long moimId) {
+    public ArrayList<ReviewWithUser> getReview(Long moimId) {
         return mapper.getReview(moimId);
     }
 

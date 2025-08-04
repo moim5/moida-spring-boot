@@ -62,14 +62,14 @@
 }
 
 .moim-detail-pcBox .moim-detail-description i,
-.moim-detail-mobileBox .moim-detail-description i{
+.moim-detail-mobileBox .moim-detail-description i {
     font-size: 1.1rem;
     margin-top: 3px;
     margin-bottom: 3px;
 }
 
 .moim-detail-pcBox .moim-detail-fee,
-.moim-detail-mobileBox .moim-detail-fee{
+.moim-detail-mobileBox .moim-detail-fee {
     display: flex;
 }
 
@@ -125,6 +125,57 @@
     padding: 20px;
     white-space: pre-line;
     box-sizing: border-box;
+}
+
+.moim-detail-review-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.moim-detail-review-container .review-item {
+    width: calc(100% / 3);
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.moim-detail-review-container .review-item .review-column {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.moim-detail-review-container .review-item .review-column .moim-detail-reviewWriter {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.moim-detail-review-container .review-item .review-column .moim-detail-reviewContent {
+    margin-top: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.moim-detail-review-container .review-item .moim-detail-reviewButtonBox {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.moim-detail-review-container .review-item .moim-detail-reviewButtonBox .more-btn {
+    color: #ccc;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    background: none;
 }
 
 @media (max-width: 42rem) {

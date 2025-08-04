@@ -15,7 +15,7 @@
         
 
         <!--리뷰 작성란-->
-        <div class="review-content">
+        <div class="review-write-content">
             <form id="reviewForm" method="post" action="/review/enroll" enctype="multipart/form-data">
                 <input type="hidden" name="moimId" th:value="${moimId}"/>
                 <div class="review-title-box">
@@ -23,7 +23,7 @@
                     <input type="text" id="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요"
                            required maxlength="20"/>
                 </div>
-                <textarea id="rText" name="reviewContent" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
+                <textarea id="reviewText" name="reviewContent" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
                           required maxlength="1000"></textarea>
                 <div class="review-image-upload">
                     <i class="ti ti-library-photo"></i>
