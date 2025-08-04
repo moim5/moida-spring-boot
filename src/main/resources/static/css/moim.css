@@ -104,6 +104,11 @@
     margin-bottom: 20px;
 }
 
+.subTitle .moimAvgRate{
+	color:#666;
+	display : flex;
+	margin-left : -410px;
+}
 .moim-detail-sectionTitleSub {
     font-size: 0.9rem;
     color: #666;

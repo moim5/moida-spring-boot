@@ -63,6 +63,7 @@ public class ReviewController {
 		// 3. 리뷰 등록하기
 		int result3 = rService.writeReview(loginUser.getUserId(), r, image);
 		if (result3 > 0) {
+			rService.updateAvgRate(r.getMoimId()); //별점 업데이트
 			return "redirect:/review/detail/" + r.getReviewId();
 		}
 		return "redirect:/review/write/" + r.getMoimId();
@@ -122,6 +123,8 @@ public class ReviewController {
 		int result = rService.updateReview(loginUser.getUserId(), r, image);
 		if (result == 0) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "수정을 실패하였습니다.");
+		} else {
+			rService.updateAvgRate(r.getMoimId());
 		}
 		return "redirect:/review/read/" + r.getMoimId();
 	}
@@ -138,6 +141,7 @@ public class ReviewController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 		int result = rService.deleteReview(review);
+		rService.updateAvgRate(review.getMoimId());
 		
 		
 		return "redirect:/pages/my/review/review_read";

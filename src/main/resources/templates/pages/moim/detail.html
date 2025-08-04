@@ -12,8 +12,13 @@
             <div class="moim-detail-sectionBox">
                 <div class="subTitle" style="display: flex; justify-content: space-between; align-items: center;">
                     참여자 후기
+                    <div class="moimAvgRate">
+	                    <div th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></div>
+						<div th:unless="${avgRating > 0}">리뷰 없음</div>
+					</div>
                     <a th:href="@{|/review/detail/${moim.moimId}|}" class="moim-detail-sectionTitleSub">
-                        <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기</a>
+                        <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기
+                    </a>
                 </div>
                 <div class="review-container">
                     <!--후기 클릭 : 모달창 추가하기-->

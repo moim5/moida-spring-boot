@@ -52,12 +52,13 @@
                                           <i class="ti ti-pencil"></i>
                                     </span>
                               </a>&nbsp;
-                              <a th:href="@{'/review/delete/' + ${r.reviewId}}">
-
-                                    <span onclick="deleteReviewModal()">
-                                          <i class="ti ti-trash"></i>
-                                    </span>
-                              </a>
+                              <form th:action="@{/review/delete}"method="post" style="display:inline;">
+	                              <input type="hidden" name="reviewId" th:value="${r.reviewId}"/>
+								  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                  <span onclick="deleteReviewModal()">
+                                  	<i class="ti ti-trash"></i>
+                                  </span>
+                              </form>
                         </div>
                   </div>
                         

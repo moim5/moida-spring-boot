@@ -30,6 +30,14 @@ public class ReviewService {
     private final MoimMapper moimMapper;
     private final FileMapper fileMapper;
 
+    //평균 별점 계산 후 업데이트하기
+    public void updateAvgRate(Long moimId) {
+    	Double avgRate = mapper.getRateAvgByMoimId(moimId);
+    	if(avgRate == null) {
+    		avgRate = 0.0;
+    	}
+    	moimMapper.updateAvgRate(moimId, avgRate);
+    }
 
     //후기등록(체크: 참가한 모임이 있는지)
     public int checkReview(Long moimId, Long userId) {
