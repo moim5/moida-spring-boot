@@ -65,4 +65,8 @@ public interface MoimMapper {
     void updateAvgRate(Long moimId, Double avgRate);
 
 	ArrayList<Moim> findManyMoimForAdmin(Map<String, Object> params);
+
+    int questionDelete(int quesId);
+
+    int answerDelete(int quesId);
 }

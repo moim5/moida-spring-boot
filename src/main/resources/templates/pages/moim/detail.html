@@ -99,9 +99,24 @@
                          class="question-result shadow-sm mt-4">
                         <h6 class="section-subtitle">문의 내용</h6>
                         <p class="text-muted mb-1">
-                            문의 유저ID: <span th:text="${question.questionUserId}"></span>
+                            문의 유저이름: <span th:text="${question.name}"></span>
                         </p>
                         <p class="mb-4" th:text="${question.quesContent}"></p>
+
+                        <br>
+
+                        <!-- 문의 삭제 버튼 추가 -->
+                        <div class="question-delete mt-2">
+                            <form action="/moim/question/delete" method="POST"
+                                  th:if="${question.questionUserId == loginUser.userId}">
+                                <input type="hidden" name="moimId" th:value="${moim.moimId}" />
+                                <input type="hidden" name="quesId" th:value="${question.quesId}" />
+                                <button type="submit" style="background-color: #dc3545; color:
+                                white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+                                    문의 삭제
+                                </button>
+                            </form>
+                        </div>
 
                         <br>
 
@@ -127,10 +142,13 @@
                              class="answer-result mt-3 p-3">
                             <h6 class="section-subtitle">답변</h6>
                             <p class="text-muted mb-1">
-                                답변 작성자 ID: <span th:text="${question.answerUserId}"></span>
+                                답변 작성자 ID: <span th:text="호스트"></span>
                             </p>
                             <p class="mb-0" th:text="${question.ansContent}"></p>
                         </div>
+
+
+
                     </div>
 
                 </div>

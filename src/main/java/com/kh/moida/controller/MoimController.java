@@ -218,4 +218,15 @@ public class MoimController {
     ) {
         return moimService.attendeeList(moimId, loginUser);
     }
+
+    @PostMapping("question/delete")
+    public String questionDelete(@RequestParam("quesId") int quesId,
+                               @RequestParam("moimId") Long moimId) {
+        moimService.answerDelete(quesId);
+        moimService.questionDelete(quesId);
+
+        // 삭제 후 현재 상세 페이지로 리다이렉트
+        return "redirect:/moim/" + moimId;
+
+    }
 }

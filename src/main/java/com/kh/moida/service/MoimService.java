@@ -254,4 +254,12 @@ public class MoimService {
         Double avg = reviewMapper.getRateAvgByMoimId(moimId);
         return avg != null ? Math.round(avg * 10.0) / 10.0 : 0.0;
     }
+
+    public int questionDelete(int quesId) {
+        return moimMapper.questionDelete(quesId);
+    }
+
+    public int answerDelete(int quesId) {
+        return moimMapper.answerDelete(quesId);
+    }
 }

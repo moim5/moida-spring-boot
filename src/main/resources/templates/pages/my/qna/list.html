@@ -12,18 +12,78 @@
             <div class="subTitle" style="margin-bottom: 30px;">
                 나의 문의 목록
             </div>
-            <div th:each="question : ${myquestions}"
-                 class="question-result shadow-sm mt-4">
-                <a th:href="@{'/moim/' + ${question.moimId}}" style="text-decoration: none; color: inherit;">
-                    <h6 class="section-subtitle">문의 내용</h6>
-                    <p class="text-muted mb-1">
-                        문의 유저ID: <span th:text="${question.questionUserId}"></span>
-                    </p>
-                    <p class="mb-4" th:text="${question.quesContent}"></p>
-                </a>
+
+            <div id="question-list">
+                <div th:each="question, iterStat : ${myquestions}"
+                     class="question-result shadow-sm mt-4"
+                     th:attr="id='question-' + ${iterStat.index}"
+                     th:style="${iterStat.index < 3} ? 'display: block;' : 'display: none;'">
+                    <a th:href="@{'/moim/' + ${question.moimId}}" style="text-decoration: none; color: inherit;">
+                        <h6 class="section-subtitle">문의 내용</h6>
+                        <p class="text-muted mb-1">
+                            문의 유저이름: <span th:text="${question.name}"></span>
+                        </p>
+                        <p class="mb-4" th:text="${question.quesContent}"></p>
+                    </a>
+                </div>
             </div>
+
+            <div class="text-center mt-4">
+                <button id="loadMoreBtn"
+                        style="padding: 12px 24px;
+                   background-color: #4A90E2;
+                   color: white;
+                   border: none;
+                   border-radius: 8px;
+                   font-size: 16px;
+                   font-weight: bold;
+                   cursor: pointer;
+                   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                   transition: background-color 0.3s ease;"
+                        onmouseover="this.style.backgroundColor='#357ABD'"
+                        onmouseout="this.style.backgroundColor='#4A90E2'">
+                    더보기
+                </button>
+            </div>
+
         </div>
     </div>
+
+    <script>
+
+       document.addEventListener("DOMContentLoaded", function () {
+
+           const questionsPerPage = 3;
+           let currentIndex = 3;
+
+           const loadMoreBtn = document.getElementById('loadMoreBtn');
+           if (!loadMoreBtn) return;
+
+           loadMoreBtn.addEventListener('click', function () {
+
+               console.log("gdgd");
+
+               let anyShown = false;
+               for (let i = currentIndex; i < currentIndex + questionsPerPage; i++) {
+                   const questionElement = document.getElementById('question-' + i);
+                   if (questionElement) {
+                       questionElement.style.display = 'block';
+                       anyShown = true;
+                   } else {
+                       break;
+                   }
+               }
+               currentIndex += questionsPerPage;
+
+               // 더 이상 보여줄 게 없으면 버튼 숨김
+               if (!document.getElementById('question-' + currentIndex)) {
+                   loadMoreBtn.style.display = 'none';
+               }
+           });
+       });
+    </script>
+
 </main>
+
 </body>
 </html>

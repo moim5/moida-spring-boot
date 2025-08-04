@@ -24,4 +24,5 @@ public class Question {
     private Date ansDate;
     private Long answerUserId; //작성한 호스트
 
+    private String name; // 유저 이름
 }
