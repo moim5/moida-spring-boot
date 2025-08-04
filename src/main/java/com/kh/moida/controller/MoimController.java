@@ -129,6 +129,7 @@ public class MoimController {
 
     // 모임 중단
     @PostMapping("/cancelMoim/{moimId}")
+    @ResponseBody
     public String CancelMoim(
             @PathVariable("moimId") Long moimId,
             @AuthenticationPrincipal UserPrincipal loginUser

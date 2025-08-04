@@ -121,6 +121,10 @@ function updateJoinButtonUI(moimId, context, isJoined, button) {
 }
 
 async function cancelMoim(moimId) {
+	const confirmDelete = confirm("정말 이 모임을 삭제하시겠습니까?");
+	if (!confirmDelete) {
+	    return;
+	}
     try {
         const response = await fetch(`/moim/cancelMoim/${moimId}`, {
             method: 'POST',
