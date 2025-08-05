@@ -1,4 +1,4 @@
-window.onload = () => {
+
     const imageUpload = document.getElementsByClassName('review-image-upload')[0];
     const fileInput = document.getElementById('imageUpload');
     const fileListDiv = document.getElementById('imageFileList');
@@ -48,9 +48,10 @@ window.onload = () => {
     }
 
     //후기작성 : 10자이상 작성 필수 및 별점 선택 필수
-    function submitReview() {
-        const reviewText = document.getElementById('reviewText').value.trim();
-        if (reviewText.length < 10) {
+    function submitEditForm() {
+        const reviewText = document.getElementById('reviewEditContent').value.trim();
+		const rating = document.getElementById('ratingInput').value;
+		if (reviewText.length < 10) {
             alert('후기를 10자 이상 작성해주세요.');
             return false;
         }
@@ -59,28 +60,22 @@ window.onload = () => {
             alert('별점을 선택해주세요.');
             return false;
         }
+		
+		// 조건 충족 시 1차 모달창 띄우기
+		document.getElementById('EditConfirmModal').style.display = "flex";
 
-        if (reviewText.length >= 10 && rating) { //1차 모달 열기
-            document.getElementById('confirmModal').style.display = "flex";
-        }
     }
 
-    //등록버튼, 취소버튼 클릭 시 리뷰 등록 여부 질의 모달창
     function closeModal(id) {
         document.getElementById(id).style.display = "none";
     }
 
-    //2차 모달 띄우기
-    function showSuccessModal() {
-        closeModal('confirmModal'); //1차 모달 닫기
-        document.getElementById('successModal').style.display = "flex";
-    }
-
-    function enrollReview() { //등록하기: 폼 제출 후 review/read로 이동
-        document.getElementById('reviewForm').submit();
-    }
-
-
+	 function EditConfirm() {
+	    document.getElementById('EditConfirmModal').style.display = "none";
+	    alert('리뷰가 수정되었습니다.');
+	    document.getElementById('reviewEditForm').submit();
+	}
+   
     // 별점채우기 : 별 클릭 시 아이콘 자체변경
     const stars = document.querySelectorAll('.star');
     let selectedRating = 0;
@@ -100,9 +95,9 @@ window.onload = () => {
             updateStars(selectedRating);
 
             //클릭할때마다 hidden input에도 값 업데이트 시키기
-            const raingInput = document.getElementById('raringInput');
-            if (raingInput) {
-                raingInput.value = clickedRating;
+            const ratingInput = document.getElementById('ratingInput');
+            if (ratingInput) {
+                rangInput.value = clickedRating;
             }
         });
 
@@ -148,31 +143,31 @@ window.onload = () => {
     }
 
     // 별점 1점 미만 제출 차단 (별점1점이상 필수선택)
-    const reviewForm = document.getElementById('reviewForm');
+	const reviewEditForm = document.getElementById('reviewEditForm');
+	if (reviewEditForm) {
+	    reviewEditForm.addEventListener('submit', (e) => {
+	        if (clickedRating < 1) {
+	            e.preventDefault(); // 폼 제출 방지
+	            alert('별점을 1점 이상 선택해주세요.');
+	        } else {
+	            const ratingInput = document.getElementById('ratingInput');
+	            if (ratingInput) {
+	                ratingInput.value = clickedRating; // hidden input에 값 저장
+	            }
+	        }
+	    });
+	}
 
-    reviewForm.addEventListener('submit', (e) => {
-        const ratingInput = document.getElementById('ratingInput');
-        if (clickedRating < 1) {
-            e.preventDefault(); // 폼 제출 방지
-            alert('별점을 1점 이상 선택해주세요.');
-        } else {
-            ratingInput.value = clickedRating; // 선택된 별점 값을 hidden input에 저장
-        }
-    });
+	const reviewModalBody = `
+	    <p>후기를 수정하시겠습니까?</p>
+	`;
 
+	const reviewModalFooter = `
+	    <button onclick="showSuccessEditModal()">네</button>
+	    <button id="closeModal" onclick="closeModal('EditConfirmModal')">아니오</button>
+	`;
 
-};
+	function showReviewConfirmModal() {
+	    showModal({body: reviewModalBody, footer: reviewModalFooter});
+	}
 
-
-const reviewModalBody = `
-    <p>후기를 수정하시겠습니까?</p>
-`;
-
-const reviewModalFooter = `
-    <button onclick="showSuccessModal()">네</button>
-    <button id="closeModal" onclick="closeModal('confirmModal')">아니오</button>
-`;
-
-function showReviewConfirmModal() {
-    showModal({body: reviewModalBody, footer: reviewModalFooter});
-}

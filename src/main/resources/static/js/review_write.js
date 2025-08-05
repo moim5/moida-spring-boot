@@ -6,7 +6,7 @@
 		const newFile = fileInput.files[0]; //크기 1개짜리 배열생성
 		if(!newFile) return;
 		
-		selectedFiles = [newFile]; //배열을 초기화시키고 새 파일 추가하기
+		let selectedFiles = [newFile]; //배열을 초기화시키고 새 파일 추가하기
 		
 	});
 }
@@ -46,6 +46,7 @@
         const rText = document.getElementById('reviewWriteText').value.trim();
         const rating = document.getElementById('ratingInput').value;
 
+		
         if (rText.length < 10) {
             alert('후기를 10자 이상 작성해주세요.');
             return false;
@@ -55,6 +56,8 @@
             alert('별점을 선택해주세요.');
             return false;
         }
+		
+		
         // 조건 충족 시 1차 모달창 띄우기
         document.getElementById('confirmModal').style.display = "flex";
     }
@@ -74,8 +77,8 @@
 
     // 별점채우기 : 별 클릭 시 아이콘 자체변경
     const stars = document.querySelectorAll('.star');
-let selectedRating = 0;
-let clickedRating = 0; // 클릭된 별의 값 저장
+	let selectedRating = 0;
+	let clickedRating = 0; // 클릭된 별의 값 저장
 
 stars.forEach(star => {
     star.addEventListener('click', () => {
