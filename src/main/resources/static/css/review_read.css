@@ -80,7 +80,7 @@
 }
 
 /* 리뷰내용 전체 컨테이너 */
-.review-content-container{
+.review-read-container{
     display: flex;
     margin: 5px 0;
     padding: 10px;
@@ -161,7 +161,7 @@
     white-space: pre-wrap;   
     overflow-wrap: break-word;
 }
-.review-content{
+.review-read-content{
     font-size: 15px;
      overflow: visible;
      white-space: pre-wrap;   
@@ -171,7 +171,7 @@
      line-height: 1.6;
      
 }
-.review-form img{
+.review-read-form img{
     width:100%;
     max-width: 400px;
     height:auto;
@@ -236,7 +236,7 @@
     padding: 10px;
     z-index: 10;
   }
-.review-content-container{
+.review-read-container{
   width: 100%;
   max-width: 100%;
   margin-top: 30px;
@@ -246,7 +246,7 @@
   
 }
 
-.review-form{
+.review-read-form{
     width: 100%;
     max-width: 100%;
     overflow: visible;

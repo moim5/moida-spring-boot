@@ -17,9 +17,11 @@
 		<div class="review-wrapper">
 			<div class="review-banner">
 				<div class="review-title">나만의 특별한 경험을 공유해요.</div>
-				<div class="moim-title">내가 참여한 모임 : [[${moim.moimTitle}]]</div>
+				<div class="moim-title" th:text="${moim.moimTitle}"></div>
 				<div class="moim-info">
-					<i class="ti ti-calendar-week"></i>[[${moim.moimAddress1}]]&nbsp;[[${moim.moimDate}]]
+					<i class="ti ti-calendar-week"></i>
+					<div th:text="${moim.moimAddress1}"></div>&nbsp;
+					<div th:text="${moim.moimDate}"></div>
 				</div>
 			</div>
 			<div class="review-photo-container">
@@ -31,14 +33,14 @@
 					<i class="ti ti-caret-right"></i>
 				</button>
 			</div>
-			<div class="review-content-container" th:each="r : ${reviewList}">
+			<div class="review-read-container" th:each="r : ${reviewList}">
 				<!--날짜내림차순으로 쿼리 뽑기 -->
 				<div class="review-writer">
 					<div class="writer-profile">
 						<div class="writer-name">[[${r.username}]]</div>
 					</div>
 				</div>
-				<div class="review-form">
+				<div class="review-read-form">
 					<div class="review-rate-box">
 						<!--별 박스-->
 						<div class="review-star">
@@ -52,27 +54,24 @@
 
 							<div class="review-date"
 								th:text="${#dates.format(r.reviewDate, 'yyyy년 MM월 dd일')}"></div>
-							<div class="review-edit" th:if="${loginUser.userId == r.userId}">
+							<div class="review-edit" th:if="${loginUser != null and loginUser.userId == r.userId}">
 								<a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
-									<div class="review-date">[[${r.reviewDate}]]</div>
-									<div class="review-edit-icon" th:if="${loginUser.userId == r.userId}"></div>
-									<a th:href="@{/review/edit/{id}(id=${r.reviewId}, moimId=${r.moimId})}">
+									<div class="review-edit-icon"></div>
 										<span> <i class="ti ti-pencil"></i></span>
 									</a>&nbsp;
+									
 									<form th:action="@{/review/delete}" method="post" style="display: inline;">
 										<input type="hidden" name="reviewId" th:value="${r.reviewId}" />
 										<input type="hidden" th:name="${_csrf.parameterName}"th:value="${_csrf.token}" />
-										 <span onclick="deleteReviewModal()"> 
-										 	<i class="ti ti-trash"></i>삭제
-										</span>
+										 <button type="submit" onclick="deleteReview(event)">
+       									 	<i class="ti ti-trash"></i>
+    									 </button>
 									</form>
-								</a>&nbsp;
 							</div>
 						</div>
 
-
 						<div class="review-content-title">[[${r.reviewTitle}]]</div>
-						<div class="review-content">
+						<div class="review-read-content">
 							<!--리뷰 txt + img-->
 							<div class="review-txt">[[${r.reviewContent}]]</div>
 							<div class="review-img" th:if="${r.fileConvert != null}">
@@ -81,9 +80,7 @@
 									alt="리뷰 이미지" />
 							</div>
 						</div>
-
-
-					</div>
+					</div> <!-- review-rate-box -->
 				</div>
 			</div>
 		</div>

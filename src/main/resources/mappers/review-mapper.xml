@@ -13,7 +13,8 @@
 			R.REVIEW_CONTENT,
 			R.REVIEW_RATE,
 			U.USERNAME,
-			U.USER_ID
+			U.USER_ID,
+			R.MOIM_ID
 			
         FROM
 			REVIEW R
@@ -80,7 +81,7 @@
     </select>
 
 
-    <!-- review read -->
+    <!-- review read : review내용 -->
     <select id="getReview" parameterType="long" resultType="com.kh.moida.dto.ReviewWithUser">
     SELECT
         R.*,
@@ -88,7 +89,8 @@
         F.FILE_ORIGIN,
         U.USERNAME,
         U.NAME,
-        U.USER_ID
+        U.USER_ID,
+        R.MOIM_ID
     FROM
         REVIEW R
     LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID

@@ -34,5 +34,6 @@ public interface ReviewMapper {
 	//평균 별점 구하기
 	 Double getRateAvgByMoimId(@Param("moimId") Long moimId);
 
+	 //review_read전용 리스트 뽑기
 	ArrayList<ReviewWithUser> getReview(Long moimId);
 }

@@ -68,7 +68,7 @@ public class ReviewController {
         int result3 = rService.writeReview(loginUser.getUserId(), r, image);
         if (result3 > 0) {
         	rService.updateAvgRate(r.getMoimId()); //별점 업데이트
-            return "redirect:/review/detail/" + r.getReviewId();
+            return "redirect:/review/detail/" + r.getMoimId();
             
         }
         return "redirect:/review/write/" + r.getMoimId();
@@ -83,7 +83,7 @@ public class ReviewController {
     ) {
         ArrayList<ReviewWithUser> reviewList = rService.getReview(moimId);
         Moim moim = moimService.findById(moimId);
-
+   
         model.addAttribute("reviewList", reviewList);
         model.addAttribute("moim", moim);
         if (userPrincipal != null) {

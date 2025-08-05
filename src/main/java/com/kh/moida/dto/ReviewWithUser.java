@@ -24,5 +24,11 @@ public class ReviewWithUser {
 	 private String username;
 	 private Long userId;
 	 
+	 private Long moimId;
+	 
+	 private String fileConvert;
+	 private String fileOrigin;
+
+	 
 	 
 }
