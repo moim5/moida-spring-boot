@@ -14,28 +14,31 @@
 
 
     // 파일명 표시 + 삭제 버튼 추가
-    function addFileTag(fileName) {
-        const fileItem = document.createElement('div');
-        fileItem.className = 'file-tag';
+	const fileListDiv = document.getElementById('fileId');
+	function addFileTag(fileName) {
+	    const fileItem = document.createElement('div');
+	    fileItem.className = 'file-tag';
 
-        const nameSpan = document.createElement('span');
-        nameSpan.textContent = fileName;
+	    const nameSpan = document.createElement('span');
+	    nameSpan.textContent = fileName;
 
-        const deleteTemplate = document.getElementById('imageDeleteIcon');
-        const deleteBtn = deleteTemplate.cloneNode(true);
-        deleteBtn.className = 'delete-btn';
-        deleteBtn.style.display = 'inline-block';
-        deleteBtn.removeAttribute('id');
+	    const deleteSpan = document.createElement('span');
+	    deleteSpan.className = 'image-delete-icon';
+	    deleteSpan.style.display = 'inline-block';
 
-        deleteBtn.addEventListener('click', () => {
-            selectedFiles = selectedFiles.filter(f => f.name !== fileName);
-            fileListDiv.removeChild(fileItem);
-        });
+	    const deleteIcon = document.createElement('i');
+	    deleteIcon.className = 'ti ti-trash delete-btn';
+	    deleteIcon.addEventListener('click', () => {
+	        selectedFiles = selectedFiles.filter(f => f.name !== fileName);
+	        fileListDiv.removeChild(fileItem);
+	    });
 
-        fileItem.appendChild(nameSpan);
-        fileItem.appendChild(deleteBtn);
-        fileListDiv.appendChild(fileItem);
-    }
+	    deleteSpan.appendChild(deleteIcon);
+
+	    fileItem.appendChild(nameSpan);
+	    fileItem.appendChild(deleteSpan);
+	    fileListDiv.appendChild(fileItem);
+	}
 
 
     //후기작성 : 10자이상 작성 필수 및 별점 선택 필수

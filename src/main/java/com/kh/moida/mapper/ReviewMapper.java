@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import com.kh.moida.dto.ReviewWithUser;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import com.kh.moida.model.Review;
 
 @Mapper
@@ -30,7 +32,7 @@ public interface ReviewMapper {
 	int deleteReview(int reviewId);
 
 	//평균 별점 구하기
-	Double getRateAvgByMoimId(Long moimId);
+	 Double getRateAvgByMoimId(@Param("moimId") Long moimId);
 
 	ArrayList<ReviewWithUser> getReview(Long moimId);
 }

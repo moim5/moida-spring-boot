@@ -372,13 +372,9 @@
     </select>
     
     <!-- 평균 별점 계산한 것 업데이트 -->
-	<update id="updateAvgRate">
+	<update id="updateAvgRate" parameterType="map">
 	    UPDATE MOIM
-	    SET MOIM_AVG_RATE = (
-	        SELECT ROUND(AVG(R.RATING), 1)
-	        FROM REVIEW R
-	        WHERE R.MOIM_ID = #{moimId}
-	    )
+	    SET MOIM_AVG_RATE = #{avgRate}
 	    WHERE MOIM_ID = #{moimId}
 	</update>
 

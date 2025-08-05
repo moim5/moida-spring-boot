@@ -14,7 +14,7 @@
                     참여자 후기
                     <div class="moimAvgRate">
                     	<div th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></div>
-                    	<div th:unless="${avgRating > 0}">리뷰 없음</div>
+                    	<div th:unless="${avgRating > 0}">(0)</div>
                     </div>
                     <a th:href="@{|/review/detail/${moim.moimId}|}" class="moim-detail-sectionTitleSub">
                         <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기</a>

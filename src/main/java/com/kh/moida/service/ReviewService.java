@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.ArrayList;
 
@@ -37,7 +38,11 @@ public class ReviewService {
     	if(avgRate == null) {
     		avgRate = 0.0;
     	}
-    	moimMapper.updateAvgRate(moimId, avgRate);
+    	 Map<String, Object> map = new HashMap<>();
+    	    map.put("moimId", moimId);
+    	    map.put("avgRate", avgRate);
+
+    	    moimMapper.updateAvgRate(map);
     }
 
     //후기등록(체크: 참가한 모임이 있는지)
@@ -80,8 +85,13 @@ public class ReviewService {
         
         //review등록 성공 시 평균 별점 업데이트
         if(result > 0) {
-        	Double avgRate = mapper.getRateAvgByMoimId(r.getMoimId()); //리뷰 평균 별점 구하기
-        	moimMapper.updateAvgRate(r.getMoimId(), avgRate); //평균 별점 업데이트
+        	 Double avgRate = mapper.getRateAvgByMoimId(r.getMoimId());
+
+        	    Map<String, Object> map = new HashMap<>();
+        	    map.put("moimId", r.getMoimId());
+        	    map.put("avgRate", avgRate);
+
+        	    moimMapper.updateAvgRate(map);
         }
         return result;
     }

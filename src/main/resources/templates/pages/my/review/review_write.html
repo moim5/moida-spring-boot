@@ -15,7 +15,7 @@
                 <input type="hidden" name="moimId" th:value="${moimId}"/>
                 <div class="review-title-box">
                     <label for="review-write-title">리뷰 제목</label>
-                    <input type="text" id="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요"
+                    <input type="text" id="review-write-title" name="reviewTitle" placeholder="제목을 입력해주세요"
                            required maxlength="20"/>
                 </div>
                 <textarea id="reviewWriteText" name="reviewContent" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
@@ -27,8 +27,8 @@
                            th:enctype="'multiPart/form-data'"/>
                 </div>
                 <!--이미지 삭제-->
-                <div class="review-image-delete" id="imageDelete">
-                    <div class="review-image-list" id="imageFileList"> <!--이미지-->
+                <div class="review-write-image-delete" id="imageDelete">
+                    <div class="review-write-image" id="fileId"> <!--이미지-->
                         <span id="imageName"></span>
                         <span class="image-delete-icon" style="display:none">
                         	<i class="ti ti-trash" id="imageDeleteIcon"></i>

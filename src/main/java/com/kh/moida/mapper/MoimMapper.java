@@ -62,11 +62,14 @@ public interface MoimMapper {
     int countMoimForAdmin();
     
     //별점 업데이트
-    void updateAvgRate(Long moimId, Double avgRate);
+    void updateAvgRate(Map<String, Object> map);
 
 	ArrayList<Moim> findManyMoimForAdmin(Map<String, Object> params);
 
     int questionDelete(int quesId);
 
     int answerDelete(int quesId);
+
+
+	
 }

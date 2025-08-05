@@ -27,7 +27,7 @@
 	margin-top:70px;
 	margin-bottom:20px;
 }
-.review-title-box #reviewTitle{
+.review-title-box #review-write-title{
 	margin-left:5px;
 	border: 4px solid rgba(247, 145, 1, 0.63);
 	border-radius: 16px;
@@ -39,7 +39,7 @@
 	outline:none;
 }
 /* 이미지 삭제영역*/
-.review-image-delete {
+.review-write-image-delete {
     display: inline-flex;
     justify-content: left;
     align-items: center;
@@ -214,7 +214,7 @@
         font-size: 60%;
     }
 
-    .review-image-delete {
+    .review-write-image-delete {
         display: inline-flex;
         justify-content: flex-start;
     }

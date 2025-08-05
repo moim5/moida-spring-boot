@@ -12,7 +12,9 @@
             R.REVIEW_TITLE,
 			R.REVIEW_CONTENT,
 			R.REVIEW_RATE,
-			U.USERNAME
+			U.USERNAME,
+			U.USER_ID
+			
         FROM
 			REVIEW R
         JOIN USERS U ON U.USER_ID = R.USER_ID
@@ -30,7 +32,7 @@
     </select>
 
    <!-- 별점 평균 구하기 -->
-    <select id="getRateAvgByMoimId" resultType="double">
+    <select id="getRateAvgByMoimId" parameterType="Long" resultType="double">
 	  SELECT AVG(REVIEW_RATE)
 	  FROM REVIEW
 	  WHERE MOIM_ID = #{moimId}
@@ -86,6 +88,7 @@
         F.FILE_ORIGIN,
         U.USERNAME,
         U.NAME
+        U.USER_ID
     FROM
         REVIEW R
     LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID

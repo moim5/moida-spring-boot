@@ -22,6 +22,7 @@ public class ReviewWithUser {
 	 private int reviewRate;
 	 
 	 private String username;
+	 private Long userId;
 	 
 	 
 }

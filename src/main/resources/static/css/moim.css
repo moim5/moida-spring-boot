@@ -24,6 +24,8 @@
     box-sizing: border-box;
 }
 
+
+
 .moim-detail-container {
     width: 65%;
 }
@@ -104,11 +106,13 @@
     margin-bottom: 20px;
 }
 
-.subTitle .moimAvgRate{
+ .moim-detail-sectionBox .subTitle .moimAvgRate{
 	color:#666;
 	display : flex;
-	margin-left : -410px;
-}
+	transform: translateX(-120px);
+	}
+
+
 .moim-detail-sectionTitleSub {
     font-size: 0.9rem;
     color: #666;
@@ -142,6 +146,7 @@
     box-sizing: border-box;
     border-radius: 10px;
     border: 1px solid #ccc;
+    text-overflow: ellipsis; 
 }
 
 .moim-detail-review-container .review-item .review-column {
@@ -149,10 +154,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 100%;
+    flex-wrap: wrap;
 }
 
 .moim-detail-review-container .review-item .review-column .moim-detail-reviewWriter {
-    font-size: 20px;
+    font-size: 100%;
     font-weight: 500;
 }
 
@@ -161,6 +168,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.moim-detail-review-container .review-item .review-column .user-star{
+	margin : 0 auto;
 }
 
 .moim-detail-review-container .review-item .moim-detail-reviewButtonBox {
@@ -190,9 +200,10 @@
     .moim-detail-mobileBox {
         display: flex;
     }
-    .subTitle .moimAvgRate{
+    .moim-detail-sectionBox .subTitle .moimAvgRate{
 	color:#666;
 	display : flex;
-	margin-left : -200px;
+	transform: translateX(-90px);
 	}
+   
 }
