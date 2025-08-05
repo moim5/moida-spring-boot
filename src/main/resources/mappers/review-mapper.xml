@@ -75,7 +75,7 @@
             F.FILE_CONVERT
         FROM
             REVIEW R
-        JOIN FILES F ON R.FILE_ID = F.FILE_ID
+        LEFT JOIN FILES F ON R.FILE_ID = F.FILE_ID
         WHERE
             R.REVIEW_ID = #{reviewId}
     </select>

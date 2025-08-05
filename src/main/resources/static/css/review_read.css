@@ -144,7 +144,9 @@
   gap: 5px; 
   margin-left: auto;
   margin-right: 15px;
+  background : none;
  }
+
  .review-edit span:hover{
     cursor:pointer;
  }

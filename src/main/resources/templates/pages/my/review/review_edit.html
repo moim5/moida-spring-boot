@@ -12,14 +12,13 @@
         <!--리뷰 작성란-->
         <div class="review-write-content">
             <form id="reviewForm" method="post" action="/review/update" th:enctype="'multipart/form-data'">
-                <input type="hidden" name="reviewId" value="#{reviewId}"/>
-                <input type="text" name="reviewTitle" value="originalTitle"/>
+                <input type="hidden" name="reviewId" value="#{review.reviewId}"/>
                 <div class="review-title-box">
                     <label for="review-write-title">리뷰 제목</label>
                     <input type="text" id="reviewTitle" name="reviewTitle" placeholder="제목을 입력해주세요"
-                           required maxlength="20"/>
+                           required maxlength="20" th:value="${review.reviewTitle}"/>
                 </div>
-                <textarea id="reviewWriteText" name="reviewText" rows="25" cols="150" placeholder="즐거웠던 기억을 되살려보세요! (10자 이상)"
+                <textarea id="reviewEditContent" name="reviewContent" rows="25" cols="150"
                           required maxlength="1000" th:text="${review.reviewContent}"></textarea>
                 <div class="review-image-upload">
                     <i class="ti ti-library-photo"></i>
@@ -37,8 +36,8 @@
                 </div>
 
                 <!--별점 영역-->
-                <div class="review-write-rating-stars" id="reviewWriteRating">
-                    <div class="review-write-stars">
+                <div class="review-edit-rating-stars" id="reviewEditRating">
+                    <div class="review-edit-stars">
                         <span class="star" data-value="1"><i class="ti ti-carambola"></i></span>
                         <span class="star" data-value="2"><i class="ti ti-carambola"></i></span>
                         <span class="star" data-value="3"><i class="ti ti-carambola"></i></span>
