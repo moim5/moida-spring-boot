@@ -87,7 +87,7 @@
         F.FILE_CONVERT,
         F.FILE_ORIGIN,
         U.USERNAME,
-        U.NAME
+        U.NAME,
         U.USER_ID
     FROM
         REVIEW R
