@@ -1,4 +1,4 @@
-.review-write-main-wrapper{
+.review-write-main-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center; /* 가로 중앙 정렬 */
@@ -6,11 +6,14 @@
     width: 100%;
     box-sizing: border-box;
 }
-.review-container{
-	 display: flex;
+
+.review-container {
+    display: flex;
     justify-content: center;
     width: 100%;
+    margin: 0 auto;
 }
+
 .review-write-content {
     width: 100%;
     max-width: 800px;
@@ -20,24 +23,26 @@
     gap: 20px;
 }
 
-.review-title-box{
-	color: rgba(247, 145, 1, 0.63);
-	font-size:25px;
-	font-weight:500;
-	margin-top:70px;
-	margin-bottom:20px;
-}
-.review-title-box #review-write-title{
-	margin-left:5px;
-	border: 4px solid rgba(247, 145, 1, 0.63);
-	border-radius: 16px;
-	width:300px;
-	height:30px;
+.review-title-box {
+    color: rgba(247, 145, 1, 0.63);
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 70px;
+    margin-bottom: 20px;
 }
 
-.review-title-box #reviewTitle:focus{
-	outline:none;
+.review-title-box #review-write-title {
+    margin-left: 5px;
+    border: 4px solid rgba(247, 145, 1, 0.63);
+    border-radius: 16px;
+    width: 300px;
+    height: 30px;
 }
+
+.review-title-box #reviewTitle:focus {
+    outline: none;
+}
+
 /* 이미지 삭제영역*/
 .review-write-image-delete {
     display: inline-flex;
@@ -90,12 +95,15 @@
     font-size: 30px;
     cursor: pointer;
 }
-#imageUpload{
+
+#imageUpload {
     display: none;
 }
-.image-text:hover{
+
+.image-text:hover {
     cursor: pointer;
 }
+
 .review-image-upload:hover {
     cursor: pointer;
 }
@@ -157,8 +165,8 @@
     display: flex;
     gap: 6px;
     cursor: pointer;
-    font-size:50px;
-    justify-align:center;
+    font-size: 50px;
+    justify-content: center;
 }
 
 .star i {
@@ -173,10 +181,11 @@
 
 
 @media screen and (max-width: 768px) {
-   .review-title-box{
-	width:100%;
-	font-size:100%;
-}
+    .review-title-box {
+        width: 100%;
+        font-size: 100%;
+    }
+
     .review-write-title {
         display: block;
         font-size: 100%;
