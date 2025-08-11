@@ -114,13 +114,18 @@ button {
 
 .banner-container {
     width: 100%;
-    height: 370px;
+    height: 100%;
     position: relative;
-    border-bottom: 1px solid lightgray;
 }
 
-.banner-container img {
-    position: absolute;
+.banner-container img.pc-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-container img.mobile-banner {
+    display: none;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -628,6 +633,17 @@ footer .footer-container .footer-copyrightText {
         width: 100%;
         padding: 0 20px;
         box-sizing: border-box;
+    }
+
+    .banner-container img.pc-banner {
+        display: none;
+    }
+
+    .banner-container img.mobile-banner {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .category-container {

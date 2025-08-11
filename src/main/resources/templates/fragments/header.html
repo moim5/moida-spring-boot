@@ -41,7 +41,7 @@
                 <span>마이</span>
             </a>
             <a class="header-button" th:if="${loginUser != null && loginUser.isAdmin == 'Y'}"
-               th:href="${loginUser != null ? '/admin/moim' : '/sign/in'}">
+               th:href="${loginUser != null ? '/admin/moim/list' : '/sign/in'}">
                 <i class="ti ti-circle-letter-a"></i>
                 <span>관리자</span>
             </a>
