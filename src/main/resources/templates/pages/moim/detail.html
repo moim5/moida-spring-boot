@@ -11,17 +11,17 @@
 
             <div class="moim-detail-sectionBox">
                 <div class="subTitle" style="display: flex; justify-content: space-between; align-items: center;">
-                    참여자 후기
-                    <div class="moimAvgRate">
-                    	<div th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></div>
-                    	<div th:unless="${avgRating > 0}">(0)</div>
+                    <div>
+                        참여자 후기
+                        <span th:if="${avgRating > 0}" th:text="'(' + ${avgRating} + ')'"></span>
+                        <span th:unless="${avgRating > 0}">(0)</span>
                     </div>
                     <a th:href="@{|/review/detail/${moim.moimId}|}" class="moim-detail-sectionTitleSub">
                         <i class="ti ti-arrow-big-right-line"></i> 리뷰 상세보기</a>
                 </div>
                 <div class="moim-detail-review-container">
                     <div class="review-item" th:each="r : ${reviewList}">
-                        <div class="review-column">
+                        <div class="review-column review-column-mobile">
                             <div class="moim-detail-reviewWriter">[[${r.username}]]</div>
                             <div class="user-star">
                                 <span th:each="i : ${#numbers.sequence(1, r.reviewRate)}" class="star"

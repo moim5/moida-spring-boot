@@ -1,7 +1,6 @@
 .main-anchor-container {
     width: 100%;
-    margin: 30px 0;
-    padding: 0 20px;
+    margin-top: 30px;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -23,7 +22,6 @@
     padding: 20px 30px;
     box-sizing: border-box;
 }
-
 
 
 .moim-detail-container {
@@ -106,11 +104,11 @@
     margin-bottom: 20px;
 }
 
- .moim-detail-sectionBox .subTitle .moimAvgRate{
-	color:#666;
-	display : flex;
-	transform: translateX(-120px);
-	}
+.moim-detail-sectionBox .subTitle .moimAvgRate {
+    color: #666;
+    display: flex;
+    transform: translateX(-120px);
+}
 
 
 .moim-detail-sectionTitleSub {
@@ -138,6 +136,7 @@
     align-items: center;
     gap: 20px;
     margin-bottom: 50px;
+    box-sizing: border-box;
 }
 
 .moim-detail-review-container .review-item {
@@ -146,7 +145,7 @@
     box-sizing: border-box;
     border-radius: 10px;
     border: 1px solid #ccc;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
 
 .moim-detail-review-container .review-item .review-column {
@@ -156,6 +155,7 @@
     align-items: center;
     font-size: 100%;
     flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .moim-detail-review-container .review-item .review-column .moim-detail-reviewWriter {
@@ -165,12 +165,16 @@
 
 .moim-detail-review-container .review-item .review-column .moim-detail-reviewContent {
     margin-top: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* 보여줄 줄 수 */
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-break: break-word;
+    line-height: 1.2rem;
 }
-.moim-detail-review-container .review-item .review-column .user-star{
-	margin : 0 auto;
+
+.moim-detail-review-container .review-item .review-column .user-star {
+    margin: 0 auto;
 }
 
 .moim-detail-review-container .review-item .moim-detail-reviewButtonBox {
@@ -200,10 +204,23 @@
     .moim-detail-mobileBox {
         display: flex;
     }
-    .moim-detail-sectionBox .subTitle .moimAvgRate{
-	color:#666;
-	display : flex;
-	transform: translateX(-90px);
-	}
-   
+
+    .moim-detail-sectionBox .subTitle .moimAvgRate {
+        color: #666;
+        display: flex;
+        transform: translateX(-90px);
+    }
+
+    .review-column-mobile {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .review-column-mobile i {
+        font-size: 0.9rem;
+    }
+
+    .moim-detail-review-container .review-item .review-column .moim-detail-reviewContent {
+        line-height: 1.1rem;
+    }
 }
